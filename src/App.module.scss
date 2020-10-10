@@ -1,0 +1,132 @@
+.app {
+  color: #fff;
+  display: grid;
+  grid-template-areas:
+    "🤯 🤠"
+    "😱 😱";
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto 20vh;
+  column-gap: 10rem;
+  position: relative;
+
+  .app__main {
+    grid-area: 🤯;
+
+    h1,
+    p {
+      font-size: 4.8rem;
+      line-height: 5.2rem;
+      margin: 40px 0;
+
+      span {
+        color: var(--accent-color);
+      }
+    }
+
+    form {
+      display: grid;
+      grid-template-areas:
+        "label label"
+        "email submit"
+        "span  span";
+      grid-template-columns: 68% 20%;
+      label {
+        grid-area: label;
+        font-size: 3rem;
+        font-weight: 600;
+      }
+      span {
+        grid-area: span;
+        color: #b2b2b2;
+      }
+      input {
+        height: 5rem;
+        border: none;
+        color: #ddd;
+        font-size: 1.6rem;
+        margin: 8px 0;
+      }
+      input[type="email"] {
+        grid-area: email;
+        border-radius: 4px 0 0 4px;
+        text-indent: 1rem;
+        background-color: #1a1a1a;
+      }
+      input[type="submit"] {
+        grid-area: submit;
+        border-radius: 0 4px 4px 0;
+        background-color: #484848;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .app__cards {
+    grid-area: 🤠;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    .app__card {
+      margin: 20px auto;
+      background-color: #545454;
+      border-radius: 8px;
+      height: 100px;
+      width: 225px;
+      text-indent: 3rem;
+      font-size: 1.2rem;
+
+      h1 {
+        padding-top: 20px;
+      }
+      p {
+        padding-top: 6px;
+      }
+    }
+  }
+
+  .app__socials {
+    grid-area: 😱;
+    margin: auto auto 0 auto;
+
+    a {
+      padding: 0 4px;
+
+      img {
+        transform: scale(0.8);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .app {
+    grid-template-areas:
+      "🤯"
+      "🤠"
+      "😱";
+    grid-template-columns: 1fr;
+    row-gap: 10rem;
+
+    .app__main {
+      form {
+        grid-template-areas:
+          "label"
+          "email"
+          "submit"
+          "span";
+        grid-template-columns: unset;
+
+        input[type="email"] {
+          margin-bottom: 0;
+          border-radius: 4px;
+        }
+        input[type="submit"] {
+          width: 40%;
+          height: 4.5rem;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}

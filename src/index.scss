@@ -4,8 +4,28 @@
   margin: 0;
 }
 
+:root {
+  --main-bg-color: #303030;
+  --accent-color: #7ecceb;
+  --text-color: #fff;
+}
+
+.content{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  min-height:100vh;
+}
+
 html {
   font-size: 62.5%;
+  background-color: var(--main-bg-color);
+}
+
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 55%;
+  }
 }
 
 body {
