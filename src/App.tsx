@@ -35,12 +35,18 @@ function App() {
             😄
           </span>
         </p>
-        <form>
+        <form
+          action="https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca"
+          method="post"
+          name="mc-embedded-subscribe-form"
+          target="_blank"
+          noValidate
+        >
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" placeholder="johndoe@email.com" required />
-          <input id="submit" type="submit" value="Notify me" />
+          <input id="email" type="email" placeholder="johndoe@email.com" name="EMAIL" required />
+          <input id="submit" type="submit" value="Notify me" name="subscribe" />
           <span>
-            When you sign up you are eligible to have a chance to win future courses{" "}
+            When you sign up you are eligible to have a chance to win future courses
             <span role="img" aria-label="gift emoji">
               🎁
             </span>
