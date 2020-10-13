@@ -68,7 +68,6 @@
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
-    cursor:pointer;
     .app__card {
       margin: 20px auto;
       background-color: #545454;
@@ -77,6 +76,7 @@
       width: 225px;
       text-indent: 3rem;
       font-size: 1.2rem;
+      cursor:pointer;
 
       h1 {
         padding-top: 20px;
