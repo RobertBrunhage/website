@@ -24,7 +24,7 @@ function App() {
     <div className={`${styles.app} ${helperStyles.maxWidth}`}>
       <div className={styles.app__main}>
         <h1>
-          I will <span>soon</span> have courses{" "}
+          I will <span>soon</span> have flutter courses
           <span role="img" aria-label="hand pointing down emoji">
             👇
           </span>
