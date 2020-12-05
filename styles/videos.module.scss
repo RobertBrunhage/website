@@ -1,0 +1,54 @@
+.title {
+  font-size: 4.5rem;
+}
+
+.card_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 368px));
+  gap: 48px;
+
+  .video_card {
+    margin: 0 auto;
+    max-width: 440px;
+    background-color: #545454;
+    cursor: pointer;
+    border-radius: 8px;
+
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.7);
+
+    display: grid;
+    grid-template-areas:
+      "img"
+      "title"
+      "desc";
+    grid-template-rows: max-content min-content max-content;
+
+    img {
+      grid-area: img;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 8px 8px 0 0;
+    }
+    h1 {
+      grid-area: title;
+      font-size: 2.2rem;
+      padding: 16px;
+    }
+    p {
+      grid-area: desc;
+      font-size: 1.8rem;
+      font-weight: 600;
+      padding: 0 16px 32px 16px;
+    }
+    h1,
+    p {
+      margin: 0;
+    }
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}

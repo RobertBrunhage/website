@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    max-height: 80px;
+    cursor: pointer;
+  }
+
+  ul {
+    margin-right: auto;
+    list-style: none;
+    padding: 0;
+
+    li {
+      list-style: none;
+      padding: 0;
+      display: inline-block;
+      padding: 0 16px;
+      font-size: 2.6rem;
+
+      a {
+        img {
+          height: 25px;
+        }
+      }
+    }
+  }
+
+  nav {
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        display: inline-block;
+        padding: 0 16px;
+        font-size: 2.6rem;
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}

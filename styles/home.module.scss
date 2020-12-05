@@ -1,17 +1,10 @@
 .app {
   color: #fff;
   display: grid;
-  grid-template-areas:
-    "🤯 🤠"
-    "😱 😱";
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto 20vh;
-  column-gap: 10rem;
   position: relative;
 
   .app__main {
-    grid-area: 🤯;
-
+    margin-top: 160px;
     h1,
     p {
       font-size: 4.8rem;
@@ -38,6 +31,7 @@
       span {
         grid-area: span;
         color: #b2b2b2;
+        font-size: 1.2rem;
       }
       input {
         height: 5rem;
@@ -57,45 +51,7 @@
         border-radius: 0 4px 4px 0;
         background-color: #484848;
         font-weight: bold;
-        cursor:pointer;
-      }
-    }
-  }
-
-  .app__cards {
-    grid-area: 🤠;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    .app__card {
-      margin: 20px auto;
-      background-color: #545454;
-      border-radius: 8px;
-      height: 100px;
-      width: 225px;
-      text-indent: 3rem;
-      font-size: 1.2rem;
-      cursor:pointer;
-
-      h1 {
-        padding-top: 20px;
-      }
-      p {
-        padding-top: 6px;
-      }
-    }
-  }
-
-  .app__socials {
-    grid-area: 😱;
-    margin: auto auto 0 auto;
-
-    a {
-      padding: 0 4px;
-
-      img {
-        transform: scale(0.8);
+        cursor: pointer;
       }
     }
   }
@@ -103,13 +59,6 @@
 
 @media only screen and (max-width: 768px) {
   .app {
-    grid-template-areas:
-      "🤯"
-      "🤠"
-      "😱";
-    grid-template-columns: 1fr;
-    row-gap: 10rem;
-
     .app__main {
       form {
         grid-template-areas:
