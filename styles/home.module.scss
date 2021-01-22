@@ -60,6 +60,7 @@
 @media only screen and (max-width: 768px) {
   .app {
     .app__main {
+      margin-top: 40px;
       form {
         grid-template-areas:
           "label"
