@@ -24,6 +24,7 @@
       "title"
       "desc";
     grid-template-rows: max-content min-content max-content;
+    transition: transform .3s ease;
 
     img {
       grid-area: img;
@@ -48,7 +49,7 @@
     }
 
     &:hover {
-      transform: scale(1.02);
+      transform: translateY(-8px);
     }
   }
 }
