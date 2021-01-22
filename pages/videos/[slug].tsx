@@ -8,6 +8,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Head from "next/head";
 import styles from "../../styles/video_lesson.module.scss";
+import PlausibleProvider from "next-plausible";
 
 const CodeBlock = ({ value }) => {
   return (
@@ -25,44 +26,46 @@ const CodeBlock = ({ value }) => {
 
 export default function Lesson({ content, frontmatter }) {
   return (
-    <Layout>
-      <Head>
-        <title>{frontmatter.title}</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta property="og:url" content="https://robertbrunhage.com" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={frontmatter.title} />
-        <meta property="og:description" content={frontmatter.description} />
-        <meta property="og:image" content={frontmatter.image} />
-        <meta property="twitter:card" content="summary" />
-        <meta property="twitter:site" content="@robertbrunhage" />
-        <meta property="twitter:title" content={frontmatter.title} />
-        <meta property="twitter:description" content={frontmatter.description} />
-        <meta property="twitter:image" content={frontmatter.image} />
-      </Head>
-      <div className={styles.content}>
-        <h1>{frontmatter.title}</h1>
-        {frontmatter.youtube ? (
-          <div className={styles.video}>
-            <iframe src={`https://www.youtube.com/embed/${frontmatter.youtube}`} />
-            <div className={styles.desc}>
-              <h2>{frontmatter.description}</h2>
-              <h4>{frontmatter.author}</h4>
-              <h3>{frontmatter.date}</h3>
-              <a href={frontmatter.github} rel="noopener noreferrer" target="_blank">
-                CODE
-              </a>
+    <PlausibleProvider domain="robertbrunhage.com">
+      <Layout>
+        <Head>
+          <title>{frontmatter.title}</title>
+          <link rel="icon" href="/favicon.ico" />
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta property="og:url" content="https://robertbrunhage.com" />
+          <meta property="og:type" content="article" />
+          <meta property="og:title" content={frontmatter.title} />
+          <meta property="og:description" content={frontmatter.description} />
+          <meta property="og:image" content={frontmatter.image} />
+          <meta property="twitter:card" content="summary" />
+          <meta property="twitter:site" content="@robertbrunhage" />
+          <meta property="twitter:title" content={frontmatter.title} />
+          <meta property="twitter:description" content={frontmatter.description} />
+          <meta property="twitter:image" content={frontmatter.image} />
+        </Head>
+        <div className={styles.content}>
+          <h1>{frontmatter.title}</h1>
+          {frontmatter.youtube ? (
+            <div className={styles.video}>
+              <iframe src={`https://www.youtube.com/embed/${frontmatter.youtube}`} />
+              <div className={styles.desc}>
+                <h2>{frontmatter.description}</h2>
+                <h4>{frontmatter.author}</h4>
+                <h3>{frontmatter.date}</h3>
+                <a href={frontmatter.github} rel="noopener noreferrer" target="_blank">
+                  CODE
+                </a>
+              </div>
             </div>
+          ) : (
+            ""
+          )}
+          <div className={styles.markdown}>
+            <ReactMarkdown escapeHtml={false} source={content} renderers={{ code: CodeBlock }} />
           </div>
-        ) : (
-          ""
-        )}
-        <div className={styles.markdown}>
-          <ReactMarkdown escapeHtml={false} source={content} renderers={{ code: CodeBlock }} />
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </PlausibleProvider>
   );
 }
 
