@@ -14,6 +14,11 @@ export default function Home() {
         <meta property="og:title" content="RobertBrunhage.com" />
         <meta property="og:description" content="Flutter courses, Videos and more! | Robert Brunhage." />
         <meta property="og:image" content="" />
+        <meta property="twitter:card" content="summary" />
+        <meta property="twitter:site" content="@robertbrunhage" />
+        <meta property="twitter:title" content="RobertBrunhage.com" />
+        <meta property="twitter:description" content="Flutter courses, Videos and more! | Robert Brunhage." />
+        <meta property="twitter:image" content="" />
         <link rel="prefetch" href="https://robertbrunhage.com/videos" />
       </Head>
       <div className={styles.app}>

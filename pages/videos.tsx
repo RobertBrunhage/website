@@ -13,6 +13,16 @@ const videos = ({ videos }) => {
         <title>Robert Brunhage - Videos</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta property="og:url" content="https://robertbrunhage.com/videos" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={videos[0].frontmatter.title} />
+        <meta property="og:description" content={videos[0].frontmatter.description} />
+        <meta property="og:image" content={videos[0].frontmatter.image} />
+        <meta property="twitter:card" content="summary" />
+        <meta property="twitter:site" content="@robertbrunhage" />
+        <meta property="twitter:title" content={videos[0].frontmatter.title} />
+        <meta property="twitter:description" content={videos[0].frontmatter.description} />
+        <meta property="twitter:image" content={videos[0].frontmatter.image} />
       </Head>
       <h1 className={styles.title}>Video Lessons :)</h1>
       <div className={styles.card_container}>
