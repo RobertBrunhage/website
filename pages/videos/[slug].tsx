@@ -34,7 +34,7 @@ export default function Lesson({ content, frontmatter }) {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={frontmatter.title} />
         <meta property="og:description" content={frontmatter.description} />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content={frontmatter.image} />
         <meta property="twitter:card" content="summary" />
         <meta property="twitter:site" content="@robertbrunhage" />
         <meta property="twitter:title" content={frontmatter.title} />
