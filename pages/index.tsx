@@ -9,6 +9,12 @@ export default function Home() {
         <title>Robert Brunhage - Home</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta property="og:url" content="https://robertbrunhage.com" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="RobertBrunhage.com" />
+        <meta property="og:description" content="Flutter courses, Videos and more! | Robert Brunhage." />
+        <meta property="og:image" content="" />
+        <link rel="prefetch" href="https://robertbrunhage.com/videos" />
       </Head>
       <div className={styles.app}>
         <div className={styles.app__main}>

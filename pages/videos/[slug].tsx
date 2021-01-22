@@ -30,6 +30,16 @@ export default function Lesson({ content, frontmatter }) {
         <title>{frontmatter.title}</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta property="og:url" content="https://robertbrunhage.com" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={frontmatter.title} />
+        <meta property="og:description" content={frontmatter.description} />
+        <meta property="og:image" content="" />
+        <meta property="twitter:card" content="summary" />
+        <meta property="twitter:site" content="@robertbrunhage" />
+        <meta property="twitter:title" content={frontmatter.title} />
+        <meta property="twitter:description" content={frontmatter.description} />
+        <meta property="twitter:image" content={frontmatter.image} />
       </Head>
       <div className={styles.content}>
         <h1>{frontmatter.title}</h1>
