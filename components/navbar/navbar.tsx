@@ -10,7 +10,9 @@ const Navbar = () => {
     <header className={styles.header}>
       <nav /* className="max_width" */>
         <h1 className={styles.logo}>
-          <img alt="logo" src="/logo.png" />
+          <a href="/">
+            <img alt="logo" src="/logo.png" />
+          </a>
           Robert Brunhage
         </h1>
 
