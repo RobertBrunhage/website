@@ -9,9 +9,15 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Head from "next/head";
 import styles from "../../styles/video_lesson.module.scss";
 
-const CodeBlock = ({ language, value }) => {
+const CodeBlock = ({ value }) => {
   return (
-    <SyntaxHighlighter language={'dart'} style={vscDarkPlus} lineProps={{style: {fontSize: '1.6rem'}}} wrapLines={true} showInlineLineNumbers={false}>
+    <SyntaxHighlighter
+      language={"dart"}
+      style={vscDarkPlus}
+      lineProps={{ style: { fontSize: "1.6rem" } }}
+      wrapLines={true}
+      showInlineLineNumbers={false}
+    >
       {value}
     </SyntaxHighlighter>
   );
@@ -70,13 +76,8 @@ export async function getStaticProps({ params: { slug } }) {
 
   const { data, content } = matter(markdownWithMetadata);
 
-  // Convert post date to format: Month day, Year
-  /*   const options = { year: "numeric", month: "long", day: "numeric" };
-  const formattedDate = data.date.toLocaleDateString("en-US", options); */
-
   const frontmatter = {
-    ...data /* ,
-    date: formattedDate, */,
+    ...data,
   };
 
   return {
