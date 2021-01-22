@@ -9,9 +9,9 @@ First fork the repo on GitHub.
 ```
 git clone <your-forked-repo>
 yarn
-yarn start
+yarn dev
 
-git checkout -b my-fix
+git switch -b my-fix
 # fix some code...
 
 git commit -m "Fix typo in readme"
@@ -22,7 +22,7 @@ The commit naming follows [this structure](https://chris.beams.io/posts/git-comm
 
 ## Running the site
 ```
-yarn start
+yarn dev
 ```
 
 Simple as that!
