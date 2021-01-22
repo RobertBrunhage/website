@@ -16,7 +16,7 @@ const videos = ({ videos }) => {
       </Head>
       <h1 className={styles.title}>Video Lessons :)</h1>
       <div className={styles.card_container}>
-        {videos.map(({ frontmatter: { title, description, image, /* date */ }, slug }) => (
+        {videos.map(({ frontmatter: { title, description, image }, slug }) => (
           <Link href={"/videos/[slug]"} as={`/videos/${slug}`} key={title}>
             <div className={styles.video_card}>
               <img src={image} alt="thumbnail" />
