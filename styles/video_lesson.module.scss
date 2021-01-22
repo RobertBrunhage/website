@@ -63,15 +63,30 @@
       text-indent: -20px;
       font-size: 1.6rem;
     }
-    a{
+    a {
       text-decoration: underline;
       color: rgb(65, 239, 255);
     }
   }
-  pre{
+  pre {
     font-size: 2.6rem;
-    box-shadow: 0 4px 6px 0 hsla(0, .0%, 0%, 0.2);
-    border-radius: .5em;
-    
+    box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+    border-radius: 0.5em;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .video {
+      iframe {
+        width: 100%;
+        height: 275px;
+        border: none;
+      }
+
+      .desc {
+        grid-template-areas:
+          "desc desc desc"
+          "author socials btn";
+      }
+    }
   }
 }
