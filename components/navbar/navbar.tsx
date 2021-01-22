@@ -8,7 +8,7 @@ const Navbar = () => {
   const toggleMobileMenu = () => mobileMenuRef.current?.classList.toggle(styles.active);
   return (
     <header className={styles.header}>
-      <nav className="max_width">
+      <nav /* className="max_width" */>
         <h1 className={styles.logo}>
           <img alt="logo" src="/logo.png" />
           Robert Brunhage
