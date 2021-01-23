@@ -24,7 +24,7 @@ const videos = ({ videos }) => {
           <meta property="twitter:site" content="@robertbrunhage" />
           <meta property="twitter:title" content={videos[0].frontmatter.title} />
           <meta property="twitter:description" content={videos[0].frontmatter.description} />
-          <meta property="twitter:image" content={videos[0].frontmatter.image} />
+          <meta property="twitter:image" content={`https://robertbrunhage.com${videos[0].frontmatter.image}`} />
         </Head>
         <h1 className={styles.title}>Video Lessons :)</h1>
         <div className={styles.card_container}>
