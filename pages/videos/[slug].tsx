@@ -36,12 +36,12 @@ export default function Lesson({ content, frontmatter }) {
           <meta property="og:type" content="article" />
           <meta property="og:title" content={frontmatter.title} />
           <meta property="og:description" content={frontmatter.description} />
-          <meta property="og:image" content={frontmatter.image} />
+          <meta property="og:image" content={`https://robertbrunhage.com${frontmatter.image}`} />
           <meta property="twitter:card" content="summary" />
           <meta property="twitter:site" content="@robertbrunhage" />
           <meta property="twitter:title" content={frontmatter.title} />
           <meta property="twitter:description" content={frontmatter.description} />
-          <meta property="twitter:image" content={frontmatter.image} />
+          <meta property="twitter:image" content={`https://robertbrunhage.com${frontmatter.image}`} />
         </Head>
         <div className={styles.content}>
           <h1>{frontmatter.title}</h1>
@@ -58,8 +58,8 @@ export default function Lesson({ content, frontmatter }) {
               </div>
             </div>
           ) : (
-            ""
-          )}
+              ""
+            )}
           <div className={styles.markdown}>
             <ReactMarkdown escapeHtml={false} source={content} renderers={{ code: CodeBlock }} />
           </div>
