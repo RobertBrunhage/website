@@ -14,6 +14,7 @@ const videos = ({ videos }) => {
         <Head>
           <title>Robert Brunhage - Videos</title>
           <link rel="icon" href="/favicon.ico" />
+          <meta name="description" content="Flutter, Dart, Firebase Video lessons and more | Robert Brunhage" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta property="og:url" content="https://robertbrunhage.com/videos" />
           <meta property="og:type" content="article" />
@@ -25,6 +26,7 @@ const videos = ({ videos }) => {
           <meta property="twitter:title" content={videos[0].frontmatter.title} />
           <meta property="twitter:description" content={videos[0].frontmatter.description} />
           <meta property="twitter:image" content={`https://robertbrunhage.com${videos[0].frontmatter.image}`} />
+          <link rel="canonical" href="https://robertbrunhage.com/videos" />
         </Head>
         <h1 className={styles.title}>Video Lessons :)</h1>
         <div className={styles.card_container}>

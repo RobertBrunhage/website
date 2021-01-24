@@ -9,6 +9,10 @@ export default function Home() {
       <Layout>
         <Head>
           <title>Robert Brunhage - Home</title>
+          <meta
+            name="description"
+            content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
+          />
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta property="og:url" content="https://robertbrunhage.com" />
@@ -28,6 +32,7 @@ export default function Home() {
           />
           <meta property="twitter:image" content="https://robertbrunhage.com/assets/images/running_avatar.png" />
           <link rel="prefetch" href="https://robertbrunhage.com/videos" />
+          <link rel="canonical" href="https://robertbrunhage.com" />
         </Head>
         <div className={styles.app}>
           <div className={styles.app__main}>
