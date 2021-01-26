@@ -20,7 +20,7 @@ const Footer = () => {
         {Socials.map((item, index) => (
           <li key={index}>
             <a href={item.href} rel="noopener noreferrer" target="_blank">
-              <img src={item.img} />
+              <img src={item.img} alt={item.alt} />
             </a>
           </li>
         ))}
