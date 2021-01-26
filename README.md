@@ -1,4 +1,4 @@
-# [Robertbrunhage.com](www.robertbrunhage.com)
+# [Robertbrunhage.com](https://robertbrunhage.com/)
 You will be able to find the design [here](https://www.figma.com/file/KFzrPopkhnV2IhZMSNRSXm/Robert-Web?node-id=0%3A1)
 
 ## Contributing
