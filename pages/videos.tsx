@@ -15,7 +15,10 @@ const videos = ({ videos }) => {
           <title>Robert Brunhage - Videos</title>
           <link rel="icon" href="/favicon.ico" />
           <meta name="robots" content="index" />
-          <meta name="description" content="Flutter, Dart, Firebase Video lessons and more | Robert Brunhage" />
+          <meta
+            name="description"
+            content="Video lesson on topics such as Flutter, Dart, Firebase and more | Robert Brunhage"
+          />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta
             name="keywords"
