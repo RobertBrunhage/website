@@ -12,7 +12,7 @@ const videos = ({ videos }) => {
     <PlausibleProvider domain="robertbrunhage.com">
       <Layout>
         <Head>
-          <title>Robert Brunhage - Videos</title>
+          <title>Robert Brunhage - Flutter, Dart, Firebase | Videos</title>
           <link rel="icon" href="/favicon.ico" />
           <meta name="robots" content="index" />
           <meta

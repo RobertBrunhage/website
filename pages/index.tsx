@@ -8,7 +8,7 @@ export default function Home() {
     <PlausibleProvider domain="robertbrunhage.com">
       <Layout>
         <Head>
-          <title>Robert Brunhage - Home</title>
+          <title>Robert Brunhage - Flutter, Dart, Firebase | Homepage</title>
           <meta
             name="description"
             content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
