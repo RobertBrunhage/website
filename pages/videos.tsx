@@ -12,9 +12,18 @@ const videos = ({ videos }) => {
     <PlausibleProvider domain="robertbrunhage.com">
       <Layout>
         <Head>
-          <title>Robert Brunhage - Videos</title>
+          <title>Robert Brunhage - Flutter, Dart, Firebase | Videos</title>
           <link rel="icon" href="/favicon.ico" />
+          <meta name="robots" content="index" />
+          <meta
+            name="description"
+            content="Video lesson on topics such as Flutter, Dart, Firebase and more | Robert Brunhage"
+          />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta
+            name="keywords"
+            content="Flutter, Firebase, Dart, Youtube, Robert Brunhage, Tips, App, Courses, Videos"
+          />
           <meta property="og:url" content="https://robertbrunhage.com/videos" />
           <meta property="og:type" content="article" />
           <meta property="og:title" content={videos[0].frontmatter.title} />
@@ -25,6 +34,7 @@ const videos = ({ videos }) => {
           <meta property="twitter:title" content={videos[0].frontmatter.title} />
           <meta property="twitter:description" content={videos[0].frontmatter.description} />
           <meta property="twitter:image" content={`https://robertbrunhage.com${videos[0].frontmatter.image}`} />
+          <link rel="canonical" href="https://robertbrunhage.com/videos" />
         </Head>
         <h1 className={styles.title}>Video Lessons :)</h1>
         <div className={styles.card_container}>

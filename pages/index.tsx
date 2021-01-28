@@ -8,9 +8,18 @@ export default function Home() {
     <PlausibleProvider domain="robertbrunhage.com">
       <Layout>
         <Head>
-          <title>Robert Brunhage - Home</title>
+          <title>Robert Brunhage - Flutter, Dart, Firebase | Homepage</title>
+          <meta
+            name="description"
+            content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
+          />
           <link rel="icon" href="/favicon.ico" />
+          <meta name="robots" content="index" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta
+            name="keywords"
+            content="Flutter, Firebase, Dart, Youtube, Robert Brunhage, Tips, App, Courses, Videos"
+          />
           <meta property="og:url" content="https://robertbrunhage.com" />
           <meta property="og:type" content="article" />
           <meta property="og:title" content="RobertBrunhage.com" />
@@ -28,6 +37,7 @@ export default function Home() {
           />
           <meta property="twitter:image" content="https://robertbrunhage.com/assets/images/running_avatar.png" />
           <link rel="prefetch" href="https://robertbrunhage.com/videos" />
+          <link rel="canonical" href="https://robertbrunhage.com" />
         </Head>
         <div className={styles.app}>
           <div className={styles.app__main}>
