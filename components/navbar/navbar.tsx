@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styles from "./navbar.module.scss";
 import Link from "next/link";
-import Menu from "./menuItems.js";
+import Menu from "./menuItems";
 import Head from "next/head";
 
 const Navbar = () => {
