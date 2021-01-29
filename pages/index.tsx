@@ -14,12 +14,7 @@ export default function Home() {
             content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
           />
           <link rel="icon" href="/favicon.ico" />
-          <meta name="robots" content="index" />
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-          <meta
-            name="keywords"
-            content="Flutter, Firebase, Dart, Youtube, Robert Brunhage, Tips, App, Courses, Videos"
-          />
+
           <meta property="og:url" content="https://robertbrunhage.com" />
           <meta property="og:type" content="article" />
           <meta property="og:title" content="RobertBrunhage.com" />

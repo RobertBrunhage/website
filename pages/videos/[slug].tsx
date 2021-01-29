@@ -31,7 +31,6 @@ export default function Lesson({ content, frontmatter }) {
         <Head>
           <title>{frontmatter.title}</title>
           <link rel="icon" href="/favicon.ico" />
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta property="og:url" content="https://robertbrunhage.com" />
           <meta property="og:type" content="article" />
           <meta property="og:title" content={frontmatter.title} />

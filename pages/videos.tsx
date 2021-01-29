@@ -19,11 +19,6 @@ const videos = ({ videos }) => {
             name="description"
             content="Video lesson on topics such as Flutter, Dart, Firebase and more | Robert Brunhage"
           />
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-          <meta
-            name="keywords"
-            content="Flutter, Firebase, Dart, Youtube, Robert Brunhage, Tips, App, Courses, Videos"
-          />
           <meta property="og:url" content="https://robertbrunhage.com/videos" />
           <meta property="og:type" content="article" />
           <meta property="og:title" content={videos[0].frontmatter.title} />
