@@ -20,7 +20,7 @@ const Navbar = () => {
 
         <ul ref={mobileMenuRef} className={styles.navItems}>
           {Menu.map((item, index) => (
-            <li>
+            <li key={index}>
               <Link href={item.url} key={index}>
                 {item.title}
               </Link>
