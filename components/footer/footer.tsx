@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./footer.module.scss";
-import Socials from "./socials.js";
+import Socials from "./socials";
 
 const year = new Date().getFullYear();
 
@@ -15,7 +15,7 @@ const Footer = () => {
       </p>
 
       <p className={styles.copyright}>Copyright &copy; {year} Robert Brunhage</p>
-      
+
       <ul className={styles.socials}>
         {Socials.map((item, index) => (
           <li key={index}>
