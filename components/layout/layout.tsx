@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import Footer from "../footer/footer";
-import Navbar from "../navbar/navbar";
+import Footer from "@components/footer/footer";
+import Navbar from "@components/navbar/navbar";
 import styles from "./layout.module.scss";
 
 const Layout = ({ children }) => {

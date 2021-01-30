@@ -1,10 +1,10 @@
 import Head from "next/head";
 import React from "react";
-import Layout from "../components/layout/layout";
+import Layout from "@components/layout/layout";
 import fs from "fs";
 import matter from "gray-matter";
 import Link from "next/link";
-import styles from "../styles/videos.module.scss";
+import styles from "@styles/videos.module.scss";
 import PlausibleProvider from "next-plausible";
 
 const videos = ({ videos }) => {

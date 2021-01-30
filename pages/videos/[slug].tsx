@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../components/layout/layout";
+import Layout from "@components/layout/layout";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -7,7 +7,7 @@ import ReactMarkdown from "react-markdown/with-html";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Head from "next/head";
-import styles from "../../styles/video_lesson.module.scss";
+import styles from "@styles/video_lesson.module.scss";
 import PlausibleProvider from "next-plausible";
 
 const CodeBlock = ({ value }) => {

@@ -1,6 +1,6 @@
-import Layout from "../components/layout/layout";
+import Layout from "@components/layout/layout";
 import Head from "next/head";
-import styles from "../styles/home.module.scss";
+import styles from "@styles/home.module.scss";
 import PlausibleProvider from "next-plausible";
 
 export default function Home() {
