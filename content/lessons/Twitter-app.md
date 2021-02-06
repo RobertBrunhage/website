@@ -5,7 +5,7 @@ image: /assets/images/twitter_app_thumbnail.png
 youtube: 3eOn4CtO5hg
 github: https://github.com/RobertBrunhage/flutter_twitter_app_tutorial
 author: Robert Brunhage
-date: 05-12-2020
+date: 12-05-2020
 ---
 
 Twitter is one of the biggest social media platforms, and in this blog we are going to go over how we can make our own app that will utalize the Twitter API to make our own tweets.

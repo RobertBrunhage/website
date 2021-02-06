@@ -69,7 +69,7 @@ export async function getStaticProps() {
   });
 
   const sortedVideos = videos.sort((a, b) => {
-    return a.frontmatter.date < b.frontmatter.date ? 1 : -1;
+    return new Date(a.frontmatter.date) < new Date(b.frontmatter.date) ? 1 : -1;
   });
 
   return {

@@ -4,7 +4,7 @@ description: Some reasons that have let me to believe that Flutter will just kee
 image: /assets/images/why_flutter_in_2021_thumbnail.png
 youtube: KqX-96CI6GM
 author: Robert Brunhage
-date: 30-01-2021
+date: 01-30-2021
 ---
 # Why Flutter in 2021
 

@@ -5,7 +5,7 @@ image: /assets/images/10_flutter_tips_to_be_more_productive_thumbnail.png
 youtube: 14VtPQ1aoaU
 github: https://github.com/RobertBrunhage/10_flutter_tips_2021
 author: Robert Brunhage
-date: 23-01-2021
+date: 01-23-2021
 ---
 
 Here are some of the tips and tricks I found along my 3 years of making Flutter applications and content. I am positive that this will improve your workflow if you don't already know about them.
