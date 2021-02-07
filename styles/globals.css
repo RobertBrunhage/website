@@ -35,6 +35,9 @@ h2 {
 h3 {
   font-size: var(--h3);
 }
+p {
+  font-size: var(--body-regular);
+}
 
 html,
 body {
