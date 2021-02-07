@@ -7,7 +7,6 @@
     margin-top: 160px;
     h1,
     p {
-      font-size: 4.8rem;
       line-height: 5.2rem;
       margin: 40px 0;
 
@@ -54,6 +53,64 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+.container {
+  margin-top: 80px;
+  display: grid;
+  grid-template-areas:
+    "intro sprite"
+    "featured sprite";
+  .intro {
+    grid-area: intro;
+    h1 {
+      margin: 0;
+    }
+    p {
+      font-size: var(--subtitle);
+      margin: 0;
+    }
+  }
+  .featured {
+    grid-area: featured;
+
+    .card {
+      display: grid;
+      grid-template-areas:
+        "img title"
+        "img desc"
+        "img btn"
+        "img .";
+      grid-template-rows: 30px auto 50px auto;
+
+      gap: 42px;
+      row-gap: 32px;
+
+      .preview {
+        grid-area: img;
+        width: 500px;
+        /* height: 300px; */
+      }
+      .title {
+        grid-area: title;
+        font-size: var(--subtitle);
+        font-weight: bold;
+        margin: 0;
+      }
+      .desc {
+        grid-area: desc;
+        margin: 0;
+      }
+      button {
+        grid-area: btn;
+        width: 150px;
+      }
+    }
+  }
+  .sprite {
+    grid-area: sprite;
+    max-height: 650px;
   }
 }
 

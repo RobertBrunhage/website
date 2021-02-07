@@ -4,7 +4,7 @@ import Layout from "../components/layout/layout";
 import PlausibleProvider from "next-plausible";
 import styles from "../styles/home.module.scss";
 
-const Home = () => {
+const home = () => {
   return (
     <PlausibleProvider domain="robertbrunhage.com">
       <Layout>
@@ -35,7 +35,7 @@ const Home = () => {
           <link rel="prefetch" href="https://robertbrunhage.com/videos" />
           <link rel="canonical" href="https://robertbrunhage.com" />
         </Head>
-        <div className={styles.app}>
+        {/*         <div className={styles.app}>
           <div className={styles.app__main}>
             <h1>
               I will <span>soon</span> have flutter courses
@@ -43,13 +43,13 @@ const Home = () => {
                 👇
               </span>
             </h1>
-            <p>
+            <h3>
               Future courses will be available here. <br />
               Sign up now to be notified when released
               <span role="img" aria-label="smiling emoji">
                 😄
               </span>
-            </p>
+            </h3>
             <form
               action="https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca"
               method="post"
@@ -68,10 +68,24 @@ const Home = () => {
               </span>
             </form>
           </div>
+        </div> */}
+        <div className={styles.container}>
+          <div className={styles.intro}>
+            <h1>Learn Flutter, Firebase & Dart</h1>
+            <p>Here you will never be lost, because now you are home 🏡</p>
+          </div>
+          <div className={styles.featured}>
+            <h2>Featured Video</h2>
+            <div>
+              video title desc browse
+              {/* <h1>{videos[0].frontmatter.title}</h1> */}
+            </div>
+          </div>
+          <img src="/assets/icons/sprite_talking.png" alt="intro_man" />
         </div>
       </Layout>
     </PlausibleProvider>
   );
 };
 
-export default Home;
+export default home;
