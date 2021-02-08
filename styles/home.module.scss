@@ -62,6 +62,7 @@
   grid-template-areas:
     "intro sprite"
     "featured sprite";
+
   .intro {
     grid-area: intro;
     h1 {
@@ -72,9 +73,9 @@
       margin: 0;
     }
   }
+
   .featured {
     grid-area: featured;
-
     .card {
       display: grid;
       grid-template-areas:
@@ -84,7 +85,7 @@
         "img .";
       grid-template-rows: 30px auto 50px auto;
 
-      gap: 42px;
+      column-gap: 42px;
       row-gap: 32px;
 
       .preview {
@@ -136,6 +137,54 @@
           border-radius: 4px;
         }
       }
+    }
+  }
+
+  .container {
+    grid-template-areas:
+      "intro sprite"
+      "featured featured";
+    grid-template-columns: 80% auto;
+
+    .intro {
+      h1 {
+        margin-bottom: 8px;
+      }
+    }
+
+    .featured {
+      text-align: center;
+      margin-top: 32px;
+      h2 {
+        margin-bottom: 8px;
+      }
+      .card {
+        grid-template-areas:
+          "title"
+          "img"
+          "desc"
+          "btn";
+        grid-template-rows: auto;
+        column-gap: 0;
+        row-gap: 16px;
+
+        .preview {
+          max-width: 80%;
+          margin: 0 auto;
+        }
+        .title {
+          font-weight: normal;
+        }
+        button {
+          margin: 0 auto;
+          height: 50px;
+        }
+      }
+    }
+
+    .sprite {
+      max-width: 70px;
+      margin: auto 0 0 0;
     }
   }
 }

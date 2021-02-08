@@ -44,7 +44,7 @@ const home = ({ videos }) => {
             <p>Here you will never be lost, because now you are home 🏡</p>
           </div>
           <div className={styles.featured}>
-            <h2>Featured Video</h2>
+            <h2>Featured video</h2>
             <div className={styles.card}>
               <img className={styles.preview} src={`https://robertbrunhage.com${videos[0].frontmatter.image}`} alt="video" />
               <p className={styles.title}>{videos[0].frontmatter.title}</p>
