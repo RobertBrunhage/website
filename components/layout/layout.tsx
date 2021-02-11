@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Navbar />
-      <main className={`max_width ${styles.main}`}>{children}</main>
+      <main className={styles.main}>{children}</main>
       <Footer />
     </>
   );

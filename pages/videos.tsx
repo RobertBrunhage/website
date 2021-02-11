@@ -31,17 +31,19 @@ const videos = ({ videos }) => {
           <meta property="twitter:image" content={`https://robertbrunhage.com${videos[0].frontmatter.image}`} />
           <link rel="canonical" href="https://robertbrunhage.com/videos" />
         </Head>
-        <h1 className={styles.title}>Video Lessons :)</h1>
-        <div className={styles.card_container}>
-          {videos.map(({ frontmatter: { title, description, image }, slug }) => (
-            <Link href={"/videos/[slug]"} as={`/videos/${slug}`} key={title}>
-              <div className={styles.video_card}>
-                <img src={image} alt="thumbnail" />
-                <h1>{title}</h1>
-                <p>{description}</p>
-              </div>
-            </Link>
-          ))}
+        <div className="max_width">
+          <h1 className={styles.title}>Video Lessons :)</h1>
+          <div className={styles.card_container}>
+            {videos.map(({ frontmatter: { title, description, image }, slug }) => (
+              <Link href={"/videos/[slug]"} as={`/videos/${slug}`} key={title}>
+                <div className={styles.video_card}>
+                  <img src={image} alt="thumbnail" />
+                  <h1>{title}</h1>
+                  <p>{description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </Layout>
     </PlausibleProvider>

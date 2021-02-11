@@ -39,20 +39,51 @@ const home = ({ videos }) => {
           <link rel="canonical" href="https://robertbrunhage.com" />
         </Head>
         <div className={styles.container}>
-          <div className={styles.intro}>
-            <h1>Learn Flutter, Firebase & Dart</h1>
-            <p>Here you will never be lost, because now you are home 🏡</p>
-          </div>
-          <div className={styles.featured}>
-            <h2>Featured video</h2>
-            <div className={styles.card}>
-              <img className={styles.preview} src={`https://robertbrunhage.com${videos[0].frontmatter.image}`} alt="video" />
-              <p className={styles.title}>{videos[0].frontmatter.title}</p>
-              <p className={styles.desc}>{videos[0].frontmatter.description}</p>
-              <button>browse</button>
+          <div className={styles.section_one}>
+            <div className={`max_width ${styles.content}`}>
+              <div className={styles.intro}>
+                <h1>Learn Flutter, Firebase & Dart</h1>
+                <p>Here you will never be lost, because now you are home 🏡</p>
+              </div>
+              <div className={styles.featured}>
+                <h2>Featured video</h2>
+                <div className={styles.card}>
+                  <img
+                    className={styles.preview}
+                    src={`https://robertbrunhage.com${videos[0].frontmatter.image}`}
+                    alt="video"
+                  />
+                  <p className={styles.title}>{videos[0].frontmatter.title}</p>
+                  <p className={styles.desc}>{videos[0].frontmatter.description}</p>
+                  <button>browse</button>
+                </div>
+              </div>
+              <img className={styles.sprite} src="/assets/icons/sprite_talking.png" alt="intro_man" />
             </div>
           </div>
-          <img className={styles.sprite} src="/assets/icons/sprite_talking.png" alt="intro_man" />
+          <div className={styles.section_two}>
+            <div className={`max_width ${styles.content}`}>
+              <div className={styles.card}>
+                <img src="" alt="discord icon" />
+                <h3>Discord Community</h3>
+                <p>
+                  We have a <a>discord</a> channel where you can chat and learn with other developers.
+                </p>
+              </div>
+              <div className={styles.card}>
+                <img src="" alt="open source icon" />
+                <h3>Open Source</h3>
+                <p>
+                  My videos are almost all supported by a GitHub repo, this <a>site</a> as well.
+                </p>
+              </div>
+              <div className={styles.card}>
+                <img src="" alt="books education icon" />
+                <h3>Education for free</h3>
+                <p>The goal is to have enough content out for free so anyone can start learning.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </Layout>
     </PlausibleProvider>
