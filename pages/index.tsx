@@ -84,6 +84,18 @@ const home = ({ videos }) => {
               </div>
             </div>
           </div>
+          <div className={styles.section_three}>
+            <div className={`max_width ${styles.content}`}>
+              <h2>The Developers</h2>
+              <div className={styles.testimonials}>
+                <img src="/assets/images/testimonials/mikerydstrom.png" alt="mike rydstrom" />
+                <img src="/assets/images/testimonials/aymanbarghout.png" alt="ayman barghout" />
+                <img src="/assets/images/testimonials/tadaspetra.png" alt="tadas petra" />
+                <img src="/assets/images/testimonials/mukaldadwhal.png" alt="mukal dadwhal" />
+                <img src="/assets/images/testimonials/luischodiman.png" alt="luis chodiman" />
+              </div>
+            </div>
+          </div>
         </div>
       </Layout>
     </PlausibleProvider>
