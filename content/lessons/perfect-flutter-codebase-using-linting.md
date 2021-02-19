@@ -5,7 +5,7 @@ image: /assets/images/flutter_linting_thumbnail.png
 youtube: KEdxoubVztk
 github: https://github.com/RobertBrunhage/flutter_lint_tutorial
 author: Robert Brunhage
-date: 13-02-2021
+date: 02-13-2021
 ---
 # Perfect Your Flutter Codebase with Linting
 
