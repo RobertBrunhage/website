@@ -1,7 +1,7 @@
 ---
 title: 10 Flutter Tips to Be More Productive
 description: Getting to know small (and big) tips can often times make us see things we didn't think of. This one will boost your productivity and make a lot of things easier!
-image: /assets/images/10_flutter_tips_to_be_more_productive_thumbnail.png
+image: /assets/images/10_flutter_tips_to_be_more_productive_thumbnail.webp
 youtube: 14VtPQ1aoaU
 github: https://github.com/RobertBrunhage/10_flutter_tips_2021
 author: Robert Brunhage

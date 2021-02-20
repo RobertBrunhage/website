@@ -1,11 +1,11 @@
 ---
 title: Perfect Your Flutter Codebase using Two Linting Methods
 description: Linting is a key part of your project, learn how to utilize it and pefect your codebase!
-image: /assets/images/flutter_linting_thumbnail.png
+image: /assets/images/flutter_linting_thumbnail.webp
 youtube: KEdxoubVztk
 github: https://github.com/RobertBrunhage/flutter_lint_tutorial
 author: Robert Brunhage
-date: 13-02-2021
+date: 02-13-2021
 ---
 # Perfect Your Flutter Codebase with Linting
 

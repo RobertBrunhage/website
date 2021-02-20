@@ -1,7 +1,7 @@
 ---
 title: Create Your Very Own Twitter App
 description: I figured that it would be fun to make an app that lets me tweet without using the real twitter app. Learn API, Riverpod, Hooks, error handling and much more!
-image: /assets/images/twitter_app_thumbnail.png
+image: /assets/images/twitter_app_thumbnail.webp
 youtube: 3eOn4CtO5hg
 github: https://github.com/RobertBrunhage/flutter_twitter_app_tutorial
 author: Robert Brunhage

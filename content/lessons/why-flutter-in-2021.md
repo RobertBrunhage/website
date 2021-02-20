@@ -1,7 +1,7 @@
 ---
 title: Why Choose Flutter in 2021
 description: Some reasons that have let me to believe that Flutter will just keep growing and during 2021 I have a hunch that there are a lot to look forward to!
-image: /assets/images/why_flutter_in_2021_thumbnail.png
+image: /assets/images/why_flutter_in_2021_thumbnail.webp
 youtube: KqX-96CI6GM
 author: Robert Brunhage
 date: 01-30-2021
