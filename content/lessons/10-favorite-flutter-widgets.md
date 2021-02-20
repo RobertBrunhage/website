@@ -1,7 +1,7 @@
 ---
 title: My 10 Most Favorite Flutter Widgets
 description: Learning new widgets can make your life a lot easier when working with Flutter. In This one we are going to take a look at my favorite ones!
-image: /assets/images/favorite_flutter_widgets.png
+image: /assets/images/favorite_flutter_widgets.webp
 youtube: ILATAD57gIc
 github: https://github.com/Robert-Brunhage-Organization/favorite_flutter_widgets
 author: Robert Brunhage

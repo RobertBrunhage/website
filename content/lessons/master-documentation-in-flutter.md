@@ -1,7 +1,7 @@
 ---
 title: Master Documentation in Flutter 
 description: Understanding documentation is one of the most important topics of developing any kind of software. Here is a way that I recommend using the documentation in Flutter!
-image: /assets/images/master_flutter_documentation_thumbnail.png
+image: /assets/images/master_flutter_documentation_thumbnail.webp
 youtube: UyYZR1LnqOg
 github: https://github.com/RobertBrunhage/master_flutter_documentation
 author: Robert Brunhage
