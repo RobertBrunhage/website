@@ -35,7 +35,6 @@
           .preview {
             grid-area: img;
             width: 500px;
-            /* height: 300px; */
           }
           .title {
             grid-area: title;
@@ -100,7 +99,11 @@
     padding: 142px 0;
     .content {
       text-align: center;
+      .title {
+        margin: 0;
+      }
       .testimonials {
+        margin-top: 68px;
         display: grid;
         grid-template-areas:
           "one one one"
@@ -212,32 +215,37 @@
       }
     }
   }
-}
 
-@media only screen and (max-width: 1300px) {
-  .container {
-    .section_three {
-      .content {
-        .testimonials {
-          grid-template-areas:
-            "five"
-            "three"
-            "four"
-            "one"
-            "two";
-          grid-template-columns: unset;
-          row-gap: 24px;
-
-          img {
-            max-width: 100%;
-          }
-        }
+  .section_five {
+    margin-top: 142px;
+    .content {
+      max-width: 850px;
+      display: grid;
+      grid-template-areas:
+        "title title"
+        " .   img"
+        "text img"
+        " .   img";
+      .title {
+        grid-area: title;
+        text-align: center;
+      }
+      .desc {
+        grid-area: text;
+        font-size: var(--subtitle);
+      }
+      .sprite {
+        grid-area: img;
+        width: 250px;
+      }
+      span {
+        font-weight: bold;
       }
     }
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1300px) {
   .container {
     .section_one {
       .content {
@@ -269,7 +277,7 @@
             row-gap: 16px;
 
             .preview {
-              max-width: 80%;
+              max-width: 340px;
               margin: 0 auto;
             }
             .title {
@@ -283,8 +291,38 @@
         }
 
         .sprite {
-          max-width: 70px;
+          max-width: 170px;
           margin: auto 0 0 0;
+        }
+      }
+    }
+    .section_three {
+      .content {
+        .testimonials {
+          grid-template-areas:
+            "five"
+            "three"
+            "four"
+            "one"
+            "two";
+          grid-template-columns: unset;
+          row-gap: 24px;
+
+          img {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    .section_one {
+      .content {
+        .sprite {
+          max-width: 70px;
         }
       }
     }
@@ -311,14 +349,15 @@
     .section_four {
       padding: 52px 0;
       .content {
-        max-width: 320px;
+        /* max-width: 0px; */
         grid-template-areas:
           "title"
           "desc"
           "form";
         grid-template-columns: unset;
 
-        .sprite, .giveaway {
+        .sprite,
+        .giveaway {
           display: none;
         }
         form {
@@ -333,6 +372,31 @@
             width: 150px;
             border-radius: 4px;
           }
+        }
+      }
+    }
+    .section_five {
+      margin-top: 42px;
+      .content {
+        max-width: 900px;
+        display: grid;
+        grid-template-areas:
+          "title title"
+          "text img";
+        .title {
+          grid-area: title;
+          text-align: center;
+        }
+        .desc {
+          grid-area: text;
+          font-size: var(--subtitle);
+        }
+        .sprite {
+          grid-area: img;
+          width: 125px;
+        }
+        span {
+          font-weight: bold;
         }
       }
     }

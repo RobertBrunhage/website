@@ -64,21 +64,21 @@ const home = ({ videos }) => {
           <div className={styles.section_two}>
             <div className={`max_width ${styles.content}`}>
               <div className={styles.card}>
-                <img src="" alt="discord icon" />
+                <img src="/assets/icons/discord.png" alt="discord icon" />
                 <h3>Discord Community</h3>
                 <p>
                   We have a <a>discord</a> channel where you can chat and learn with other developers.
                 </p>
               </div>
               <div className={styles.card}>
-                <img src="" alt="open source icon" />
+                <img src="/assets/icons/open_source.png" alt="open source icon" />
                 <h3>Open Source</h3>
                 <p>
                   My videos are almost all supported by a GitHub repo, this <a>site</a> as well.
                 </p>
               </div>
               <div className={styles.card}>
-                <img src="" alt="books education icon" />
+                <img src="/assets/icons/education.png" alt="books education icon" />
                 <h3>Education for free</h3>
                 <p>The goal is to have enough content out for free so anyone can start learning.</p>
               </div>
@@ -86,7 +86,7 @@ const home = ({ videos }) => {
           </div>
           <div className={styles.section_three}>
             <div className={`max_width ${styles.content}`}>
-              <h2>The Developers</h2>
+              <h2 className={styles.title}>The Developers</h2>
               <div className={styles.testimonials}>
                 <img src="/assets/images/testimonials/mikerydstrom.png" alt="mike rydstrom" />
                 <img src="/assets/images/testimonials/aymanbarghout.png" alt="ayman barghout" />
@@ -118,6 +118,16 @@ const home = ({ videos }) => {
               <p className={styles.giveaway}>
                 When you sign up you are eligible to have a chance to win future courses
               </p>
+            </div>
+          </div>
+          <div className={styles.section_five}>
+            <div className={`max_width ${styles.content}`}>
+              <h2 className={styles.title}>About Me</h2>
+              <p className={styles.desc}>
+                Hi! My name is <span>Robert Brunhage</span>. My mission is to make learning app development{" "}
+                <span>easy, fun and engaging</span>.
+              </p>
+              <img className={styles.sprite} src="/assets/icons/sprite_talking_2.png" alt="sprite nervous" />
             </div>
           </div>
         </div>
