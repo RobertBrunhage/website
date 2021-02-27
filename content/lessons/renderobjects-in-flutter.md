@@ -3,7 +3,7 @@ title: Make Anything in Flutter using RenderObjects
 description: RenderObjects gives you the power to create anything in Flutter. Learning this you will get a deeper understanding and also a feeling that you can accomplish anything
 image: /assets/images/render_object_thumbnail.webp
 youtube: uC3sL5SmizM
-github: https://github.com/Robert-Brunhage/flutter-render-objects-tutorial
+github: https://github.com/Robert-Brunhage-Organization/flutter-render-object-tutorial
 author: Robert Brunhage
 date: 02-27-2021
 ---
