@@ -24,7 +24,7 @@ const CodeBlock = ({ value }) => {
   );
 };
 
-export default function Lesson({ content, frontmatter }) {
+export default function Lesson({ content, frontmatter, slug }) {
   return (
     <PlausibleProvider domain="robertbrunhage.com">
       <Layout>
@@ -41,6 +41,7 @@ export default function Lesson({ content, frontmatter }) {
           <meta property="twitter:title" content={frontmatter.title} />
           <meta property="twitter:description" content={frontmatter.description} />
           <meta property="twitter:image" content={`https://robertbrunhage.com${frontmatter.image}`} />
+          <link rel="canonical" href={`https://robertbrunhage.com/videos/${slug}`} />
         </Head>
         <div className={styles.content}>
           <h1>{frontmatter.title}</h1>
@@ -57,8 +58,8 @@ export default function Lesson({ content, frontmatter }) {
               </div>
             </div>
           ) : (
-            ""
-          )}
+              ""
+            )}
           <div className={styles.markdown}>
             <ReactMarkdown escapeHtml={false} source={content} renderers={{ code: CodeBlock }} />
           </div>
@@ -96,6 +97,7 @@ export async function getStaticProps({ params: { slug } }) {
     props: {
       content: content,
       frontmatter,
+      slug,
     },
   };
 }
