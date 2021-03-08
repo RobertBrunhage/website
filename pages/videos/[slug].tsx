@@ -43,7 +43,7 @@ export default function Lesson({ content, frontmatter, slug }) {
           <meta property="twitter:image" content={`https://robertbrunhage.com${frontmatter.image}`} />
           <link rel="canonical" href={`https://robertbrunhage.com/videos/${slug}`} />
         </Head>
-        <div className={`max_width ${styles.content}`}>
+        <article className={`max_width ${styles.content}`}>
           <h1>{frontmatter.title}</h1>
           {frontmatter.youtube ? (
             <div className={styles.video}>
@@ -63,7 +63,7 @@ export default function Lesson({ content, frontmatter, slug }) {
           <div className={styles.markdown}>
             <ReactMarkdown escapeHtml={false} source={content} renderers={{ code: CodeBlock }} />
           </div>
-        </div>
+        </article>
       </Layout>
     </PlausibleProvider>
   );

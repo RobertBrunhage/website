@@ -6,6 +6,7 @@ import styles from "../styles/home.module.scss";
 
 import fs from "fs";
 import matter from "gray-matter";
+import EmailForm from "../components/emailForm/emailForm";
 
 const home = ({ videos }) => {
   return (
@@ -26,7 +27,7 @@ const home = ({ videos }) => {
             property="og:description"
             content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
           />
-          <meta property="og:image" content="https://robertbrunhage.com/assets/images/running_avatar.png" />
+          <meta property="og:image" content="https://robertbrunhage.com/assets/images/avatar.png" />
           <meta property="twitter:card" content="summary" />
           <meta property="twitter:site" content="@robertbrunhage" />
           <meta property="twitter:title" content="RobertBrunhage.com" />
@@ -34,12 +35,12 @@ const home = ({ videos }) => {
             property="twitter:description"
             content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
           />
-          <meta property="twitter:image" content="https://robertbrunhage.com/assets/images/running_avatar.png" />
+          <meta property="twitter:image" content="https://robertbrunhage.com/assets/images/avatar.png" />
           <link rel="prefetch" href="https://robertbrunhage.com/videos" />
           <link rel="canonical" href="https://robertbrunhage.com" />
         </Head>
         <div className={styles.container}>
-          <div className={styles.section_one}>
+          <section className={styles.section_one}>
             <div className={`max_width ${styles.content}`}>
               <div className={styles.intro}>
                 <h1>Learn Flutter, Firebase & Dart</h1>
@@ -60,8 +61,8 @@ const home = ({ videos }) => {
               </div>
               <img className={styles.sprite} src="/assets/icons/sprite_talking.png" alt="intro_man" />
             </div>
-          </div>
-          <div className={styles.section_two}>
+          </section>
+          <section className={styles.section_two}>
             <div className={`max_width ${styles.content}`}>
               <div className={styles.card}>
                 <img src="/assets/icons/discord.png" alt="discord icon" />
@@ -83,8 +84,8 @@ const home = ({ videos }) => {
                 <p>The goal is to have enough content out for free so anyone can start learning.</p>
               </div>
             </div>
-          </div>
-          <div className={styles.section_three}>
+          </section>
+          <section className={styles.section_three}>
             <div className={`max_width ${styles.content}`}>
               <h2 className={styles.title}>The Developers</h2>
               <div className={styles.testimonials}>
@@ -95,32 +96,16 @@ const home = ({ videos }) => {
                 <img src="/assets/images/testimonials/luischodiman.png" alt="luis chodiman" />
               </div>
             </div>
-          </div>
-          <div className={styles.section_four}>
+          </section>
+          <section className={styles.section_four}>
             <div className={`max_width ${styles.content}`}>
               <img className={styles.sprite} src="/assets/icons/sprite_nervous.png" alt="sprite nervous" />
-              <h3 className={styles.title}>
-                Courses coming <span>soon</span>
-              </h3>
-              <p className={styles.desc}>
-                They will be available here. Sign up now to be notified when they are released 😃
-              </p>
-              <form
-                action="https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca"
-                method="post"
-                name="mc-embedded-subscribe-form"
-                target="_blank"
-                noValidate
-              >
-                <input id="email" type="email" placeholder="johndoe@email.com" name="EMAIL" required />
-                <input id="submit" type="submit" value="Notify me" name="subscribe" />
-              </form>
-              <p className={styles.giveaway}>
-                When you sign up you are eligible to have a chance to win future courses
-              </p>
+              <div className={styles.form}>
+                <EmailForm />
+              </div>
             </div>
-          </div>
-          <div className={styles.section_five}>
+          </section>
+          <section className={styles.section_five}>
             <div className={`max_width ${styles.content}`}>
               <h2 className={styles.title}>About Me</h2>
               <p className={styles.desc}>
@@ -129,7 +114,7 @@ const home = ({ videos }) => {
               </p>
               <img className={styles.sprite} src="/assets/icons/sprite_talking_2.png" alt="sprite nervous" />
             </div>
-          </div>
+          </section>
         </div>
       </Layout>
     </PlausibleProvider>

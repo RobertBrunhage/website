@@ -4,8 +4,8 @@
 
 .card_container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 368px));
-  gap: 48px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 352px));
+  gap: 42px;
 
   .video_card {
     margin: 0 auto;
