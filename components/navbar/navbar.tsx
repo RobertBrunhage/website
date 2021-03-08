@@ -24,7 +24,7 @@ const Navbar = () => {
         <link rel="apple-touch-icon" href="/apple-icon-180x180.png" />
         <meta name="theme-color" content="#C34C4C" />
       </Head>
-      <nav /* className="max_width" */>
+      <nav>
         <h1 className={styles.logo}>
           <Link href="/">
             <a>
