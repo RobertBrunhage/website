@@ -22,7 +22,7 @@ export default function Home() {
             property="og:description"
             content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
           />
-          <meta property="og:image" content="https://robertbrunhage.com/assets/images/running_avatar.png" />
+          <meta property="og:image" content="https://robertbrunhage.com/assets/images/avatar.png" />
           <meta property="twitter:card" content="summary" />
           <meta property="twitter:site" content="@robertbrunhage" />
           <meta property="twitter:title" content="RobertBrunhage.com" />
@@ -30,7 +30,7 @@ export default function Home() {
             property="twitter:description"
             content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
           />
-          <meta property="twitter:image" content="https://robertbrunhage.com/assets/images/running_avatar.png" />
+          <meta property="twitter:image" content="https://robertbrunhage.com/assets/images/avatar.png" />
           <link rel="prefetch" href="https://robertbrunhage.com/videos" />
           <link rel="canonical" href="https://robertbrunhage.com" />
         </Head>
