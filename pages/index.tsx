@@ -56,7 +56,7 @@ const home = ({ videos }) => {
                   />
                   <p className={styles.title}>{videos[0].frontmatter.title}</p>
                   <p className={styles.desc}>{videos[0].frontmatter.description}</p>
-                  <button>browse</button>
+                  <a className={styles.button} href='/videos'>browse</a>
                 </div>
               </div>
               <img className={styles.sprite} src="/assets/icons/sprite_talking.png" alt="intro_man" />

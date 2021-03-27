@@ -1,12 +1,16 @@
 import React, { useRef } from "react";
 import styles from "./navbar.module.scss";
 import Link from "next/link";
+import { useRouter } from 'next/router'
 import Menu from "./menuItems";
 import Head from "next/head";
 
 const Navbar = () => {
   const mobileMenuRef = useRef<HTMLUListElement>(null);
   const toggleMobileMenu = () => mobileMenuRef.current?.classList.toggle(styles.active);
+
+  const router = useRouter();
+
   return (
     <header className={styles.header}>
       <Head>
@@ -24,7 +28,7 @@ const Navbar = () => {
         <link rel="apple-touch-icon" href="/apple-icon-180x180.png" />
         <meta name="theme-color" content="#C34C4C" />
       </Head>
-      <nav>
+      <nav className={styles.stroke}>
         <h1 className={styles.logo}>
           <Link href="/">
             <a>
@@ -36,7 +40,7 @@ const Navbar = () => {
 
         <ul ref={mobileMenuRef} className={styles.navItems}>
           {Menu.map((item, index) => (
-            <li key={index}>
+            <li key={index} className={router.pathname == item.url ? styles.active : ""}>
               <Link href={item.url} key={index}>
                 {item.title}
               </Link>
