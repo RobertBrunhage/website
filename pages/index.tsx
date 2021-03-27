@@ -59,7 +59,7 @@ const home = ({ videos }) => {
                   <a className={styles.button} href='/videos'>browse</a>
                 </div>
               </div>
-              <img className={styles.sprite} src="/assets/icons/sprite_talking.png" alt="intro_man" />
+              <img className={styles.sprite} src="/assets/icons/sprite_talking.webp" alt="intro_man" />
             </div>
           </section>
           <section className={styles.section_two}>
@@ -99,7 +99,7 @@ const home = ({ videos }) => {
           </section>
           <section className={styles.section_four}>
             <div className={`max_width ${styles.content}`}>
-              <img className={styles.sprite} src="/assets/icons/sprite_nervous.png" alt="sprite nervous" />
+              <img className={styles.sprite} src="/assets/icons/sprite_nervous.webp" alt="sprite nervous" />
               <div className={styles.form}>
                 <EmailForm />
               </div>
@@ -109,10 +109,10 @@ const home = ({ videos }) => {
             <div className={`max_width ${styles.content}`}>
               <h2 className={styles.title}>About Me</h2>
               <p className={styles.desc}>
-                Hi! My name is <span>Robert Brunhage</span>. My mission is to make learning app development{" "}
+                Hi! My name is <span>Robert Brunhage</span> a GDE in Flutter and Dart. My mission is to make learning app development{" "}
                 <span>easy, fun and engaging</span>.
               </p>
-              <img className={styles.sprite} src="/assets/icons/sprite_talking_2.png" alt="sprite nervous" />
+              <img className={styles.sprite} src="/assets/icons/sprite_talking_2.webp" alt="sprite nervous" />
             </div>
           </section>
         </div>

@@ -60,3 +60,20 @@
     margin: 0;
   }
 }
+
+@media only screen and (max-width: 768px) { 
+  .email_container {
+    .title {
+      margin-bottom: 24px;
+    }
+    .desc {
+      font-weight: normal;
+    }
+
+    form {
+      input[type="submit"] {
+        margin: 16px auto;
+      }
+    }
+  }
+}

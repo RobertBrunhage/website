@@ -169,6 +169,8 @@
 
       .sprite {
         grid-area: sprite;
+        width: 224px;
+        transform: scaleX(-1);
       }
       .form {
         grid-area: form;
@@ -308,6 +310,7 @@
     }
     .section_four {
       padding: 52px 0;
+      text-align: center;
       .content {
         grid-template-areas:
           "title"
