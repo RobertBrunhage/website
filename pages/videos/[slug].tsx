@@ -43,15 +43,15 @@ export default function Lesson({ content, frontmatter, slug }) {
           <meta property="twitter:image" content={`https://robertbrunhage.com${frontmatter.image}`} />
           <link rel="canonical" href={`https://robertbrunhage.com/videos/${slug}`} />
         </Head>
-        <div className={styles.content}>
+        <article className={`max_width ${styles.content}`}>
           <h1>{frontmatter.title}</h1>
           {frontmatter.youtube ? (
             <div className={styles.video}>
               <iframe src={`https://www.youtube.com/embed/${frontmatter.youtube}`} />
               <div className={styles.desc}>
-                <h2>{frontmatter.description}</h2>
-                <h4>{frontmatter.author}</h4>
-                <h3>{frontmatter.date}</h3>
+                <p className={styles.description}>{frontmatter.description}</p>
+                <p className={styles.author}>{frontmatter.author}</p>
+                <p className={styles.date}>{frontmatter.date}</p>
                 <a href={frontmatter.github} rel="noopener noreferrer" target="_blank">
                   CODE
                 </a>
@@ -63,7 +63,7 @@ export default function Lesson({ content, frontmatter, slug }) {
           <div className={styles.markdown}>
             <ReactMarkdown escapeHtml={false} source={content} renderers={{ code: CodeBlock }} />
           </div>
-        </div>
+        </article>
       </Layout>
     </PlausibleProvider>
   );

@@ -1,13 +1,8 @@
 .content {
-  h1 {
-    font-size: 4.8rem;
-    font-weight: 600;
-  }
-
   .video {
     display: grid;
     margin: 0 auto;
-    background-color: #545454;
+    background-color: var(--secondary-bg-color);
 
     iframe {
       width: 100%;
@@ -20,54 +15,63 @@
       display: grid;
       gap: 16px;
       grid-template-areas:
-        "desc btn"
-        "author socials";
-      h2 {
+        "desc desc"
+        "author btn"
+        "date btn";
+
+      .description {
         grid-area: desc;
         margin: 0;
+        font-size: var(--subtitle);
+        font-weight: bold;
       }
-      h4 {
+      .author {
         grid-area: author;
+        font-weight: 600;
+        margin: 16px 0 0 0;
+      }
+      .date {
+        grid-area: date;
+        margin: 0;
       }
 
       a {
         grid-area: btn;
-        cursor: pointer;
-        text-align: center;
-        margin-left: auto;
-        height: 40px;
-        width: 100px;
-        border: none;
-        border-radius: 4px;
-        background-color: #24292e;
-        color: #fff;
-        font-size: 16px;
-        line-height: 40px;
+        width: 130px;
+        margin: 0 0 0 auto;
+        text-transform: uppercase;
+        background-color: var(--secondary-bg-color);
+        border: 2px solid var(--primary-color);
+        height: 45px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: var(--button);
+        font-weight: bold;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+        background: linear-gradient(to left, transparent 50%, #c34c4c 50%) right;
+        background-size: 200%;
+        transition: 0.4s ease-out;
 
         &:hover {
-          background-color: #fff;
-          color: #000;
+          background-position: left;
         }
       }
     }
   }
 
   .markdown {
-    p {
-      font-size: 1.8rem;
-    }
-    h2 {
-      font-size: 3.8rem;
-    }
-    h3 {
-      font-size: 2.4rem;
-    }
     li {
-      font-size: 1.6rem;
+      font-size: var(--body-regular);
     }
     a {
       text-decoration: underline;
       color: rgb(65, 239, 255);
+    }
+    p {
+      line-height: 24px;
     }
   }
   pre {
@@ -86,8 +90,14 @@
 
       .desc {
         grid-template-areas:
-          "desc desc desc"
-          "author socials btn";
+          "desc desc"
+          "author btn"
+          "date btn";
+
+          a{
+            width: 120px;
+            height: 45px;
+          }
       }
     }
   }

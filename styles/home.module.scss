@@ -1,82 +1,363 @@
-.app {
-  color: #fff;
-  display: grid;
-  position: relative;
+.container {
+  margin-top: 80px;
 
-  .app__main {
-    margin-top: 160px;
-    h1,
-    p {
-      font-size: 4.8rem;
-      line-height: 5.2rem;
-      margin: 40px 0;
-
-      span {
-        color: var(--accent-color);
-      }
-    }
-
-    form {
+  .section_one {
+    .content {
       display: grid;
       grid-template-areas:
-        "label label"
-        "email submit"
-        "span  span";
-      grid-template-columns: 68% 20%;
-      label {
-        grid-area: label;
-        font-size: 3rem;
-        font-weight: 600;
+        "intro intro"
+        "featured sprite";
+
+      .intro {
+        grid-area: intro;
+        h1 {
+          margin: 0;
+        }
+        p {
+          font-size: var(--subtitle);
+          margin: 0;
+        }
+      }
+      .featured {
+        grid-area: featured;
+        .card {
+          display: grid;
+          grid-template-areas:
+            "img title"
+            "img desc"
+            "img btn"
+            "img .";
+          grid-template-rows: auto auto 50px auto;
+
+          column-gap: 42px;
+          row-gap: 16px;
+
+          .preview {
+            grid-area: img;
+            width: 500px;
+          }
+          .title {
+            grid-area: title;
+            font-size: var(--subtitle);
+            font-weight: bold;
+            margin: 0;
+          }
+          .desc {
+            grid-area: desc;
+            margin: 0;
+          }
+          .button {
+            margin-top: 16px;
+            grid-area: btn;
+            width: 150px;
+            text-transform: uppercase;
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            height: 52px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: var(--button);
+            font-weight: bold;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+            background: linear-gradient(to left, transparent 50%, #c34c4c 50%) right;
+            background-size: 200%;
+            transition: 0.4s ease-out;
+
+            &:hover {
+              background-position: left;
+            }
+          }
+        }
+      }
+      .sprite {
+        grid-area: sprite;
+        max-height: 500px;
+      }
+    }
+  }
+
+  .section_two {
+    margin-top: 142px;
+    padding: 120px 0;
+    background-color: var(--secondary-bg-color);
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 360px));
+      justify-content: space-between;
+      row-gap: 24px;
+      .card {
+        display: grid;
+        grid-template-areas:
+          "img"
+          "title"
+          "desc";
+        row-gap: 18px;
+
+        img {
+          height: 50px;
+          width: 50px;
+        }
+        h3 {
+          margin: 0;
+        }
+        p {
+          font-size: var(--subtitle);
+          margin: 0;
+          line-height: 28px;
+          a {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .section_three {
+    padding: 142px 0;
+    .content {
+      text-align: center;
+      .title {
+        margin: 0;
+      }
+      .testimonials {
+        margin-top: 68px;
+        display: grid;
+        grid-template-areas:
+          "one one one"
+          "two three three"
+          "four four five";
+        row-gap: 42px;
+
+        img {
+          margin: 0 auto;
+
+          &:nth-child(1) {
+            grid-area: one;
+          }
+          &:nth-child(2) {
+            grid-area: two;
+          }
+          &:nth-child(3) {
+            grid-area: three;
+          }
+          &:nth-child(4) {
+            grid-area: four;
+          }
+          &:nth-child(5) {
+            grid-area: five;
+          }
+        }
+      }
+    }
+  }
+
+  .section_four {
+    padding: 100px 0;
+    background-color: var(--secondary-bg-color);
+    .content {
+      display: grid;
+      grid-template-areas:
+        "sprite ."
+        "sprite form"
+        "sprite .";
+      grid-template-columns: min-content auto;
+      column-gap: 55px;
+
+      .sprite {
+        grid-area: sprite;
+        width: 224px;
+        transform: scaleX(-1);
+      }
+      .form {
+        grid-area: form;
+      }
+    }
+  }
+
+  .section_five {
+    margin-top: 142px;
+    .content {
+      max-width: 790px;
+      display: grid;
+      grid-template-areas:
+        "title title"
+        " .   img"
+        "text img"
+        " .   img";
+      .title {
+        grid-area: title;
+        text-align: center;
+      }
+      .desc {
+        grid-area: text;
+        font-size: var(--subtitle);
+      }
+      .sprite {
+        grid-area: img;
+        width: 250px;
       }
       span {
-        grid-area: span;
-        color: #b2b2b2;
-        font-size: 1.2rem;
-      }
-      input {
-        height: 5rem;
-        border: none;
-        color: #ddd;
-        font-size: 1.6rem;
-        margin: 8px 0;
-      }
-      input[type="email"] {
-        grid-area: email;
-        border-radius: 4px 0 0 4px;
-        text-indent: 1rem;
-        background-color: #1a1a1a;
-      }
-      input[type="submit"] {
-        grid-area: submit;
-        border-radius: 0 4px 4px 0;
-        background-color: #484848;
         font-weight: bold;
-        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .container {
+    .section_one {
+      .content {
+        grid-template-areas:
+          "intro sprite"
+          "featured featured";
+        grid-template-columns: 80% auto;
+
+        .intro {
+          h1 {
+            margin-bottom: 8px;
+          }
+        }
+
+        .featured {
+          text-align: center;
+          margin-top: 32px;
+          h2 {
+            margin-bottom: 8px;
+          }
+          .card {
+            grid-template-areas:
+              "title"
+              "img"
+              "desc"
+              "btn";
+            grid-template-rows: auto;
+            column-gap: 0;
+            row-gap: 16px;
+
+            .preview {
+              max-width: 340px;
+              margin: 0 auto;
+            }
+            .title {
+              font-weight: normal;
+            }
+            .button {
+              margin: 0 auto;
+              height: 50px;
+            }
+          }
+        }
+
+        .sprite {
+          max-width: 170px;
+          margin: auto 0 0 0;
+        }
+      }
+    }
+    .section_three {
+      .content {
+        .testimonials {
+          grid-template-areas:
+            "five"
+            "three"
+            "four"
+            "one"
+            "two";
+          grid-template-columns: unset;
+          row-gap: 24px;
+
+          img {
+            max-width: 100%;
+          }
+        }
       }
     }
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .app {
-    .app__main {
-      margin-top: 40px;
-      form {
+  .container {
+    .section_one {
+      .content {
+        .sprite {
+          max-width: 70px;
+        }
+      }
+    }
+    .section_two {
+      margin-top: 42px;
+      padding: 42px 0;
+      .content {
+        justify-content: center;
+        text-align: center;
+
+        img {
+          margin: 0 auto;
+        }
+      }
+    }
+    .section_three {
+      padding: 42px 0;
+      .content {
+        .testimonials {
+          row-gap: 16px;
+        }
+      }
+    }
+    .section_four {
+      padding: 52px 0;
+      text-align: center;
+      .content {
         grid-template-areas:
-          "label"
-          "email"
-          "submit"
-          "span";
+          "title"
+          "desc"
+          "form";
         grid-template-columns: unset;
 
-        input[type="email"] {
-          margin-bottom: 0;
-          border-radius: 4px;
+        .sprite,
+        .giveaway {
+          display: none;
         }
-        input[type="submit"] {
-          width: 40%;
-          height: 4.5rem;
-          border-radius: 4px;
+        form {
+          grid-template-areas:
+            "email"
+            "submit";
+          grid-template-columns: unset;
+          input[type="email"] {
+            border-radius: 4px;
+          }
+          input[type="submit"] {
+            width: 150px;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+    .section_five {
+      margin-top: 42px;
+      .content {
+        max-width: 900px;
+        display: grid;
+        grid-template-areas:
+          "title title"
+          "text img";
+        .title {
+          grid-area: title;
+          text-align: center;
+        }
+        .desc {
+          grid-area: text;
+          font-size: var(--subtitle);
+        }
+        .sprite {
+          grid-area: img;
+          width: 125px;
+        }
+        span {
+          font-weight: bold;
         }
       }
     }

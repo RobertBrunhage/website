@@ -4,13 +4,13 @@
 
 .card_container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 368px));
-  gap: 48px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 352px));
+  gap: 42px;
 
   .video_card {
     margin: 0 auto;
     max-width: 440px;
-    background-color: #545454;
+    background-color: var(--secondary-bg-color);
     cursor: pointer;
     border-radius: 8px;
 
@@ -24,7 +24,7 @@
       "title"
       "desc";
     grid-template-rows: max-content min-content max-content;
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
 
     img {
       grid-area: img;
@@ -34,14 +34,13 @@
     }
     h1 {
       grid-area: title;
-      font-size: 2.2rem;
       padding: 16px;
+      font-size: var(--subtitle);
     }
     p {
       grid-area: desc;
-      font-size: 1.8rem;
-      font-weight: 600;
       padding: 0 16px 32px 16px;
+      line-height: 21px;
     }
     h1,
     p {

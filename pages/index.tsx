@@ -1,9 +1,14 @@
-import Layout from "../components/layout/layout";
+import React from "react";
 import Head from "next/head";
-import styles from "../styles/home.module.scss";
+import Layout from "../components/layout/layout";
 import PlausibleProvider from "next-plausible";
+import styles from "../styles/home.module.scss";
 
-export default function Home() {
+import fs from "fs";
+import matter from "gray-matter";
+import EmailForm from "../components/emailForm/emailForm";
+
+const home = ({ videos }) => {
   return (
     <PlausibleProvider domain="robertbrunhage.com">
       <Layout>
@@ -34,41 +39,115 @@ export default function Home() {
           <link rel="prefetch" href="https://robertbrunhage.com/videos" />
           <link rel="canonical" href="https://robertbrunhage.com" />
         </Head>
-        <div className={styles.app}>
-          <div className={styles.app__main}>
-            <h1>
-              I will <span>soon</span> have flutter courses
-              <span role="img" aria-label="hand pointing down emoji">
-                👇
-              </span>
-            </h1>
-            <p>
-              Future courses will be available here. <br />
-              Sign up now to be notified when released
-              <span role="img" aria-label="smiling emoji">
-                😄
-              </span>
-            </p>
-            <form
-              action="https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca"
-              method="post"
-              name="mc-embedded-subscribe-form"
-              target="_blank"
-              noValidate
-            >
-              <label htmlFor="email">Email</label>
-              <input id="email" type="email" placeholder="johndoe@email.com" name="EMAIL" required />
-              <input id="submit" type="submit" value="Notify me" name="subscribe" />
-              <span>
-                When you sign up you are eligible to have a chance to win future courses
-                <span role="img" aria-label="gift emoji">
-                  🎁
-                </span>
-              </span>
-            </form>
-          </div>
+        <div className={styles.container}>
+          <section className={styles.section_one}>
+            <div className={`max_width ${styles.content}`}>
+              <div className={styles.intro}>
+                <h1>Learn Flutter, Firebase & Dart</h1>
+                <p>Here you will never be lost, because now you are home 🏡</p>
+              </div>
+              <div className={styles.featured}>
+                <h2>Featured video</h2>
+                <div className={styles.card}>
+                  <img
+                    className={styles.preview}
+                    src={`https://robertbrunhage.com${videos[0].frontmatter.image}`}
+                    alt="video"
+                  />
+                  <p className={styles.title}>{videos[0].frontmatter.title}</p>
+                  <p className={styles.desc}>{videos[0].frontmatter.description}</p>
+                  <a className={styles.button} href='/videos'>browse</a>
+                </div>
+              </div>
+              <img className={styles.sprite} src="/assets/icons/sprite_talking.webp" alt="intro_man" />
+            </div>
+          </section>
+          <section className={styles.section_two}>
+            <div className={`max_width ${styles.content}`}>
+              <div className={styles.card}>
+                <img src="/assets/icons/discord.png" alt="discord icon" />
+                <h3>Discord Community</h3>
+                <p>
+                  We have a <a>discord</a> channel where you can chat and learn with other developers.
+                </p>
+              </div>
+              <div className={styles.card}>
+                <img src="/assets/icons/open_source.png" alt="open source icon" />
+                <h3>Open Source</h3>
+                <p>
+                  My videos are almost all supported by a GitHub repo, this <a>site</a> as well.
+                </p>
+              </div>
+              <div className={styles.card}>
+                <img src="/assets/icons/education.png" alt="books education icon" />
+                <h3>Education for free</h3>
+                <p>The goal is to have enough content out for free so anyone can start learning.</p>
+              </div>
+            </div>
+          </section>
+          <section className={styles.section_three}>
+            <div className={`max_width ${styles.content}`}>
+              <h2 className={styles.title}>The Developers</h2>
+              <div className={styles.testimonials}>
+                <img src="/assets/images/testimonials/mikerydstrom.png" alt="mike rydstrom" />
+                <img src="/assets/images/testimonials/aymanbarghout.png" alt="ayman barghout" />
+                <img src="/assets/images/testimonials/tadaspetra.png" alt="tadas petra" />
+                <img src="/assets/images/testimonials/mukaldadwhal.png" alt="mukal dadwhal" />
+                <img src="/assets/images/testimonials/luischodiman.png" alt="luis chodiman" />
+              </div>
+            </div>
+          </section>
+          <section className={styles.section_four}>
+            <div className={`max_width ${styles.content}`}>
+              <img className={styles.sprite} src="/assets/icons/sprite_nervous.webp" alt="sprite nervous" />
+              <div className={styles.form}>
+                <EmailForm />
+              </div>
+            </div>
+          </section>
+          <section className={styles.section_five}>
+            <div className={`max_width ${styles.content}`}>
+              <h2 className={styles.title}>About Me</h2>
+              <p className={styles.desc}>
+                Hi! My name is <span>Robert Brunhage</span> a GDE in Flutter and Dart. My mission is to make learning app development{" "}
+                <span>easy, fun and engaging</span>.
+              </p>
+              <img className={styles.sprite} src="/assets/icons/sprite_talking_2.webp" alt="sprite nervous" />
+            </div>
+          </section>
         </div>
       </Layout>
     </PlausibleProvider>
   );
+};
+
+export default home;
+
+export async function getStaticProps() {
+  const files = fs.readdirSync(`${process.cwd()}/content/lessons`);
+
+  const videos = files.map((filename) => {
+    const markdownWithMetadata = fs.readFileSync(`content/lessons/${filename}`).toString();
+
+    const { data } = matter(markdownWithMetadata);
+
+    const frontmatter = {
+      ...data,
+    };
+
+    return {
+      slug: filename.replace(".md", ""),
+      frontmatter,
+    };
+  });
+
+  const sortedVideos = videos.sort((a, b) => {
+    return new Date(a.frontmatter.date) < new Date(b.frontmatter.date) ? 1 : -1;
+  });
+
+  return {
+    props: {
+      videos: sortedVideos,
+    },
+  };
 }
