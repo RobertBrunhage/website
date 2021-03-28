@@ -49,7 +49,7 @@ export default function Lesson({ content, frontmatter, slug }) {
             <div className={styles.video}>
               <iframe src={`https://www.youtube.com/embed/${frontmatter.youtube}`} />
               <div className={styles.desc}>
-                <h3 className={styles.description}>{frontmatter.description}</h3>
+                <p className={styles.description}>{frontmatter.description}</p>
                 <p className={styles.author}>{frontmatter.author}</p>
                 <p className={styles.date}>{frontmatter.date}</p>
                 <a href={frontmatter.github} rel="noopener noreferrer" target="_blank">

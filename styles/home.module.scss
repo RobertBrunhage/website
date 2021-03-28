@@ -51,7 +51,7 @@
             grid-area: btn;
             width: 150px;
             text-transform: uppercase;
-            background-color: var(--primary-bg-color);
+            background-color: transparent;
             border: 2px solid var(--primary-color);
             height: 52px;
             border-radius: 8px;
@@ -62,8 +62,12 @@
             font-weight: bold;
             filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
+            background: linear-gradient(to left, transparent 50%, #c34c4c 50%) right;
+            background-size: 200%;
+            transition: 0.4s ease-out;
+
             &:hover {
-              filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.3));
+              background-position: left;
             }
           }
         }
