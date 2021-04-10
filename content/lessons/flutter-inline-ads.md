@@ -2,7 +2,7 @@
 title: Add Inline Ads to Your Flutter App
 description: Having ads can be super important for your apps, so let's take a look how we have use inline ads in our application
 image: /assets/images/flutter_inline_ads_thumbnail.webp
-youtube: RSiFnAxw-7M
+youtube: 4mJQQmjnL3Q
 github: https://github.com/Robert-Brunhage-Organization/flutter_inline_ads
 author: Robert Brunhage
 date: 04-10-2021
