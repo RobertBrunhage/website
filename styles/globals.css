@@ -67,6 +67,20 @@ a {
   padding: 0 20px;
 }
 
+/* custom scroll bar */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-bg-color);
+}
+
 /* montserrat-regular - latin */
 @font-face {
   font-family: "Montserrat";
