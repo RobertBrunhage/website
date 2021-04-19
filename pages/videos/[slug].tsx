@@ -52,14 +52,18 @@ export default function Lesson({ content, frontmatter, slug }) {
                 <p className={styles.description}>{frontmatter.description}</p>
                 <p className={styles.author}>{frontmatter.author}</p>
                 <p className={styles.date}>{frontmatter.date}</p>
-                <a href={frontmatter.github} rel="noopener noreferrer" target="_blank">
-                  CODE
-                </a>
+                {frontmatter.github ? (
+                  <a href={frontmatter.github} rel="noopener noreferrer" target="_blank">
+                    CODE
+                  </a>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           ) : (
-              ""
-            )}
+            ""
+          )}
           <div className={styles.markdown}>
             <ReactMarkdown escapeHtml={false} source={content} renderers={{ code: CodeBlock }} />
           </div>
