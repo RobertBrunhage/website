@@ -9,7 +9,6 @@
   }
   .desc {
     grid-area: desc;
-    font-weight: bold;
     font-size: var(--subtitle);
     max-width: 580px;
     margin: 12px 0 8px 0;
@@ -34,7 +33,6 @@
       grid-area: email;
       text-indent: 2rem;
       border-radius: 4px 0 0 4px;
-      background-color: var(--primary-bg-color);
       color: var(--primary-text-color);
       font-size: var(--body-large);
 

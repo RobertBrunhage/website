@@ -1,0 +1,45 @@
+.newsletter_container {
+  display: grid;
+  grid-template-areas:
+    "sprite ."
+    "sprite form"
+    "sprite .";
+  grid-template-columns: min-content auto;
+  column-gap: 55px;
+
+  .sprite {
+    grid-area: sprite;
+    width: 224px;
+  }
+  .form {
+    grid-area: form;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .newsletter_container {
+    grid-template-areas:
+      "title"
+      "desc"
+      "form";
+    grid-template-columns: unset;
+
+    .sprite,
+    .giveaway {
+      display: none;
+    }
+    form {
+      grid-template-areas:
+        "email"
+        "submit";
+      grid-template-columns: unset;
+      input[type="email"] {
+        border-radius: 4px;
+      }
+      input[type="submit"] {
+        width: 150px;
+        border-radius: 4px;
+      }
+    }
+  }
+}
