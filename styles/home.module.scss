@@ -1,7 +1,8 @@
 .container {
   margin-top: 80px;
 
-  .section_one {
+  .introduction {
+    margin-bottom: 142px;
     .content {
       display: grid;
       grid-template-areas:
@@ -79,10 +80,8 @@
     }
   }
 
-  .section_two {
-    margin-top: 142px;
+  .puffs {
     padding: 120px 0;
-    background-color: var(--secondary-bg-color);
     .content {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 360px));
@@ -115,8 +114,9 @@
     }
   }
 
-  .section_three {
+  .testimonial {
     padding: 142px 0;
+    background-color: var(--secondary-bg-color);
     .content {
       text-align: center;
       .title {
@@ -154,31 +154,13 @@
     }
   }
 
-  .section_four {
+  .newsletter {
     padding: 100px 0;
     background-color: var(--secondary-bg-color);
-    .content {
-      display: grid;
-      grid-template-areas:
-        "sprite ."
-        "sprite form"
-        "sprite .";
-      grid-template-columns: min-content auto;
-      column-gap: 55px;
-
-      .sprite {
-        grid-area: sprite;
-        width: 224px;
-        transform: scaleX(-1);
-      }
-      .form {
-        grid-area: form;
-      }
-    }
   }
 
-  .section_five {
-    margin-top: 142px;
+  .about_me {
+    background-color: var(--secondary-bg-color);
     .content {
       max-width: 790px;
       display: grid;
@@ -208,7 +190,7 @@
 
 @media only screen and (max-width: 1300px) {
   .container {
-    .section_one {
+    .introduction {
       .content {
         grid-template-areas:
           "intro sprite"
@@ -257,7 +239,7 @@
         }
       }
     }
-    .section_three {
+    .testimonial {
       .content {
         .testimonials {
           grid-template-areas:
@@ -280,15 +262,15 @@
 
 @media only screen and (max-width: 768px) {
   .container {
-    .section_one {
+    .introduction {
+      margin-bottom: 42px;
       .content {
         .sprite {
           max-width: 70px;
         }
       }
     }
-    .section_two {
-      margin-top: 42px;
+    .puffs {
       padding: 42px 0;
       .content {
         justify-content: center;
@@ -299,7 +281,7 @@
         }
       }
     }
-    .section_three {
+    .testimonial {
       padding: 42px 0;
       .content {
         .testimonials {
@@ -307,36 +289,11 @@
         }
       }
     }
-    .section_four {
+    .newsletter {
       padding: 52px 0;
       text-align: center;
-      .content {
-        grid-template-areas:
-          "title"
-          "desc"
-          "form";
-        grid-template-columns: unset;
-
-        .sprite,
-        .giveaway {
-          display: none;
-        }
-        form {
-          grid-template-areas:
-            "email"
-            "submit";
-          grid-template-columns: unset;
-          input[type="email"] {
-            border-radius: 4px;
-          }
-          input[type="submit"] {
-            width: 150px;
-            border-radius: 4px;
-          }
-        }
-      }
     }
-    .section_five {
+    .about_me {
       margin-top: 42px;
       .content {
         max-width: 900px;

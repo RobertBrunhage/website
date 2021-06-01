@@ -3,10 +3,10 @@ import Head from "next/head";
 import Layout from "../components/layout/layout";
 import PlausibleProvider from "next-plausible";
 import styles from "../styles/home.module.scss";
+import Newsletter from "../components/newsletter/newsletter";
 
 import fs from "fs";
 import matter from "gray-matter";
-import EmailForm from "../components/emailForm/emailForm";
 
 const home = ({ videos }) => {
   return (
@@ -14,33 +14,24 @@ const home = ({ videos }) => {
       <Layout>
         <Head>
           <title>Robert Brunhage - Flutter, Dart, Firebase | Homepage</title>
-          <meta
-            name="description"
-            content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
-          />
+          <meta name="description" content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊" />
           <link rel="icon" href="/favicon.ico" />
 
           <meta property="og:url" content="https://robertbrunhage.com" />
           <meta property="og:type" content="article" />
           <meta property="og:title" content="RobertBrunhage.com" />
-          <meta
-            property="og:description"
-            content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
-          />
+          <meta property="og:description" content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊" />
           <meta property="og:image" content="https://robertbrunhage.com/assets/images/avatar.png" />
           <meta property="twitter:card" content="summary" />
           <meta property="twitter:site" content="@robertbrunhage" />
           <meta property="twitter:title" content="RobertBrunhage.com" />
-          <meta
-            property="twitter:description"
-            content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
-          />
+          <meta property="twitter:description" content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊" />
           <meta property="twitter:image" content="https://robertbrunhage.com/assets/images/avatar.png" />
           <link rel="prefetch" href="https://robertbrunhage.com/videos" />
           <link rel="canonical" href="https://robertbrunhage.com" />
         </Head>
         <div className={styles.container}>
-          <section className={styles.section_one}>
+          <section className={styles.introduction}>
             <div className={`max_width ${styles.content}`}>
               <div className={styles.intro}>
                 <h1>Learn Flutter, Firebase & Dart</h1>
@@ -49,20 +40,21 @@ const home = ({ videos }) => {
               <div className={styles.featured}>
                 <h2>Featured video</h2>
                 <div className={styles.card}>
-                  <img
-                    className={styles.preview}
-                    src={`https://robertbrunhage.com${videos[0].frontmatter.image}`}
-                    alt="video"
-                  />
+                  <img className={styles.preview} src={`https://robertbrunhage.com${videos[0].frontmatter.image}`} alt="video" />
                   <p className={styles.title}>{videos[0].frontmatter.title}</p>
                   <p className={styles.desc}>{videos[0].frontmatter.description}</p>
-                  <a className={styles.button} href='/videos'>browse</a>
+                  <a className={styles.button} href="/videos">
+                    browse
+                  </a>
                 </div>
               </div>
               <img className={styles.sprite} src="/assets/icons/sprite_talking.webp" alt="intro_man" />
             </div>
           </section>
-          <section className={styles.section_two}>
+          <section className={styles.newsletter}>
+            <Newsletter color={"var(--primary-bg-color)"} />
+          </section>
+          <section className={styles.puffs}>
             <div className={`max_width ${styles.content}`}>
               <div className={styles.card}>
                 <img src="/assets/icons/discord.png" alt="discord icon" />
@@ -85,7 +77,7 @@ const home = ({ videos }) => {
               </div>
             </div>
           </section>
-          <section className={styles.section_three}>
+          <section className={styles.testimonial}>
             <div className={`max_width ${styles.content}`}>
               <h2 className={styles.title}>The Developers</h2>
               <div className={styles.testimonials}>
@@ -97,15 +89,10 @@ const home = ({ videos }) => {
               </div>
             </div>
           </section>
-          <section className={styles.section_four}>
-            <div className={`max_width ${styles.content}`}>
-              <img className={styles.sprite} src="/assets/icons/sprite_nervous.webp" alt="sprite nervous" />
-              <div className={styles.form}>
-                <EmailForm />
-              </div>
-            </div>
+          <section className={styles.newsletter} style={{ backgroundColor: "var(--primary-bg-color)" }}>
+            <Newsletter color={"var(--secondary-bg-color)"} />
           </section>
-          <section className={styles.section_five}>
+          <section className={styles.about_me}>
             <div className={`max_width ${styles.content}`}>
               <h2 className={styles.title}>About Me</h2>
               <p className={styles.desc}>
