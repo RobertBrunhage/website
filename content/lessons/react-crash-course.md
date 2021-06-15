@@ -12,7 +12,7 @@ Learning React has some **huge** upsides, you will work with one of the most pop
 
 Here is how it will look
 
-![Alt Text](https://firebasestorage.googleapis.com/v0/b/krossa-prod.appspot.com/o/e3IUXc1BFZTlvvaqD8xjvHlIy2q1%2Farticles%2Fg1blkbrFKFxEqvt8s3Cz%2Ftodo%20react.gif?alt=media&token=75cfdd16-936e-45e3-a076-f9c42bff43f8)
+![Alt Text](https://firebasestorage.googleapis.com/v0/b/krossa-prod.appspot.com/o/e3IUXc1BFZTlvvaqD8xjvHlIy2q1%2Farticles%2FuModdt3hymYImvipFdC1%2Fflutter%20crash%20course%20giff.gif?alt=media&token=53b2cfd9-bc6f-48a2-8745-9e251ad25b90)
 
 ## Setup
 
