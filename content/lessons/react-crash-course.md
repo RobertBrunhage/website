@@ -151,7 +151,7 @@ For the `button` we did a bit more, by adding a color to make it use the `indigo
 
 It should look something like this now.
 
-![image of title, input and button](https://firebasestorage.googleapis.com/v0/b/krossa-prod.appspot.com/o/e3IUXc1BFZTlvvaqD8xjvHlIy2q1%2Farticles%2Fg1blkbrFKFxEqvt8s3Cz%2Ftodo-react-styles.png?alt=media&token=3dac919a-48aa-4de6-ac96-34b3fe83fd85)
+![image of title, input and button](https://firebasestorage.googleapis.com/v0/b/krossa-prod.appspot.com/o/e3IUXc1BFZTlvvaqD8xjvHlIy2q1%2Farticles%2FuModdt3hymYImvipFdC1%2Ftodo-react-styles.png?alt=media&token=34f6b5c4-e745-4ea4-a1f6-acef34ce3ac4)
 
 ## Showing Todos
 
