@@ -2,7 +2,7 @@
 title: 5 Flutter Tips for Large Projects
 description: Learn these 5 tips and you can apply them INSTANTLY in your project. I promise you will not regret doing it!
 image: /assets/images/5_flutter_tips_thumbnail.webp
-youtube: 1_W03XANLWY
+youtube: QETClbz1sz8
 github: https://github.com/Robert-Brunhage-Organization/five_flutter_tips
 author: Robert Brunhage
 date: 06-26-2021
