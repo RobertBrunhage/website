@@ -1,9 +1,9 @@
 ---
 title: React Crash Course - using TypeScript, Tailwind & Testing
-description: Learning React has some huge upsides, you will work with one of the most popular programming languages which is JavaScript and in this one we will use TypeScript, which is a superset of that!
+description: Learning React has some huge upsides, you will work with one of the most popular programming language which is JavaScript and in this one we will use TypeScript!
 image: /assets/images/react_crash_course_thumbnail.webp
 youtube: Rvz5OM4JHw8
-github: https://github.com/Robert-Brunhage-Organization/react-crash-course
+github: https://github.com/Robert-Brunhage-Organization/five_flutter_tips
 author: Robert Brunhage
 date: 05-29-2021
 ---
