@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Layout from "../../components/layout/layout";
 import fs from "fs";
 import path from "path";
@@ -24,7 +24,16 @@ const CodeBlock = ({ value }) => {
   );
 };
 
+const MyImage = (props, width) => {
+  return (
+    <img alt={props.alt} src={props.src} style={{ maxWidth: width ?? 400 }} />
+  );
+};
+
 export default function Lesson({ content, frontmatter, slug }) {
+  const articleRef = useRef<HTMLDivElement>(null);
+  const maxWidth = useResize(articleRef);
+
   return (
     <PlausibleProvider domain="robertbrunhage.com">
       <Layout>
@@ -35,25 +44,43 @@ export default function Lesson({ content, frontmatter, slug }) {
           <meta property="og:type" content="article" />
           <meta property="og:title" content={frontmatter.title} />
           <meta property="og:description" content={frontmatter.description} />
-          <meta property="og:image" content={`https://robertbrunhage.com${frontmatter.image}`} />
+          <meta
+            property="og:image"
+            content={`https://robertbrunhage.com${frontmatter.image}`}
+          />
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:site" content="@robertbrunhage" />
           <meta property="twitter:title" content={frontmatter.title} />
-          <meta property="twitter:description" content={frontmatter.description} />
-          <meta property="twitter:image" content={`https://robertbrunhage.com${frontmatter.image}`} />
-          <link rel="canonical" href={`https://robertbrunhage.com/videos/${slug}`} />
+          <meta
+            property="twitter:description"
+            content={frontmatter.description}
+          />
+          <meta
+            property="twitter:image"
+            content={`https://robertbrunhage.com${frontmatter.image}`}
+          />
+          <link
+            rel="canonical"
+            href={`https://robertbrunhage.com/videos/${slug}`}
+          />
         </Head>
-        <article className={`max_width ${styles.content}`}>
+        <article ref={articleRef} className={`max_width ${styles.content}`}>
           <h1>{frontmatter.title}</h1>
           {frontmatter.youtube ? (
             <div className={styles.video}>
-              <iframe src={`https://www.youtube.com/embed/${frontmatter.youtube}`} />
+              <iframe
+                src={`https://www.youtube.com/embed/${frontmatter.youtube}`}
+              />
               <div className={styles.desc}>
                 <p className={styles.description}>{frontmatter.description}</p>
                 <p className={styles.author}>{frontmatter.author}</p>
                 <p className={styles.date}>{frontmatter.date}</p>
                 {frontmatter.github ? (
-                  <a href={frontmatter.github} rel="noopener noreferrer" target="_blank">
+                  <a
+                    href={frontmatter.github}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
                     CODE
                   </a>
                 ) : (
@@ -65,7 +92,14 @@ export default function Lesson({ content, frontmatter, slug }) {
             ""
           )}
           <div className={styles.markdown}>
-            <ReactMarkdown escapeHtml={false} source={content} renderers={{ code: CodeBlock }} />
+            <ReactMarkdown
+              escapeHtml={false}
+              source={content}
+              renderers={{
+                code: CodeBlock,
+                image: (props) => MyImage(props, maxWidth),
+              }}
+            />
           </div>
         </article>
       </Layout>
@@ -89,7 +123,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const markdownWithMetadata = fs.readFileSync(path.join("content/lessons", slug + ".md")).toString();
+  const markdownWithMetadata = fs
+    .readFileSync(path.join("content/lessons", slug + ".md"))
+    .toString();
 
   const { data, content } = matter(markdownWithMetadata);
 
@@ -105,3 +141,27 @@ export async function getStaticProps({ params: { slug } }) {
     },
   };
 }
+
+const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
+  const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
+
+  const [width, setWidth] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(getWidth());
+    };
+
+    if (myRef.current) {
+      setWidth(getWidth());
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [myRef, getWidth]);
+
+  return width && width > 25 ? width - 25 : width;
+};
