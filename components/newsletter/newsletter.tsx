@@ -2,12 +2,19 @@ import React from "react";
 import EmailForm from "../emailForm/emailForm";
 import styles from "./newsletter.module.scss";
 
-const newsletter = ({ color }) => {
+const newsletter = ({ color, title, description, giveaway, action, cta, img }) => {
   return (
     <div className={`max_width ${styles.newsletter_container}`}>
-      <img className={styles.sprite} src="/assets/icons/sprite_amazed.webp" alt="sprite nervous" />
+      <img className={styles.sprite} src={img} alt="sprite nervous" />
       <div className={styles.form}>
-        <EmailForm color={color} />
+        <EmailForm
+          color={color}
+          title={title}
+          description={description}
+          giveaway={giveaway}
+          action={action}
+          cta={cta}
+        />
       </div>
     </div>
   );

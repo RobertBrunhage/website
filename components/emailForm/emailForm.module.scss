@@ -2,15 +2,10 @@
   .title {
     grid-area: title;
     margin: 0;
-
-    span {
-      color: var(--secondary-color);
-    }
   }
   .desc {
     grid-area: desc;
     font-size: var(--subtitle);
-    max-width: 580px;
     margin: 12px 0 8px 0;
   }
   form {
@@ -38,6 +33,7 @@
 
       &::placeholder {
         color: var(--secondary-text-color);
+        opacity: .8;
         font-size: var(--body-large);
       }
     }

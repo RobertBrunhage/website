@@ -5,6 +5,7 @@ interface NavItem {
 
 const NavItems: NavItem[] = [
   { title: "Home", url: "/" },
+  { title: "Courses", url: "/courses" },
   { title: "Videos", url: "/videos" },
 ];
 

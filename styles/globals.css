@@ -8,10 +8,10 @@
   --primary-text-color: #fff;
   --secondary-text-color: #d2d2d2;
 
-  --h1: 6.4rem;
-  --h2: 4.8rem;
-  --h3: 3.4rem;
-  --subtitle: 2.4rem;
+  --h1: 4.8rem;
+  --h2: 3.4rem;
+  --h3: 2.8rem;
+  --subtitle: 2.0rem;
   --body-large: 1.8rem;
   --body-regular: 1.6rem;
   --button: 1.6rem;
@@ -38,6 +38,9 @@ h3 {
 p {
   font-size: var(--body-regular);
 }
+p, strong {
+  line-height: 24px;
+}
 
 html,
 body {
@@ -46,6 +49,7 @@ body {
   font-family: "Montserrat";
   background-color: var(--primary-bg-color);
   color: #fff;
+  scroll-behavior: smooth;
 }
 
 html {
