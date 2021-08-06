@@ -62,7 +62,9 @@ const courses = () => {
                 Whether you feel like an beginner (as long as you know the basics), intermediate or
                 expert this course fasttrack your Flutter journey.
               </p>
-              <CTA text={"enroll now!"} href={"#signup"} animation={false} />
+              <div className={styles.calltoaction}>
+                <CTA text={"enroll now!"} href={"#signup"} animation={false} />
+              </div>
             </div>
             <ul className={styles.toc}>
               <li>what you get</li>

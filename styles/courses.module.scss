@@ -1,11 +1,14 @@
 .container {
   section {
-    padding: 64px 0;
+    padding: 64px 20px;
     &:first-child {
       margin: 0;
     }
     &:nth-child(2n + 1) {
       background-color: var(--secondary-bg-color);
+    }
+    &:last-child {
+      padding: 64px 20px 0 20px;
     }
   }
 
@@ -26,7 +29,6 @@
 
   .introduction {
     display: grid;
-    max-width: 1200px;
     grid-template-areas: "text toc";
     column-gap: 100px;
     margin: 0 auto;
@@ -40,6 +42,7 @@
 
     .toc {
       grid-area: toc;
+      border-radius: 8px;
       margin: auto;
       list-style: none;
       padding: 64px 84px;
@@ -98,6 +101,11 @@
         margin-top: 3.2rem;
         margin-bottom: 3.2rem;
         padding: 5rem 2rem;
+      }
+
+      .calltoaction{
+        width: max-content;
+        margin: 0 auto;
       }
     }
 
