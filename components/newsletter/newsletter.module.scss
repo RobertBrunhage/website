@@ -10,7 +10,7 @@
   .sprite {
     grid-area: sprite;
     height: 435px;
-    width: 280px;
+    max-width: 280px;
   }
   .form {
     grid-area: form;
