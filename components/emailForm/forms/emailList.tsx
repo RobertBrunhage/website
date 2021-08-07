@@ -7,7 +7,7 @@ const emailList = ({ color }) => {
       <Newsletter
         color={color}
         title="Get my free Flutter Tips PDF"
-        description="Level up your skills by joining 600 other Flutter developers now! 😃"
+        description="Level up your skills by joining 1000 other Flutter developers now! 😃"
         giveaway="When you sign up you are eligible to have a chance to win future courses"
         cta="LEVEL UP"
         img="/assets/icons/sprite_amazed.webp"
