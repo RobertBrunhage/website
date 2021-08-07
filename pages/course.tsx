@@ -5,6 +5,7 @@ import PlausibleProvider from "next-plausible";
 import Layout from "../components/layout/layout";
 import EmailCourse from "../components/emailForm/forms/emailCourse";
 import CTA from "../components/buttons/cta/cta";
+import FormInput from "../components/emailForm/formInput";
 
 const courses = () => {
   return (
@@ -19,14 +20,17 @@ const courses = () => {
           <meta property="og:type" content="article" />
           <meta property="og:title" content="RobertBrunhage.com" />
           <meta property="og:description" content="Flutter Courses" />
-          <meta property="og:image" content="https://robertbrunhage.com/assets/images/avatar.png" />
+          <meta
+            property="og:image"
+            content="https://robertbrunhage.com/assets/images/course_twitter.png"
+          />
           <meta property="twitter:card" content="summary" />
           <meta property="twitter:site" content="@robertbrunhage" />
           <meta property="twitter:title" content="RobertBrunhage.com" />
           <meta property="twitter:description" content="Flutter Courses" />
           <meta
             property="twitter:image"
-            content="https://robertbrunhage.com/assets/images/avatar.png"
+            content="https://robertbrunhage.com/assets/images/course_twitter.png"
           />
           <link rel="prefetch" href="https://robertbrunhage.com/videos" />
           <link rel="canonical" href="https://robertbrunhage.com" />
@@ -35,8 +39,16 @@ const courses = () => {
           <section className={styles.header}>
             <h1>The Ultimate Flutter Course</h1>
             <h3>Build a production ready Flutter application with Flutter</h3>
-            <div className={styles.cta}>
-              <CTA text={"enroll now!"} href={"#signup"} animation={false} />
+
+            <div className={styles.form}>
+              <FormInput
+                giveaway={""}
+                cta={"get updates"}
+                color={"var(--primary-bg-color)"}
+                action={
+                  "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse"
+                }
+              />
             </div>
           </section>
           <section className={`max_width ${styles.introduction}`}>
@@ -62,8 +74,15 @@ const courses = () => {
                 Whether you feel like an beginner (as long as you know the basics), intermediate or
                 expert this course fasttrack your Flutter journey.
               </p>
-              <div className={styles.calltoaction}>
-                <CTA text={"enroll now!"} href={"#signup"} animation={false} />
+              <div className={styles.form}>
+                <FormInput
+                  giveaway={""}
+                  cta={"get updates"}
+                  color={"var(--secondary-bg-color)"}
+                  action={
+                    "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse"
+                  }
+                />
               </div>
             </div>
             <ul className={styles.toc}>

@@ -30,10 +30,6 @@
       display: none;
     }
     form {
-      grid-template-areas:
-        "email"
-        "submit";
-      grid-template-columns: unset;
       input[type="email"] {
         border-radius: 4px;
       }

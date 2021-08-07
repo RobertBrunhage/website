@@ -1,0 +1,73 @@
+.form {
+  form {
+    grid-area: form;
+    display: grid;
+    grid-template-areas:
+      "email submit"
+      "text text";
+    grid-template-columns: auto 155px;
+
+    input {
+      border: none;
+      border-radius: 4px;
+      margin: 8px 0;
+      height: 55px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    input[type="email"] {
+      grid-area: email;
+      text-indent: 2rem;
+      border-radius: 4px 0 0 4px;
+      color: var(--primary-text-color);
+      font-size: var(--body-large);
+
+      &::placeholder {
+        color: var(--secondary-text-color);
+        opacity: 0.8;
+        font-size: var(--body-large);
+      }
+    }
+    input[type="submit"] {
+      padding: 0 16px;
+      grid-area: submit;
+      cursor: pointer;
+      text-transform: uppercase;
+      border-radius: 0 4px 4px 0;
+      background-color: var(--primary-color);
+      color: var(--primary-text-color);
+      font-size: var(--body-regular);
+      font-weight: bold;
+
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+      &:hover {
+        filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.3));
+      }
+    }
+    .giveaway {
+      grid-area: text;
+      font-size: var(--body-regular);
+      margin: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .form {
+    form {
+      grid-template-areas:
+        "email"
+        "text"
+        "submit";
+      grid-template-columns: 100%;
+
+      input[type="submit"] {
+        margin: 16px auto;
+        border-radius: 4px;
+      }
+    }
+  }
+}

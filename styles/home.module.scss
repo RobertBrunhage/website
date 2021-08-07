@@ -47,6 +47,7 @@
             grid-area: desc;
             margin: 0;
           }
+
         }
       }
       .sprite {
@@ -69,6 +70,7 @@
           "img"
           "title"
           "desc";
+        grid-template-rows: repeat(3, min-content);
         row-gap: 18px;
 
         img {
@@ -205,6 +207,9 @@
             .button {
               margin: 0 auto;
               height: 50px;
+            }
+            .browse {
+              margin: 0 auto;
             }
           }
         }

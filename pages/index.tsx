@@ -60,7 +60,9 @@ const home = ({ videos }) => {
                   />
                   <p className={styles.title}>{videos[0].frontmatter.title}</p>
                   <p className={styles.desc}>{videos[0].frontmatter.description}</p>
-                  <CTA text={"browse"} href={"/videos"} animation={true} />
+                  <div className={styles.browse}>
+                    <CTA text={"browse"} href={"/videos"} animation={true} />
+                  </div>
                 </div>
               </div>
               <img
