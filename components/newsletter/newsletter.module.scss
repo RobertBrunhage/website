@@ -9,7 +9,8 @@
 
   .sprite {
     grid-area: sprite;
-    width: 224px;
+    height: 435px;
+    max-width: 280px;
   }
   .form {
     grid-area: form;
@@ -29,10 +30,6 @@
       display: none;
     }
     form {
-      grid-template-areas:
-        "email"
-        "submit";
-      grid-template-columns: unset;
       input[type="email"] {
         border-radius: 4px;
       }

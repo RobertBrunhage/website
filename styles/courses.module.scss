@@ -1,0 +1,132 @@
+.container {
+
+  .form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  section {
+    padding: 64px 20px;
+    &:first-child {
+      margin: 0;
+    }
+    &:nth-child(2n + 1) {
+      background-color: var(--secondary-bg-color);
+    }
+    &:last-child {
+      padding: 64px 20px 0 20px;
+    }
+  }
+
+  .header {
+    text-align: center;
+    padding: 120px 0;
+    h1 {
+      margin: 0;
+    }
+    h3 {
+      font-weight: normal;
+    }
+    .cta {
+      width: max-content;
+      margin: 0 auto;
+    }
+  }
+
+  .introduction {
+    display: grid;
+    grid-template-areas: "text toc";
+    column-gap: 100px;
+    margin: 0 auto;
+
+    .intro_text {
+      grid-area: text;
+      p {
+        padding: 12px 0;
+      }
+    }
+
+    .toc {
+      grid-area: toc;
+      border-radius: 8px;
+      margin: auto;
+      list-style: none;
+      padding: 64px 84px;
+      background-color: var(--secondary-bg-color);
+      width: max-content;
+      height: max-content;
+
+      li {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: var(--body-regular);
+        padding: 8px 0;
+
+        &:first-child {
+          font-weight: normal;
+          font-size: var(--h3);
+          margin-bottom: 32px;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .about {
+    display: grid;
+    grid-template-columns: 50% auto;
+    column-gap: auto;
+
+    strong {
+      font-size: var(--body-regular);
+    }
+    h2 {
+      margin: 0;
+    }
+    p,
+    strong {
+      padding: 20px 0;
+    }
+
+    img {
+      margin: 0 0 0 auto;
+      height: 390px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .container {
+    padding-top: 32px;
+    .introduction {
+      grid-template-areas:
+        "text"
+        "toc";
+      padding: 0 20px;
+
+      .toc {
+        margin-top: 3.2rem;
+        margin-bottom: 3.2rem;
+        padding: 5rem 2rem;
+      }
+
+      .calltoaction {
+        width: max-content;
+        margin: 0 auto;
+      }
+    }
+    .header {
+      padding: 80px 20px;
+    }
+    .about {
+      grid-template-columns: 100%;
+      p,
+      strong {
+        padding: 10px 0;
+      }
+      img {
+        display: none;
+      }
+    }
+  }
+}
