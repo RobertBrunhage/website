@@ -4,8 +4,10 @@ import Head from "next/head";
 import PlausibleProvider from "next-plausible";
 import Layout from "../components/layout/layout";
 import EmailCourse from "../components/emailForm/forms/emailCourse";
-import CTA from "../components/buttons/cta/cta";
 import FormInput from "../components/emailForm/formInput";
+
+const form_url =
+  "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
 
 const courses = () => {
   return (
@@ -44,9 +46,7 @@ const courses = () => {
                 giveaway={""}
                 cta={"get updates"}
                 color={"var(--primary-bg-color)"}
-                action={
-                  "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse"
-                }
+                action={form_url}
               />
             </div>
           </section>
@@ -78,9 +78,7 @@ const courses = () => {
                   giveaway={""}
                   cta={"get updates"}
                   color={"var(--secondary-bg-color)"}
-                  action={
-                    "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse"
-                  }
+                  action={form_url}
                 />
               </div>
             </div>
