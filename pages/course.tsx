@@ -29,7 +29,7 @@ const courses = () => {
           <meta property="twitter:card" content="summary" />
           <meta property="twitter:site" content="@robertbrunhage" />
           <meta property="twitter:title" content="RobertBrunhage.com" />
-          <meta property="twitter:description" content="Flutter Courses" />
+          <meta property="twitter:description" content="Build a complete production ready Flutter application!" />
           <meta
             property="twitter:image"
             content="https://robertbrunhage.com/assets/images/course_twitter.png"
