@@ -38,8 +38,7 @@ const courses = () => {
         <div className={styles.container}>
           <section className={styles.header}>
             <h1>The Ultimate Flutter Course</h1>
-            <h3>Build a production ready Flutter application with Flutter</h3>
-
+            <h3>Build a complete production ready Flutter application</h3>
             <div className={styles.form}>
               <FormInput
                 giveaway={""}
