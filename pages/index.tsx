@@ -41,6 +41,7 @@ const home = ({ videos }) => {
             content="https://robertbrunhage.com/assets/images/avatar.png"
           />
           <link rel="prefetch" href="https://robertbrunhage.com/videos" />
+          <link rel="prefetch" href="https://robertbrunhage.com/course" />
           <link rel="canonical" href="https://robertbrunhage.com" />
         </Head>
         <div className={styles.container}>

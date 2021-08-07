@@ -16,7 +16,7 @@ const courses = () => {
           <link rel="icon" href="/favicon.ico" />
           <meta name="robots" content="index" />
           <meta name="description" content="Flutter Courses | Robert Brunhage" />
-          <meta property="og:url" content="https://robertbrunhage.com/courses" />
+          <meta property="og:url" content="https://robertbrunhage.com/course" />
           <meta property="og:type" content="article" />
           <meta property="og:title" content="RobertBrunhage.com" />
           <meta property="og:description" content="Flutter Courses" />
@@ -33,7 +33,7 @@ const courses = () => {
             content="https://robertbrunhage.com/assets/images/course_twitter.png"
           />
           <link rel="prefetch" href="https://robertbrunhage.com/videos" />
-          <link rel="canonical" href="https://robertbrunhage.com" />
+          <link rel="canonical" href="https://robertbrunhage.com/course" />
         </Head>
         <div className={styles.container}>
           <section className={styles.header}>
@@ -71,7 +71,7 @@ const courses = () => {
               </p>
               <p>
                 Whether you feel like an beginner (as long as you know the basics), intermediate or
-                expert this course fasttrack your Flutter journey.
+                expert this course will fast track your Flutter journey.
               </p>
               <div className={styles.form}>
                 <FormInput
@@ -98,9 +98,18 @@ const courses = () => {
               <div>
                 <h2>Hey! 👋</h2>
                 <p>
-                  I’m Robert Brunhage. You may know me by my <strong>YouTube channel</strong> or
-                  being a <strong>GDE in Flutter & Dart</strong> but not too long ago I also coded
-                  myself in to corners, making code hard to manage and was just lost in how to
+                  I’m Robert Brunhage. You may know me by my{" "}
+                  <strong>
+                    <a
+                      href="https://youtube.com/robertbrunhage"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      YouTube channel
+                    </a>
+                  </strong>{" "}
+                  or being a <strong>GDE in Flutter & Dart</strong> but not too long ago I also
+                  coded myself in to corners, making code hard to manage and was just lost in how to
                   actually make it scalable.
                 </p>
                 <p>
