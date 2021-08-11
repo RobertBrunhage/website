@@ -26,7 +26,7 @@ const Navbar = () => {
         <link href="/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16" />
         <link href="/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-icon-180x180.png" />
-        <meta name="theme-color" content="#C34C4C" />
+        <meta name="theme-color" content="#E12339" />
       </Head>
       <nav className={styles.stroke}>
         <h1 className={styles.logo}>

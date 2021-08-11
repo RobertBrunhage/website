@@ -2,7 +2,7 @@
   --primary-bg-color: #1e1e20;
   --secondary-bg-color: #29292d;
 
-  --primary-color: #c34c4c;
+  --primary-color: #e12339;
   --secondary-color: #4cc3c3;
 
   --primary-text-color: #fff;
@@ -11,7 +11,7 @@
   --h1: 4.8rem;
   --h2: 3.4rem;
   --h3: 2.8rem;
-  --subtitle: 2.0rem;
+  --subtitle: 2rem;
   --body-large: 1.8rem;
   --body-regular: 1.6rem;
   --button: 1.6rem;
@@ -38,7 +38,8 @@ h3 {
 p {
   font-size: var(--body-regular);
 }
-p, strong {
+p,
+strong {
   line-height: 24px;
 }
 
