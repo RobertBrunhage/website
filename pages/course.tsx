@@ -122,8 +122,8 @@ const courses = () => {
               </div>
               <img
                 className={styles.sprite}
-                src="/assets/icons/sprite_talking.webp"
-                alt="intro_man"
+                src="/assets/icons/Robert_amazed_FIRE.webp"
+                alt="amazed_man"
               />
             </div>
           </section>
