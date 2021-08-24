@@ -142,6 +142,30 @@ const courses = () => {
               <FAQ title={"Frequently Asked Questions"} questions={questions} />
             </div>
           </section>
+          <section>
+            <div className={`max_width ${styles.quotes}`}>
+              <Quote
+                quote={`Did you smell it? That smell. A kind of smelly smell. The smelly smell that smells...smelly.`}
+                image={"/assets/images/avatar.png"}
+                author={"Mr. Krabs"}
+              />
+              <Quote
+                quote={`Did you smell it? That smell. A kind of smelly smell. The smelly smell that smells...smelly.`}
+                image={"/assets/images/avatar.png"}
+                author={"Mr. Krabs"}
+              />
+              <Quote
+                quote={`Did you smell it? That smell. A kind of smelly smell. The smelly smell that smells...smelly.`}
+                image={"/assets/images/avatar.png"}
+                author={"Mr. Krabs"}
+              />
+              <Quote
+                quote={`Did you smell it? That smell. A kind of smelly smell. The smelly smell that smells...smelly.`}
+                image={"/assets/images/avatar.png"}
+                author={"Mr. Krabs"}
+              />
+            </div>
+          </section>
         </div>
       </Layout>
     </PlausibleProvider>
