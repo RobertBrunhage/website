@@ -13,9 +13,6 @@
     &:nth-child(2n + 1) {
       background-color: var(--secondary-bg-color);
     }
-    &:last-child {
-      padding: 64px 20px 0 20px;
-    }
   }
 
   .header {
@@ -92,6 +89,15 @@
       margin: 0 0 0 auto;
       height: 390px;
     }
+  }
+
+  .quotes {
+    margin: 0 auto;
+
+    display: grid;
+    row-gap: 32px;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
   }
 }
 

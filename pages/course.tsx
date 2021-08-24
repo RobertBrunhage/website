@@ -5,6 +5,10 @@ import PlausibleProvider from "next-plausible";
 import Layout from "../components/layout/layout";
 import EmailCourse from "../components/emailForm/forms/emailCourse";
 import FormInput from "../components/emailForm/formInput";
+import FAQ from "../components/faq/faq";
+import Quote from "../components/quote/quote";
+
+import questions from "../components/faq/course_faq";
 
 const form_url =
   "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
@@ -29,7 +33,10 @@ const courses = () => {
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:site" content="@robertbrunhage" />
           <meta property="twitter:title" content="RobertBrunhage.com" />
-          <meta property="twitter:description" content="Build a complete production ready Flutter application!" />
+          <meta
+            property="twitter:description"
+            content="Build a complete production ready Flutter application!"
+          />
           <meta
             property="twitter:image"
             content="https://robertbrunhage.com/assets/images/course_twitter.png"
@@ -129,6 +136,35 @@ const courses = () => {
           </section>
           <section id={"signup"}>
             <EmailCourse color={"var(--secondary-bg-color)"} />
+          </section>
+          <section>
+            <div className={"max_width"}>
+              <FAQ title={"Frequently Asked Questions"} questions={questions} />
+            </div>
+          </section>
+          <section>
+            <div className={`max_width ${styles.quotes}`}>
+              <Quote
+                quote={`Did you smell it? That smell. A kind of smelly smell. The smelly smell that smells...smelly.`}
+                image={"/assets/images/avatar.png"}
+                author={"Mr. Krabs"}
+              />
+              <Quote
+                quote={`Did you smell it? That smell. A kind of smelly smell. The smelly smell that smells...smelly.`}
+                image={"/assets/images/avatar.png"}
+                author={"Mr. Krabs"}
+              />
+              <Quote
+                quote={`Did you smell it? That smell. A kind of smelly smell. The smelly smell that smells...smelly.`}
+                image={"/assets/images/avatar.png"}
+                author={"Mr. Krabs"}
+              />
+              <Quote
+                quote={`Did you smell it? That smell. A kind of smelly smell. The smelly smell that smells...smelly.`}
+                image={"/assets/images/avatar.png"}
+                author={"Mr. Krabs"}
+              />
+            </div>
           </section>
         </div>
       </Layout>

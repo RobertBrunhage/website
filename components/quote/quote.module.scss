@@ -1,0 +1,59 @@
+.quote_container {
+  max-width: 50rem;
+  min-height: 19rem;
+  background-color: var(--secondary-bg-color);
+  border-radius: 8px;
+  padding: 32px 0 16px 0;
+  margin: 0 auto;
+
+  blockquote {
+    quotes: "“" "”" "‘" "’";
+    font-size: var(--subtitle);
+
+    p {
+      grid-area: quote;
+      font-size: var(--body-regular);
+      padding: 0 32px;
+      position: relative;
+
+      &::before {
+        content: open-quote;
+        color: var(--dark-input-field-color);
+        font-size: 8rem;
+        font-weight: 600;
+        position: absolute;
+        left: -20px;
+      }
+      &::after {
+        content: close-quote;
+        margin-top: 32px;
+        color: var(--dark-input-field-color);
+        font-size: 8rem;
+        font-weight: 600;
+        position: absolute;
+        right: -20px;
+      }
+    }
+  }
+
+  figcaption {
+    padding: 0 24px;
+    padding-top: 8px;
+    display: flex;
+
+    .author_image {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background-color: var(--dark-input-field-color);
+
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    h1 {
+      margin-left: 16px;
+      font-size: var(--body-regular);
+    }
+  }
+}
