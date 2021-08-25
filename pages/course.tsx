@@ -54,6 +54,7 @@ const courses = () => {
                 cta={"get updates"}
                 color={"var(--primary-bg-color)"}
                 action={form_url}
+                plausibleEvent={"newsletter-signup"}
               />
             </div>
           </section>
@@ -86,6 +87,7 @@ const courses = () => {
                   cta={"get updates"}
                   color={"var(--secondary-bg-color)"}
                   action={form_url}
+                  plausibleEvent={"newsletter-signup"}
                 />
               </div>
             </div>

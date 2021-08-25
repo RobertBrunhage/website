@@ -12,6 +12,7 @@ const emailList = ({ color }) => {
         cta="LEVEL UP"
         img="/assets/icons/sprite_amazed.webp"
         action="https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca"
+        plausibleEvent={""}
       />
     </div>
   );

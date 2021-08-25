@@ -12,6 +12,7 @@ const emailList = ({ color }) => {
         cta="GET UPDATES"
         img="/assets/icons/movie_course.svg"
         action="https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse"
+        plausibleEvent={"newsletter-signup"}
       />
     </div>
   );

@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./formInput.module.scss";
+import { usePlausible } from "next-plausible";
 
-const formInput = ({ action, color, cta, giveaway }) => {
+const formInput = ({ action, color, cta, giveaway, plausibleEvent }) => {
+  const plausible = usePlausible();
+
   return (
     <div className={styles.form}>
       <form
@@ -19,7 +22,13 @@ const formInput = ({ action, color, cta, giveaway }) => {
           required
           style={{ backgroundColor: color }}
         />
-        <input id="submit" type="submit" value={cta} name="subscribe" />
+        <input
+          id="submit"
+          type="submit"
+          value={cta}
+          name="subscribe"
+          onClick={() => plausible(plausibleEvent)}
+        />
         <p className={styles.giveaway}>{giveaway}</p>
       </form>
     </div>
