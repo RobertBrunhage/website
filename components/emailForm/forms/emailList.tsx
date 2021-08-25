@@ -1,4 +1,5 @@
 import React from "react";
+import { eventPropNewsletter, eventSignup } from "../../../core/constants";
 import Newsletter from "../../newsletter/newsletter";
 
 const emailList = ({ color }) => {
@@ -12,6 +13,8 @@ const emailList = ({ color }) => {
         cta="LEVEL UP"
         img="/assets/icons/sprite_amazed.webp"
         action="https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca"
+        plausibleEvent={eventSignup}
+        plausibleEventProp={eventPropNewsletter}
       />
     </div>
   );
