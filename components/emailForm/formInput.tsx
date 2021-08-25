@@ -1,8 +1,25 @@
 import React from "react";
 import styles from "./formInput.module.scss";
 import { usePlausible } from "next-plausible";
+import { eventPropNewsletter } from "../../core/constants";
 
-const formInput = ({ action, color, cta, giveaway, plausibleEvent }) => {
+interface FormInputProps {
+  action: string;
+  color: any;
+  cta: string;
+  giveaway: string;
+  plausibleEvent: string;
+  plausibleEventProp: string;
+}
+
+const formInput = ({
+  action,
+  color,
+  cta,
+  giveaway,
+  plausibleEvent,
+  plausibleEventProp,
+}: FormInputProps) => {
   const plausible = usePlausible();
 
   return (
@@ -27,7 +44,13 @@ const formInput = ({ action, color, cta, giveaway, plausibleEvent }) => {
           type="submit"
           value={cta}
           name="subscribe"
-          onClick={() => plausible(plausibleEvent)}
+          onClick={() =>
+            plausible(plausibleEvent, {
+              props: {
+                type: plausibleEventProp,
+              },
+            })
+          }
         />
         <p className={styles.giveaway}>{giveaway}</p>
       </form>
