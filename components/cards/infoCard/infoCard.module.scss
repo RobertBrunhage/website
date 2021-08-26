@@ -1,0 +1,31 @@
+.infoCard_container {
+  width: 350px;
+  height: 120px;
+  padding: 32px;
+  margin: 16px 0;
+  border-radius: 8px;
+  background-color: var(--secondary-bg-color);
+
+  display: grid;
+  grid-template-columns: min-content auto;
+  column-gap: 16px;
+  place-items: center;
+
+  .icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+  }
+
+  p {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: var(--body-regular);
+    font-weight: bold;
+    max-height: 6.5ch;
+    overflow: hidden;
+  }
+}

@@ -8,6 +8,8 @@ import FAQ from "../components/faq/faq";
 
 import questions from "../components/faq/course_faq";
 import { eventPropNewsletter, eventSignup } from "../core/constants";
+import InfoCard from "../components/cards/infoCard/infoCard";
+import ModuleCard from "../components/cards/moduleCard.tsx/moduleCard";
 
 const form_url =
   "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
@@ -61,25 +63,23 @@ const courses = () => {
           <div className={styles.intro_text}>
             <h2>Master Flutter to build production ready apps!</h2>
             <p>
-              Have you used Flutter but wanted to take it to the next level?
-              Tired of building apps that becomes messy, hard to manage and want
-              a streamlined way of building apps? Then this is for you!
+              Have you used Flutter but wanted to take it to the next level? Tired of building apps
+              that becomes messy, hard to manage and want a streamlined way of building apps? Then
+              this is for you!
             </p>
             <p>
-              This is not a course where I will go over how to use the basics
-              such as a Row, Column and all that, but instead teach you how to
-              build robust applications from scratch.
+              This is not a course where I will go over how to use the basics such as a Row, Column
+              and all that, but instead teach you how to build robust applications from scratch.
             </p>
             <p>
               <strong>
-                What I teach in this course is knowledge that I’ve accumulated
-                for more than 3 years of Flutter development.
+                What I teach in this course is knowledge that I’ve accumulated for more than 3 years
+                of Flutter development.
               </strong>
             </p>
             <p>
-              Whether you feel like an beginner (as long as you know the
-              basics), intermediate or expert this course will fast track your
-              Flutter journey.
+              Whether you feel like an beginner (as long as you know the basics), intermediate or
+              expert this course will fast track your Flutter journey.
             </p>
             <div className={styles.form}>
               <FormInput
@@ -116,21 +116,18 @@ const courses = () => {
                     YouTube channel
                   </a>
                 </strong>{" "}
-                or being a <strong>GDE in Flutter & Dart</strong> but not too
-                long ago I also coded myself in to corners, making code hard to
-                manage and was just lost in how to actually make it scalable.
+                or being a <strong>GDE in Flutter & Dart</strong> but not too long ago I also coded
+                myself in to corners, making code hard to manage and was just lost in how to
+                actually make it scalable.
               </p>
               <p>
-                <strong>
-                  I’ve been there but that is also why I know how to get out of
-                  it.
-                </strong>{" "}
-                I’ve learned from trial and error, consulting, teaching as well
-                as working with other professionals!
+                <strong>I’ve been there but that is also why I know how to get out of it.</strong>{" "}
+                I’ve learned from trial and error, consulting, teaching as well as working with
+                other professionals!
               </p>
               <strong>
-                Save time and frustration and learn an efficient system to build
-                flutter applications
+                Save time and frustration and learn an efficient system to build flutter
+                applications
               </strong>
             </div>
             <img
@@ -146,6 +143,13 @@ const courses = () => {
         <section>
           <div className={"max_width"}>
             <FAQ title={"Frequently Asked Questions"} questions={questions} />
+          </div>
+        </section>
+        <section>
+          <div className={"max_width"}>
+            <InfoCard />
+
+            <ModuleCard />
           </div>
         </section>
       </div>
