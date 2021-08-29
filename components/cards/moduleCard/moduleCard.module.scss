@@ -1,6 +1,5 @@
 .infoCard_container {
   width: 600px;
-  min-height: 180px;
   padding: 20px 32px;
   margin: 16px 0;
   border-radius: 8px;
@@ -11,7 +10,7 @@
     "icon title"
     "icon summary";
   grid-template-columns: min-content;
-  grid-template-rows: max-content;
+  grid-template-rows: min-content;
   column-gap: 24px;
 
   .icon {
@@ -20,11 +19,11 @@
     display: grid;
     place-items: center;
 
-    font-size: var(--body-regular);
+    font-size: var(--subtitle);
     font-weight: bold;
 
-    width: 48px;
-    height: 48px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     background-color: var(--primary-color);
 

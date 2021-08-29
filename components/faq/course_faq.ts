@@ -3,7 +3,7 @@ interface FAQ {
   answer: string;
 }
 
-const NavItems: FAQ[] = [
+const FAQ: FAQ[] = [
   { question: "Will it be free?", answer: "No 😅" },
   {
     question: "If I am a beginner will I still be able to take the course",
@@ -25,4 +25,4 @@ const NavItems: FAQ[] = [
   },
 ];
 
-export default NavItems;
+export default FAQ;

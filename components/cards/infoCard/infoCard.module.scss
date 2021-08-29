@@ -1,7 +1,7 @@
 .infoCard_container {
   width: 350px;
   height: 120px;
-  padding: 32px;
+  padding: 32px 28px;
   margin: 16px 0;
   border-radius: 8px;
   background-color: var(--secondary-bg-color);
@@ -9,7 +9,6 @@
   display: grid;
   grid-template-columns: min-content auto;
   column-gap: 16px;
-  place-items: center;
 
   .icon {
     background-color: var(--primary-color);
@@ -18,14 +17,16 @@
     height: 48px;
     display: grid;
     place-items: center;
+    margin: auto;
   }
 
   p {
-    margin: 0;
+    margin: auto;
     text-transform: uppercase;
     font-size: var(--body-regular);
     font-weight: bold;
     max-height: 6.5ch;
     overflow: hidden;
+    text-align: start;
   }
 }
