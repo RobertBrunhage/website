@@ -22,11 +22,11 @@
 
   p {
     margin: auto;
+    margin-left: 0;
     text-transform: uppercase;
     font-size: var(--body-regular);
     font-weight: bold;
     max-height: 6.5ch;
     overflow: hidden;
-    text-align: start;
   }
 }

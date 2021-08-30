@@ -5,15 +5,19 @@ import Layout from "../components/layout/layout";
 import EmailCourse from "../components/emailForm/forms/emailCourse";
 import FormInput from "../components/emailForm/formInput";
 import FAQ from "../components/faq/faq";
-
 import questions from "../components/faq/course_faq";
 import { eventPropNewsletter, eventSignup } from "../core/constants";
 import InfoCard from "../components/cards/infoCard/infoCard";
 import ModuleCard from "../components/cards/moduleCard/moduleCard";
+import PricingCard from "../components/cards/pricingCard/pricingCard";
 import Quote from "../components/quote/quote";
-
 import info from "../components/cards/infoCard/info";
 import modules from "../components/cards/moduleCard/modules";
+import {
+  package_basic,
+  package_complete,
+  package_exclusive,
+} from "../components/cards/pricingCard/packages";
 
 const form_url =
   "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
@@ -243,12 +247,108 @@ const courses = () => {
           </div>
         </section>
 
-        <section id={"signup"}>
-          <EmailCourse color={"var(--secondary-bg-color)"} />
+        <section>
+          <div className={`max_width ${styles.pricing}`}>
+            <PricingCard
+              className={styles.card}
+              label={""}
+              title={"basic package"}
+              price={"$xx"}
+              discounted_price={"$xx"}
+              price_package={package_basic}
+            />
+            <PricingCard
+              className={styles.card}
+              label={"most popular"}
+              title={"complete package"}
+              price={"$xxx"}
+              discounted_price={"$xxx"}
+              price_package={package_complete}
+            />
+            <PricingCard
+              className={styles.card}
+              label={"best value"}
+              title={"exclusive package"}
+              price={"$xxx"}
+              discounted_price={"$xxx"}
+              price_package={package_exclusive}
+            />
+          </div>
         </section>
+
+        <section>
+          <div className={`max_width ${styles.satisfaction}`}>
+            <img src="/assets/icons/satisfaction.png" alt="100% satisfaction" />
+            <h2>
+              100% Satisfaction Guarantee for <strong>30-days</strong>
+            </h2>
+            <p>
+              After spending so much time on both this course and teaching over 3 years on YouTube
+              and other areas I am confident that this will be worth it.
+              <br />
+              <br /> So if you are not happy with the course, for any reason, just reach out to me
+              and I’ll issue a full refund.
+              <br />
+              <br />
+              What is important for me is that you get knowledge that you can apply right away!
+            </p>
+          </div>
+        </section>
+
+        <section className={styles.wpt}>
+          <div className={"max_width"}>
+            <h2>Look at what past students have to say about this course</h2>
+            <div className={styles.quotes}>
+              <Quote
+                quote={
+                  "Did you smell it? That smell. A kind of smelly smell. The smelly smell that smells...smelly."
+                }
+                image={"/assets/images/avatar.png"}
+                author={"Mr. Krabs."}
+              />
+              <Quote
+                quote={
+                  "Did you smell it? That smell. A kind of smelly smell. The smelly smell that smells...smelly."
+                }
+                image={"/assets/images/avatar.png"}
+                author={"Mr. Krabs."}
+              />
+            </div>
+          </div>
+        </section>
+
         <section>
           <div className={"max_width"}>
             <FAQ title={"Frequently Asked Questions"} questions={questions} />
+          </div>
+        </section>
+
+        <section>
+          <div className={`max_width ${styles.pricing}`}>
+            <PricingCard
+              className={styles.card}
+              label={""}
+              title={"basic package"}
+              price={"$xx"}
+              discounted_price={"$xx"}
+              price_package={package_basic}
+            />
+            <PricingCard
+              className={styles.card}
+              label={"most popular"}
+              title={"complete package"}
+              price={"$xxx"}
+              discounted_price={"$xxx"}
+              price_package={package_complete}
+            />
+            <PricingCard
+              className={styles.card}
+              label={"best value"}
+              title={"exclusive package"}
+              price={"$xxx"}
+              discounted_price={"$xxx"}
+              price_package={package_exclusive}
+            />
           </div>
         </section>
       </div>

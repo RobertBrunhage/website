@@ -26,10 +26,7 @@ const home = ({ videos }) => {
           property="og:description"
           content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
         />
-        <meta
-          property="og:image"
-          content="https://robertbrunhage.com/assets/images/avatar.png"
-        />
+        <meta property="og:image" content="https://robertbrunhage.com/assets/images/avatar.png" />
         <meta property="twitter:card" content="summary" />
         <meta property="twitter:site" content="@robertbrunhage" />
         <meta property="twitter:title" content="RobertBrunhage.com" />
@@ -61,11 +58,9 @@ const home = ({ videos }) => {
                   alt="video"
                 />
                 <p className={styles.title}>{videos[0].frontmatter.title}</p>
-                <p className={styles.desc}>
-                  {videos[0].frontmatter.description}
-                </p>
+                <p className={styles.desc}>{videos[0].frontmatter.description}</p>
                 <div className={styles.browse}>
-                  <CTA text={"browse"} href={"/videos"} animation={true} />
+                  <CTA text={"browse"} href={"/videos"} width={"150px"} animation={true} />
                 </div>
               </div>
             </div>
@@ -85,28 +80,20 @@ const home = ({ videos }) => {
               <img src="/assets/icons/discord.png" alt="discord icon" />
               <h3>Discord Community</h3>
               <p>
-                We have a <a>discord</a> channel where you can chat and learn
-                with other developers.
+                We have a <a>discord</a> channel where you can chat and learn with other developers.
               </p>
             </div>
             <div className={styles.card}>
               <img src="/assets/icons/open_source.png" alt="open source icon" />
               <h3>Open Source</h3>
               <p>
-                My videos are almost all supported by a GitHub repo, this{" "}
-                <a>site</a> as well.
+                My videos are almost all supported by a GitHub repo, this <a>site</a> as well.
               </p>
             </div>
             <div className={styles.card}>
-              <img
-                src="/assets/icons/education.png"
-                alt="books education icon"
-              />
+              <img src="/assets/icons/education.png" alt="books education icon" />
               <h3>Education for free</h3>
-              <p>
-                The goal is to have enough content out for free so anyone can
-                start learning.
-              </p>
+              <p>The goal is to have enough content out for free so anyone can start learning.</p>
             </div>
           </div>
         </section>
@@ -114,26 +101,11 @@ const home = ({ videos }) => {
           <div className={`max_width ${styles.content}`}>
             <h2 className={styles.title}>The Developers</h2>
             <div className={styles.testimonials}>
-              <img
-                src="/assets/images/testimonials/mikerydstrom.png"
-                alt="mike rydstrom"
-              />
-              <img
-                src="/assets/images/testimonials/aymanbarghout.png"
-                alt="ayman barghout"
-              />
-              <img
-                src="/assets/images/testimonials/tadaspetra.png"
-                alt="tadas petra"
-              />
-              <img
-                src="/assets/images/testimonials/mukaldadwhal.png"
-                alt="mukal dadwhal"
-              />
-              <img
-                src="/assets/images/testimonials/luischodiman.png"
-                alt="luis chodiman"
-              />
+              <img src="/assets/images/testimonials/mikerydstrom.png" alt="mike rydstrom" />
+              <img src="/assets/images/testimonials/aymanbarghout.png" alt="ayman barghout" />
+              <img src="/assets/images/testimonials/tadaspetra.png" alt="tadas petra" />
+              <img src="/assets/images/testimonials/mukaldadwhal.png" alt="mukal dadwhal" />
+              <img src="/assets/images/testimonials/luischodiman.png" alt="luis chodiman" />
             </div>
           </div>
         </section>
@@ -147,9 +119,8 @@ const home = ({ videos }) => {
           <div className={`max_width ${styles.content}`}>
             <h2 className={styles.title}>About Me</h2>
             <p className={styles.desc}>
-              Hi! My name is <span>Robert Brunhage</span> a GDE in Flutter and
-              Dart. My mission is to make learning app development{" "}
-              <span>easy, fun and engaging</span>.
+              Hi! My name is <span>Robert Brunhage</span> a GDE in Flutter and Dart. My mission is
+              to make learning app development <span>easy, fun and engaging</span>.
             </p>
             <img
               className={styles.sprite}
@@ -169,9 +140,7 @@ export async function getStaticProps() {
   const files = fs.readdirSync(`${process.cwd()}/content/lessons`);
 
   const videos = files.map((filename) => {
-    const markdownWithMetadata = fs
-      .readFileSync(`content/lessons/${filename}`)
-      .toString();
+    const markdownWithMetadata = fs.readFileSync(`content/lessons/${filename}`).toString();
 
     const { data } = matter(markdownWithMetadata);
 
