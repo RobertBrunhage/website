@@ -13,6 +13,7 @@ import Quote from "../components/quote/quote";
 import info from "../components/cards/infoCard/info";
 import modules from "../components/cards/moduleCard/modules";
 import queryString from "query-string";
+import Cookie from "universal-cookie";
 import {
   package_basic,
   package_complete,
@@ -26,9 +27,17 @@ const course = () => {
   const getAffcode = () => {
     const qs = queryString.parse(window.location.search);
     const affcode = qs.affcode;
+    const cookie = new Cookie();
+    const timestamp = new Date().getTime();
+    const thirtydays = timestamp + 60 * 60 * 24 * 1000 * 30;
+    const expireDate = new Date(thirtydays);
 
     if (affcode) {
-      window.sessionStorage.setItem("affcode", JSON.stringify(affcode));
+      cookie.set("affcode", affcode, {
+        sameSite: "none",
+        secure: true,
+        expires: expireDate,
+      });
     }
   };
 
