@@ -24,6 +24,11 @@ const FAQ: FAQ[] = [
       "Of course, just send me an email at hello@robertbrunhage.com, and can set up a bundle for your entire team.",
   },
   {
+    question: "Will this be kept up-to-date?",
+    answer:
+      "Yes, this will be kept up-to-date with the latest stable Flutter versions.",
+  },
+  {
     question: "Any other questions?",
     answer:
       "Shoot me an email at  hello@robertbrunhage.com and, I will answer any questions you may have.",

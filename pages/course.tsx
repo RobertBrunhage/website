@@ -83,7 +83,7 @@ const course = () => {
                 the course launches as well as some behind the scenes content.
                 <br />
                 <br />
-                The course will launch to the public 27th September
+                Launch date: 27th of September
               </p>
               <FormInput
                 giveaway={""}
@@ -106,7 +106,7 @@ const course = () => {
               <strong>I understand, I’ve been there!</strong>
               <br />
               <br /> I won't teach you how to use a Row or Column (you should
-              already be familiar with that). Instead, I will teach you how to
+              already be familiar with that). Instead, you will learn how to
               build robust applications from scratch.
               <br />
               <br />
@@ -168,10 +168,9 @@ const course = () => {
                 author={"James Perkins"}
               />
               <Quote
-                quote={`I’ve had the luxury to take the course before release 
-                and I am amazed at the level of quality and what I learn from it!`}
-                image={"/assets/images/the_flutter_way.png"}
-                author={"The Flutter Way"}
+                quote={`This course covers all the important concepts and techniques needed to build production-ready apps, and delivers them in a fun and engaging way. If you're serious about Flutter app development, this is an excellent resource!`}
+                image={"/assets/images/andrea_bizzotto.png"}
+                author={"Andrea Bizzotto"}
               />
             </div>
 
@@ -211,7 +210,7 @@ const course = () => {
                   I’ve been there but, that is also why I know how to get out of
                   it.
                 </strong>{" "}
-                I’ve learned from trial and error, consulting, teaching as well
+                I’ve learned from trial and error, consulting, teaching, as well
                 as working with other professionals!
               </p>
               <strong>
@@ -306,7 +305,7 @@ const course = () => {
               the course launches as well as some behind the scenes content.
               <br />
               <br />
-              The course will launch to the public 27th September
+              Launch date: 27th of September
             </p>
             <FormInput
               giveaway={""}
@@ -324,17 +323,17 @@ const course = () => {
             <div>
               <p>
                 I am super <strong>excited</strong> about what this course can
-                teach you and I've spent multiple months designing, coding,
-                creating the lectures, and all that fun!
+                teach you and I've spent many months designing, coding, creating
+                the lectures!
               </p>
               <p>
                 It has taken a lot of time to get this course out there but I am
-                really <strong>happy</strong> I took the time to be able to
-                share more of what I know with you all.
+                really <strong>happy</strong> but I'm really happy I can share
+                this with you!
               </p>
               <p>
-                I just want to thank you for taking the time to read this and
-                hope you find the course to your <strong>liking!</strong>
+                Thank you very much for your interest! I hope you'll love this
+                course!
               </p>
             </div>
             <img
