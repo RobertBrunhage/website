@@ -20,6 +20,7 @@
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.4",
     "@types/node": "^14.14.0",
     "@types/react": "^17.0.0",
     "@types/react-syntax-highlighter": "^13.5.0",

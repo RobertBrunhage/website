@@ -1,7 +1,12 @@
 import PlausibleProvider from "next-plausible";
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
+interface MyAppProps {
+  Component: any;
+  pageProps: any;
+}
+
+function MyApp({ Component, pageProps }:MyAppProps) {
   return (
     <PlausibleProvider domain="robertbrunhage.com">
       <Component {...pageProps} />

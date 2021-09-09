@@ -1,7 +1,17 @@
 import React from "react";
 import styles from "./faq.module.scss";
 
-const faq = ({ title, questions }) => {
+interface Questions {
+  question: string;
+  answer: string;
+}
+
+interface FAQProps {
+  title: string;
+  questions: Array<Questions>;
+}
+
+const faq = ({ title, questions }: FAQProps) => {
   return (
     <div className={styles.faq}>
       <h2>{title}</h2>

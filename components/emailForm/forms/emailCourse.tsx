@@ -2,7 +2,11 @@ import React from "react";
 import { eventPropNewsletter, eventSignup } from "../../../core/constants";
 import Newsletter from "../../newsletter/newsletter";
 
-const emailList = ({ color }) => {
+interface EmailListProps {
+  color: string;
+}
+
+const emailList = ({ color }:EmailListProps) => {
   return (
     <div>
       <Newsletter

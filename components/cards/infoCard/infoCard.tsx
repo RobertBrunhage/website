@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./infoCard.module.scss";
 
-const infoCard = ({ info }) => {
+interface InfoCardProps {
+  info: string;
+}
+
+const infoCard = ({ info }: InfoCardProps) => {
   return (
     <div className={styles.infoCard_container}>
       <div className={styles.icon}>

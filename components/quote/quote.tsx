@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./quote.module.scss";
 
-interface Props {
+interface QuoteProps {
   quote: string;
   image: string;
   author: string;
   background?: string;
 }
 
-const quote = ({ quote, image, author, background }: Props) => {
+const quote = ({ quote, image, author, background }: QuoteProps) => {
   return (
     <div className={styles.quote_container} style={{ backgroundColor: background }}>
       <blockquote>
