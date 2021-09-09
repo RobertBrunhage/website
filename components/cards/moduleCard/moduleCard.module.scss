@@ -43,8 +43,39 @@
     font-weight: bold;
     margin: 0 0 12px 0;
   }
+
   .summary {
     grid-area: summary;
-    width: 32ch;
+    max-width: 32ch;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .moduleCard_container {
+    max-width: 320px;
+
+    grid-template-areas:
+      "icon"
+      "title"
+      "summary";
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+    text-align: center;
+
+    .icon {
+      width: 64px;
+      height: 64px;
+    }
+
+    .title {
+      margin: 0;
+    }
+    p {
+      margin: auto;
+    }
+
+    .summary {
+      grid-area: summary;
+    }
   }
 }

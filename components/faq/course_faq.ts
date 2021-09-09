@@ -4,24 +4,29 @@ interface FAQ {
 }
 
 const FAQ: FAQ[] = [
-  { question: "Will it be free?", answer: "No 😅" },
   {
-    question: "If I am a beginner will I still be able to take the course",
-    answer: "Yes, but keep in mind that I won't be explaining basic topics such as 'What is a Row'",
-  },
-  {
-    question: "Will you teach about Null safety",
+    question: "If I am a beginner will I still be able to take the course?",
     answer:
-      "I will use the latest version of Flutter so in that term we will use Null safety, but I won't specifcally teach about it.",
-  },
-  { 
-    question: "Will the source code be included?", 
-    answer: "Yes 😎" 
+      "Yes, of course! But keep in mind that I won’t explain simpler concepts like “what is a row”.",
   },
   {
-    question: "What will it be priced?",
+    question: "Will you teach about Null safety?",
     answer:
-      "I don't know yet. I want to complete the first module with as high production quality as I can. I will set a price depending on how good I can deliver the value to you.",
+      "I will use the latest version of Flutter so in that regard, yes. But I will not specifically teach about null safety.",
+  },
+  {
+    question: "Will the source code be included?",
+    answer: "Yes, of course!",
+  },
+  {
+    question: "Can I buy a team bundle?",
+    answer:
+      "Of course, just send me an email at hello@robertbrunhage.com, and can set up a bundle for your entire team.",
+  },
+  {
+    question: "Any other questions?",
+    answer:
+      "Shoot me an email at  hello@robertbrunhage.com and, I will answer any questions you may have.",
   },
 ];
 
