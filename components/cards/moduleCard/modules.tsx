@@ -12,7 +12,7 @@ const modules: modules[] = [
   {
     name: "Module 2: State Management",
     description:
-      "We are going to utilize Riverpod to build a robust state management solution as well as it will become testable",
+      "We are going to utilize Riverpod to build a robust state management solution and it will also be fully testable",
   },
   {
     name: "Module 3: Architecture & API",
@@ -22,17 +22,17 @@ const modules: modules[] = [
   {
     name: "Module 4: Error handling",
     description:
-      "Making API or any other request with a failure chance needs to be handled correctly. That is why we will utilize our architecture to make it easy to handle",
+      "Making API or any other request with a chance of failure needs to be handled correctly. That is why we will utilize our architecture to make it easy to handle",
   },
   {
     name: "Module 5: Testing",
     description:
-      "Learning Unit, Widget, and integration testing at the same time learning about fake and mock data",
+      "Learning Unit, Widget, and Integration testing and how to test using stub and mock data",
   },
   {
     name: "Module 6: Solid Animations",
     description:
-      "I refer solid animations to animations that aren’t over the top but enhances the users’ experience, such as staggered animations",
+      "Solid animations are animations that aren’t over the top but enhances the users’ experience, such as staggered animations",
   },
 ];
 

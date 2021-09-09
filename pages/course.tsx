@@ -204,8 +204,7 @@ const course = () => {
                 </strong>{" "}
                 or being a <strong>GDE in Flutter & Dart</strong>. Not too long
                 ago, I also coded myself into corners, making code hard to
-                manage, and was just lost in making it <strong>scalable</strong>
-                .
+                manage, and was lost in making it <strong>scalable</strong>.
               </p>
               <p>
                 <strong>
@@ -256,7 +255,7 @@ const course = () => {
               <br />
             </h3>
             <p>
-              I made this course as the main goal of giving structure when
+              I made this course with the main goal of giving structure when
               learning Flutter. Instead of taking{" "}
               <strong>multiple months</strong> or <strong>even years</strong> to
               get to a <strong>solid understanding</strong>, the course will
