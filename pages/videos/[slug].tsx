@@ -9,15 +9,17 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Head from "next/head";
 import styles from "../../styles/video_lesson.module.scss";
 import PlausibleProvider from "next-plausible";
+import { FrontmatterProps } from "../index";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 
 interface CodeBlockProps {
   value: any;
 }
 
 interface LessonProps {
-  content: any;
-  frontmatter: any;
-  slug: any;
+  content: string;
+  frontmatter: FrontmatterProps;
+  slug: string;
 }
 
 const CodeBlock = ({ value }: CodeBlockProps) => {
@@ -34,7 +36,7 @@ const CodeBlock = ({ value }: CodeBlockProps) => {
   );
 };
 
-const MyImage = (props: any, width: any) => {
+const MyImage = (props: any, width: number | undefined) => {
   return (
     <img alt={props.alt} src={props.src} style={{ maxWidth: width ?? 400 }} />
   );
