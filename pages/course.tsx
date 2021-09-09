@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
-import styles from "../styles/courses.module.scss";
 import Head from "next/head";
-import Layout from "../components/layout/layout";
-import FormInput from "../components/emailForm/formInput";
-import FAQ from "../components/faq/faq";
-import questions from "../components/faq/course_faq";
-import { eventPropNewsletter, eventSignup } from "../core/constants";
+import queryString from "query-string";
+import React, { useEffect } from "react";
+import Cookie from "universal-cookie";
+import info from "../components/cards/infoCard/info";
 import InfoCard from "../components/cards/infoCard/infoCard";
 import ModuleCard from "../components/cards/moduleCard/moduleCard";
-import Quote from "../components/quote/quote";
-import info from "../components/cards/infoCard/info";
 import modules from "../components/cards/moduleCard/modules";
-import queryString from "query-string";
-import Cookie from "universal-cookie";
+import FormInput from "../components/emailForm/formInput";
+import questions from "../components/faq/course_faq";
+import FAQ from "../components/faq/faq";
+import Layout from "../components/layout/layout";
+import Quote from "../components/quote/quote";
+import { eventPropNewsletter, eventSignup } from "../core/constants";
+import styles from "../styles/courses.module.scss";
 
 const form_url =
   "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
@@ -71,16 +71,16 @@ const course = () => {
       <div className={styles.container}>
         <section className={styles.header}>
           <div className="max_width">
-            <h1>Build Production Ready Flutter Apps</h1>
+            <h1>Build a Production Ready Flutter App</h1>
             <h2>
-              Learn how to develop high standard Flutter applications. A
-              currated learning session to fast track your skills
+              Learn how to develop high-quality Flutter applications. A curated
+              learning session to fast-track your skills
             </h2>
             <div className={styles.form}>
               <h2>Coming Soon</h2>
               <p>
-                Sign up to get updates and <strong>big discount</strong> when
-                the course launches as well as some behind the scenes content
+                Sign up to get updates and a <strong>big discount</strong> when
+                the course launches as well as some behind the scenes content.
                 <br />
                 <br />
                 The course will launch to the public 27th September
@@ -111,7 +111,7 @@ const course = () => {
               <br />
               <br />
               This course will give you the <strong>knowledge</strong> you need
-              to build <strong>production-ready</strong>apps!
+              to build <strong>production-ready</strong> apps!
               <br />
               <br /> I'll guide you through the most important steps, such as
               building the UI, choosing the right architecture, handling errors,
@@ -125,7 +125,7 @@ const course = () => {
               Do you wish you were rich?
               <br /> Do you wish you were successful?
               <br />
-              This course cant help with that!{" "}
+              This course can't help with that!{" "}
               <strong>But it will teach you about state management 😎</strong>
             </p>
           </div>
@@ -202,21 +202,22 @@ const course = () => {
                     YouTube channel
                   </a>
                 </strong>{" "}
-                or being a <strong>GDE in Flutter & Dart</strong> but not too
-                long ago I also coded myself in to corners, making code hard to
-                manage and was just lost in how to actually make it scalable.
+                or being a <strong>GDE in Flutter & Dart</strong>. Not too long
+                ago, I also coded myself into corners, making code hard to
+                manage, and was just lost in making it <strong>scalable</strong>
+                .
               </p>
               <p>
                 <strong>
-                  I’ve been there but that is also why I know how to get out of
+                  I’ve been there but, that is also why I know how to get out of
                   it.
                 </strong>{" "}
                 I’ve learned from trial and error, consulting, teaching as well
                 as working with other professionals!
               </p>
               <strong>
-                Save time and frustration and learn an efficient system to build
-                flutter applications
+                Save time and frustration by learning an efficient system to
+                build flutter applications.
               </strong>
             </div>
             <img
@@ -232,7 +233,7 @@ const course = () => {
             <div className={styles.quotes}>
               <Quote
                 quote={
-                  "A true Flutter expert.  Robert knows the details of Flutter but also has the ability to explain it in an understandable way. Highly recommended."
+                  "A true Flutter expert. Robert knows the details of Flutter but also has the ability to explain it in an understandable way. Highly recommended."
                 }
                 image={"/assets/images/shannon_galway.png"}
                 author={"Shannon Galway"}
@@ -255,11 +256,11 @@ const course = () => {
               <br />
             </h3>
             <p>
-              I made this course as a main goal of giving structure when
+              I made this course as the main goal of giving structure when
               learning Flutter. Instead of taking{" "}
               <strong>multiple months</strong> or <strong>even years</strong> to
-              get to a <strong>solid understanding</strong> the course will walk
-              you through that, right away.
+              get to a <strong>solid understanding</strong>, the course will
+              walk you through that, right away.
               <br />
               <br /> Learning things like{" "}
               <strong>Testing, Architecture, Animations</strong> are crucial for
@@ -268,7 +269,7 @@ const course = () => {
               <br />
               <br /> I’ve taught on YouTube with almost{" "}
               <strong>two million views</strong>, done consulting for{" "}
-              <strong>businessess and clients</strong>. I've taken all this
+              <strong>businesses and clients</strong>. I've taken all this
               knowledge and created the course I wish I had when I started.
               <br />
               <br /> If I would teach this in a one-to-one meeting that would be
@@ -302,8 +303,8 @@ const course = () => {
           <div className={`max_width ${styles.form}`}>
             <h2 style={{ textAlign: "center", marginTop: "0" }}>Coming Soon</h2>
             <p>
-              Sign up to get updates and <strong>big discount</strong> when the
-              course launches as well as some behind the scenes content
+              Sign up to get updates and a <strong>big discount</strong> when
+              the course launches as well as some behind the scenes content.
               <br />
               <br />
               The course will launch to the public 27th September

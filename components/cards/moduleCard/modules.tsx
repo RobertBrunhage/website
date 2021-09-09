@@ -17,22 +17,22 @@ const modules: modules[] = [
   {
     name: "Module 3: Architecture & API",
     description:
-      "Getting in to the fun part of API calls we also have to think about a solid architecture, entities, repositories, services and so on",
+      "Getting into the fun part of API calls we also have to think about a solid architecture, entities, repositories, services and so on",
   },
   {
     name: "Module 4: Error handling",
     description:
-      "Making API or any other request with a failure chance needs to be handled in a correct way. That is why we will utalize our architecture to make it easy to handle",
+      "Making API or any other request with a failure chance needs to be handled correctly. That is why we will utilize our architecture to make it easy to handle",
   },
   {
     name: "Module 5: Testing",
     description:
-      "Learning Unit, Widget and integration testing at the same time learning about fake and mock data",
+      "Learning Unit, Widget, and integration testing at the same time learning about fake and mock data",
   },
   {
     name: "Module 6: Solid Animations",
     description:
-      "I refer solid animations to animations that isn’t over the top but actually enhances the users experience, such as staggered animations",
+      "I refer solid animations to animations that aren’t over the top but enhances the users’ experience, such as staggered animations",
   },
 ];
 
