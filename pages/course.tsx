@@ -1,3 +1,5 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import Head from "next/head";
 import queryString from "query-string";
 import React, { useEffect } from "react";
@@ -12,10 +14,8 @@ import FAQ from "../components/faq/faq";
 import Layout from "../components/layout/layout";
 import Quote from "../components/quote/quote";
 import { eventPropNewsletter, eventSignup } from "../core/constants";
+import { useCountdownTimer } from "../hooks/countdownHook";
 import styles from "../styles/courses.module.scss";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 const form_url =
   "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
@@ -37,6 +37,9 @@ const course = () => {
       });
     }
   };
+
+  // TODO: FIX ME PLEASE I SHOULD MAYBE BE FIXED OR SOMETHING
+  const [timeLeft] = useCountdownTimer(new Date("Sep 9, 2021 21:40:00"));
 
   useEffect(() => {
     getAffcode();
@@ -101,10 +104,7 @@ const course = () => {
           </div>
         </section>
         <section className={styles.introduction}>
-          <div
-            data-aos="fade"
-            className={`max_width ${styles.intro_text}`}
-          >
+          <div data-aos="fade" className={`max_width ${styles.intro_text}`}>
             <p>
               Have you used Flutter but want to get to the next level? <br />
               <br /> Tired of writing code that becomes messy, hard to manage,
