@@ -40,7 +40,7 @@ const course = () => {
 
   useEffect(() => {
     getAffcode();
-    AOS.init({ duration: 800 });
+    AOS.init({ duration: 800, once: true });
   }, []);
 
   return (
@@ -101,7 +101,10 @@ const course = () => {
           </div>
         </section>
         <section className={styles.introduction}>
-          <div data-aos="fade-left" className={`max_width ${styles.intro_text}`}>
+          <div
+            data-aos="fade-left"
+            className={`max_width ${styles.intro_text}`}
+          >
             <p>
               Have you used Flutter but want to get to the next level? <br />
               <br /> Tired of writing code that becomes messy, hard to manage,
