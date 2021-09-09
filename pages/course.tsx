@@ -39,7 +39,7 @@ const course = () => {
   };
 
   // TODO: FIX ME PLEASE I SHOULD MAYBE BE FIXED OR SOMETHING
-  const [timeLeft] = useCountdownTimer(new Date("Sep 9, 2021 21:40:00"));
+  const [timeLeft] = useCountdownTimer(new Date("Sep 27, 2021 12:00:00"));
 
   useEffect(() => {
     getAffcode();
@@ -90,7 +90,7 @@ const course = () => {
                 the course launches as well as some behind the scenes content.
                 <br />
                 <br />
-                Launch date: 27th of September
+                Launching in {timeLeft.days} days
               </p>
               <FormInput
                 giveaway={""}
@@ -309,7 +309,7 @@ const course = () => {
               the course launches as well as some behind the scenes content.
               <br />
               <br />
-              Launch date: 27th of September
+              Launching in {timeLeft.days} days
             </p>
             <FormInput
               giveaway={""}
