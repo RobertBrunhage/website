@@ -13,6 +13,7 @@ import Layout from "../components/layout/layout";
 import Quote from "../components/quote/quote";
 import { eventPropNewsletter, eventSignup } from "../core/constants";
 import styles from "../styles/courses.module.scss";
+import "../components/observers";
 
 const form_url =
   "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
@@ -150,9 +151,9 @@ const course = () => {
         <section className={styles.wyg}>
           <div className={"max_width"}>
             <h2>What do you get?</h2>
-            <div className={styles.cards}>
+            <div className={`${styles.cards}`}>
               {info.map((info) => (
-                <InfoCard info={info.info} />
+                <InfoCard info={info.info} className="fade_in" />
               ))}
             </div>
 
@@ -278,7 +279,6 @@ const course = () => {
             </p>
           </div>
         </section>
-
         <section>
           <div className="max_width">
             <Quote
@@ -290,13 +290,11 @@ const course = () => {
             />
           </div>
         </section>
-
         <section>
           <div className={"max_width"}>
             <FAQ title={"Frequently Asked Questions"} questions={questions} />
           </div>
         </section>
-
         <section>
           <div className={`max_width ${styles.form}`}>
             <h2 style={{ textAlign: "center", marginTop: "0" }}>Coming Soon</h2>
@@ -317,7 +315,6 @@ const course = () => {
             />
           </div>
         </section>
-
         <section>
           <div className={`max_width ${styles.about}`}>
             <div>
