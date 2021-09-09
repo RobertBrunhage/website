@@ -102,7 +102,7 @@ const course = () => {
         </section>
         <section className={styles.introduction}>
           <div
-            data-aos="fade-left"
+            data-aos="fade"
             className={`max_width ${styles.intro_text}`}
           >
             <p>
@@ -138,7 +138,7 @@ const course = () => {
           </div>
         </section>
         <section className={styles.flutter_course}>
-          <div data-aos="fade-right" className="max_width">
+          <div data-aos="fade" className="max_width">
             <h1>The Ultimate Flutter Course</h1>
             <h2>Build a complete production-ready Flutter application</h2>
             <img src={"/assets/icons/movie_course.svg"} />
@@ -157,14 +157,14 @@ const course = () => {
         <section className={styles.wyg}>
           <div className={"max_width"}>
             <h2>What do you get?</h2>
-            <div data-aos="fade-left" className={`${styles.cards}`}>
+            <div data-aos="fade" className={`${styles.cards}`}>
               {info.map((info) => (
                 <InfoCard info={info.info} />
               ))}
             </div>
 
             <h2>Here is what people are saying about the course</h2>
-            <div data-aos="fade-right" className={styles.quotes}>
+            <div data-aos="fade" className={styles.quotes}>
               <Quote
                 quote={`Robert’s Ultimate Flutter Course is THE best 
                 way to learn how to build production ready-applications. 
@@ -182,7 +182,7 @@ const course = () => {
             </div>
 
             <h2>What will you learn?</h2>
-            <div data-aos="fade-right" className={styles.module_cards}>
+            <div data-aos="fade" className={styles.module_cards}>
               {modules.map((module, index) => (
                 <ModuleCard
                   number={index + 1}
@@ -194,7 +194,7 @@ const course = () => {
           </div>
         </section>
         <section>
-          <div data-aos="fade-up" className={`max_width ${styles.about}`}>
+          <div data-aos="fade" className={`max_width ${styles.about}`}>
             <div>
               <h2>Hey! 👋</h2>
               <p>
@@ -233,7 +233,7 @@ const course = () => {
           </div>
         </section>
         <section className={styles.wpt}>
-          <div data-aos="fade-left" className={"max_width"}>
+          <div data-aos="fade" className={"max_width"}>
             <h2>What do people say about me?</h2>
             <div className={styles.quotes}>
               <Quote
@@ -254,7 +254,7 @@ const course = () => {
           </div>
         </section>
         <section className={styles.iirfm}>
-          <div data-aos="fade-right" className={"max_width"}>
+          <div data-aos="fade" className={"max_width"}>
             <h3>
               Is it really for me?
               <br />
@@ -286,7 +286,7 @@ const course = () => {
           </div>
         </section>
         <section>
-          <div data-aos="fade-up" className="max_width">
+          <div data-aos="fade" className="max_width">
             <Quote
               quote={
                 "Robert has put all the major topics that I teach about and, he has also done it in a very structured and high-quality way. Highly recommend it!"
@@ -297,12 +297,12 @@ const course = () => {
           </div>
         </section>
         <section>
-          <div data-aos="fade-right" className={"max_width"}>
+          <div data-aos="fade" className={"max_width"}>
             <FAQ title={"Frequently Asked Questions"} questions={questions} />
           </div>
         </section>
         <section>
-          <div data-aos="fade-left" className={`max_width ${styles.form}`}>
+          <div data-aos="fade" className={`max_width ${styles.form}`}>
             <h2 style={{ textAlign: "center", marginTop: "0" }}>Coming Soon</h2>
             <p>
               Sign up to get updates and a <strong>big discount</strong> when
@@ -322,7 +322,7 @@ const course = () => {
           </div>
         </section>
         <section>
-          <div data-aos="fade-right" className={`max_width ${styles.about}`}>
+          <div data-aos="fade" className={`max_width ${styles.about}`}>
             <div>
               <p>
                 I am super <strong>excited</strong> about what this course can
