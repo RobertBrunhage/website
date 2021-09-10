@@ -3,6 +3,10 @@
   --secondary-color: #22e2e2;
   --green: #23e158;
 
+  --shade_0: #000000;
+  --shade_80: #ffffffcc;
+  --shade_100: #ffffff;
+
   --gray_50: #eeeeff;
   --gray_100: #dddded;
   --gray_200: #c5c5d4;
@@ -14,6 +18,13 @@
   --gray_800: #2b2b2e;
   --gray_900: #1e1e20;
 
+  --primary-bg-color: var(--gray_900);
+  --secondary-bg-color: var(--gray_800);
+  --dark-input-field-color: var(--gray_900);
+
+  --primary-text-color: var(--shade_100);
+  --secondary-text-color: var(--shade_80);
+
   --h1: 4.8rem;
   --h2: 3.4rem;
   --h3: 2.8rem;
@@ -23,22 +34,9 @@
   --button: 1.6rem;
 }
 
-.dark {
-  --shade_0: #000000;
-  --shade_80: #FFFFFFCC;
-  --shade_100: #FFFFFF;
-
-  --primary-bg-color: var(--gray_900);
-  --secondary-bg-color: var(--gray_800);
-  --dark-input-field-color: var(--gray_900);
-
-  --primary-text-color: var(--shade_100);
-  --secondary-text-color: var(--shade_80);
-}
-
 .light {
-  --shade_0: #FFFFFF;
-  --shade_80: #000000CC;
+  --shade_0: #ffffff;
+  --shade_80: #000000cc;
   --shade_100: #000000;
 
   --gray_50: #0f0f0f;

@@ -71,8 +71,12 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
-          <button onClick={setDarkTheme} style={{display: "none"}}>dark</button>
-          <button onClick={setLightTheme} style={{display: "none"}}>light</button>
+          <button onClick={setDarkTheme} style={{ display: "none" }}>
+            dark
+          </button>
+          <button onClick={setLightTheme} style={{ display: "none" }}>
+            light
+          </button>
         </ul>
 
         <div className={styles.mobileMenu} onClick={() => toggleMobileMenu()}>
