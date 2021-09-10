@@ -287,12 +287,33 @@ const course = () => {
         </section>
         <section>
           <div data-aos="fade" className="max_width">
+            <iframe
+              style={{
+                margin: "0 auto 60px auto",
+                display: "block",
+                borderRadius: "8px",
+              }}
+              width="800"
+              height="450"
+              src="https://www.youtube.com/embed/_CNzUE5kmVk?rel=0"
+              title="YouTube video player"
+              frameBorder={0}
+              allowFullScreen={false}
+            ></iframe>
             <Quote
               quote={
                 "Robert has put all the major topics that I teach about and, he has also done it in a very structured and high-quality way. Highly recommend it!"
               }
               image={"/assets/images/tadas_petra.png"}
               author={"Tadas Petra"}
+            />
+            <div style={{ marginTop: "6em" }} />
+            <Quote
+              quote={
+                "Great people are rare in this world and, Robert is one of them. Why? Because he enjoys sharing, helping others, and constantly improve for the better. Robert is a trusty person. We can see that in everything he does, he gives 110%."
+              }
+              image={"/assets/images/flutter_mapp.png"}
+              author={"Flutter Mapp"}
             />
           </div>
         </section>
@@ -326,17 +347,17 @@ const course = () => {
             <div>
               <p>
                 I am super <strong>excited</strong> about what this course can
-                teach you and I've spent many months designing, coding, creating
+                teach you and I've spent multiple months designing, coding, creating
                 the lectures!
               </p>
               <p>
                 It has taken a lot of time to get this course out there but I am
-                really <strong>happy</strong> but I'm really happy I can share
-                this with you!
+                really <strong>happy</strong> I took the time to be able to
+                share more of what I know with you all.
               </p>
               <p>
-                Thank you very much for your interest! I hope you'll love this
-                course!
+                I just want to thank you for taking the time to read this and
+                hope you find the course to your <strong>liking!</strong>
               </p>
             </div>
             <img

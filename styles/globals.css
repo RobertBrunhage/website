@@ -18,9 +18,9 @@
   --gray_800: #2b2b2e;
   --gray_900: #1e1e20;
 
-  --primary-bg-color: var(--gray_900);
-  --secondary-bg-color: var(--gray_800);
-  --dark-input-field-color: var(--gray_900);
+  --primary-bg-color: var(--gray_800);
+  --secondary-bg-color: var(--gray_900);
+  --dark-input-field-color: var(--gray_800);
 
   --primary-text-color: var(--shade_100);
   --secondary-text-color: var(--shade_80);
@@ -50,9 +50,9 @@
   --gray_800: #eeeeff;
   --gray_900: #f4f4f4;
 
-  --primary-bg-color: var(--gray_900);
-  --secondary-bg-color: var(--gray_800);
-  --dark-input-field-color: var(--gray_900);
+  --primary-bg-color: var(--gray_800);
+  --secondary-bg-color: var(--gray_900);
+  --dark-input-field-color: var(--gray_800);
 
   --primary-text-color: var(--shade_100);
   --secondary-text-color: var(--shade_80);
