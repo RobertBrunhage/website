@@ -66,7 +66,7 @@ const course = () => {
         <meta property="twitter:title" content="RobertBrunhage.com" />
         <meta
           property="twitter:description"
-          content="Build a complete production ready Flutter application!"
+          content="Build a complete production-ready Flutter application!"
         />
         <meta
           property="twitter:image"

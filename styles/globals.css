@@ -24,15 +24,23 @@
 }
 
 .dark {
+  --shade_0: #000000;
+  --shade_80: #FFFFFFCC;
+  --shade_100: #FFFFFF;
+
   --primary-bg-color: var(--gray_900);
   --secondary-bg-color: var(--gray_800);
   --dark-input-field-color: var(--gray_900);
 
-  --primary-text-color: var(--gray_50);
-  --secondary-text-color: var(--gray_100);
+  --primary-text-color: var(--shade_100);
+  --secondary-text-color: var(--shade_80);
 }
 
 .light {
+  --shade_0: #FFFFFF;
+  --shade_80: #000000CC;
+  --shade_100: #000000;
+
   --gray_50: #0f0f0f;
   --gray_100: #292929;
   --gray_200: #424242;
@@ -48,8 +56,8 @@
   --secondary-bg-color: var(--gray_800);
   --dark-input-field-color: var(--gray_900);
 
-  --primary-text-color: var(--gray_50);
-  --secondary-text-color: var(--gray_100);
+  --primary-text-color: var(--shade_100);
+  --secondary-text-color: var(--shade_80);
 }
 
 @media only screen and (max-width: 768px) {
