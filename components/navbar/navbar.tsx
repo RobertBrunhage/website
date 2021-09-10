@@ -12,6 +12,15 @@ const Navbar = () => {
 
   const router = useRouter();
 
+  const setLightTheme = () => {
+    document.body.classList.replace("dark", "light");
+    localStorage.setItem("theme", "light");
+  };
+  const setDarkTheme = () => {
+    document.body.classList.replace("light", "dark");
+    localStorage.setItem("theme", "dark");
+  };
+
   return (
     <header className={styles.header}>
       <Head>
@@ -62,6 +71,8 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
+          <button onClick={setDarkTheme} style={{display: "none"}}>dark</button>
+          <button onClick={setLightTheme} style={{display: "none"}}>light</button>
         </ul>
 
         <div className={styles.mobileMenu} onClick={() => toggleMobileMenu()}>
