@@ -292,13 +292,15 @@ const course = () => {
                 margin: "0 auto 60px auto",
                 display: "block",
                 borderRadius: "8px",
+                maxWidth: "100%",
+                height: '100%',
+                aspectRatio: "16/9",
               }}
               width="800"
               height="450"
               src="https://www.youtube.com/embed/_CNzUE5kmVk?rel=0"
-              title="YouTube video player"
+              title="Testimonial"
               frameBorder={0}
-              allowFullScreen={false}
             ></iframe>
             <Quote
               quote={
@@ -347,8 +349,8 @@ const course = () => {
             <div>
               <p>
                 I am super <strong>excited</strong> about what this course can
-                teach you and I've spent multiple months designing, coding, creating
-                the lectures!
+                teach you and I've spent multiple months designing, coding,
+                creating the lectures!
               </p>
               <p>
                 It has taken a lot of time to get this course out there but I am
