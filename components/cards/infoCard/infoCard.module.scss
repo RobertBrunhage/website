@@ -1,0 +1,38 @@
+.infoCard_container {
+  width: 350px;
+  height: 120px;
+  padding: 32px 28px;
+  margin: 16px 0;
+  border-radius: 8px;
+  background-color: var(--secondary-bg-color);
+
+  display: grid;
+  grid-template-columns: min-content auto;
+  column-gap: 16px;
+
+  .icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    margin: auto;
+  }
+
+  p {
+    margin: auto;
+    margin-left: 0;
+    text-transform: uppercase;
+    font-size: var(--body-regular);
+    font-weight: bold;
+    max-height: 6.5ch;
+    overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .infoCard_container {
+    width: 320px;
+  }
+}

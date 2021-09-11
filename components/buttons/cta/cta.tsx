@@ -1,9 +1,16 @@
 import React from "react";
 import styles from "./cta.module.scss";
 
-const cta = ({ text, href, animation }) => {
+interface CTAProps {
+  text: string;
+  href: string;
+  width: string;
+  animation: boolean;
+}
+
+const cta = ({ text, href, width, animation }: CTAProps) => {
   return (
-    <div>
+    <div style={{ width: width }}>
       <a
         className={styles.button}
         href={href}

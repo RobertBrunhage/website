@@ -9,8 +9,20 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Head from "next/head";
 import styles from "../../styles/video_lesson.module.scss";
 import PlausibleProvider from "next-plausible";
+import { FrontmatterProps } from "../index";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 
-const CodeBlock = ({ value }) => {
+interface CodeBlockProps {
+  value: any;
+}
+
+interface LessonProps {
+  content: string;
+  frontmatter: FrontmatterProps;
+  slug: string;
+}
+
+const CodeBlock = ({ value }: CodeBlockProps) => {
   return (
     <SyntaxHighlighter
       language={"dart"}
@@ -24,13 +36,13 @@ const CodeBlock = ({ value }) => {
   );
 };
 
-const MyImage = (props, width) => {
+const MyImage = (props: any, width: number | undefined) => {
   return (
     <img alt={props.alt} src={props.src} style={{ maxWidth: width ?? 400 }} />
   );
 };
 
-export default function Lesson({ content, frontmatter, slug }) {
+export default function Lesson({ content, frontmatter, slug }: LessonProps) {
   const articleRef = useRef<HTMLDivElement>(null);
   const maxWidth = useResize(articleRef);
 
@@ -122,7 +134,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params: { slug } }) {
+export async function getStaticProps({ params: { slug } }: any) {
   const markdownWithMetadata = fs
     .readFileSync(path.join("content/lessons", slug + ".md"))
     .toString();

@@ -34,12 +34,15 @@
         color: var(--primary-text-color);
         font-size: 2.2rem;
         font-weight: 500;
-        cursor: pointer;
-        padding: 14px;
         margin: 0 4px;
 
         &:hover {
           color: rgb(235, 235, 235);
+        }
+
+        a {
+          padding: 14px;
+          cursor: pointer;
         }
       }
       .active {

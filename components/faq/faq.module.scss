@@ -4,51 +4,10 @@
 
   h2 {
     text-align: center;
-    margin: 32px 0 48px 0;
+    margin: 0 0 64px 0;
   }
 
-  details {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 8px 0;
-    user-select: none;
-
-    &:first-child {
-      border-top: 1px solid rgba(255, 255, 255, 0.25);
-    }
-
-    summary {
-      cursor: pointer;
-      list-style: none;
-      padding: 16px;
-      font-size: var(--body-large);
-      font-weight: 700;
-      transition: all 0.2s ease;
-
-      &::after {
-        content: "➤";
-        float: right;
-        transform: rotate(90deg);
-      }
-
-      &:hover {
-        color: var(--primary-color);
-      }
-    }
-
-    p {
-      margin: 0 16px 16px 16px;
-      font-size: var(--body-regular);
-    }
-  }
-
-  details[open] summary:after {
-    content: "X";
-    transform: scale(.9);
-    margin-right: 3px;
-  }
-
-  details[open] summary {
-    font-size: var(--subtitle);
-    transition: font-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  h3 {
+    margin: 0;
   }
 }

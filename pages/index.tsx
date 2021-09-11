@@ -3,12 +3,29 @@ import Head from "next/head";
 import Layout from "../components/layout/layout";
 import styles from "../styles/home.module.scss";
 import EmailList from "../components/emailForm/forms/emailList";
-
 import fs from "fs";
 import matter from "gray-matter";
 import CTA from "../components/buttons/cta/cta";
 
-const home = ({ videos }) => {
+export interface FrontmatterProps {
+  title: string;
+  description: string;
+  image: string;
+  youtube: string;
+  github?: string;
+  author: string;
+  date: string;
+}
+
+interface Video {
+  frontmatter: FrontmatterProps;
+}
+
+interface HomeProps {
+  videos: Array<Video>;
+}
+
+const home = ({ videos }: HomeProps) => {
   return (
     <Layout>
       <Head>
@@ -65,7 +82,12 @@ const home = ({ videos }) => {
                   {videos[0].frontmatter.description}
                 </p>
                 <div className={styles.browse}>
-                  <CTA text={"browse"} href={"/videos"} animation={true} />
+                  <CTA
+                    text={"browse"}
+                    href={"/videos"}
+                    width={"150px"}
+                    animation={true}
+                  />
                 </div>
               </div>
             </div>

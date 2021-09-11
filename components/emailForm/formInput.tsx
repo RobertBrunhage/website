@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./formInput.module.scss";
 import { usePlausible } from "next-plausible";
-import { eventPropNewsletter } from "../../core/constants";
 
 interface FormInputProps {
   action: string;
