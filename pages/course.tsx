@@ -16,6 +16,12 @@ import Quote from "../components/quote/quote";
 import { eventPropNewsletter, eventSignup } from "../core/constants";
 import { useCountdownTimer } from "../hooks/countdownHook";
 import styles from "../styles/courses.module.scss";
+import PricingCard from "../components/cards/pricingCard/pricingCard";
+import {
+  package_basic,
+  package_complete,
+  package_exclusive,
+} from "../components/cards/pricingCard/packages";
 
 const form_url =
   "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
@@ -293,7 +299,7 @@ const course = () => {
                 display: "block",
                 borderRadius: "8px",
                 maxWidth: "100%",
-                height: '100%',
+                height: "100%",
                 aspectRatio: "16/9",
               }}
               width="800"
@@ -324,26 +330,37 @@ const course = () => {
             <FAQ title={"Frequently Asked Questions"} questions={questions} />
           </div>
         </section>
+
         <section>
-          <div data-aos="fade" className={`max_width ${styles.form}`}>
-            <h2 style={{ textAlign: "center", marginTop: "0" }}>Coming Soon</h2>
-            <p>
-              Sign up to get updates and a <strong>big discount</strong> when
-              the course launches as well as some behind the scenes content.
-              <br />
-              <br />
-              Launching in {timeLeft.days} days
-            </p>
-            <FormInput
-              giveaway={""}
-              cta={"get updates"}
-              color={"var(--secondary-bg-color)"}
-              action={form_url}
-              plausibleEvent={eventSignup}
-              plausibleEventProp={eventPropNewsletter}
+          <div className={`max_width ${styles.pricing}`}>
+            <PricingCard
+              className={styles.card}
+              label={""}
+              title={"basic package"}
+              price={"$xx"}
+              discounted_price={"$xx"}
+              price_package={package_basic}
+              href={"https://www.google.com"}
+            />
+            <PricingCard
+              className={styles.card}
+              label={"most popular"}
+              title={"complete package"}
+              price={"$xxx"}
+              discounted_price={"$xxx"}
+              price_package={package_complete}
+            />
+            <PricingCard
+              className={styles.card}
+              label={"best value"}
+              title={"exclusive package"}
+              price={"$xxx"}
+              discounted_price={"$xxx"}
+              price_package={package_exclusive}
             />
           </div>
         </section>
+
         <section>
           <div data-aos="fade" className={`max_width ${styles.about}`}>
             <div>

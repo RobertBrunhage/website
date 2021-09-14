@@ -13,6 +13,7 @@ interface PricingProps {
   price: string;
   discounted_price: string;
   price_package: Array<Packages>;
+  href?: string;
 }
 
 const pricingCard = ({
@@ -22,6 +23,7 @@ const pricingCard = ({
   price,
   discounted_price,
   price_package,
+  href,
 }: PricingProps) => {
   return (
     <div className={`${styles.container} ${className}`}>
@@ -43,7 +45,13 @@ const pricingCard = ({
           ))}
         </ul>
       </div>
-      <CTA text="buy now" href="#" width={"auto"} animation={false} />
+      <CTA
+        text="buy now"
+        href={href ?? "#"}
+        target={"_blank"}
+        width={"auto"}
+        animation={false}
+      />
     </div>
   );
 };
