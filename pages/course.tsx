@@ -2,7 +2,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Head from "next/head";
 import queryString from "query-string";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Cookie from "universal-cookie";
 import info from "../components/cards/infoCard/info";
 import InfoCard from "../components/cards/infoCard/infoCard";
@@ -22,11 +22,21 @@ import {
   package_complete,
   package_exclusive,
 } from "../components/cards/pricingCard/packages";
+import Cookies from "universal-cookie";
 
 const form_url =
   "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
 
 const course = () => {
+  const [affcode, setAffcode] = useState(String);
+
+  const purchase_link = "https://courses.robertbrunhage.com/purchase";
+  const basic_package = "?product_id=3401896";
+  const complete_package = "?product_id=3401914";
+  const exclusive_package = "?product_id=3401916";
+
+  const coupon_code = "7-DAY-SALE";
+
   const getAffcode = () => {
     const qs = queryString.parse(window.location.search);
     const affcode = qs.affcode;
@@ -44,11 +54,20 @@ const course = () => {
     }
   };
 
+  const setAffiliateCode = () => {
+    const cookies = new Cookies();
+    const affcode = cookies.get("affcode");
+    if (affcode) {
+      setAffcode(affcode);
+    }
+  };
+
   // TODO: FIX ME PLEASE I SHOULD MAYBE BE FIXED OR SOMETHING
   const [timeLeft] = useCountdownTimer(new Date("Sep 27, 2021 12:00:00"));
 
   useEffect(() => {
     getAffcode();
+    setAffiliateCode();
     AOS.init({ duration: 800, once: true });
   }, []);
 
@@ -340,7 +359,7 @@ const course = () => {
               price={"$xx"}
               discounted_price={"$xx"}
               price_package={package_basic}
-              href={"https://www.google.com"}
+              href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=`}
             />
             <PricingCard
               className={styles.card}
@@ -349,6 +368,7 @@ const course = () => {
               price={"$xxx"}
               discounted_price={"$xxx"}
               price_package={package_complete}
+              href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
             />
             <PricingCard
               className={styles.card}
@@ -357,6 +377,7 @@ const course = () => {
               price={"$xxx"}
               discounted_price={"$xxx"}
               price_package={package_exclusive}
+              href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
             />
           </div>
         </section>
