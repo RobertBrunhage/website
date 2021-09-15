@@ -46,7 +46,7 @@ const pricingCard = ({
         </ul>
       </div>
       <CTA
-        text="buy now"
+        text="enroll"
         href={href ?? "#"}
         target={"_blank"}
         width={"auto"}

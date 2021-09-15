@@ -311,6 +311,58 @@ const course = () => {
           </div>
         </section>
         <section>
+          <div className={`max_width ${styles.pricing}`}>
+            <PricingCard
+              className={styles.card}
+              label={""}
+              title={"basic package"}
+              price={"$xx"}
+              discounted_price={"$xx"}
+              price_package={package_basic}
+              href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=`}
+            />
+            <PricingCard
+              className={styles.card}
+              label={"most popular"}
+              title={"complete package"}
+              price={"$xxx"}
+              discounted_price={"$xxx"}
+              price_package={package_complete}
+              href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+            />
+            <PricingCard
+              className={styles.card}
+              label={"best value"}
+              title={"exclusive package"}
+              price={"$xxx"}
+              discounted_price={"$xxx"}
+              price_package={package_exclusive}
+              href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+            />
+          </div>
+        </section>
+        <section>
+          <div className={`max_width ${styles.satisfaction}`}>
+            <img src="/assets/icons/satisfaction.png" alt="100% satisfaction" />
+            <h2>
+              100% Satisfaction Guarantee for <strong>30-days</strong>
+            </h2>
+            <p>
+              After spending so much time on both this course and teaching over
+              3 years on YouTube and other areas I am confident that this will
+              be worth it.
+              <br />
+              <br /> So if you are not happy with the course, for any reason,
+              just reach out to me and I’ll issue a full refund.
+              <br />
+              <br />
+              What is important for me is that you get knowledge that you can
+              apply right away!
+            </p>
+          </div>
+        </section>
+
+        <section>
           <div data-aos="fade" className="max_width">
             <iframe
               style={{
