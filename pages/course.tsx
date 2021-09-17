@@ -3,11 +3,17 @@ import "aos/dist/aos.css";
 import Head from "next/head";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
-import Cookie from "universal-cookie";
+import { default as Cookie, default as Cookies } from "universal-cookie";
 import info from "../components/cards/infoCard/info";
 import InfoCard from "../components/cards/infoCard/infoCard";
 import ModuleCard from "../components/cards/moduleCard/moduleCard";
 import modules from "../components/cards/moduleCard/modules";
+import {
+  package_basic,
+  package_complete,
+  package_exclusive,
+} from "../components/cards/pricingCard/packages";
+import PricingCard from "../components/cards/pricingCard/pricingCard";
 import FormInput from "../components/emailForm/formInput";
 import questions from "../components/faq/course_faq";
 import FAQ from "../components/faq/faq";
@@ -16,13 +22,6 @@ import Quote from "../components/quote/quote";
 import { eventPropNewsletter, eventSignup } from "../core/constants";
 import { useCountdownTimer } from "../hooks/countdownHook";
 import styles from "../styles/courses.module.scss";
-import PricingCard from "../components/cards/pricingCard/pricingCard";
-import {
-  package_basic,
-  package_complete,
-  package_exclusive,
-} from "../components/cards/pricingCard/packages";
-import Cookies from "universal-cookie";
 
 const form_url =
   "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
@@ -74,7 +73,7 @@ const course = () => {
   return (
     <Layout>
       <Head>
-        <title>Robert Brunhage - Flutter, Dart, Firebase | Courses</title>
+        <title>Ultimate Flutter Course</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="robots" content="index" />
         <meta name="description" content="Flutter Courses | Robert Brunhage" />
