@@ -11,7 +11,7 @@ import modules from "../components/cards/moduleCard/modules";
 import {
   package_basic,
   package_complete,
-  package_exclusive,
+  package_exclusive
 } from "../components/cards/pricingCard/packages";
 import PricingCard from "../components/cards/pricingCard/pricingCard";
 import FormInput from "../components/emailForm/formInput";
@@ -80,7 +80,7 @@ const course = () => {
         <meta property="og:url" content="https://robertbrunhage.com/course" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="RobertBrunhage.com" />
-        <meta property="og:description" content="Flutter Courses" />
+        <meta property="og:description" content="Build a complete production ready Flutter app" />
         <meta
           property="og:image"
           content="https://robertbrunhage.com/assets/images/course_twitter.png"
