@@ -51,7 +51,7 @@ const Navbar = () => {
         <link rel="apple-touch-icon" href="/apple-icon-180x180.png" />
         <meta name="theme-color" content="#E12339" />
       </Head>
-      <nav className={styles.stroke}>
+      <nav className={styles.stroke} id={"nav"}>
         <h1 className={styles.logo}>
           <Link href="/">
             <a>
