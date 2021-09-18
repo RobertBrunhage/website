@@ -1,5 +1,4 @@
 .banner {
-  display: none;
   position: fixed;
   top: 0;
   height: 120px;
@@ -50,7 +49,6 @@
 
 @media only screen and (max-width: 900px) {
   .banner {
-    display: none;
     padding: 0.5em 20px;
     .content {
       flex-direction: column;

@@ -8,11 +8,11 @@ const banner = () => {
     const nav = document.getElementById("nav");
     const banner = document.getElementById("banner");
 
-    if (path.pathname !== "/course") {
+    if (path.pathname === "/course") {
       if (nav && banner) {
         nav.style.top = "auto";
-        nav.style.marginTop = "120px"; //height of banner
-        banner.style.display = "block";
+        nav.style.marginTop = "0px"; //height of banner
+        banner.style.display = "none";
       }
     }
   });
