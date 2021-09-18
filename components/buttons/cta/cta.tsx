@@ -7,11 +7,12 @@ interface CTAProps {
   width: string;
   animation: boolean;
   target?: string;
+  center?: boolean;
 }
 
-const cta = ({ text, href, width, animation, target }: CTAProps) => {
+const cta = ({ text, href, width, animation, target, center }: CTAProps) => {
   return (
-    <div style={{ width: width }}>
+    <div style={{ width: width, margin: center ? "0 auto" : "" }}>
       <a
         className={styles.button}
         href={href}

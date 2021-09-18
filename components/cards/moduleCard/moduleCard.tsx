@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./moduleCard.module.scss";
 
 interface ModuleCardProps {
-  number: number;
+  number: string;
   title: string;
   description: string;
 }

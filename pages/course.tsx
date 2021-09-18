@@ -4,6 +4,8 @@ import Head from "next/head";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { default as Cookie, default as Cookies } from "universal-cookie";
+import CTA from "../components/buttons/cta/cta";
+import Timer from "../components/timer/timer";
 import info from "../components/cards/infoCard/info";
 import InfoCard from "../components/cards/infoCard/infoCard";
 import ModuleCard from "../components/cards/moduleCard/moduleCard";
@@ -11,20 +13,14 @@ import modules from "../components/cards/moduleCard/modules";
 import {
   package_basic,
   package_complete,
-  package_exclusive
+  package_exclusive,
 } from "../components/cards/pricingCard/packages";
 import PricingCard from "../components/cards/pricingCard/pricingCard";
-import FormInput from "../components/emailForm/formInput";
 import questions from "../components/faq/course_faq";
 import FAQ from "../components/faq/faq";
 import Layout from "../components/layout/layout";
 import Quote from "../components/quote/quote";
-import { eventPropNewsletter, eventSignup } from "../core/constants";
-import { useCountdownTimer } from "../hooks/countdownHook";
 import styles from "../styles/courses.module.scss";
-
-const form_url =
-  "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
 
 const course = () => {
   const [affcode, setAffcode] = useState(String);
@@ -61,9 +57,6 @@ const course = () => {
     }
   };
 
-  // TODO: FIX ME PLEASE I SHOULD MAYBE BE FIXED OR SOMETHING
-  const [timeLeft] = useCountdownTimer(new Date("Sep 27, 2021 12:00:00"));
-
   useEffect(() => {
     getAffcode();
     setAffiliateCode();
@@ -80,7 +73,10 @@ const course = () => {
         <meta property="og:url" content="https://robertbrunhage.com/course" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="RobertBrunhage.com" />
-        <meta property="og:description" content="Build a complete production ready Flutter app" />
+        <meta
+          property="og:description"
+          content="Build a complete production ready Flutter app"
+        />
         <meta
           property="og:image"
           content="https://robertbrunhage.com/assets/images/course_twitter.png"
@@ -103,32 +99,28 @@ const course = () => {
         <section className={styles.header}>
           <div className="max_width">
             <h1>Build a Production Ready Flutter App</h1>
-            <h2>
-              Learn how to develop high-quality Flutter applications. A curated
-              learning session to fast-track your skills
-            </h2>
-            <div className={styles.form}>
-              <h2>Coming Soon</h2>
-              <p>
-                Sign up to get updates and a <strong>big discount</strong> when
-                the course launches as well as some behind the scenes content.
-                <br />
-                <br />
-                Launching in {timeLeft.days} days
-              </p>
-              <FormInput
-                giveaway={""}
-                cta={"get updates"}
-                color={"var(--primary-bg-color)"}
-                action={form_url}
-                plausibleEvent={eventSignup}
-                plausibleEventProp={eventPropNewsletter}
-              />
-            </div>
+            <h3>A curated learning session to fast track your skills</h3>
+            <img
+              src="/assets/images/flutter_course_launch.svg"
+              alt="flutter_course"
+            />
+            <CTA
+              text="enroll"
+              href={"#"}
+              target={"_blank"}
+              width={"25em"}
+              animation={false}
+              center={true}
+            />
           </div>
         </section>
         <section className={styles.introduction}>
           <div data-aos="fade" className={`max_width ${styles.intro_text}`}>
+            <Timer
+              title={"First week sale ends in"}
+              date={new Date("Sep 27, 2021 12:00:00")}
+              center={true}
+            />
             <p>
               Have you used Flutter but want to get to the next level? <br />
               <br /> Tired of writing code that becomes messy, hard to manage,
@@ -166,16 +158,14 @@ const course = () => {
             <h1>The Ultimate Flutter Course</h1>
             <h2>Build a complete production-ready Flutter application</h2>
             <img src={"/assets/icons/movie_course.svg"} />
-            <div className={styles.form}>
-              <FormInput
-                giveaway={""}
-                cta={"get updates"}
-                color={"var(--primary-bg-color)"}
-                action={form_url}
-                plausibleEvent={eventSignup}
-                plausibleEventProp={eventPropNewsletter}
-              />
-            </div>
+            <CTA
+              text="enroll"
+              href={"#"}
+              target={"_blank"}
+              width={"25em"}
+              animation={false}
+              center={true}
+            />
           </div>
         </section>
         <section className={styles.wyg}>
@@ -209,11 +199,18 @@ const course = () => {
             <div data-aos="fade" className={styles.module_cards}>
               {modules.map((module, index) => (
                 <ModuleCard
-                  number={index + 1}
+                  number={`${index + 1}`}
                   title={module.name}
                   description={module.description}
                 />
               ))}
+              <ModuleCard
+                number={"B"}
+                title={"Bonus module"}
+                description={
+                  "Depending on feedback during the course we will add more content here such as automated testing and so on."
+                }
+              />
             </div>
           </div>
         </section>
@@ -310,34 +307,42 @@ const course = () => {
           </div>
         </section>
         <section>
-          <div className={`max_width ${styles.pricing}`}>
-            <PricingCard
-              className={styles.card}
-              label={""}
-              title={"basic package"}
-              price={"$xx"}
-              discounted_price={"$xx"}
-              price_package={package_basic}
-              href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=`}
-            />
-            <PricingCard
-              className={styles.card}
-              label={"most popular"}
-              title={"complete package"}
-              price={"$xxx"}
-              discounted_price={"$xxx"}
-              price_package={package_complete}
-              href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
-            />
-            <PricingCard
-              className={styles.card}
-              label={"best value"}
-              title={"exclusive package"}
-              price={"$xxx"}
-              discounted_price={"$xxx"}
-              price_package={package_exclusive}
-              href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
-            />
+          <div className={"max_width"}>
+            <div className={styles.pricing}>
+              <PricingCard
+                className={styles.card}
+                title={"basic package"}
+                price={"$xx"}
+                discounted_price={"$xx"}
+                price_package={package_basic}
+                href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=`}
+              />
+              <PricingCard
+                className={styles.card}
+                label={"most popular"}
+                title={"complete package"}
+                price={"$xxx"}
+                discounted_price={"$xxx"}
+                price_package={package_complete}
+                href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+              />
+              <PricingCard
+                className={styles.card}
+                label={"best value"}
+                title={"exclusive package"}
+                price={"$xxx"}
+                discounted_price={"$xxx"}
+                price_package={package_exclusive}
+                href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+              />
+            </div>
+            <div style={{ marginTop: "128px" }}>
+              <Timer
+                title={"First week sale ends in"}
+                date={new Date("Sep 27, 2021 12:00:00")}
+                center={true}
+              />
+            </div>
           </div>
         </section>
         <section>
@@ -360,7 +365,6 @@ const course = () => {
             </p>
           </div>
         </section>
-
         <section>
           <div data-aos="fade" className="max_width">
             <iframe
@@ -400,7 +404,6 @@ const course = () => {
             <FAQ title={"Frequently Asked Questions"} questions={questions} />
           </div>
         </section>
-
         <section>
           <div className={`max_width ${styles.pricing}`}>
             <PricingCard
@@ -432,7 +435,6 @@ const course = () => {
             />
           </div>
         </section>
-
         <section>
           <div data-aos="fade" className={`max_width ${styles.about}`}>
             <div>

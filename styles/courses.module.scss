@@ -24,15 +24,15 @@
 
   .header {
     text-align: center;
-    padding: 120px 0;
     h1 {
       margin: 0;
     }
-    h2 {
+    h3 {
       font-weight: normal;
+      margin-bottom: 0;
     }
-    .form {
-      margin-top: 60px;
+    img {
+      margin: 32px 0;
     }
   }
 
@@ -179,11 +179,14 @@
         margin-top: 0;
       }
     }
+    .header {
+      padding: 80px 0;
+    }
     .introduction {
       grid-template-areas:
         "text"
         "toc";
-      padding: 0 20px;
+      padding: 0;
 
       .toc {
         margin-top: 3.2rem;
@@ -196,9 +199,7 @@
         margin: 0 auto;
       }
     }
-    .header {
-      padding: 80px 20px;
-    }
+
     .about {
       grid-template-columns: 100%;
       p,
@@ -241,7 +242,6 @@
         }
       }
     }
-
     .satisfaction {
       display: grid;
       grid-template-areas:
