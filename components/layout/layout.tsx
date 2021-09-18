@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
-import Footer from "../footer/footer";
-import Navbar from "../navbar/navbar";
+import React from "react";
 import styles from "./layout.module.scss";
+import Banner from "../banner/banner";
+import Navbar from "../navbar/navbar";
+import Footer from "../footer/footer";
 
 interface LayoutProps {
   children: any;
@@ -10,6 +11,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
+      <Banner />
       <Navbar />
       <main className={styles.main}>{children}</main>
       <Footer />
