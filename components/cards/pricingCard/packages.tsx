@@ -18,6 +18,9 @@ const package_basic: price_package[] = [
   {
     name: "Lifetime access",
   },
+  {
+    name: "Private Slack community access",
+  },
 ];
 
 const package_complete: price_package[] = [
@@ -38,6 +41,9 @@ const package_complete: price_package[] = [
   },
   {
     name: "Lifetime access",
+  },
+  {
+    name: "Private Slack community access",
   },
 ];
 
@@ -62,6 +68,9 @@ const package_exclusive: price_package[] = [
   },
   {
     name: "Lifetime access",
+  },
+  {
+    name: "Private Slack community access",
   },
 ];
 
