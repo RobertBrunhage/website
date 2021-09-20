@@ -12,10 +12,10 @@
       "label label"
       "title title"
       "discount price"
+      "vat vat"
       "li li"
       ". .";
-    grid-template-columns: 40% auto;
-    column-gap: 1.6em;
+    column-gap: 2em;
     place-items: center;
 
     .label {
@@ -44,11 +44,19 @@
       font-size: var(--subtitle);
       margin: auto;
       margin-right: 0;
+      font-weight: 500;
     }
     .discounted_price {
       grid-area: price;
       margin: auto;
       margin-left: 0;
+    }
+    .vat {
+      grid-area: vat;
+      font-weight: 600;
+      font-size: 1.4rem;
+      opacity: 0.5;
+      margin: 0;
     }
 
     ul {

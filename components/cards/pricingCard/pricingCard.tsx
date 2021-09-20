@@ -34,6 +34,7 @@ const pricingCard = ({
         <p className={styles.title}>{title}</p>
         <h2 className={styles.price}>{price}</h2>
         <h2 className={styles.discounted_price}>{discounted_price}</h2>
+        <p className={styles.vat}>VAT may apply</p>
         <ul>
           {price_package.map((item, index) => (
             <li key={index}>
