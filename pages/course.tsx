@@ -5,7 +5,6 @@ import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { default as Cookie, default as Cookies } from "universal-cookie";
 import CTA from "../components/buttons/cta/cta";
-import Timer from "../components/timer/timer";
 import info from "../components/cards/infoCard/info";
 import InfoCard from "../components/cards/infoCard/infoCard";
 import ModuleCard from "../components/cards/moduleCard/moduleCard";
@@ -20,6 +19,7 @@ import questions from "../components/faq/course_faq";
 import FAQ from "../components/faq/faq";
 import Layout from "../components/layout/layout";
 import Quote from "../components/quote/quote";
+import Timer from "../components/timer/timer";
 import styles from "../styles/courses.module.scss";
 
 const course = () => {
@@ -106,8 +106,8 @@ const course = () => {
             />
             <CTA
               text="enroll"
-              href={"#"}
-              target={"_blank"}
+              href={"#pricing"}
+              target={""}
               width={"25em"}
               animation={false}
               center={true}
@@ -118,7 +118,7 @@ const course = () => {
           <div data-aos="fade" className={`max_width ${styles.intro_text}`}>
             <Timer
               title={"First week sale ends in"}
-              date={new Date("Sep 27, 2021 12:00:00")}
+              date={new Date("Oct 4, 2021 23:59:59")}
               center={true}
             />
             <p>
@@ -160,8 +160,8 @@ const course = () => {
             <img src={"/assets/icons/movie_course.svg"} />
             <CTA
               text="enroll"
-              href={"#"}
-              target={"_blank"}
+              href={"#pricing"}
+              target={""}
               width={"25em"}
               animation={false}
               center={true}
@@ -274,7 +274,7 @@ const course = () => {
             </div>
           </div>
         </section>
-        <section className={styles.iirfm}>
+        <section id="pricing" className={styles.iirfm}>
           <div data-aos="fade" className={"max_width"}>
             <h3>
               Is it really for me?
@@ -312,8 +312,8 @@ const course = () => {
               <PricingCard
                 className={styles.card}
                 title={"basic package"}
-                price={"$xx"}
-                discounted_price={"$xx"}
+                price={"$149"}
+                discounted_price={"$99"}
                 price_package={package_basic}
                 href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=`}
               />
@@ -321,8 +321,8 @@ const course = () => {
                 className={styles.card}
                 label={"most popular"}
                 title={"complete package"}
-                price={"$xxx"}
-                discounted_price={"$xxx"}
+                price={"$199"}
+                discounted_price={"$119"}
                 price_package={package_complete}
                 href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
               />
@@ -330,8 +330,8 @@ const course = () => {
                 className={styles.card}
                 label={"best value"}
                 title={"exclusive package"}
-                price={"$xxx"}
-                discounted_price={"$xxx"}
+                price={"$499"}
+                discounted_price={"$349"}
                 price_package={package_exclusive}
                 href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
               />
@@ -339,7 +339,7 @@ const course = () => {
             <div style={{ marginTop: "128px" }}>
               <Timer
                 title={"First week sale ends in"}
-                date={new Date("Sep 27, 2021 12:00:00")}
+                date={new Date("Oct 4, 2021 23:59:59")}
                 center={true}
               />
             </div>
@@ -410,8 +410,8 @@ const course = () => {
               className={styles.card}
               label={""}
               title={"basic package"}
-              price={"$xx"}
-              discounted_price={"$xx"}
+              price={"$149"}
+              discounted_price={"$99"}
               price_package={package_basic}
               href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=`}
             />
@@ -419,8 +419,8 @@ const course = () => {
               className={styles.card}
               label={"most popular"}
               title={"complete package"}
-              price={"$xxx"}
-              discounted_price={"$xxx"}
+              price={"$199"}
+              discounted_price={"$119"}
               price_package={package_complete}
               href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
             />
@@ -428,8 +428,8 @@ const course = () => {
               className={styles.card}
               label={"best value"}
               title={"exclusive package"}
-              price={"$xxx"}
-              discounted_price={"$xxx"}
+              price={"$499"}
+              discounted_price={"$349"}
               price_package={package_exclusive}
               href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
             />
