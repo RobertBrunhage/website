@@ -35,8 +35,8 @@ const pricingCard = ({
         <h2 className={styles.price}>{price}</h2>
         <h2 className={styles.discounted_price}>{discounted_price}</h2>
         <ul>
-          {price_package.map((item) => (
-            <li>
+          {price_package.map((item, index) => (
+            <li key={index}>
               <div id={styles.check}>
                 <img src="/assets/icons/checkmark.svg" alt="checkmark" />
               </div>

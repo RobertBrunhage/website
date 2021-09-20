@@ -183,8 +183,8 @@ const course = () => {
           <div className={"max_width"}>
             <h2>What do you get?</h2>
             <div data-aos="fade" className={`${styles.cards}`}>
-              {info.map((info) => (
-                <InfoCard info={info.info} />
+              {info.map((info, index) => (
+                <InfoCard key={index} info={info.info} />
               ))}
             </div>
 
@@ -210,6 +210,7 @@ const course = () => {
             <div data-aos="fade" className={styles.module_cards}>
               {modules.map((module, index) => (
                 <ModuleCard
+                  key={index}
                   number={`${index + 1}`}
                   title={module.name}
                   description={module.description}
