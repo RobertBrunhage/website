@@ -191,16 +191,12 @@ const course = () => {
             <h2>Here is what people are saying about the course</h2>
             <div data-aos="fade" className={styles.quotes}>
               <Quote
-                quote={`Robert’s Ultimate Flutter Course is THE best 
-                way to learn how to build production ready-applications. 
-                Each lesson has a single purpose, that is easy to understand 
-                and builds on the previous learnings. If you’re looking to 
-                learn or improve your Flutter skills, then look no further.`}
+                quote={"Robert’s Ultimate Flutter Course is THE best way to learn how to build production ready-applications. Each lesson has a single purpose, that is easy to understand and builds on the previous learnings.\n\nIf you’re looking to learn or improve your Flutter skills, then look no further."}
                 image={"/assets/images/james_perkins.png"}
                 author={"James Perkins"}
               />
               <Quote
-                quote={`This course covers all the important concepts and techniques needed to build production-ready apps, and delivers them in a fun and engaging way. If you're serious about Flutter app development, this is an excellent resource!`}
+                quote={"This course covers all the important concepts and techniques needed to build production-ready apps, and delivers them in a fun and engaging way. \n\nIf you're serious about Flutter app development, this is an excellent resource!"}
                 image={"/assets/images/andrea_bizzotto.png"}
                 author={"Andrea Bizzotto"}
               />
@@ -271,14 +267,14 @@ const course = () => {
             <div className={styles.quotes}>
               <Quote
                 quote={
-                  "A true Flutter expert. Robert knows the details of Flutter but also has the ability to explain it in an understandable way. Highly recommended."
+                  "A true Flutter expert. Robert knows the details of Flutter but also has the ability to explain it in an understandable way. \n\nHighly recommended."
                 }
                 image={"/assets/images/shannon_galway.png"}
                 author={"Shannon Galway"}
               />
               <Quote
                 quote={
-                  "Thanks to Robert I’ve been able to rapidly go from a total novice programmer to now having 3 apps on both the App Store and Google Play store. If you want to excel at Flutter, Robert is your guy! He is an excellent teacher!"
+                  "Thanks to Robert I’ve been able to rapidly go from a total novice programmer to now having 3 apps on both the App Store and Google Play store. \n\nIf you want to excel at Flutter, Robert is your guy! He is an excellent teacher!"
                 }
                 image={"/assets/images/niklas_brodd.png"}
                 author={"Niklas Brodd"}
@@ -396,7 +392,7 @@ const course = () => {
             ></iframe>
             <Quote
               quote={
-                "Robert has put all the major topics that I teach about and, he has also done it in a very structured and high-quality way. Highly recommend it!"
+                "Robert has put all the major topics that I teach about and, he has also done it in a very structured and high-quality way. \n\nHighly recommend it!"
               }
               image={"/assets/images/tadas_petra.png"}
               author={"Tadas Petra"}
@@ -404,7 +400,7 @@ const course = () => {
             <div style={{ marginTop: "6em" }} />
             <Quote
               quote={
-                "Great people are rare in this world and, Robert is one of them. Why? Because he enjoys sharing, helping others, and constantly improve for the better. Robert is a trusty person. We can see that in everything he does, he gives 110%."
+                "Great people are rare in this world and, Robert is one of them. Why? Because he enjoys sharing, helping others, and constantly improve for the better. \n\nRobert is a trusty person. We can see that in everything he does, he gives 110%."
               }
               image={"/assets/images/flutter_mapp.png"}
               author={"Flutter Mapp"}
