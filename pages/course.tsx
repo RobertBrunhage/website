@@ -100,10 +100,21 @@ const course = () => {
           <div className="max_width">
             <h1>Build a Production Ready Flutter App</h1>
             <h3>A curated learning session to fast track your skills</h3>
-            <img
-              src="/assets/images/flutter_course_launch.svg"
-              alt="flutter_course"
-            />
+            <iframe
+              style={{
+                margin: "60px auto 60px auto",
+                display: "block",
+                borderRadius: "8px",
+                maxWidth: "100%",
+                height: "100%",
+                aspectRatio: "16/9",
+              }}
+              width="800"
+              height="450"
+              src="https://www.youtube.com/embed/fgsrprBJQHM"
+              title="Testimonial"
+              frameBorder={0}
+            ></iframe>
             <CTA
               text="enroll"
               href={"#pricing"}
