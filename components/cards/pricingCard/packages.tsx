@@ -4,7 +4,7 @@ interface price_package {
 
 const package_basic: price_package[] = [
   {
-    name: "First 4 Modules in the Flutter Course",
+    name: "First 4 Modules (1 is currently completed)",
   },
   {
     name: "Download all vidoes for offline access",
@@ -28,7 +28,7 @@ const package_complete: price_package[] = [
     name: "Everything in the basic package",
   },
   {
-    name: "Entire Course",
+    name: "Entire Course (1 module is currently completed)",
   },
   {
     name: "Download all videos for offline access",
@@ -55,7 +55,7 @@ const package_exclusive: price_package[] = [
     name: "2 Hours of 1 on 1 personal teaching",
   },
   {
-    name: "Entire Ultimate Flutter Course",
+    name: "Entire Course (1 module is currently completed)",
   },
   {
     name: "Download all videos for offline access",
