@@ -5,6 +5,7 @@ image: /assets/images/how_i_became_a_gde_thumbnail.webp
 youtube: gIitRv_NfJc
 author: Robert Brunhage
 date: 03-27-2021
+featured: true
 ---
 
 # How I became the first GDE from Sweden in Flutter & Dart

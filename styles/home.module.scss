@@ -1,69 +1,60 @@
 .container {
-  margin-top: 100px;
+  section {
+    padding: 100px 0;
+    &:first-child {
+      padding-bottom: 0;
+    }
+    &:nth-child(odd) {
+      background-color: var(--secondary-bg-color);
+    }
+  }
 
   .introduction {
-    margin-bottom: 142px;
-    .content {
-      display: grid;
-      grid-template-areas:
-        "intro intro"
-        "featured sprite";
-
-      .intro {
-        grid-area: intro;
-        h1 {
-          margin: 0;
-        }
-        p {
-          font-size: var(--subtitle);
-          margin: 0;
-        }
-      }
-      .featured {
-        grid-area: featured;
-        .card {
-          display: grid;
-          grid-template-areas:
-            "img title"
-            "img desc"
-            "img btn"
-            "img .";
-          grid-template-rows: auto auto 50px auto;
-
-          column-gap: 42px;
-          row-gap: 16px;
-
-          .preview {
-            grid-area: img;
-            width: 500px;
-          }
-          .title {
-            grid-area: title;
-            font-size: var(--subtitle);
-            font-weight: bold;
-            margin: 0;
-          }
-          .desc {
-            grid-area: desc;
-            margin: 0;
-          }
-
-        }
-      }
-      .sprite {
-        grid-area: sprite;
-        max-height: 500px;
-      }
+    position: relative;
+    h1,
+    h3 {
+      text-align: center;
     }
+    h1 {
+      text-transform: uppercase;
+      font-size: var(--display);
+      font-weight: 900;
+    }
+    h3 {
+      font-weight: 400;
+    }
+
+    .btns {
+      display: flex;
+      justify-content: center;
+      column-gap: 2em;
+      padding: 32px 0 192px 0;
+    }
+
+    img {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 45%;
+      z-index: 2;
+    }
+  }
+
+  .spacer {
+    aspect-ratio: 900/200;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--primary-bg-color);
   }
 
   .puffs {
     padding: 120px 0;
     .content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 360px));
-      justify-content: space-between;
-      row-gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 340px));
+      justify-content: space-evenly;
+      row-gap: 3em;
       .card {
         display: grid;
         grid-template-areas:
@@ -72,10 +63,13 @@
           "desc";
         grid-template-rows: repeat(3, min-content);
         row-gap: 18px;
+        text-align: center;
 
         img {
           height: 50px;
           width: 50px;
+          display: block;
+          margin: 0 auto;
         }
         h3 {
           margin: 0;
@@ -92,16 +86,30 @@
     }
   }
 
+  .ft {
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .card_container {
+    padding: 64px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 352px));
+    gap: 4em;
+    justify-content: center;
+  }
+
   .testimonial {
     padding: 142px 0;
-    background-color: var(--secondary-bg-color);
     .content {
       text-align: center;
       .title {
         margin: 0;
+        text-transform: uppercase;
       }
       .testimonials {
-        margin-top: 68px;
+        margin-top: 64px;
         display: grid;
         grid-template-areas:
           "one one one"
@@ -133,14 +141,14 @@
   }
 
   .newsletter {
-    padding: 100px 0;
-    background-color: var(--secondary-bg-color);
+    padding: 100px 20px;
+    margin: 32px auto 0 auto;
+    max-width: 800px;
   }
 
   .about_me {
-    background-color: var(--secondary-bg-color);
     .content {
-      max-width: 790px;
+      /* max-width: 790px; */
       display: grid;
       grid-template-areas:
         "title title"
@@ -150,14 +158,20 @@
       .title {
         grid-area: title;
         text-align: center;
+        text-transform: uppercase;
       }
       .desc {
         grid-area: text;
-        font-size: var(--subtitle);
+        p {
+          font-size: var(--subtitle);
+          max-width: 700px;
+        }
       }
       .sprite {
         grid-area: img;
-        width: 250px;
+        max-width: 250px;
+        display: block;
+        margin: 0 0 0 auto;
       }
       span {
         font-weight: bold;
@@ -168,59 +182,6 @@
 
 @media only screen and (max-width: 1300px) {
   .container {
-    margin-top: 0;
-    .introduction {
-      .content {
-        grid-template-areas:
-          "intro sprite"
-          "featured featured";
-        grid-template-columns: 80% auto;
-
-        .intro {
-          h1 {
-            margin-bottom: 8px;
-          }
-        }
-
-        .featured {
-          text-align: center;
-          margin-top: 32px;
-          h2 {
-            margin-bottom: 8px;
-          }
-          .card {
-            grid-template-areas:
-              "title"
-              "img"
-              "desc"
-              "btn";
-            grid-template-rows: auto;
-            column-gap: 0;
-            row-gap: 16px;
-
-            .preview {
-              max-width: 340px;
-              margin: 0 auto;
-            }
-            .title {
-              font-weight: normal;
-            }
-            .button {
-              margin: 0 auto;
-              height: 50px;
-            }
-            .browse {
-              margin: 0 auto;
-            }
-          }
-        }
-
-        .sprite {
-          max-width: 170px;
-          margin: auto 0 0 0;
-        }
-      }
-    }
     .testimonial {
       .content {
         .testimonials {
@@ -242,22 +203,34 @@
   }
 }
 
+@media only screen and (max-width: 1050px) {
+  .container {
+    .introduction {
+      img {
+        top: 50%;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .container {
     .introduction {
-      margin-bottom: 42px;
-      .content {
-        .sprite {
-          max-width: 70px;
-        }
+      margin-bottom: 128px;
+      h1 {
+        margin-top: 0;
+      }
+      img {
+        top: 50%;
       }
     }
     .puffs {
       padding: 42px 0;
+      margin-top: 32px;
       .content {
         justify-content: center;
         text-align: center;
-
+        row-gap: 6em;
         img {
           margin: 0 auto;
         }
@@ -267,6 +240,7 @@
       padding: 42px 0;
       .content {
         .testimonials {
+          margin-top: 32px;
           row-gap: 16px;
         }
       }
@@ -298,6 +272,17 @@
         span {
           font-weight: bold;
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .container {
+    .introduction {
+      margin-bottom: 0;
+      img {
+        top: 65%;
       }
     }
   }

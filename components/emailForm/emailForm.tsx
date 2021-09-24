@@ -7,7 +7,7 @@ interface EmailFormProps {
   title: string;
   description: string;
   cta: string;
-  giveaway: string;
+  giveaway?: string;
   action: string;
   plausibleEvent: string;
   plausibleEventProp: string;

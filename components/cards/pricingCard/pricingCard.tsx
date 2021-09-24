@@ -14,6 +14,7 @@ interface PricingProps {
   discounted_price: string;
   price_package: Array<Packages>;
   href?: string;
+  opacity?: string;
 }
 
 const pricingCard = ({
@@ -24,6 +25,7 @@ const pricingCard = ({
   discounted_price,
   price_package,
   href,
+  opacity
 }: PricingProps) => {
   return (
     <div className={`${styles.container} ${className}`}>
@@ -52,6 +54,7 @@ const pricingCard = ({
         target={"_blank"}
         width={"auto"}
         animation={false}
+        opacity={opacity}
       />
     </div>
   );

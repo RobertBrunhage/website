@@ -3,9 +3,9 @@ import React from "react";
 import Layout from "../components/layout/layout";
 import fs from "fs";
 import matter from "gray-matter";
-import Link from "next/link";
 import styles from "../styles/videos.module.scss";
 import PlausibleProvider from "next-plausible";
+import VideoCard from "../components/cards/videoCard/videoCard";
 
 interface FrontmatterProps {
   frontmatter: {
@@ -60,17 +60,12 @@ const videos = ({ videos }: any) => {
                 frontmatter: { title, description, image },
                 slug,
               }: FrontmatterProps) => (
-                <Link
-                  href={"/videos/[slug]"}
-                  as={`/videos/${slug}`}
-                  key={title}
-                >
-                  <div className={styles.video_card}>
-                    <img src={image} alt="thumbnail" />
-                    <h1>{title}</h1>
-                    <p>{description}</p>
-                  </div>
-                </Link>
+                <VideoCard
+                  slug={slug}
+                  title={title}
+                  description={description}
+                  image={image}
+                />
               )
             )}
           </div>

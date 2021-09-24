@@ -191,12 +191,16 @@ const course = () => {
             <h2>Here is what people are saying about the course</h2>
             <div data-aos="fade" className={styles.quotes}>
               <Quote
-                quote={"Robert’s Ultimate Flutter Course is THE best way to learn how to build production ready-applications. Each lesson has a single purpose, that is easy to understand and builds on the previous learnings.\n\nIf you’re looking to learn or improve your Flutter skills, then look no further."}
+                quote={
+                  "Robert’s Ultimate Flutter Course is THE best way to learn how to build production ready-applications. Each lesson has a single purpose, that is easy to understand and builds on the previous learnings.\n\nIf you’re looking to learn or improve your Flutter skills, then look no further."
+                }
                 image={"/assets/images/james_perkins.png"}
                 author={"James Perkins"}
               />
               <Quote
-                quote={"This course covers all the important concepts and techniques needed to build production-ready apps, and delivers them in a fun and engaging way. \n\nIf you're serious about Flutter app development, this is an excellent resource!"}
+                quote={
+                  "This course covers all the important concepts and techniques needed to build production-ready apps, and delivers them in a fun and engaging way. \n\nIf you're serious about Flutter app development, this is an excellent resource!"
+                }
                 image={"/assets/images/andrea_bizzotto.png"}
                 author={"Andrea Bizzotto"}
               />
@@ -324,6 +328,7 @@ const course = () => {
                 discounted_price={"$99"}
                 price_package={package_basic}
                 href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=`}
+                opacity={".8"}
               />
               <PricingCard
                 className={styles.card}
@@ -422,6 +427,7 @@ const course = () => {
               discounted_price={"$99"}
               price_package={package_basic}
               href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=`}
+              opacity={".8"}
             />
             <PricingCard
               className={styles.card}
