@@ -173,20 +173,20 @@ const home = ({ videos }: HomeProps) => {
           <div className={"max_width"}>
             <h2 className={styles.ft}>Featured Tutorials</h2>
             <div className={styles.card_container}>
-              {featuredVideos.slice(0, 3).map(
-                ({ frontmatter: { title, description, image }, slug }) => (
+              {featuredVideos
+                .slice(0, 3)
+                .map(({ frontmatter: { title, description, image }, slug }) => (
                   <VideoCard
                     slug={slug}
                     title={title}
                     description={description}
                     image={image}
                   />
-                )
-              )}
+                ))}
             </div>
-            <div className={styles.newsletter}>
-              <EmailSignup color={"var(--secondary-bg-color)"} />
-            </div>
+          </div>
+          <div className={styles.newsletter}>
+            <EmailSignup color={"var(--secondary-bg-color)"} />
           </div>
         </section>
 
