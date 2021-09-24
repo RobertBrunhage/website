@@ -9,8 +9,17 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Head from "next/head";
 import styles from "../../styles/video_lesson.module.scss";
 import PlausibleProvider from "next-plausible";
-import { FrontmatterProps } from "../index";
-import { GetStaticProps, GetStaticPropsResult } from "next";
+
+interface FrontmatterProps {
+  title: string;
+  description: string;
+  image: string;
+  youtube: string;
+  author:string;
+  date: string;
+  github: string;
+  slug: any;
+}
 
 interface CodeBlockProps {
   value: any;
