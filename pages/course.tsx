@@ -46,6 +46,21 @@ const course = () => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
+  const formattedTimeLeft = () => {
+    let text = "Launching in ";
+    if (timeLeft.days === 0 && timeLeft.hours === 0) {
+      text += `${timeLeft.minutes} minutes`;
+    } else if (timeLeft.days === 0 && timeLeft.hours === 1) {
+      text += `${timeLeft.hours} hour`;
+    } else if (timeLeft.days === 0 && timeLeft.hours <= 24) {
+      text += `${timeLeft.hours} hours`;
+    } else {
+      text += `${timeLeft.days} day and ${timeLeft.hours} hours`;
+    }
+
+    return text;
+  };
+
   return (
     <Layout>
       <Head>
@@ -90,7 +105,7 @@ const course = () => {
                 the course launches as well as some behind the scenes content.
                 <br />
                 <br />
-                Launching in {timeLeft.days} days
+                {formattedTimeLeft()}
               </p>
               <FormInput
                 giveaway={""}
@@ -332,7 +347,7 @@ const course = () => {
               the course launches as well as some behind the scenes content.
               <br />
               <br />
-              Launching in {timeLeft.days} days
+              {formattedTimeLeft()}
             </p>
             <FormInput
               giveaway={""}
