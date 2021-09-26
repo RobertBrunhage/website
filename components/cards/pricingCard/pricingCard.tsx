@@ -1,6 +1,7 @@
 import React from "react";
 import CTA from "../../buttons/cta/cta";
 import styles from "./pricingCard.module.scss";
+import { eventPropCourse } from "../../../core/constants";
 
 interface Packages {
   name: string;
@@ -58,6 +59,7 @@ const pricingCard = ({
         width={"auto"}
         animation={false}
         saturation={saturation}
+        plausibleEvent={eventPropCourse}
       />
     </div>
   );
