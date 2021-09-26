@@ -7,7 +7,7 @@ const package_basic: price_package[] = [
     name: "First 4 Modules (1 module is currently completed)",
   },
   {
-    name: "Download all vidoes for offline access",
+    name: "Download all videos for offline access",
   },
   {
     name: "Before and after source code for all videos",

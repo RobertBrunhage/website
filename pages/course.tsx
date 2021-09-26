@@ -129,7 +129,7 @@ const course = () => {
           <div data-aos="fade" className={`max_width ${styles.intro_text}`}>
             <Timer
               title={"First week sale ends in"}
-              date={new Date("Oct 4, 2021 23:59:59")}
+              date={new Date("Oct 4, 2021 15:00:00")}
               center={true}
             />
             <p>
