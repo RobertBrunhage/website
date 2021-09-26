@@ -327,8 +327,8 @@ const course = () => {
                 price={"$149"}
                 discounted_price={"$99"}
                 price_package={package_basic}
-                href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=`}
-                opacity={".8"}
+                href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+                saturation={"50%"}
               />
               <PricingCard
                 className={styles.card}
@@ -347,6 +347,7 @@ const course = () => {
                 discounted_price={"$349"}
                 price_package={package_exclusive}
                 href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+                supply={"Limited supply"}
               />
             </div>
             <div style={{ marginTop: "128px" }}>
@@ -426,8 +427,8 @@ const course = () => {
               price={"$149"}
               discounted_price={"$99"}
               price_package={package_basic}
-              href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=`}
-              opacity={".8"}
+              href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+              saturation={"50%"}
             />
             <PricingCard
               className={styles.card}
@@ -446,6 +447,7 @@ const course = () => {
               discounted_price={"$349"}
               price_package={package_exclusive}
               href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+              supply={"Limited supply"}
             />
           </div>
         </section>

@@ -14,7 +14,8 @@ interface PricingProps {
   discounted_price: string;
   price_package: Array<Packages>;
   href?: string;
-  opacity?: string;
+  saturation?: string;
+  supply?: string;
 }
 
 const pricingCard = ({
@@ -25,7 +26,8 @@ const pricingCard = ({
   discounted_price,
   price_package,
   href,
-  opacity
+  saturation,
+  supply
 }: PricingProps) => {
   return (
     <div className={`${styles.container} ${className}`}>
@@ -48,13 +50,14 @@ const pricingCard = ({
           ))}
         </ul>
       </div>
+      <p className={styles.supply}>{supply}</p>
       <CTA
         text="enroll"
         href={href ?? "#"}
         target={"_blank"}
         width={"auto"}
         animation={false}
-        opacity={opacity}
+        saturation={saturation}
       />
     </div>
   );

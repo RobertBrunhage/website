@@ -8,18 +8,27 @@ interface CTAProps {
   animation: boolean;
   target?: string;
   center?: boolean;
-  opacity?: string;
+  saturation?: string;
 }
 
-const cta = ({ text, href, width, animation, target, center, opacity }: CTAProps) => {
+const cta = ({
+  text,
+  href,
+  width,
+  animation,
+  target,
+  center,
+  saturation,
+}: CTAProps) => {
   return (
-    <div style={{ width: width, margin: center ? "0 auto" : "", opacity: opacity }}>
+    <div style={{ width: width, margin: center ? "0 auto" : "" }}>
       <a
         className={styles.button}
         href={href}
         target={target}
         style={{
           backgroundColor: animation ? "" : "var(--primary-color)",
+          filter: saturation ? `saturate(${saturation})` : "",
         }}
       >
         {text}
