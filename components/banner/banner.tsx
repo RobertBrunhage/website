@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import styles from "./banner.module.scss";
 import Link from "next/link";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const banner = () => {
   useEffect(() => {
+    AOS.init({ duration: 1200, once: true });
     const path = window.location;
     const nav = document.getElementById("nav");
     const banner = document.getElementById("banner");
@@ -18,7 +21,7 @@ const banner = () => {
   });
 
   return (
-    <div id={"banner"} className={styles.banner}>
+    <div data-aos="fade-down" id={"banner"} className={styles.banner}>
       <div className={styles.content}>
         <div className={styles.text}>
           <p>Less than 1 week left in the special offer!</p>
