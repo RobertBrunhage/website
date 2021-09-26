@@ -352,7 +352,7 @@ const course = () => {
             <div style={{ marginTop: "128px" }}>
               <Timer
                 title={"First week sale ends in"}
-                date={new Date("Oct 4, 2021 23:59:59")}
+                date={new Date("Oct 4, 2021 15:00:00")}
                 center={true}
               />
             </div>
