@@ -4,7 +4,7 @@ interface price_package {
 
 const package_basic: price_package[] = [
   {
-    name: "First 4 Modules (1 is currently completed)",
+    name: "First 4 Modules (1 module is currently completed)",
   },
   {
     name: "Download all vidoes for offline access",
