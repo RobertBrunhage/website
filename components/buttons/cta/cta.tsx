@@ -1,6 +1,6 @@
+import { usePlausible } from "next-plausible";
 import React from "react";
 import styles from "./cta.module.scss";
-import { usePlausible } from "next-plausible";
 
 interface CTAProps {
   text: string;
@@ -11,6 +11,7 @@ interface CTAProps {
   center?: boolean;
   saturation?: string;
   plausibleEvent?: any;
+  plausibleEventProp?: any;
 }
 
 const cta = ({
@@ -22,12 +23,17 @@ const cta = ({
   center,
   saturation,
   plausibleEvent,
+  plausibleEventProp,
 }: CTAProps) => {
   const plausible = usePlausible();
 
   const onPlausibleEvent = () => {
     if (plausibleEvent) {
-      plausible(plausibleEvent);
+      plausible(plausibleEvent, {
+        props: {
+          type: plausibleEventProp,
+        },
+      });
     }
   };
 
