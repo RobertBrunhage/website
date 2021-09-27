@@ -72,10 +72,10 @@ const course = () => {
         <meta name="description" content="Flutter Courses | Robert Brunhage" />
         <meta property="og:url" content="https://robertbrunhage.com/course" />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="RobertBrunhage.com" />
+        <meta property="og:title" content="Ultimate Flutter Course" />
         <meta
           property="og:description"
-          content="Build a complete production-ready Flutter app"
+          content="Build a complete production-ready Flutter application!"
         />
         <meta
           property="og:image"
@@ -83,7 +83,7 @@ const course = () => {
         />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:site" content="@robertbrunhage" />
-        <meta property="twitter:title" content="RobertBrunhage.com" />
+        <meta property="twitter:title" content="Ultimate Flutter Course" />
         <meta
           property="twitter:description"
           content="Build a complete production-ready Flutter application!"
