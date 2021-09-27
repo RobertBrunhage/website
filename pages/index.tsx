@@ -38,7 +38,7 @@ const home = ({ videos }: HomeProps) => {
         <title>Robert Brunhage - Flutter, Dart, Firebase | Homepage</title>
         <meta
           name="description"
-          content="Learn how to build production-realy apps with Flutter on mobile, desktop and web."
+          content="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
         />
         <link rel="icon" href="/favicon.ico" />
 
@@ -47,7 +47,7 @@ const home = ({ videos }: HomeProps) => {
         <meta property="og:title" content="Robert Brunhage" />
         <meta
           property="og:description"
-          content="Learn how to build production-realy apps with Flutter on mobile, desktop and web."
+          content="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
         />
         <meta
           property="og:image"
@@ -58,7 +58,7 @@ const home = ({ videos }: HomeProps) => {
         <meta property="twitter:title" content="Robert Brunhage" />
         <meta
           property="twitter:description"
-          content="Learn how to build production-realy apps with Flutter on mobile, desktop and web."
+          content="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
         />
         <meta
           property="twitter:image"
