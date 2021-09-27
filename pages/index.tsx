@@ -38,31 +38,31 @@ const home = ({ videos }: HomeProps) => {
         <title>Robert Brunhage - Flutter, Dart, Firebase | Homepage</title>
         <meta
           name="description"
-          content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
+          content="Learn how to build production-realy apps with Flutter on mobile, desktop and web."
         />
         <link rel="icon" href="/favicon.ico" />
 
         <meta property="og:url" content="https://robertbrunhage.com" />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="RobertBrunhage.com" />
+        <meta property="og:title" content="Robert Brunhage" />
         <meta
           property="og:description"
-          content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
+          content="Learn how to build production-realy apps with Flutter on mobile, desktop and web."
         />
         <meta
           property="og:image"
           content="https://robertbrunhage.com/assets/images/avatar.png"
         />
-        <meta property="twitter:card" content="summary" />
+        <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:site" content="@robertbrunhage" />
-        <meta property="twitter:title" content="RobertBrunhage.com" />
+        <meta property="twitter:title" content="Robert Brunhage" />
         <meta
           property="twitter:description"
-          content="Concise and Practical Training for App Developers | Also Fun... I Promise 😊"
+          content="Learn how to build production-realy apps with Flutter on mobile, desktop and web."
         />
         <meta
           property="twitter:image"
-          content="https://robertbrunhage.com/assets/images/avatar.png"
+          content="https://robertbrunhage.com/assets/images/landing_twitter.png"
         />
         <link rel="prefetch" href="https://robertbrunhage.com/videos" />
         <link rel="prefetch" href="https://robertbrunhage.com/course" />

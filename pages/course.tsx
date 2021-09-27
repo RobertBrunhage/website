@@ -75,7 +75,7 @@ const course = () => {
         <meta property="og:title" content="RobertBrunhage.com" />
         <meta
           property="og:description"
-          content="Build a complete production ready Flutter app"
+          content="Build a complete production-ready Flutter app"
         />
         <meta
           property="og:image"
