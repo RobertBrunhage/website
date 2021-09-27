@@ -310,7 +310,7 @@ const course = () => {
               <strong>businesses and clients</strong>. I've taken all this
               knowledge and created the course I wish I had when I started.
               <br />
-              <br /> If I would teach this in a one-to-one meeting that would be
+              <br /> If I would teach this in one on one meetings, that would be
               up in the price range of <strong>$2500 or more</strong>.
               <br />
               <br /> The question always comes down to, how{" "}
