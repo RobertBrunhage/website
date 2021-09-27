@@ -220,7 +220,7 @@ const course = () => {
                 number={"B"}
                 title={"Bonus module"}
                 description={
-                  "Depending on feedback during the course we will add more content here such as automated testing and so on."
+                  "Depending on feedback during the course we will add more content here such as automated testing and so on"
                 }
               />
             </div>
