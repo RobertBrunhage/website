@@ -44,6 +44,18 @@
         color: var(--primary-color);
       }
     }
+
+    button {
+      border: none;
+      background: none;
+      color: #fff;
+      font-size: 4rem;
+      cursor: pointer;
+
+      position: relative;
+      right: 0;
+      top: 0;
+    }
   }
 }
 
@@ -64,6 +76,12 @@
 
       a {
         margin: 0 auto;
+      }
+
+      button {
+        position: absolute;
+        bottom: 0;
+        top: auto;
       }
     }
   }

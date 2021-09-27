@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./banner.module.scss";
 import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const banner = () => {
+  const [open, setOpen] = useState(true);
+
   useEffect(() => {
     AOS.init({ duration: 1200, once: true });
     const path = window.location;
@@ -14,13 +16,21 @@ const banner = () => {
     if (path.pathname === "/course") {
       if (nav && banner) {
         nav.style.top = "auto";
-        nav.style.marginTop = "0px"; //height of banner
+        nav.style.marginTop = "0px";
         banner.style.display = "none";
       }
     }
-  });
 
-  return (
+    if (!open) {
+      nav!.style.marginTop = "0px";
+    }
+  }, [open]);
+
+  const onClose = () => {
+    setOpen((open) => !open);
+  };
+
+  return open ? (
     <div data-aos="fade-down" id={"banner"} className={styles.banner}>
       <div className={styles.content}>
         <div className={styles.text}>
@@ -30,8 +40,11 @@ const banner = () => {
         <Link href="/course">
           <a>get the pre-launch deal</a>
         </Link>
+        <button onClick={() => onClose()}>×</button>
       </div>
     </div>
+  ) : (
+    <></>
   );
 };
 
