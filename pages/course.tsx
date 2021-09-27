@@ -98,7 +98,7 @@ const course = () => {
       <div className={styles.container}>
         <section className={styles.header}>
           <div className="max_width">
-            <h1>Build a Production Ready Flutter App</h1>
+            <h1>Build a Production-ready Flutter App</h1>
             <h3>A curated learning session to fast track your skills</h3>
             <iframe
               style={{
