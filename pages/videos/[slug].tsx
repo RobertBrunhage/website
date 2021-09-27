@@ -56,75 +56,73 @@ export default function Lesson({ content, frontmatter, slug }: LessonProps) {
   const maxWidth = useResize(articleRef);
 
   return (
-    <PlausibleProvider domain="robertbrunhage.com">
-      <Layout>
-        <Head>
-          <title>{frontmatter.title}</title>
-          <link rel="icon" href="/favicon.ico" />
-          <meta property="og:url" content="https://robertbrunhage.com" />
-          <meta property="og:type" content="article" />
-          <meta property="og:title" content={frontmatter.title} />
-          <meta property="og:description" content={frontmatter.description} />
-          <meta
-            property="og:image"
-            content={`https://robertbrunhage.com${frontmatter.image}`}
-          />
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:site" content="@robertbrunhage" />
-          <meta property="twitter:title" content={frontmatter.title} />
-          <meta
-            property="twitter:description"
-            content={frontmatter.description}
-          />
-          <meta
-            property="twitter:image"
-            content={`https://robertbrunhage.com${frontmatter.image}`}
-          />
-          <link
-            rel="canonical"
-            href={`https://robertbrunhage.com/videos/${slug}`}
-          />
-        </Head>
-        <article ref={articleRef} className={`max_width ${styles.content}`}>
-          <h1>{frontmatter.title}</h1>
-          {frontmatter.youtube ? (
-            <div className={styles.video}>
-              <iframe
-                src={`https://www.youtube.com/embed/${frontmatter.youtube}`}
-              />
-              <div className={styles.desc}>
-                <p className={styles.description}>{frontmatter.description}</p>
-                <p className={styles.author}>{frontmatter.author}</p>
-                <p className={styles.date}>{frontmatter.date}</p>
-                {frontmatter.github ? (
-                  <a
-                    href={frontmatter.github}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    CODE
-                  </a>
-                ) : (
-                  <></>
-                )}
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
-          <div className={styles.markdown}>
-            <ReactMarkdown
-              escapeHtml={false}
-              source={content}
-              renderers={{
-                code: CodeBlock,
-                image: (props) => MyImage(props, maxWidth),
-              }}
+    <Layout>
+      <Head>
+        <title>{frontmatter.title}</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:url" content="https://robertbrunhage.com" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={frontmatter.title} />
+        <meta property="og:description" content={frontmatter.description} />
+        <meta
+          property="og:image"
+          content={`https://robertbrunhage.com${frontmatter.image}`}
+        />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" content="@robertbrunhage" />
+        <meta property="twitter:title" content={frontmatter.title} />
+        <meta
+          property="twitter:description"
+          content={frontmatter.description}
+        />
+        <meta
+          property="twitter:image"
+          content={`https://robertbrunhage.com${frontmatter.image}`}
+        />
+        <link
+          rel="canonical"
+          href={`https://robertbrunhage.com/videos/${slug}`}
+        />
+      </Head>
+      <article ref={articleRef} className={`max_width ${styles.content}`}>
+        <h1>{frontmatter.title}</h1>
+        {frontmatter.youtube ? (
+          <div className={styles.video}>
+            <iframe
+              src={`https://www.youtube.com/embed/${frontmatter.youtube}`}
             />
+            <div className={styles.desc}>
+              <p className={styles.description}>{frontmatter.description}</p>
+              <p className={styles.author}>{frontmatter.author}</p>
+              <p className={styles.date}>{frontmatter.date}</p>
+              {frontmatter.github ? (
+                <a
+                  href={frontmatter.github}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  CODE
+                </a>
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
-        </article>
-      </Layout>
-    </PlausibleProvider>
+        ) : (
+          ""
+        )}
+        <div className={styles.markdown}>
+          <ReactMarkdown
+            escapeHtml={false}
+            source={content}
+            renderers={{
+              code: CodeBlock,
+              image: (props) => MyImage(props, maxWidth),
+            }}
+          />
+        </div>
+      </article>
+    </Layout>
   );
 }
 

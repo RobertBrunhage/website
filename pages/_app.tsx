@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
     }
   }, []);
   return (
-    <PlausibleProvider domain="robertbrunhage.com">
+    <PlausibleProvider trackOutboundLinks={true} domain="robertbrunhage.com">
       <Component {...pageProps} />
     </PlausibleProvider>
   );
