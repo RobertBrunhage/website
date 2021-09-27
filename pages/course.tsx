@@ -39,7 +39,7 @@ const course = () => {
   };
 
   // TODO: FIX ME PLEASE I SHOULD MAYBE BE FIXED OR SOMETHING
-  const [timeLeft] = useCountdownTimer(new Date("Sep 27, 2021 12:00:00"));
+  const [timeLeft] = useCountdownTimer(new Date("Sep 27, 2021 15:00:00"));
 
   useEffect(() => {
     getAffcode();
