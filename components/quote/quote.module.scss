@@ -9,7 +9,7 @@
   blockquote {
     quotes: "“" "”" "‘" "’";
     font-size: var(--subtitle);
-
+    white-space: pre-line;
     p {
       grid-area: quote;
       font-size: var(--body-regular);

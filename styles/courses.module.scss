@@ -24,15 +24,15 @@
 
   .header {
     text-align: center;
-    padding: 120px 0;
     h1 {
       margin: 0;
     }
-    h2 {
+    h3 {
       font-weight: normal;
+      margin-bottom: 0;
     }
-    .form {
-      margin-top: 60px;
+    img {
+      margin: 32px 0;
     }
   }
 
@@ -131,6 +131,43 @@
     grid-template-columns: 1fr 1fr;
     justify-content: center;
   }
+
+  .satisfaction {
+    display: grid;
+    grid-template-areas:
+      "icon title"
+      "icon description";
+    place-items: center;
+    column-gap: 14em;
+    img {
+      grid-area: icon;
+    }
+    h2 {
+      font-weight: normal;
+      margin: auto auto auto 0;
+    }
+  }
+
+  .pricing {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 0.8fr 0.2fr 0.8fr 0.2fr 0.8fr;
+
+    .card {
+      &:nth-child(1) {
+        grid-row: 1;
+        grid-column: 1 / span 2;
+      }
+      &:nth-child(2) {
+        grid-row: 1;
+        grid-column: 2 / span 3;
+      }
+      &:nth-child(3) {
+        grid-row: 1;
+        grid-column: 4 / span 2;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 1300px) {
@@ -142,11 +179,14 @@
         margin-top: 0;
       }
     }
+    .header {
+      padding: 80px 0;
+    }
     .introduction {
       grid-template-areas:
         "text"
         "toc";
-      padding: 0 20px;
+      padding: 0;
 
       .toc {
         margin-top: 3.2rem;
@@ -159,9 +199,7 @@
         margin: 0 auto;
       }
     }
-    .header {
-      padding: 80px 20px;
-    }
+
     .about {
       grid-template-columns: 100%;
       p,
@@ -179,6 +217,42 @@
     }
     .quotes {
       grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    .pricing {
+      grid-template-columns: unset;
+      grid-template-areas:
+        "basic"
+        "complete"
+        "exclusive";
+      row-gap: 4em;
+      .card {
+        &:nth-child(1) {
+          grid-area: basic;
+        }
+        &:nth-child(2) {
+          grid-area: complete;
+        }
+        &:nth-child(3) {
+          grid-area: exclusive;
+        }
+      }
+    }
+    .satisfaction {
+      display: grid;
+      grid-template-areas:
+        "icon"
+        "title"
+        "description";
+      row-gap: 2em;
+
+      img {
+        transform: scale(0.9);
+      }
     }
   }
 }

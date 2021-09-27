@@ -6,7 +6,7 @@ interface FormInputProps {
   action: string;
   color: any;
   cta: string;
-  giveaway: string;
+  giveaway?: string;
   plausibleEvent: string;
   plausibleEventProp: string;
 }

@@ -10,6 +10,11 @@ const FAQ: FAQ[] = [
       "Yes, of course! But keep in mind that I won’t explain simpler concepts like “what is a row”.",
   },
   {
+    question: "What does the pre-lauch mean?",
+    answer:
+      "The course is not done yet and is still being produced. I have a reduced price during the pre-launch to accommodate that it will take a little bit of time to complete the course. Currently, as of the first week of pre-launch, 1/7 modules are out. I aim to complete it all within 2 months.",
+  },
+  {
     question: "Will you teach about Null safety?",
     answer:
       "I will use the latest version of Flutter so in that regard, yes. But I will not specifically teach about null safety.",

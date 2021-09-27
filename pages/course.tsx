@@ -2,25 +2,36 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Head from "next/head";
 import queryString from "query-string";
-import React, { useEffect } from "react";
-import Cookie from "universal-cookie";
+import React, { useEffect, useState } from "react";
+import { default as Cookie, default as Cookies } from "universal-cookie";
+import CTA from "../components/buttons/cta/cta";
 import info from "../components/cards/infoCard/info";
 import InfoCard from "../components/cards/infoCard/infoCard";
 import ModuleCard from "../components/cards/moduleCard/moduleCard";
 import modules from "../components/cards/moduleCard/modules";
-import FormInput from "../components/emailForm/formInput";
+import {
+  package_basic,
+  package_complete,
+  package_exclusive,
+} from "../components/cards/pricingCard/packages";
+import PricingCard from "../components/cards/pricingCard/pricingCard";
 import questions from "../components/faq/course_faq";
 import FAQ from "../components/faq/faq";
 import Layout from "../components/layout/layout";
 import Quote from "../components/quote/quote";
-import { eventPropNewsletter, eventSignup } from "../core/constants";
-import { useCountdownTimer } from "../hooks/countdownHook";
+import Timer from "../components/timer/timer";
 import styles from "../styles/courses.module.scss";
 
-const form_url =
-  "https://gmail.us2.list-manage.com/subscribe/post?u=ff73d806dd2f49da87ede8337&amp;id=ed4e712aca&amp;SIGNUP=FlutterMovieCourse";
-
 const course = () => {
+  const [affcode, setAffcode] = useState(String);
+
+  const purchase_link = "https://courses.robertbrunhage.com/purchase";
+  const basic_package = "?product_id=3401896";
+  const complete_package = "?product_id=3401914";
+  const exclusive_package = "?product_id=3401916";
+
+  const coupon_code = "7-DAY-SALE";
+
   const getAffcode = () => {
     const qs = queryString.parse(window.location.search);
     const affcode = qs.affcode;
@@ -38,47 +49,41 @@ const course = () => {
     }
   };
 
-  // TODO: FIX ME PLEASE I SHOULD MAYBE BE FIXED OR SOMETHING
-  const [timeLeft] = useCountdownTimer(new Date("Sep 27, 2021 15:00:00"));
+  const setAffiliateCode = () => {
+    const cookies = new Cookies();
+    const affcode = cookies.get("affcode");
+    if (affcode) {
+      setAffcode(affcode);
+    }
+  };
 
   useEffect(() => {
     getAffcode();
+    setAffiliateCode();
     AOS.init({ duration: 800, once: true });
   }, []);
-
-  const formattedTimeLeft = () => {
-    let text = "Launching in ";
-    if (timeLeft.days === 0 && timeLeft.hours === 0) {
-      text += `${timeLeft.minutes} minutes`;
-    } else if (timeLeft.days === 0 && timeLeft.hours === 1) {
-      text += `${timeLeft.hours} hour`;
-    } else if (timeLeft.days === 0 && timeLeft.hours <= 24) {
-      text += `${timeLeft.hours} hours`;
-    } else {
-      text += `${timeLeft.days} day and ${timeLeft.hours} hours`;
-    }
-
-    return text;
-  };
 
   return (
     <Layout>
       <Head>
-        <title>Robert Brunhage - Flutter, Dart, Firebase | Courses</title>
+        <title>Ultimate Flutter Course</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="robots" content="index" />
         <meta name="description" content="Flutter Courses | Robert Brunhage" />
         <meta property="og:url" content="https://robertbrunhage.com/course" />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="RobertBrunhage.com" />
-        <meta property="og:description" content="Flutter Courses" />
+        <meta property="og:title" content="Ultimate Flutter Course" />
+        <meta
+          property="og:description"
+          content="Build a complete production-ready Flutter application!"
+        />
         <meta
           property="og:image"
           content="https://robertbrunhage.com/assets/images/course_twitter.png"
         />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:site" content="@robertbrunhage" />
-        <meta property="twitter:title" content="RobertBrunhage.com" />
+        <meta property="twitter:title" content="Ultimate Flutter Course" />
         <meta
           property="twitter:description"
           content="Build a complete production-ready Flutter application!"
@@ -93,33 +98,40 @@ const course = () => {
       <div className={styles.container}>
         <section className={styles.header}>
           <div className="max_width">
-            <h1>Build a Production Ready Flutter App</h1>
-            <h2>
-              Learn how to develop high-quality Flutter applications. A curated
-              learning session to fast-track your skills
-            </h2>
-            <div className={styles.form}>
-              <h2>Coming Soon</h2>
-              <p>
-                Sign up to get updates and a <strong>big discount</strong> when
-                the course launches as well as some behind the scenes content.
-                <br />
-                <br />
-                {formattedTimeLeft()}
-              </p>
-              <FormInput
-                giveaway={""}
-                cta={"get updates"}
-                color={"var(--primary-bg-color)"}
-                action={form_url}
-                plausibleEvent={eventSignup}
-                plausibleEventProp={eventPropNewsletter}
-              />
-            </div>
+            <h1>Build a Production-ready Flutter App</h1>
+            <h3>A curated learning session to fast track your skills</h3>
+            <iframe
+              style={{
+                margin: "60px auto 60px auto",
+                display: "block",
+                borderRadius: "8px",
+                maxWidth: "100%",
+                height: "100%",
+                aspectRatio: "16/9",
+              }}
+              width="800"
+              height="450"
+              src="https://www.youtube.com/embed/fgsrprBJQHM"
+              title="Testimonial"
+              frameBorder={0}
+            ></iframe>
+            <CTA
+              text="enroll"
+              href={"#pricing"}
+              target={""}
+              width={"25em"}
+              animation={false}
+              center={true}
+            />
           </div>
         </section>
         <section className={styles.introduction}>
           <div data-aos="fade" className={`max_width ${styles.intro_text}`}>
+            <Timer
+              title={"First week sale ends in"}
+              date={new Date("Oct 4, 2021 15:00:00")}
+              center={true}
+            />
             <p>
               Have you used Flutter but want to get to the next level? <br />
               <br /> Tired of writing code that becomes messy, hard to manage,
@@ -157,40 +169,38 @@ const course = () => {
             <h1>The Ultimate Flutter Course</h1>
             <h2>Build a complete production-ready Flutter application</h2>
             <img src={"/assets/icons/movie_course.svg"} />
-            <div className={styles.form}>
-              <FormInput
-                giveaway={""}
-                cta={"get updates"}
-                color={"var(--primary-bg-color)"}
-                action={form_url}
-                plausibleEvent={eventSignup}
-                plausibleEventProp={eventPropNewsletter}
-              />
-            </div>
+            <CTA
+              text="enroll"
+              href={"#pricing"}
+              target={""}
+              width={"25em"}
+              animation={false}
+              center={true}
+            />
           </div>
         </section>
         <section className={styles.wyg}>
           <div className={"max_width"}>
             <h2>What do you get?</h2>
             <div data-aos="fade" className={`${styles.cards}`}>
-              {info.map((info) => (
-                <InfoCard info={info.info} />
+              {info.map((info, index) => (
+                <InfoCard key={index} info={info.info} />
               ))}
             </div>
 
             <h2>Here is what people are saying about the course</h2>
             <div data-aos="fade" className={styles.quotes}>
               <Quote
-                quote={`Robert’s Ultimate Flutter Course is THE best 
-                way to learn how to build production ready-applications. 
-                Each lesson has a single purpose, that is easy to understand 
-                and builds on the previous learnings. If you’re looking to 
-                learn or improve your Flutter skills, then look no further.`}
+                quote={
+                  "Robert’s Ultimate Flutter Course is THE best way to learn how to build production ready-applications. Each lesson has a single purpose, that is easy to understand and builds on the previous learnings.\n\nIf you’re looking to learn or improve your Flutter skills, then look no further."
+                }
                 image={"/assets/images/james_perkins.png"}
                 author={"James Perkins"}
               />
               <Quote
-                quote={`This course covers all the important concepts and techniques needed to build production-ready apps, and delivers them in a fun and engaging way. If you're serious about Flutter app development, this is an excellent resource!`}
+                quote={
+                  "This course covers all the important concepts and techniques needed to build production-ready apps, and delivers them in a fun and engaging way. \n\nIf you're serious about Flutter app development, this is an excellent resource!"
+                }
                 image={"/assets/images/andrea_bizzotto.png"}
                 author={"Andrea Bizzotto"}
               />
@@ -200,11 +210,19 @@ const course = () => {
             <div data-aos="fade" className={styles.module_cards}>
               {modules.map((module, index) => (
                 <ModuleCard
-                  number={index + 1}
+                  key={index}
+                  number={`${index + 1}`}
                   title={module.name}
                   description={module.description}
                 />
               ))}
+              <ModuleCard
+                number={"B"}
+                title={"Bonus module"}
+                description={
+                  "Depending on feedback during the course we will add more content here such as automated testing and so on"
+                }
+              />
             </div>
           </div>
         </section>
@@ -253,14 +271,14 @@ const course = () => {
             <div className={styles.quotes}>
               <Quote
                 quote={
-                  "A true Flutter expert. Robert knows the details of Flutter but also has the ability to explain it in an understandable way. Highly recommended."
+                  "A true Flutter expert. Robert knows the details of Flutter but also has the ability to explain it in an understandable way. \n\nHighly recommended."
                 }
                 image={"/assets/images/shannon_galway.png"}
                 author={"Shannon Galway"}
               />
               <Quote
                 quote={
-                  "Thanks to Robert I’ve been able to rapidly go from a total novice programmer to now having 3 apps on both the App Store and Google Play store. If you want to excel at Flutter, Robert is your guy! He is an excellent teacher!"
+                  "Thanks to Robert I’ve been able to rapidly go from a total novice programmer to now having 3 apps on both the App Store and Google Play store. \n\nIf you want to excel at Flutter, Robert is your guy! He is an excellent teacher!"
                 }
                 image={"/assets/images/niklas_brodd.png"}
                 author={"Niklas Brodd"}
@@ -268,7 +286,7 @@ const course = () => {
             </div>
           </div>
         </section>
-        <section className={styles.iirfm}>
+        <section id="pricing" className={styles.iirfm}>
           <div data-aos="fade" className={"max_width"}>
             <h3>
               Is it really for me?
@@ -292,11 +310,72 @@ const course = () => {
               <strong>businesses and clients</strong>. I've taken all this
               knowledge and created the course I wish I had when I started.
               <br />
-              <br /> If I would teach this in a one-to-one meeting that would be
+              <br /> If I would teach this in one on one meetings, that would be
               up in the price range of <strong>$2500 or more</strong>.
               <br />
               <br /> The question always comes down to, how{" "}
               <strong>serious</strong> are you?
+            </p>
+          </div>
+        </section>
+        <section>
+          <div className={"max_width"}>
+            <div className={styles.pricing}>
+              <PricingCard
+                className={styles.card}
+                title={"basic package"}
+                price={"$149"}
+                discounted_price={"$99"}
+                price_package={package_basic}
+                href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+                saturation={"50%"}
+              />
+              <PricingCard
+                className={styles.card}
+                label={"most popular"}
+                title={"complete package"}
+                price={"$199"}
+                discounted_price={"$119"}
+                price_package={package_complete}
+                href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+              />
+              <PricingCard
+                className={styles.card}
+                label={"best value"}
+                title={"exclusive package"}
+                price={"$499"}
+                discounted_price={"$349"}
+                price_package={package_exclusive}
+                href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+                supply={"Limited supply"}
+              />
+            </div>
+            <div style={{ marginTop: "128px" }}>
+              <Timer
+                title={"First week sale ends in"}
+                date={new Date("Oct 4, 2021 15:00:00")}
+                center={true}
+              />
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className={`max_width ${styles.satisfaction}`}>
+            <img src="/assets/icons/satisfaction.png" alt="100% satisfaction" />
+            <h2>
+              100% Satisfaction Guarantee for <strong>30-days</strong>
+            </h2>
+            <p>
+              After spending so much time on both this course and teaching over
+              3 years on YouTube and other areas I am confident that this will
+              be worth it.
+              <br />
+              <br /> So if you are not happy with the course, for any reason,
+              just reach out to me and I’ll issue a full refund.
+              <br />
+              <br />
+              What is important for me is that you get knowledge that you can
+              apply right away!
             </p>
           </div>
         </section>
@@ -308,7 +387,7 @@ const course = () => {
                 display: "block",
                 borderRadius: "8px",
                 maxWidth: "100%",
-                height: '100%',
+                height: "100%",
                 aspectRatio: "16/9",
               }}
               width="800"
@@ -319,7 +398,7 @@ const course = () => {
             ></iframe>
             <Quote
               quote={
-                "Robert has put all the major topics that I teach about and, he has also done it in a very structured and high-quality way. Highly recommend it!"
+                "Robert has put all the major topics that I teach about and, he has also done it in a very structured and high-quality way. \n\nHighly recommend it!"
               }
               image={"/assets/images/tadas_petra.png"}
               author={"Tadas Petra"}
@@ -327,7 +406,7 @@ const course = () => {
             <div style={{ marginTop: "6em" }} />
             <Quote
               quote={
-                "Great people are rare in this world and, Robert is one of them. Why? Because he enjoys sharing, helping others, and constantly improve for the better. Robert is a trusty person. We can see that in everything he does, he gives 110%."
+                "Great people are rare in this world and, Robert is one of them. Why? Because he enjoys sharing, helping others, and constantly improve for the better. \n\nRobert is a trusty person. We can see that in everything he does, he gives 110%."
               }
               image={"/assets/images/flutter_mapp.png"}
               author={"Flutter Mapp"}
@@ -340,22 +419,35 @@ const course = () => {
           </div>
         </section>
         <section>
-          <div data-aos="fade" className={`max_width ${styles.form}`}>
-            <h2 style={{ textAlign: "center", marginTop: "0" }}>Coming Soon</h2>
-            <p>
-              Sign up to get updates and a <strong>big discount</strong> when
-              the course launches as well as some behind the scenes content.
-              <br />
-              <br />
-              {formattedTimeLeft()}
-            </p>
-            <FormInput
-              giveaway={""}
-              cta={"get updates"}
-              color={"var(--secondary-bg-color)"}
-              action={form_url}
-              plausibleEvent={eventSignup}
-              plausibleEventProp={eventPropNewsletter}
+          <div className={`max_width ${styles.pricing}`}>
+            <PricingCard
+              className={styles.card}
+              label={""}
+              title={"basic package"}
+              price={"$149"}
+              discounted_price={"$99"}
+              price_package={package_basic}
+              href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+              saturation={"50%"}
+            />
+            <PricingCard
+              className={styles.card}
+              label={"most popular"}
+              title={"complete package"}
+              price={"$199"}
+              discounted_price={"$119"}
+              price_package={package_complete}
+              href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+            />
+            <PricingCard
+              className={styles.card}
+              label={"best value"}
+              title={"exclusive package"}
+              price={"$499"}
+              discounted_price={"$349"}
+              price_package={package_exclusive}
+              href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+              supply={"Limited supply"}
             />
           </div>
         </section>

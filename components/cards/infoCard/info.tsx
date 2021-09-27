@@ -8,7 +8,7 @@ const info: info[] = [
   { info: "100% downloadable" },
   { info: "learn advanced concepts" },
   { info: "project you can build upon" },
-  { info: "exercises & quizes" },
+  { info: "exercises & quizzes" },
 ];
 
 export default info;

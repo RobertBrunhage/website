@@ -5,6 +5,7 @@ image: /assets/images/next_vs_flutter_thumbnail.webp
 youtube: YHhC-7FVo7I
 author: Robert Brunhage
 date: 04-17-2021
+featured: true
 ---
 
 There are 6 topics that I consider when choosing a framework for my web projects and I will go over them and the reason why my personal website [robertbrunhage.com](https://robertbrunhage.com) is using Next.js.
