@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Layout from "../components/layout/layout";
+import Link from "next/link";
 import styles from "../styles/home.module.scss";
 import fs from "fs";
 import matter from "gray-matter";
@@ -90,11 +91,13 @@ const home = ({ videos }: HomeProps) => {
                 animation={true}
               />
             </div>
-            <img
-              className={styles.sprite}
-              src="/assets/images/flutter_course_launch_hero.png"
-              alt="intro_man"
-            />
+            <Link href="/course">
+              <img
+                className={styles.sprite}
+                src="/assets/images/flutter_course_launch_hero.png"
+                alt="intro_man"
+              />
+            </Link>
           </div>
 
           <div
