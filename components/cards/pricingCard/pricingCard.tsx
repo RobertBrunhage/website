@@ -17,6 +17,7 @@ interface PricingProps {
   href?: string;
   saturation?: string;
   supply?: string;
+  disabled?: boolean;
 }
 
 const pricingCard = ({
@@ -28,7 +29,8 @@ const pricingCard = ({
   price_package,
   href,
   saturation,
-  supply
+  supply,
+  disabled,
 }: PricingProps) => {
   return (
     <div className={`${styles.container} ${className}`}>
@@ -61,6 +63,7 @@ const pricingCard = ({
         saturation={saturation}
         plausibleEvent={eventSignup}
         plausibleEventProp={eventPropCourse}
+        disabled={disabled}
       />
     </div>
   );

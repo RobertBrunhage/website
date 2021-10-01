@@ -346,8 +346,10 @@ const course = () => {
                 price={"$499"}
                 discounted_price={"$349"}
                 price_package={package_exclusive}
-                href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
-                supply={"Limited supply"}
+                href={""}
+                supply={"Out of stock"}
+                saturation={"0"}
+                disabled={true}
               />
             </div>
             <div style={{ marginTop: "128px" }}>
@@ -446,8 +448,10 @@ const course = () => {
               price={"$499"}
               discounted_price={"$349"}
               price_package={package_exclusive}
-              href={`${purchase_link}${exclusive_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
-              supply={"Limited supply"}
+              href={""}
+              supply={"Out of stock"}
+              saturation={"0"}
+              disabled={true}
             />
           </div>
         </section>

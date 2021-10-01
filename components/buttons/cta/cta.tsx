@@ -10,6 +10,7 @@ interface CTAProps {
   target?: string;
   center?: boolean;
   saturation?: string;
+  disabled?: boolean;
   plausibleEvent?: any;
   plausibleEventProp?: any;
 }
@@ -22,6 +23,7 @@ const cta = ({
   target,
   center,
   saturation,
+  disabled,
   plausibleEvent,
   plausibleEventProp,
 }: CTAProps) => {
@@ -47,6 +49,7 @@ const cta = ({
         style={{
           backgroundColor: animation ? "" : "var(--primary-color)",
           filter: saturation ? `saturate(${saturation})` : "",
+          pointerEvents: disabled ? "none" : "auto",
         }}
       >
         {text}
