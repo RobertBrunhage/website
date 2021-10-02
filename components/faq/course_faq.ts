@@ -12,7 +12,7 @@ const FAQ: FAQ[] = [
   {
     question: "What does the pre-lauch mean?",
     answer:
-      "The course is not done yet and is still being produced. I have a reduced price during the pre-launch to accommodate that it will take a little bit of time to complete the course. Currently, as of the first week of pre-launch, 1/7 modules are out. I aim to complete it all within 2 months.",
+      "The course is not done yet and is still being produced. I have a reduced price during the pre-launch to accommodate that it will take a little bit of time to complete the course. Currently, as of the first week of pre-launch, 2/7 modules are out. I aim to complete it all within 2-3 months.",
   },
   {
     question: "Will you teach about Null safety?",
