@@ -156,6 +156,11 @@ const course = () => {
               knowledge of Flutter, then it is for you as well!
               <br />
               <br />
+              I don't aim this to be a long length course. 
+              The speed of which I teach will be quite high so <strong>don't</strong> expect 
+              tons of hours of content which you might be used with from other courses.
+              <br />
+              <br />
               Do you wish you were rich?
               <br /> Do you wish you were successful?
               <br />
