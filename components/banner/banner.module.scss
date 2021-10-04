@@ -14,6 +14,8 @@
     margin: 16px auto;
 
     .text {
+      display: grid;
+      place-items: center;
       p,
       h4 {
         margin: 0;
