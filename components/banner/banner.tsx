@@ -34,7 +34,6 @@ const banner = () => {
     <div data-aos="fade-down" id={"banner"} className={styles.banner}>
       <div className={styles.content}>
         <div className={styles.text}>
-          <p>Currently a pre-sale of the course 2 modules completed</p>
           <h4>Get my Ultimate Flutter course for 25% off</h4>
         </div>
         <Link href="/course">
