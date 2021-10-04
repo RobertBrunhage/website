@@ -127,11 +127,6 @@ const course = () => {
         </section>
         <section className={styles.introduction}>
           <div data-aos="fade" className={`max_width ${styles.intro_text}`}>
-            <Timer
-              title={"First week sale ends in"}
-              date={new Date("Oct 4, 2021 15:00:00")}
-              center={true}
-            />
             <p>
               Have you used Flutter but want to get to the next level? <br />
               <br /> Tired of writing code that becomes messy, hard to manage,
@@ -155,10 +150,10 @@ const course = () => {
               This is an intermediate-level course. BUT if you have a basic
               knowledge of Flutter, then it is for you as well!
               <br />
-              <br />
-              I don't aim this to be a long length course. 
-              The speed of which I teach will be quite high so <strong>don't</strong> expect 
-              tons of hours of content which you might be used with from other courses.
+              <br />I don't aim this to be a long length course. The speed of
+              which I teach will be quite high so <strong>don't</strong> expect
+              tons of hours of content which you might be used with from other
+              courses.
               <br />
               <br />
               Do you wish you were rich?
@@ -330,7 +325,7 @@ const course = () => {
                 className={styles.card}
                 title={"basic package"}
                 price={"$149"}
-                discounted_price={"$99"}
+                discounted_price={"$129"}
                 price_package={package_basic}
                 href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
                 saturation={"50%"}
@@ -340,7 +335,7 @@ const course = () => {
                 label={"most popular"}
                 title={"complete package"}
                 price={"$199"}
-                discounted_price={"$119"}
+                discounted_price={"$149"}
                 price_package={package_complete}
                 href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
               />
@@ -349,19 +344,12 @@ const course = () => {
                 label={"best value"}
                 title={"exclusive package"}
                 price={"$499"}
-                discounted_price={"$349"}
+                discounted_price={"$399"}
                 price_package={package_exclusive}
                 href={""}
                 supply={"Out of stock"}
                 saturation={"0"}
                 disabled={true}
-              />
-            </div>
-            <div style={{ marginTop: "128px" }}>
-              <Timer
-                title={"First week sale ends in"}
-                date={new Date("Oct 4, 2021 15:00:00")}
-                center={true}
               />
             </div>
           </div>
@@ -432,7 +420,7 @@ const course = () => {
               label={""}
               title={"basic package"}
               price={"$149"}
-              discounted_price={"$99"}
+              discounted_price={"$129"}
               price_package={package_basic}
               href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
               saturation={"50%"}
@@ -442,7 +430,7 @@ const course = () => {
               label={"most popular"}
               title={"complete package"}
               price={"$199"}
-              discounted_price={"$119"}
+              discounted_price={"$149"}
               price_package={package_complete}
               href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
             />
@@ -451,7 +439,7 @@ const course = () => {
               label={"best value"}
               title={"exclusive package"}
               price={"$499"}
-              discounted_price={"$349"}
+              discounted_price={"$399"}
               price_package={package_exclusive}
               href={""}
               supply={"Out of stock"}
