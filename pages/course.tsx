@@ -30,7 +30,7 @@ const course = () => {
   const complete_package = "?product_id=3401914";
   const exclusive_package = "?product_id=3401916";
 
-  const coupon_code = "7-DAY-SALE";
+  const coupon_code = "PRE-SALE";
 
   const getAffcode = () => {
     const qs = queryString.parse(window.location.search);
