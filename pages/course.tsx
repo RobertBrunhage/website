@@ -19,7 +19,6 @@ import questions from "../components/faq/course_faq";
 import FAQ from "../components/faq/faq";
 import Layout from "../components/layout/layout";
 import Quote from "../components/quote/quote";
-import Timer from "../components/timer/timer";
 import styles from "../styles/courses.module.scss";
 
 const course = () => {
@@ -150,10 +149,9 @@ const course = () => {
               This is an intermediate-level course. BUT if you have a basic
               knowledge of Flutter, then it is for you as well!
               <br />
-              <br />I don't aim this to be a long length course. The speed of
-              which I teach will be quite high so <strong>don't</strong> expect
-              tons of hours of content which you might be used with from other
-              courses.
+              <br />I don't aim for this to be a long length course. The speed
+              at which I teach will be fast. <strong>Don't</strong> expect tons
+              of hours of content which you might be used by from other courses.
               <br />
               <br />
               Do you wish you were rich?
