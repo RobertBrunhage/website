@@ -42,6 +42,8 @@ const home = ({ videos }: HomeProps) => {
           content="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
         />
         <link rel="icon" href="/favicon.ico" />
+        
+        <meta name="google-site-verification" content="Pqrzefm4mZOjcWoIxRFPbqYBayho5MHfuixqIozHFKs" />
 
         <meta property="og:url" content="https://robertbrunhage.com" />
         <meta property="og:type" content="article" />
