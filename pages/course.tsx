@@ -65,10 +65,15 @@ const course = () => {
   return (
     <Layout>
       <Head>
-        <title>Ultimate Flutter Course</title>
+        <title>
+          Ultimate Flutter Course: Testing, State Management and more
+        </title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="robots" content="index" />
-        <meta name="description" content="Flutter Courses | Robert Brunhage" />
+        <meta
+          name="description"
+          content="This Flutter Course covers all the important topics such as State Management, APIs, Testing, Architecture, and more. Join 200+ flutter developers today!"
+        />
         <meta property="og:url" content="https://robertbrunhage.com/course" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Ultimate Flutter Course" />
