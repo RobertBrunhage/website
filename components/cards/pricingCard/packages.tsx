@@ -4,7 +4,7 @@ interface price_package {
 
 const package_basic: price_package[] = [
   {
-    name: "First 4 Modules (3 modules are currently completed)",
+    name: "First 4 Modules",
   },
   {
     name: "Download all videos for offline access",
@@ -28,7 +28,7 @@ const package_complete: price_package[] = [
     name: "Everything in the basic package",
   },
   {
-    name: "Entire Course (3 modules are currently completed)",
+    name: "Entire Course (5 modules are currently completed)",
   },
   {
     name: "Download all videos for offline access",
@@ -55,7 +55,7 @@ const package_exclusive: price_package[] = [
     name: "2 Hours of 1 on 1 personal teaching",
   },
   {
-    name: "Entire Course (3 modules are currently completed)",
+    name: "Entire Course (5 modules are currently completed)",
   },
   {
     name: "Download all videos for offline access",
