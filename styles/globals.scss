@@ -28,7 +28,7 @@
   --display: 6rem;
   --h1: 4.8rem;
   --h2: 3.4rem;
-  --h3: 2.8rem;
+  --h3: 2.4rem;
   --subtitle: 2rem;
   --body-large: 1.8rem;
   --body-regular: 1.6rem;
@@ -117,6 +117,69 @@ img {
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+.CookieConsent {
+  padding: 2em 4em;
+  max-width: 1200px;
+  color: #333;
+  background-color: #fff;
+  border-radius: 8px;
+
+  display: flex;
+  place-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  margin-bottom: 32px;
+
+  z-index: 999;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    margin: 0 0 8px 0;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+.CookieConsentBtn {
+  padding: 1em 2em;
+  border: none;
+  background-color: var(--primary-color);
+  border-radius: 0.5em;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  right: 0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  &:hover {
+    filter: drop-shadow(0px 0px 6px var(--primary-color));
+  }
+}
+
+.DeclineBtn{
+  background-color: #fff;
+  border: 2px solid var(--primary-color);
+  color: #000;
+  margin-left: 32px;
+}
+
+.CookieConsentOverlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
 }
 
 /* custom scroll bar */

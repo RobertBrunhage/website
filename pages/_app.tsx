@@ -1,6 +1,9 @@
 import PlausibleProvider from "next-plausible";
-import "../styles/globals.css";
+import "../styles/globals.scss";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
+import CookieConsent from "react-cookie-consent";
+/* import ReactPixel from "react-facebook-pixel"; */
 
 interface MyAppProps {
   Component: any;
@@ -8,6 +11,8 @@ interface MyAppProps {
 }
 
 function MyApp({ Component, pageProps }: MyAppProps) {
+  const router = useRouter();
+
   useEffect(() => {
     const theme = localStorage.getItem("theme");
 
@@ -17,9 +22,43 @@ function MyApp({ Component, pageProps }: MyAppProps) {
       document.body.classList.add("dark");
     }
   }, []);
+
+  useEffect(() => {
+    //if cookie accepted do this
+    import("react-facebook-pixel")
+      .then((x) => x.default)
+      .then((ReactPixel) => {
+        ReactPixel.init("facebookPixelId");
+        ReactPixel.pageView();
+
+        router.events.on("routeChangeComplete", () => {
+          ReactPixel.pageView();
+        });
+      });
+  }, [router.events]);
+
   return (
     <PlausibleProvider trackOutboundLinks={true} domain="robertbrunhage.com">
       <Component {...pageProps} />
+      <CookieConsent
+        disableStyles
+        location="bottom"
+        buttonText="I UNDERSTAND"
+        declineButtonText="DECLINE"
+        cookieName="cookies"
+        overlay
+        expires={365}
+        enableDeclineButton
+        overlayClasses="CookieConsentOverlay"
+        buttonClasses="CookieConsentBtn"
+        declineButtonClasses="CookieConsentBtn DeclineBtn"
+        flipButtons
+      >
+        <h3>This site uses cookies</h3>
+        <p>
+          This site uses cookies to help tailor ads on third-party websites.
+        </p>
+      </CookieConsent>
     </PlausibleProvider>
   );
 }
