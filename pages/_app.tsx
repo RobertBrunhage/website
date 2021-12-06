@@ -3,6 +3,7 @@ import "../styles/globals.scss";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import CookieConsent from "react-cookie-consent";
+import Cookies from "universal-cookie";
 /* import ReactPixel from "react-facebook-pixel"; */
 
 interface MyAppProps {
@@ -12,6 +13,7 @@ interface MyAppProps {
 
 function MyApp({ Component, pageProps }: MyAppProps) {
   const router = useRouter();
+  const cookies = new Cookies();
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");
@@ -24,18 +26,19 @@ function MyApp({ Component, pageProps }: MyAppProps) {
   }, []);
 
   useEffect(() => {
-    //if cookie accepted do this
-    import("react-facebook-pixel")
-      .then((x) => x.default)
-      .then((ReactPixel) => {
-        ReactPixel.init("facebookPixelId");
-        ReactPixel.pageView();
-
-        router.events.on("routeChangeComplete", () => {
+    if (cookies.get("cookies")) {
+      import("react-facebook-pixel")
+        .then((x) => x.default)
+        .then((ReactPixel) => {
+          ReactPixel.init("facebookPixelId");
           ReactPixel.pageView();
+
+          router.events.on("routeChangeComplete", () => {
+            ReactPixel.pageView();
+          });
         });
-      });
-  }, [router.events]);
+    }
+  }, [cookies]);
 
   return (
     <PlausibleProvider trackOutboundLinks={true} domain="robertbrunhage.com">
@@ -53,6 +56,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
         buttonClasses="CookieConsentBtn"
         declineButtonClasses="CookieConsentBtn DeclineBtn"
         flipButtons
+        buttonWrapperClasses="Btns"
       >
         <h3>This site uses cookies</h3>
         <p>

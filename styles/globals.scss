@@ -119,11 +119,13 @@ img {
   padding: 0 20px;
 }
 
+
+/* cookie banner */
 .CookieConsent {
   padding: 2em 4em;
   max-width: 1200px;
-  color: #333;
-  background-color: #fff;
+  color: var(--shade_100);
+  background-color: var(--gray_800);
   border-radius: 8px;
 
   display: flex;
@@ -146,7 +148,6 @@ img {
     margin: 0;
   }
 }
-
 .CookieConsentBtn {
   padding: 1em 2em;
   border: none;
@@ -164,14 +165,13 @@ img {
     filter: drop-shadow(0px 0px 6px var(--primary-color));
   }
 }
-
-.DeclineBtn{
-  background-color: #fff;
+.DeclineBtn {
+  background-color: var(--gray_800);
   border: 2px solid var(--primary-color);
-  color: #000;
+  color: var(--shade_100);
   margin-left: 32px;
+  box-shadow: none;
 }
-
 .CookieConsentOverlay {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
@@ -180,6 +180,25 @@ img {
   width: 100%;
   height: 100%;
   z-index: 9999;
+}
+@media only screen and (max-width: 950px) {
+  .CookieConsent {
+    display: grid;
+    gap: 2em;
+    max-width: max-content;
+
+    .Btns {
+      display: flex;
+    }
+    .CookieConsentBtn {
+      width: max-content;
+    }
+  }
+}
+@media only screen and (max-width: 440px) {
+  .CookieConsentBtn {
+    font-size: 12px;
+  }
 }
 
 /* custom scroll bar */
