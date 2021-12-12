@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
           });
         });
     }
-  }, [cookieAccept]);
+  }, [cookies.get("cookies"), cookieAccept]);
 
   return (
     <PlausibleProvider trackOutboundLinks={true} domain="robertbrunhage.com">
@@ -62,6 +62,12 @@ function MyApp({ Component, pageProps }: MyAppProps) {
         <h3>This site uses cookies</h3>
         <p>
           This site uses cookies to help tailor ads on third-party websites.
+        </p>
+        <p>
+          Read more about our{" "}
+          <a style={{ color: "#22e2e2" }} href="/cookie_policy">
+            Cookie policy
+          </a>
         </p>
       </CookieConsent>
     </PlausibleProvider>
