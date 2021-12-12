@@ -13,7 +13,7 @@ const banner = () => {
     const nav = document.getElementById("nav");
     const banner = document.getElementById("banner");
 
-    if (path.pathname === "/course") {
+    if (path.pathname === "/course" || path.pathname === "/cookie_policy") {
       if (nav && banner) {
         nav.style.top = "auto";
         nav.style.marginTop = "0px";
