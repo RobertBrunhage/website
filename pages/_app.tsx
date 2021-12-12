@@ -1,10 +1,9 @@
 import PlausibleProvider from "next-plausible";
 import "../styles/globals.scss";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import CookieConsent from "react-cookie-consent";
 import Cookies from "universal-cookie";
-/* import ReactPixel from "react-facebook-pixel"; */
+import CookieConsent from "react-cookie-consent";
 
 interface MyAppProps {
   Component: any;
@@ -12,6 +11,7 @@ interface MyAppProps {
 }
 
 function MyApp({ Component, pageProps }: MyAppProps) {
+  const [cookieAccept, setCookieAccept] = useState(false);
   const router = useRouter();
   const cookies = new Cookies();
 
@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
       import("react-facebook-pixel")
         .then((x) => x.default)
         .then((ReactPixel) => {
-          ReactPixel.init("facebookPixelId");
+          ReactPixel.init(`${process.env.FACEBOOK_PIXEL_ID}`);
           ReactPixel.pageView();
 
           router.events.on("routeChangeComplete", () => {
@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
           });
         });
     }
-  }, [cookies]);
+  }, [cookieAccept]);
 
   return (
     <PlausibleProvider trackOutboundLinks={true} domain="robertbrunhage.com">
@@ -57,6 +57,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
         declineButtonClasses="CookieConsentBtn DeclineBtn"
         flipButtons
         buttonWrapperClasses="Btns"
+        onAccept={() => setCookieAccept(true)}
       >
         <h3>This site uses cookies</h3>
         <p>
