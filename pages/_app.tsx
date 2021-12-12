@@ -8,9 +8,10 @@ import CookieConsent from "react-cookie-consent";
 interface MyAppProps {
   Component: any;
   pageProps: any;
+  pixel_id: string;
 }
 
-function MyApp({ Component, pageProps }: MyAppProps) {
+function MyApp({ Component, pageProps, pixel_id }: MyAppProps) {
   const [cookieAccept, setCookieAccept] = useState(false);
   const router = useRouter();
   const cookies = new Cookies();
@@ -30,7 +31,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
       import("react-facebook-pixel")
         .then((x) => x.default)
         .then((ReactPixel) => {
-          ReactPixel.init(`${process.env.FACEBOOK_PIXEL_ID}`);
+          ReactPixel.init(pixel_id);
           ReactPixel.pageView();
 
           router.events.on("routeChangeComplete", () => {
@@ -75,3 +76,11 @@ function MyApp({ Component, pageProps }: MyAppProps) {
 }
 
 export default MyApp;
+
+export async function getStaticProps() {
+  return {
+    props: {
+      pixel_id: process.env.FACEBOOK_PIXEL_ID,
+    },
+  };
+}
