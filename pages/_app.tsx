@@ -27,7 +27,17 @@ function MyApp({ Component, pageProps, pixel_id }: MyAppProps) {
   }, []);
 
   useEffect(() => {
+    console.log(
+      "%cYOU GETTING THIS VARIABLE ?: ",
+      "color:red;font-size:2em",
+      process.env.FACEBOOK_PIXEL_ID
+    );
+
     if (cookies.get("cookies")) {
+      console.log(
+        "%cyo the cookie is accept lets go pixel gang: ",
+        "color:green;font-size:1.4em"
+      );
       import("react-facebook-pixel")
         .then((x) => x.default)
         .then((ReactPixel) => {
@@ -78,6 +88,7 @@ function MyApp({ Component, pageProps, pixel_id }: MyAppProps) {
 export default MyApp;
 
 export async function getStaticProps() {
+  console.log(process.env.FACBOOK_PIXEL_ID);
   return {
     props: {
       pixel_id: process.env.FACEBOOK_PIXEL_ID,
