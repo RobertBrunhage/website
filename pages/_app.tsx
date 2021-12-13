@@ -8,10 +8,9 @@ import CookieConsent from "react-cookie-consent";
 interface MyAppProps {
   Component: any;
   pageProps: any;
-  pixel_id: string;
 }
 
-function MyApp({ Component, pageProps, pixel_id }: MyAppProps) {
+function MyApp({ Component, pageProps }: MyAppProps) {
   const [cookieAccept, setCookieAccept] = useState(false);
   const router = useRouter();
   const cookies = new Cookies();
@@ -33,12 +32,6 @@ function MyApp({ Component, pageProps, pixel_id }: MyAppProps) {
       process.env.FACEBOOK_PIXEL_ID
     );
 
-    console.log(
-      "%cYOU GETTING THIS VARIABLE ?: ",
-      "color:red;font-size:2em",
-      pixel_id
-    );
-
     if (cookies.get("cookies")) {
       console.log(
         "%cyo the cookie is accept lets go pixel gang: ",
@@ -47,12 +40,9 @@ function MyApp({ Component, pageProps, pixel_id }: MyAppProps) {
       import("react-facebook-pixel")
         .then((x) => x.default)
         .then((ReactPixel) => {
-          ReactPixel.init(pixel_id);
+          ReactPixel.init(`${process.env.FACEBOOK_PIXEL_ID}`);
           ReactPixel.pageView();
-          console.log(
-            "%cPixel is set!",
-            "color:green;font-size:1.4em"
-          );
+          console.log("%cPixel is set!", "color:green;font-size:1.4em");
 
           router.events.on("routeChangeComplete", () => {
             ReactPixel.pageView();
@@ -100,12 +90,3 @@ function MyApp({ Component, pageProps, pixel_id }: MyAppProps) {
 }
 
 export default MyApp;
-
-export async function getStaticProps() {
-  console.log(process.env.FACBOOK_PIXEL_ID);
-  return {
-    props: {
-      pixel_id: process.env.FACEBOOK_PIXEL_ID,
-    },
-  };
-}
