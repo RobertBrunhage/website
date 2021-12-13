@@ -5,14 +5,12 @@
   text-align: center;
   font-size: 1.5rem;
 
-  .issue {
-    a {
-      color: var(--secondary-color);
-    }
-  }
-
   .copyright {
     color: var(--text-color2);
+  }
+
+  a {
+    color: var(--secondary-color);
   }
 
   .socials {
