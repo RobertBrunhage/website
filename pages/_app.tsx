@@ -43,9 +43,17 @@ function MyApp({ Component, pageProps, pixel_id }: MyAppProps) {
         .then((ReactPixel) => {
           ReactPixel.init(pixel_id);
           ReactPixel.pageView();
+          console.log(
+            "%cPixel is set!",
+            "color:green;font-size:1.4em"
+          );
 
           router.events.on("routeChangeComplete", () => {
             ReactPixel.pageView();
+            console.log(
+              "%csend pixel pageview log!",
+              "color:green;font-size:1.4em"
+            );
           });
         });
     }
