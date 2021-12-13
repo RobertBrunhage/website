@@ -2,8 +2,7 @@ import PlausibleProvider from "next-plausible";
 import "../styles/globals.scss";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Cookies from "universal-cookie";
-import CookieConsent from "react-cookie-consent";
+import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
 
 interface MyAppProps {
   Component: any;
@@ -13,7 +12,7 @@ interface MyAppProps {
 function MyApp({ Component, pageProps }: MyAppProps) {
   const [cookieAccept, setCookieAccept] = useState(false);
   const router = useRouter();
-  const cookies = new Cookies();
+  const cookieStatus = getCookieConsentValue();
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");
@@ -26,8 +25,6 @@ function MyApp({ Component, pageProps }: MyAppProps) {
   }, []);
 
   useEffect(() => {
-    const cookieStatus = cookies.get("cookies");
-
     if (cookieStatus === "true") {
       import("react-facebook-pixel")
         .then((x) => x.default)
@@ -40,7 +37,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
           });
         });
     }
-  }, [cookies.get("cookies"), cookieAccept]);
+  }, [cookieStatus, cookieAccept]);
 
   return (
     <PlausibleProvider trackOutboundLinks={true} domain="robertbrunhage.com">
@@ -50,7 +47,6 @@ function MyApp({ Component, pageProps }: MyAppProps) {
         location="bottom"
         buttonText="I UNDERSTAND"
         declineButtonText="DECLINE"
-        cookieName="cookies"
         overlay
         expires={365}
         enableDeclineButton
