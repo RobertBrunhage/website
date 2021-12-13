@@ -26,30 +26,17 @@ function MyApp({ Component, pageProps }: MyAppProps) {
   }, []);
 
   useEffect(() => {
-    console.log(
-      "%cYOU GETTING THIS VARIABLE ?: ",
-      "color:red;font-size:2em",
-      process.env.FACEBOOK_PIXEL_ID
-    );
+    const cookieStatus = cookies.get("cookies");
 
-    if (cookies.get("cookies")) {
-      console.log(
-        "%cyo the cookie is accept lets go pixel gang: ",
-        "color:green;font-size:1.4em"
-      );
+    if (cookieStatus === "true") {
       import("react-facebook-pixel")
         .then((x) => x.default)
         .then((ReactPixel) => {
           ReactPixel.init(`${process.env.FACEBOOK_PIXEL_ID}`);
           ReactPixel.pageView();
-          console.log("%cPixel is set!", "color:green;font-size:1.4em");
 
           router.events.on("routeChangeComplete", () => {
             ReactPixel.pageView();
-            console.log(
-              "%csend pixel pageview log!",
-              "color:green;font-size:1.4em"
-            );
           });
         });
     }
