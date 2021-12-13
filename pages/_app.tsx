@@ -33,6 +33,12 @@ function MyApp({ Component, pageProps, pixel_id }: MyAppProps) {
       process.env.FACEBOOK_PIXEL_ID
     );
 
+    console.log(
+      "%cYOU GETTING THIS VARIABLE ?: ",
+      "color:red;font-size:2em",
+      pixel_id
+    );
+
     if (cookies.get("cookies")) {
       console.log(
         "%cyo the cookie is accept lets go pixel gang: ",
