@@ -20,6 +20,7 @@ import FAQ from "../components/faq/faq";
 import Layout from "../components/layout/layout";
 import Quote from "../components/quote/quote";
 import styles from "../styles/courses.module.scss";
+import Timer from "../components/timer/timer";
 
 const course = () => {
   const [affcode, setAffcode] = useState(String);
@@ -131,6 +132,11 @@ const course = () => {
         </section>
         <section className={styles.introduction}>
           <div data-aos="fade" className={`max_width ${styles.intro_text}`}>
+            <Timer
+              title={"Sale ends 1st of January 2022"}
+              date={new Date("Jan 1, 2022 12:00:00")}
+              center={true}
+            />
             <p>
               Have you used Flutter but want to get to the next level? <br />
               <br /> Tired of writing code that becomes messy, hard to manage,
@@ -355,6 +361,11 @@ const course = () => {
                 disabled={true}
               />
             </div>
+            <Timer
+              title={"Sale ends 1st of January 2022"}
+              date={new Date("Jan 1, 2022 12:00:00")}
+              center={true}
+            />
           </div>
         </section>
         <section>
