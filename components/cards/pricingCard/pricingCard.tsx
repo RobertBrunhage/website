@@ -64,6 +64,7 @@ const pricingCard = ({
         plausibleEvent={eventSignup}
         plausibleEventProp={eventPropCourse}
         disabled={disabled}
+        isPurchase={true}
       />
     </div>
   );
