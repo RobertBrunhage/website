@@ -39,12 +39,8 @@
     }
     .price {
       grid-area: discount;
-      color: gray;
-      text-decoration: line-through;
-      font-size: var(--subtitle);
       margin: auto;
       margin-right: 0;
-      font-weight: 500;
     }
     .discounted_price {
       grid-area: price;

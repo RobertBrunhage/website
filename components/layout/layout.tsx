@@ -11,7 +11,6 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <Banner />
       <Navbar />
       <main className={styles.main}>{children}</main>
       <Footer />
