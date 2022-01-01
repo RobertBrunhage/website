@@ -30,8 +30,6 @@ const course = () => {
   const complete_package = "?product_id=3401914";
   const exclusive_package = "?product_id=3401916";
 
-  const coupon_code = "PRE-SALE";
-
   const getAffcode = () => {
     const qs = queryString.parse(window.location.search);
     const affcode = qs.affcode;
@@ -132,11 +130,6 @@ const course = () => {
         </section>
         <section className={styles.introduction}>
           <div data-aos="fade" className={`max_width ${styles.intro_text}`}>
-            <Timer
-              title={"Sale ends 1st of January 2022"}
-              date={new Date("Jan 1, 2022 12:00:00")}
-              center={true}
-            />
             <p>
               Have you used Flutter but want to get to the next level? <br />
               <br /> Tired of writing code that becomes messy, hard to manage,
@@ -334,9 +327,8 @@ const course = () => {
                 className={styles.card}
                 title={"basic package"}
                 price={"$149"}
-                discounted_price={"$129"}
                 price_package={package_basic}
-                href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+                href={`${purchase_link}${basic_package}&affcode=${affcode}`}
                 saturation={"50%"}
               />
               <PricingCard
@@ -344,16 +336,14 @@ const course = () => {
                 label={"most popular"}
                 title={"complete package"}
                 price={"$199"}
-                discounted_price={"$149"}
                 price_package={package_complete}
-                href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+                href={`${purchase_link}${complete_package}&affcode=${affcode}`}
               />
               <PricingCard
                 className={styles.card}
                 label={"best value"}
                 title={"exclusive package"}
                 price={"$499"}
-                discounted_price={"$399"}
                 price_package={package_exclusive}
                 href={""}
                 supply={"Out of stock"}
@@ -361,11 +351,6 @@ const course = () => {
                 disabled={true}
               />
             </div>
-            <Timer
-              title={"Sale ends 1st of January 2022"}
-              date={new Date("Jan 1, 2022 12:00:00")}
-              center={true}
-            />
           </div>
         </section>
         <section>
@@ -434,9 +419,8 @@ const course = () => {
               label={""}
               title={"basic package"}
               price={"$149"}
-              discounted_price={"$129"}
               price_package={package_basic}
-              href={`${purchase_link}${basic_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+              href={`${purchase_link}${basic_package}&affcode=${affcode}`}
               saturation={"50%"}
             />
             <PricingCard
@@ -444,16 +428,14 @@ const course = () => {
               label={"most popular"}
               title={"complete package"}
               price={"$199"}
-              discounted_price={"$149"}
               price_package={package_complete}
-              href={`${purchase_link}${complete_package}&coupon_code=${coupon_code}&affcode=${affcode}`}
+              href={`${purchase_link}${complete_package}&affcode=${affcode}`}
             />
             <PricingCard
               className={styles.card}
               label={"best value"}
               title={"exclusive package"}
               price={"$499"}
-              discounted_price={"$399"}
               price_package={package_exclusive}
               href={""}
               supply={"Out of stock"}

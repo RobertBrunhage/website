@@ -12,7 +12,7 @@ interface PricingProps {
   label?: string;
   title: string;
   price: string;
-  discounted_price: string;
+  discounted_price?: string;
   price_package: Array<Packages>;
   href?: string;
   saturation?: string;
