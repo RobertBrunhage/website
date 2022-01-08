@@ -11,7 +11,7 @@ git clone <your-forked-repo>
 yarn
 yarn dev
 
-git switch -b my-fix
+git switch -c my-fix
 # fix some code...
 
 git commit -m "Fix typo in readme"
