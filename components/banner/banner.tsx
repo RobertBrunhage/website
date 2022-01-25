@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styles from "./banner.module.scss";
-import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import styles from "./banner.module.scss";
 
 const banner = () => {
   const [open, setOpen] = useState(true);
@@ -34,10 +34,10 @@ const banner = () => {
     <div data-aos="fade-down" id={"banner"} className={styles.banner}>
       <div className={styles.content}>
         <div className={styles.text}>
-          <h4>Get my Ultimate Flutter course for 25% off</h4>
+          <h4>The Ultimate Flutter Course is fully released!</h4>
         </div>
         <Link href="/course">
-          <a>get the pre-launch deal</a>
+          <a>Learn More</a>
         </Link>
         <button onClick={() => onClose()}>×</button>
       </div>

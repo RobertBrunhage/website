@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./layout.module.scss";
 import Banner from "../banner/banner";
-import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
+import Navbar from "../navbar/navbar";
+import styles from "./layout.module.scss";
 
 interface LayoutProps {
   children: any;
@@ -11,6 +11,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
+      <Banner />
       <Navbar />
       <main className={styles.main}>{children}</main>
       <Footer />
