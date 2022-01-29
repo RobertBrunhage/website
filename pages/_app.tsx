@@ -1,8 +1,9 @@
 import PlausibleProvider from "next-plausible";
-import "../styles/globals.scss";
-import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
+import "../styles/code-highlighting.css";
+import "../styles/globals.scss";
 
 interface MyAppProps {
   Component: any;

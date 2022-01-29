@@ -1,18 +1,14 @@
 import Head from "next/head";
 import React from "react";
-import Layout from "../components/layout/layout";
-import fs from "fs";
-import matter from "gray-matter";
-import styles from "../styles/videos.module.scss";
-import PlausibleProvider from "next-plausible";
 import VideoCard from "../components/cards/videoCard/videoCard";
+import Layout from "../components/layout/layout";
+import { getAllFilesFrontMatter } from "../core/mdx";
+import styles from "../styles/videos.module.scss";
 
 interface FrontmatterProps {
-  frontmatter: {
-    title: string;
-    description: string;
-    image: string;
-  };
+  title: string;
+  description: string;
+  image: string;
   slug: any;
 }
 
@@ -29,25 +25,16 @@ const videos = ({ videos }: any) => {
         />
         <meta property="og:url" content="https://robertbrunhage.com/videos" />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={videos[0].frontmatter.title} />
-        <meta
-          property="og:description"
-          content={videos[0].frontmatter.description}
-        />
-        <meta property="og:image" content={videos[0].frontmatter.image} />
+        <meta property="og:title" content={videos[0].title} />
+        <meta property="og:description" content={videos[0].description} />
+        <meta property="og:image" content={videos[0].image} />
         <meta property="twitter:card" content="summary" />
         <meta property="twitter:site" content="@robertbrunhage" />
-        <meta
-          property="twitter:title"
-          content={videos[0].frontmatter.title}
-        />
-        <meta
-          property="twitter:description"
-          content={videos[0].frontmatter.description}
-        />
+        <meta property="twitter:title" content={videos[0].title} />
+        <meta property="twitter:description" content={videos[0].description} />
         <meta
           property="twitter:image"
-          content={`https://robertbrunhage.com${videos[0].frontmatter.image}`}
+          content={`https://robertbrunhage.com${videos[0].image}`}
         />
         <link rel="canonical" href="https://robertbrunhage.com/videos" />
       </Head>
@@ -55,11 +42,9 @@ const videos = ({ videos }: any) => {
         <h1 className={styles.title}>Video Lessons :)</h1>
         <div className={styles.card_container}>
           {videos.map(
-            ({
-              frontmatter: { title, description, image },
-              slug,
-            }: FrontmatterProps) => (
+            ({ title, description, image, slug }: FrontmatterProps) => (
               <VideoCard
+                key={slug}
                 slug={slug}
                 title={title}
                 description={description}
@@ -76,32 +61,7 @@ const videos = ({ videos }: any) => {
 export default videos;
 
 export async function getStaticProps() {
-  const files = fs.readdirSync(`${process.cwd()}/content/lessons`);
+  const videos = await getAllFilesFrontMatter("lessons");
 
-  const videos = files.map((filename) => {
-    const markdownWithMetadata = fs
-      .readFileSync(`content/lessons/${filename}`)
-      .toString();
-
-    const { data } = matter(markdownWithMetadata);
-
-    const frontmatter = {
-      ...data,
-    };
-
-    return {
-      slug: filename.replace(".md", ""),
-      frontmatter,
-    };
-  });
-
-  const sortedVideos = videos.sort((a, b) => {
-    return new Date(a.frontmatter.date) < new Date(b.frontmatter.date) ? 1 : -1;
-  });
-
-  return {
-    props: {
-      videos: sortedVideos,
-    },
-  };
+  return { props: { videos } };
 }
