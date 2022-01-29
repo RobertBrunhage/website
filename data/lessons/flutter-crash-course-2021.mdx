@@ -165,7 +165,7 @@ We are going to use these to pretty much build everything here so let's see what
 Below the last `SizedBox` we will add the following
 
 ```dart
-	AmountCard(
+AmountCard(
 	title: 'Assets',
 	amount: assetAmount,
 	onTap: () => showDialog(
@@ -180,7 +180,7 @@ Below the last `SizedBox` we will add the following
 	),
 ),
 SizedBox(height: 16),
-	AmountCard(
+AmountCard(
 	title: 'Liabilities',
 	amount: liabilitiesAmount,
 	onTap: () => showDialog(
@@ -195,19 +195,19 @@ SizedBox(height: 16),
 	),
 ),
 SizedBox(height: 102),
-	ElevatedButton(
-		style: ElevatedButton.styleFrom(
-			primary: Colors.white,
-		),
-		onPressed: () {},
-	),
-	child: Text(
-		'Calculate',
-		style: theme.textTheme.button!.copyWith(
-			color: Colors.grey.shade800,
-			fontWeight: FontWeight.bold,
-		),
-	),
+ElevatedButton(
+  style: ElevatedButton.styleFrom(
+    primary: Colors.white,
+  ),
+  onPressed: () {},
+),
+  child: Text(
+    'Calculate',
+    style: theme.textTheme.button!.copyWith(
+      color: Colors.grey.shade800,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
 ),
 ```
 

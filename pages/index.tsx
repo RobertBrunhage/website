@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import Layout from "../components/layout/layout";
 import Link from "next/link";
-import styles from "../styles/home.module.scss";
-import fs from "fs";
-import matter from "gray-matter";
+import { useEffect, useState } from "react";
 import CTA from "../components/buttons/cta/cta";
 import VideoCard from "../components/cards/videoCard/videoCard";
 import EmailSignup from "../components/emailForm/forms/emailSignup";
+import Layout from "../components/layout/layout";
+import { getAllFilesFrontMatter } from "../core/mdx";
+import styles from "../styles/home.module.scss";
 
 interface FrontmatterProps {
-  frontmatter: {
-    title: string;
-    description: string;
-    image: string;
-    featured: boolean;
-  };
+  title: string;
+  description: string;
+  image: string;
+  featured: boolean;
   slug: any;
 }
 
@@ -28,7 +25,7 @@ const home = ({ videos }: HomeProps) => {
 
   useEffect(() => {
     const featured = videos.filter((video) => {
-      return video.frontmatter.featured === true;
+      return video.featured === true;
     });
     setFeaturedVideos(featured);
   }, []);
@@ -178,8 +175,9 @@ const home = ({ videos }: HomeProps) => {
             <div className={styles.card_container}>
               {featuredVideos
                 .slice(0, 3)
-                .map(({ frontmatter: { title, description, image }, slug }) => (
+                .map(({ title, description, image, slug }) => (
                   <VideoCard
+                    key={slug}
                     slug={slug}
                     title={title}
                     description={description}
@@ -231,32 +229,7 @@ const home = ({ videos }: HomeProps) => {
 export default home;
 
 export async function getStaticProps() {
-  const files = fs.readdirSync(`${process.cwd()}/content/lessons`);
+  const videos = await getAllFilesFrontMatter("lessons");
 
-  const videos = files.map((filename) => {
-    const markdownWithMetadata = fs
-      .readFileSync(`content/lessons/${filename}`)
-      .toString();
-
-    const { data } = matter(markdownWithMetadata);
-
-    const frontmatter = {
-      ...data,
-    };
-
-    return {
-      slug: filename.replace(".md", ""),
-      frontmatter,
-    };
-  });
-
-  const sortedVideos = videos.sort((a, b) => {
-    return new Date(a.frontmatter.date) < new Date(b.frontmatter.date) ? 1 : -1;
-  });
-
-  return {
-    props: {
-      videos: sortedVideos,
-    },
-  };
+  return { props: { videos } };
 }

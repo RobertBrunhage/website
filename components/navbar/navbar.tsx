@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
-import styles from "./navbar.module.scss";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import React, { useRef } from "react";
 import Menu from "./menuItems";
-import Head from "next/head";
+import styles from "./navbar.module.scss";
 
 const Navbar = () => {
   const mobileMenuRef = useRef<HTMLUListElement>(null);
@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <header className={styles.header}>
       <Head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"

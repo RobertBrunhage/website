@@ -11,7 +11,7 @@ date: 12-05-2020
 Twitter is one of the biggest social media platforms, and in this blog we are going to go over how we can make our own app that will utalize the Twitter API to make our own tweets.
 
 # Initial Setup
-    
+
 - Get your API tokens from developer.twitter.com
 - Create a Flutter Project
 
@@ -27,9 +27,9 @@ http: any
 
 ### Setting up the environment_config.dart
 
-This will be responsible to pass the API key's we got from the Twitter Developer portal to our Repository. 
+This will be responsible to pass the API key's we got from the Twitter Developer portal to our Repository.
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 ```dart
 class EnvironmentConfig {
@@ -46,7 +46,6 @@ final environmentConfigProvider = Provider<EnvironmentConfig>((ref) {
 ```
 
 If you are completely new to this I recommend another video regarding <a href="https://www.youtube.com/watch?v=BbRBV6MvLqE" target="_blank">--dart-define</a>
-
 
 ### twitter_repository.dart
 
@@ -104,7 +103,7 @@ class TwitterRepository {
   }
 }
 
-// This class doesn't have to be in this file but done so to make it simpler in this example. 
+// This class doesn't have to be in this file but done so to make it simpler in this example.
 // We are going to use this to have our custom failure making our error decoupled and easier to manage.
 class Failure {
   Failure(this.message);
@@ -119,7 +118,7 @@ The controller will be responsible of making the requests to the repository comi
 
 We first provide the Controller so it is accessible to the UI (here you can also see that we watch the repository so the controller can access it). Our method just as in the repository uses the `Either` type so depending on our different states can return different results. We use this later in the UI so that we can clear the `TextEditingController` only if we actually have success when we post the actual tweet.
 
-```
+```dart
 import 'package:dartz/dartz.dart';
 import 'package:flutter_twitter_api/twitter_repository.dart';
 import 'package:hooks_riverpod/all.dart';
@@ -151,7 +150,6 @@ class TwitterController extends StateNotifier<AsyncValue<String>> {
 }
 ```
 
-
 ### main.dart
 
 The UI is pretty standard the only thing taking note here is that we have to wrap `MyApp` with a `ProviderScope` so that `Riverpod` actually works.
@@ -160,7 +158,7 @@ The other thing is that in the `MyhHomePage` we are actually using a `HookWidget
 
 The `TweetResponse` makes use of the `AsyncValue<String>` coming from our controller and uses the `when` keyword to display the appropriate state!
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -307,3 +305,4 @@ class TweetResponse extends HookWidget {
 }
 
 
+```

@@ -16,10 +16,10 @@ const faq = ({ title, questions }: FAQProps) => {
     <div className={styles.faq}>
       <h2>{title}</h2>
       {questions.map((faq, index) => (
-        <>
+        <div key={index}>
           <h3>{faq.question}</h3>
           <p>{faq.answer}</p>
-        </>
+        </div>
       ))}
     </div>
   );

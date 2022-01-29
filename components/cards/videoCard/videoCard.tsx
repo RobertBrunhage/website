@@ -4,7 +4,7 @@ import styles from "./videoCard.module.scss";
 
 const videoCard = ({ slug, title, image, description }: any) => {
   return (
-    <Link href={"/videos/[slug]"} as={`/videos/${slug}`} key={title}>
+    <Link href={"/videos/[slug]"} as={`/videos/${slug}`}>
       <div className={styles.video_card}>
         <img src={image} alt="thumbnail" />
         <h1>{title}</h1>
