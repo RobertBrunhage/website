@@ -1,21 +1,21 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Layout from "../../components/layout/layout";
 import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
-import ReactMarkdown from "react-markdown/with-html";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+import Head from "next/head";
+import path from "path";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import Head from "next/head";
+import Layout from "../../components/layout/layout";
 import styles from "../../styles/video_lesson.module.scss";
-import PlausibleProvider from "next-plausible";
 
 interface FrontmatterProps {
   title: string;
   description: string;
   image: string;
   youtube: string;
-  author:string;
+  author: string;
   date: string;
   github: string;
   slug: any;
@@ -26,7 +26,7 @@ interface CodeBlockProps {
 }
 
 interface LessonProps {
-  content: string;
+  content: MDXRemoteSerializeResult<Record<string, unknown>>;
   frontmatter: FrontmatterProps;
   slug: string;
 }
@@ -112,53 +112,19 @@ export default function Lesson({ content, frontmatter, slug }: LessonProps) {
           ""
         )}
         <div className={styles.markdown}>
-          <ReactMarkdown
+          <MDXRemote {...content} components={{ SyntaxHighlighter }} />
+          {/* <ReactMarkdown
             escapeHtml={false}
             source={content}
             renderers={{
               code: CodeBlock,
               image: (props) => MyImage(props, maxWidth),
             }}
-          />
+          /> */}
         </div>
       </article>
     </Layout>
   );
-}
-
-export async function getStaticPaths() {
-  const files = fs.readdirSync("content/lessons");
-
-  const paths = files.map((filename) => ({
-    params: {
-      slug: filename.replace(".md", ""),
-    },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params: { slug } }: any) {
-  const markdownWithMetadata = fs
-    .readFileSync(path.join("content/lessons", slug + ".md"))
-    .toString();
-
-  const { data, content } = matter(markdownWithMetadata);
-
-  const frontmatter = {
-    ...data,
-  };
-
-  return {
-    props: {
-      content: content,
-      frontmatter,
-      slug,
-    },
-  };
 }
 
 const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
@@ -184,3 +150,41 @@ const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
 
   return width && width > 25 ? width - 25 : width;
 };
+
+export async function getStaticPaths() {
+  const files = fs.readdirSync("content/lessons");
+
+  const paths = files.map((filename) => ({
+    params: {
+      slug: filename.split(".")[0],
+    },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params: { slug } }: any) {
+  // TODO: Switch .md to .mdx
+  const markdownWithMetadata = fs
+    .readFileSync(path.join("content/lessons", slug + ".mdx"))
+    .toString();
+
+  const { data, content } = matter(markdownWithMetadata);
+
+  const mdxSource = await serialize(content);
+
+  const frontmatter = {
+    ...data,
+  };
+
+  return {
+    props: {
+      content: mdxSource,
+      frontmatter,
+      slug,
+    },
+  };
+}

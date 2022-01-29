@@ -1,11 +1,10 @@
-import Head from "next/head";
-import React from "react";
-import Layout from "../components/layout/layout";
 import fs from "fs";
 import matter from "gray-matter";
-import styles from "../styles/videos.module.scss";
-import PlausibleProvider from "next-plausible";
+import Head from "next/head";
+import React from "react";
 import VideoCard from "../components/cards/videoCard/videoCard";
+import Layout from "../components/layout/layout";
+import styles from "../styles/videos.module.scss";
 
 interface FrontmatterProps {
   frontmatter: {
@@ -37,10 +36,7 @@ const videos = ({ videos }: any) => {
         <meta property="og:image" content={videos[0].frontmatter.image} />
         <meta property="twitter:card" content="summary" />
         <meta property="twitter:site" content="@robertbrunhage" />
-        <meta
-          property="twitter:title"
-          content={videos[0].frontmatter.title}
-        />
+        <meta property="twitter:title" content={videos[0].frontmatter.title} />
         <meta
           property="twitter:description"
           content={videos[0].frontmatter.description}
@@ -60,6 +56,7 @@ const videos = ({ videos }: any) => {
               slug,
             }: FrontmatterProps) => (
               <VideoCard
+                key={slug}
                 slug={slug}
                 title={title}
                 description={description}
@@ -90,7 +87,7 @@ export async function getStaticProps() {
     };
 
     return {
-      slug: filename.replace(".md", ""),
+      slug: filename.split(".")[0],
       frontmatter,
     };
   });
