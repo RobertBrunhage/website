@@ -1,16 +1,8 @@
 import Head from "next/head";
 import React from "react";
-import VideoCard from "../components/cards/videoCard/videoCard";
+import BlogLayout from "../components/blog/blogLayout";
 import Layout from "../components/layout/layout";
 import { getAllFilesFrontMatter } from "../core/mdx";
-import styles from "../styles/videos.module.scss";
-
-interface FrontmatterProps {
-  title: string;
-  description: string;
-  image: string;
-  slug: any;
-}
 
 const videos = ({ videos }: any) => {
   return (
@@ -38,22 +30,12 @@ const videos = ({ videos }: any) => {
         />
         <link rel="canonical" href="https://robertbrunhage.com/videos" />
       </Head>
-      <div className="max_width">
-        <h1 className={styles.title}>Video Lessons :)</h1>
-        <div className={styles.card_container}>
-          {videos.map(
-            ({ title, description, image, slug }: FrontmatterProps) => (
-              <VideoCard
-                key={slug}
-                slug={slug}
-                title={title}
-                description={description}
-                image={image}
-              />
-            )
-          )}
-        </div>
-      </div>
+      <BlogLayout
+        posts={videos}
+        title={"Videos"}
+        description="A collection of my videos with a written guide to accompany it!"
+        route="videos"
+      ></BlogLayout>
     </Layout>
   );
 };

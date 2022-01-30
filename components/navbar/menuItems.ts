@@ -1,12 +1,12 @@
-interface NavItem {
+export interface NavItem {
   title: string,
-  url: string,
+  url: string | string[],
 }
 
 const NavItems: NavItem[] = [
   { title: "Home", url: "/" },
   { title: "Course", url: "/course" },
-  { title: "Videos", url: "/videos" },
+  { title: "Tutorials", url: ["/videos", "/articles"] },
 ];
 
 export default NavItems;

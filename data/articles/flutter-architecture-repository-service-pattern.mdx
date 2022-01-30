@@ -1,0 +1,182 @@
+---
+title: Flutter Architecture | repository-service pattern
+description:
+  How to scale your app architecture with the help of the repository-service
+  pattern.
+author: Robert Brunhage
+date: 02-01-2022
+---
+
+The repository-service is not a new pattern, but it is powerful. I have
+personally used it for quite some time, and now I wanted to share it with you
+all.
+
+In this post, we will see real examples of implementing the repository-pattern
+and also learn some pros and cons the pattern has.
+
+## Some background
+
+To understand the repository-service pattern, we first need to understand what a
+repository and what a service is.
+
+- A repository is a class that will handle getting data into and out of your
+  database (data store). For example, if you have a `Dog` model, you will
+  probably also have a `DogRepository`.
+- A service is a class that will combine multiple repositories to provide more
+  complex domain data. For example, if we have a `Dog` and a `CatRepository`, we
+  might have an `AnimalService` to get all our animals and aggregate data.
+
+You might already imagine a con of this pattern and, that is "boiler-plate"
+code, or, in simple terms, a bunch of god damn code.
+
+## The practical application
+
+Let's move away from the background and get into the coding!
+
+To better explain this, we will keep the animals. I love animals, why not use
+them to explain some code!
+
+Below we have two endpoints, one for `dog` and one for `cat`. I made them in
+singular, to better grasp the concept.
+
+```js
+{
+  "id": 1,
+  "name": "Fluffy",
+  "species": "cat",
+  "age": 2,
+  "breed": "persian"
+}
+```
+
+```js
+{
+  "id": 1,
+  "name": "Bobby",
+  "species": "dog",
+  "age": 4,
+  "breed": "Keeshound"
+}
+```
+
+## The **repository** in repository-service pattern
+
+I will ignore the part where we create the models/entities for the above JSON,
+just imagine for now that we have it.
+
+Now two typical repositories would look something like this
+
+```dart
+class DogRepository {
+  Future<Dog> getDog() async {
+    // Do the required code to fetch it with whatever package or solution you want.
+    final dog = fancyFetchLogicForDog();
+    return dog;
+  }
+}
+```
+
+```dart
+class CatRepository {
+  Future<Dog> getCat() async {
+    // Do the required code to fetch it with whatever package or solution you want.
+    final cat = fancyFetchLogicForCat();
+    return cat;
+  }
+}
+```
+
+### Simplicity
+
+Notice that both our repositories are very simple in terms of implementation.
+This is one of the reasons why I love repositories.
+
+Now that we have done the above code, we just need to also create the services.
+Yes... that is right, one of the cons is now incoming...
+
+We need to create 3 services:
+
+1. `DogService`
+2. `CatService`
+3. `AnimalService`
+
+The reason for this is because depending on what we want in the application the
+layer we want to use the appropriate service.
+
+Now how does these look?
+
+## The magic of services
+
+I will keep it simple and ignore the `DogService` and `CatService` for now. The
+reason for this is because they will simply call respective repository and
+potential error handling, conversion, etc.
+
+Instead let's focus on the `AnimalService`!
+
+```dart
+class AnimalService {
+  final DogRepository _dogRepository;
+  final CatRepository _catRepository;
+
+  AnimalService(this._dogRepository, this._catRepository);
+
+  Future<List<Animal>> getAllAnimals() async {
+    try {
+      final dog = await _dogRepository.getDog();
+      final cat = await _catRepository.getCat();
+      return [dog, cat];
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<double> getAverageAnimalAge() async {
+    try {
+      final dog = await _dogRepository.getDog();
+      final cat = await _catRepository.getCat();
+      final animals = [dog, cat];
+      final averageAge = animals.map((animal) => animal.age).reduce((a, b) => a + b) / animals.length;
+      return averageAge;
+    } catch (e) {
+      throw e;
+    }
+  }
+}
+```
+
+On purpose I didn't do any kind of error handling to keep the code to a minimum,
+but if you would like to see that, make sure to share the article. This is
+something I cover in-depth in my course, but in general requires a quite large
+blog post! For something that is free, I made a personal project open-source
+that implements
+[this pattern](https://github.com/RobertBrunhage/budget_together).
+
+## The end result
+
+Thanks to this pattern we have gotten a very clean way to interract with our
+backend data.
+
+```dart
+// Imagine this has some fancy ui and this would be the method call.
+Future<void> getAverageAnimalAge() async {
+  final averageAnimalAge = await animalService.getAverageAnimalAge();
+
+  setState(() {
+    _averageAnimalAge = averageAnimalAge;
+  });
+}
+```
+
+Now we have a clean way to get our data and update our ui. But what I personally
+love the most is the freedom to do our error handling just as we want and still
+keep the calling side clean.
+
+## Ending gratitude
+
+I would like to both shout-out Andrea Bizotto from with his amazing article on
+the
+[repository pattern](https://codewithandrea.com/articles/flutter-repository-pattern/)
+
+And Matthew Jones about his
+[service-repository article](https://exceptionnotfound.net/the-repository-service-pattern-with-dependency-injection-and-asp-net-core/)
+that I highly recommend reading through.

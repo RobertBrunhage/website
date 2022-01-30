@@ -1,5 +1,17 @@
-.content {
+.title{
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 10px;
+}
 
+.quote{
+  font-size: 1.2em;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 40px
+}
+
+.content {
   .video {
     display: grid;
     margin: 0 auto;
@@ -75,8 +87,10 @@
       margin-top: 2em;
     }
     li {
-      font-size: var(--body-regular);
+      font-size: var(--body-large);
       line-height: 1.8; 
+      margin-right: 20px;
+      margin-left: 20px
     }
     a {
       text-decoration: underline;

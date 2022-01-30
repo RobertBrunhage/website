@@ -1,20 +1,13 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FrontmatterProps } from "../components/blog/blogLayout";
 import CTA from "../components/buttons/cta/cta";
-import VideoCard from "../components/cards/videoCard/videoCard";
+import BlogCard from "../components/cards/blogCard/blogCard";
 import EmailSignup from "../components/emailForm/forms/emailSignup";
 import Layout from "../components/layout/layout";
 import { getAllFilesFrontMatter } from "../core/mdx";
 import styles from "../styles/home.module.scss";
-
-interface FrontmatterProps {
-  title: string;
-  description: string;
-  image: string;
-  featured: boolean;
-  slug: any;
-}
 
 interface HomeProps {
   videos: Array<FrontmatterProps>;
@@ -176,7 +169,7 @@ const home = ({ videos }: HomeProps) => {
               {featuredVideos
                 .slice(0, 3)
                 .map(({ title, description, image, slug }) => (
-                  <VideoCard
+                  <BlogCard
                     key={slug}
                     slug={slug}
                     title={title}

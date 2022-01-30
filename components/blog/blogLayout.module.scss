@@ -1,0 +1,16 @@
+.title {
+	font-size: 4.5rem;
+}
+
+.subtitle {
+    font-size: var(--subtitle);
+    font-weight: 300;
+}
+
+.card_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 352px));
+    gap: 42px;
+    justify-content: center;
+}
+      

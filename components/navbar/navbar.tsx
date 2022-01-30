@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useRef } from "react";
-import Menu from "./menuItems";
+import Menu, { NavItem } from "./menuItems";
 import styles from "./navbar.module.scss";
 
 const Navbar = () => {
@@ -63,13 +63,12 @@ const Navbar = () => {
 
         <ul ref={mobileMenuRef} className={styles.navItems}>
           {Menu.map((item, index) => (
-            <li key={index}>
-              <Link href={item.url} key={index}>
-                <a className={router.pathname == item.url ? styles.active : ""}>
-                  {item.title}
-                </a>
-              </Link>
-            </li>
+            <NavItemComponent
+              key={index}
+              index={index}
+              navItem={item}
+              pathname={router.pathname}
+            />
           ))}
           <button onClick={setDarkTheme} style={{ display: "none" }}>
             dark
@@ -87,6 +86,47 @@ const Navbar = () => {
       </nav>
     </header>
   );
+};
+
+interface NavItemComponentProps {
+  navItem: NavItem;
+  index: number;
+  pathname: string;
+}
+
+const NavItemComponent = ({
+  navItem,
+  index,
+  pathname,
+}: NavItemComponentProps) => {
+  if (typeof navItem.url === "string") {
+    return (
+      <li key={index}>
+        <Link href={navItem.url} key={index}>
+          <a className={pathname == navItem.url ? styles.active : ""}>
+            {navItem.title}
+          </a>
+        </Link>
+      </li>
+    );
+  } else {
+    return (
+      <li key={index} className={styles.dropdown}>
+        <a className={navItem.url.includes(pathname) ? styles.active : ""}>
+          {navItem.title}
+        </a>
+        <ul className={styles.dropdownContent}>
+          {navItem.url.map((subItem, index) => (
+            <li>
+              <Link href={subItem} key={index}>
+                <a>{subItem.substring(1, subItem.length)}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </li>
+    );
+  }
 };
 
 export default Navbar;

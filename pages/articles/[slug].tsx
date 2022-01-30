@@ -32,13 +32,13 @@ interface FrontmatterProps {
   fileName: string;
 }
 
-interface LessonProps {
+interface ArticleProps {
   frontMatter: FrontmatterProps;
   content: MDXRemoteSerializeResult<Record<string, unknown>>;
   slug: string;
 }
 
-export default function Lesson({ frontMatter, content, slug }: LessonProps) {
+export default function Article({ frontMatter, content, slug }: ArticleProps) {
   const articleRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     Prism.highlightAll();
@@ -70,36 +70,12 @@ export default function Lesson({ frontMatter, content, slug }: LessonProps) {
         />
         <link
           rel="canonical"
-          href={`https://robertbrunhage.com/videos/${slug}`}
+          href={`https://robertbrunhage.com/articles/${slug}`}
         />
       </Head>
       <article ref={articleRef} className={`max_width ${styles.content}`}>
-        <h1>{frontMatter.title}</h1>
-        {frontMatter.youtube ? (
-          <div className={styles.video}>
-            <iframe
-              src={`https://www.youtube.com/embed/${frontMatter.youtube}`}
-            />
-            <div className={styles.desc}>
-              <p className={styles.description}>{frontMatter.description}</p>
-              <p className={styles.author}>{frontMatter.author}</p>
-              <p className={styles.date}>{frontMatter.date}</p>
-              {frontMatter.github ? (
-                <a
-                  href={frontMatter.github}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  CODE
-                </a>
-              ) : (
-                <></>
-              )}
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
+        <h1 className={styles.title}>{frontMatter.title}</h1>
+        <h4 className={styles.quote}>{frontMatter.readingTime.text}</h4>
         <div className={styles.markdown}>
           <MDXRemote {...content} />
         </div>
@@ -109,7 +85,7 @@ export default function Lesson({ frontMatter, content, slug }: LessonProps) {
 }
 
 export async function getStaticPaths() {
-  const posts = await getFiles("lessons");
+  const posts = await getFiles("articles");
 
   return {
     paths: posts.map((p) => ({
@@ -122,11 +98,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }: any) {
-  const allPosts = await getAllFilesFrontMatter("lessons");
+  const allPosts = await getAllFilesFrontMatter("articles");
   const postIndex = allPosts.findIndex((post) => post.slug === slug);
   const prev = allPosts[postIndex + 1] || null;
   const next = allPosts[postIndex - 1] || null;
-  const post = await getFileBySlug("lessons", slug);
+  const post = await getFileBySlug("articles", slug);
 
   const content = post.mdxSource;
   const { frontMatter } = post;
