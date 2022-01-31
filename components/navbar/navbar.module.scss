@@ -44,6 +44,7 @@
           padding: 14px;
           cursor: pointer;
         }
+
       }
       .active {
         border-radius: 4px;
@@ -77,6 +78,36 @@
 
         &:first-child {
           width: 60%;
+        }
+      }
+    }
+    .dropdown{
+      
+      .dropdownContent{
+        text-align: left;
+        background-color: #4e4e54;
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        transition: all 0.5s ease;
+        margin-top: 2rem;
+        display: none;
+        display:flex;
+        flex-direction:column;
+        padding: 0px;
+        border-radius: 4px;
+
+
+        li{
+          padding: 12px 12px 12px 0px;
+        }
+      }
+
+      &:hover{
+        .dropdownContent{
+          visibility: visible;
+          opacity: 1;
         }
       }
     }
@@ -135,6 +166,14 @@
 
       .active {
         display: block;
+      }
+
+      // Add resonsiveness on click for mobile (no hover)
+      .dropdown{
+      
+        .dropdownContent{
+         margin: 0 auto;
+        }
       }
     }
   }
