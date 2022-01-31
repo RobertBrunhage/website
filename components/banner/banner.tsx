@@ -3,9 +3,11 @@ import "aos/dist/aos.css";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styles from "./banner.module.scss";
+import { default as Cookie } from "universal-cookie";
 
 const banner = () => {
   const [open, setOpen] = useState(true);
+  const cookie = new Cookie();
 
   useEffect(() => {
     AOS.init({ duration: 1200, once: true });
@@ -28,9 +30,10 @@ const banner = () => {
 
   const onClose = () => {
     setOpen((open) => !open);
+    cookie.set("banner_close", true, { maxAge: 172800 });
   };
 
-  return open ? (
+  return open && !cookie.get("banner_close") ? (
     <div data-aos="fade-down" id={"banner"} className={styles.banner}>
       <div className={styles.content}>
         <div className={styles.text}>
