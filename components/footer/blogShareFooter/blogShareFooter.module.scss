@@ -1,0 +1,17 @@
+.container {
+	text-align: center;
+	ul {
+		list-style-type: none;
+		padding: 0;
+		li{
+			transition: all 0.3s ease-in-out;
+			// add background glow
+      		display: inline-block;
+			&:hover{
+				// enlarge the image on hover
+				transform: scale(1.3);
+				// add transition
+			}
+		}
+	}
+}

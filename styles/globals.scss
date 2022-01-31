@@ -113,6 +113,14 @@ img {
   box-sizing: border-box;
 }
 
+// apply style components margin and reset margins on text inside those components. 
+// This margin is originally applied on all text in a blog post.
+.blog_post_component {
+  margin-right: 40px;
+  margin-left: 40px;
+  margin-top: 80px;
+}
+
 .max_width {
   max-width: 1180px;
   margin: 0 auto;

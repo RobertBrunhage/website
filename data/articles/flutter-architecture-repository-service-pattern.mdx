@@ -7,7 +7,10 @@ author: Robert Brunhage
 date: 02-01-2022
 ---
 
-The repository-service is not a new pattern, but it is powerful. I have
+import emailSignup from "../../components/emailForm/forms/emailSignup";
+import blogShareFooter from "../../components/footer/blogShareFooter/blogShareFooter";
+
+The repository-service is **not** a new pattern, but it is **powerful**. I have
 personally used it for quite some time, and now I wanted to share it with you
 all.
 
@@ -26,8 +29,8 @@ repository and what a service is.
   complex domain data. For example, if we have a `Dog` and a `CatRepository`, we
   might have an `AnimalService` to get all our animals and aggregate data.
 
-You might already imagine a con of this pattern and, that is "boiler-plate"
-code, or, in simple terms, a bunch of god damn code.
+You might already imagine a con of this pattern and, that is **"boiler-plate"**
+code, or, in simple terms, a bunch of god damn code 😡.
 
 ## The practical application
 
@@ -86,7 +89,7 @@ class CatRepository {
 }
 ```
 
-### Simplicity
+### ✅ Simplicity
 
 Notice that both our repositories are very simple in terms of implementation.
 This is one of the reasons why I love repositories.
@@ -105,7 +108,7 @@ layer we want to use the appropriate service.
 
 Now how does these look?
 
-## The magic of services
+## 🧙 The magic of services
 
 I will keep it simple and ignore the `DogService` and `CatService` for now. The
 reason for this is because they will simply call respective repository and
@@ -144,17 +147,20 @@ class AnimalService {
 }
 ```
 
-On purpose I didn't do any kind of error handling to keep the code to a minimum,
-but if you would like to see that, make sure to share the article. This is
-something I cover in-depth in my course, but in general requires a quite large
-blog post! For something that is free, I made a personal project open-source
-that implements
-[this pattern](https://github.com/RobertBrunhage/budget_together).
+On purpose, I **didn't** do any kind of error handling to keep the code to a
+minimum. But if you would like to see that, make sure to **share the article**.
+This is something I cover in-depth in my course, but it requires a quite large
+blog post! For something free, I made a personal project open-source that
+implements [this pattern](https://github.com/RobertBrunhage/budget_together).
+
+<div className="blog_post_component">
+  <emailSignup color={"var(--secondary-bg-color)"} />
+</div>
 
 ## The end result
 
-Thanks to this pattern we have gotten a very clean way to interract with our
-backend data.
+Thanks to this pattern we have gotten a clean way to interact with our backend
+data.
 
 ```dart
 // Imagine this has some fancy ui and this would be the method call.
@@ -167,16 +173,19 @@ Future<void> getAverageAnimalAge() async {
 }
 ```
 
-Now we have a clean way to get our data and update our ui. But what I personally
-love the most is the freedom to do our error handling just as we want and still
-keep the calling side clean.
+But what I love the most is the **freedom** to do our error handling just as we
+want and still keep the calling side clean.
 
 ## Ending gratitude
 
-I would like to both shout-out Andrea Bizotto from with his amazing article on
-the
+I would like to both shout-out Andrea Bizotto from with his astounding article
+on the
 [repository pattern](https://codewithandrea.com/articles/flutter-repository-pattern/)
 
 And Matthew Jones about his
 [service-repository article](https://exceptionnotfound.net/the-repository-service-pattern-with-dependency-injection-and-asp-net-core/)
-that I highly recommend reading through.
+that I **highly** recommend reading through.
+
+<div className="blog_post_component">
+  <blogShareFooter message="Robert's new article about repository-service pattern in Flutter is great, highly recommend it!" />
+</div>
