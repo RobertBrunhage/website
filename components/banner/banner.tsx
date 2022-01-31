@@ -3,7 +3,7 @@ import "aos/dist/aos.css";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styles from "./banner.module.scss";
-import { default as Cookie, default as Cookies } from "universal-cookie";
+import { default as Cookie } from "universal-cookie";
 
 const banner = () => {
   const [open, setOpen] = useState(true);
