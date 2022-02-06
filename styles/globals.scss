@@ -2,6 +2,7 @@
   --primary-color: #e12339;
   --secondary-color: #22e2e2;
   --green: #23e158;
+  --yellow: #f5f847;
 
   --shade_0: #000000;
   --shade_80: #ffffffcc;
@@ -113,7 +114,7 @@ img {
   box-sizing: border-box;
 }
 
-// apply style components margin and reset margins on text inside those components. 
+// apply style components margin and reset margins on text inside those components.
 // This margin is originally applied on all text in a blog post.
 .blog_post_component {
   margin-right: 40px;
@@ -126,7 +127,6 @@ img {
   margin: 0 auto;
   padding: 0 20px;
 }
-
 
 /* cookie banner */
 .CookieConsent {

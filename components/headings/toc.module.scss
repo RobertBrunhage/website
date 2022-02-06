@@ -16,10 +16,9 @@
       li {
         padding: 10px;
 
+        transition: color 0.2s ease-in-out;
         &:hover {
-          color: var(--shade_100);
-          // add fade transition
-          transition: all 0.2s ease-in-out;
+          color: var(--yellow);
         }
       }
     }
