@@ -44,7 +44,6 @@
           padding: 14px;
           cursor: pointer;
         }
-
       }
       .active {
         border-radius: 4px;
@@ -81,9 +80,8 @@
         }
       }
     }
-    .dropdown{
-      
-      .dropdownContent{
+    .dropdown {
+      .dropdownContent {
         text-align: left;
         background-color: #4e4e54;
         z-index: 1;
@@ -93,19 +91,18 @@
         transition: all 0.5s ease;
         margin-top: 2rem;
         display: none;
-        display:flex;
-        flex-direction:column;
+        display: flex;
+        flex-direction: column;
         padding: 0px;
         border-radius: 4px;
 
-
-        li{
+        li {
           padding: 12px 12px 12px 0px;
         }
       }
 
-      &:hover{
-        .dropdownContent{
+      &:hover {
+        .dropdownContent {
           visibility: visible;
           opacity: 1;
         }
@@ -169,10 +166,9 @@
       }
 
       // Add resonsiveness on click for mobile (no hover)
-      .dropdown{
-      
-        .dropdownContent{
-         margin: 0 auto;
+      .dropdown {
+        .dropdownContent {
+          margin: 0 auto;
         }
       }
     }

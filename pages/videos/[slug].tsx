@@ -4,6 +4,7 @@ import "prismjs";
 import Prism from "prismjs";
 import "prismjs/components/prism-dart";
 import React, { useEffect, useRef } from "react";
+import { TOC } from "../../components/headings/toc";
 import Layout from "../../components/layout/layout";
 import {
   formatSlug,
@@ -11,6 +12,7 @@ import {
   getFileBySlug,
   getFiles,
 } from "../../core/mdx";
+import { getHeadings } from "../../core/utils";
 import styles from "../../styles/blog_post.module.scss";
 
 interface FrontmatterProps {
@@ -35,14 +37,22 @@ interface FrontmatterProps {
 interface LessonProps {
   frontMatter: FrontmatterProps;
   content: MDXRemoteSerializeResult<Record<string, unknown>>;
+  rawContent: string;
   slug: string;
 }
 
-export default function Lesson({ frontMatter, content, slug }: LessonProps) {
+export default function Lesson({
+  frontMatter,
+  content,
+  rawContent,
+  slug,
+}: LessonProps) {
   const articleRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     Prism.highlightAll();
   }, [content]);
+
+  const headings = getHeadings(rawContent);
 
   return (
     <Layout>
@@ -73,37 +83,44 @@ export default function Lesson({ frontMatter, content, slug }: LessonProps) {
           href={`https://robertbrunhage.com/videos/${slug}`}
         />
       </Head>
-      <article ref={articleRef} className={`max_width ${styles.content}`}>
-        <h1>{frontMatter.title}</h1>
-        {frontMatter.youtube ? (
-          <div className={styles.video}>
-            <iframe
-              src={`https://www.youtube.com/embed/${frontMatter.youtube}`}
-            />
-            <div className={styles.desc}>
-              <p className={styles.description}>{frontMatter.description}</p>
-              <p className={styles.author}>{frontMatter.author}</p>
-              <p className={styles.date}>{frontMatter.date}</p>
-              {frontMatter.github ? (
-                <a
-                  href={frontMatter.github}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  CODE
-                </a>
-              ) : (
-                <></>
-              )}
+      <div ref={articleRef} className={`max_width ${styles.content}`}>
+        <header>
+          <h1>{frontMatter.title}</h1>
+          {frontMatter.youtube ? (
+            <div className={styles.video}>
+              <iframe
+                src={`https://www.youtube.com/embed/${frontMatter.youtube}`}
+              />
+              <div className={styles.desc}>
+                <p className={styles.description}>{frontMatter.description}</p>
+                <p className={styles.author}>{frontMatter.author}</p>
+                <p className={styles.date}>{frontMatter.date}</p>
+                {frontMatter.github ? (
+                  <a
+                    href={frontMatter.github}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    CODE
+                  </a>
+                ) : (
+                  <></>
+                )}
+              </div>
             </div>
-          </div>
-        ) : (
-          ""
-        )}
-        <div className={styles.markdown}>
-          <MDXRemote {...content} />
+          ) : (
+            ""
+          )}
+        </header>
+        <div className={styles.article_container}>
+          <article className={styles.markdown}>
+            <MDXRemote {...content} />
+          </article>
+          <aside>
+            <TOC headings={headings} />
+          </aside>
         </div>
-      </article>
+      </div>
     </Layout>
   );
 }
@@ -129,7 +146,8 @@ export async function getStaticProps({ params: { slug } }: any) {
   const post = await getFileBySlug("lessons", slug);
 
   const content = post.mdxSource;
+  const rawContent = post.content;
   const { frontMatter } = post;
 
-  return { props: { frontMatter, content, slug } };
+  return { props: { frontMatter, content, rawContent, slug } };
 }
