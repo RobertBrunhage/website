@@ -13,7 +13,7 @@ interface HomeProps {
   videos: Array<FrontmatterProps>;
 }
 
-const home = ({ videos }: HomeProps) => {
+const Index = ({ videos }: HomeProps) => {
   const [featuredVideos, setFeaturedVideos] = useState(videos);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const home = ({ videos }: HomeProps) => {
       return video.featured === true;
     });
     setFeaturedVideos(featured);
-  }, []);
+  }, [videos]);
 
   return (
     <Layout>
@@ -103,7 +103,11 @@ const home = ({ videos }: HomeProps) => {
               <h3>Discord Community</h3>
               <p>
                 We have a{" "}
-                <a href="https://discord.gg/HktybpYREU" target="_blank">
+                <a
+                  href="https://discord.gg/HktybpYREU"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   discord
                 </a>{" "}
                 channel where you can chat and learn with other developers.
@@ -195,6 +199,7 @@ const home = ({ videos }: HomeProps) => {
                   <a
                     href="https://www.youtube.com/c/RobertBrunhage"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     YouTube channel
                   </a>
@@ -219,7 +224,7 @@ const home = ({ videos }: HomeProps) => {
   );
 };
 
-export default home;
+export default Index;
 
 export async function getStaticProps() {
   const videos = await getAllFilesFrontMatter("lessons");

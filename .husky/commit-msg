@@ -1,0 +1,25 @@
+#!/bin/sh
+if ! head -1 "$1" | grep -qE "^(build|ci|chore|docs|feat|fix|perf|refactor|style|test|revert)(\(.+?\))?: .{1,}$"; then
+    echo "Aborting commit. Your commit message is invalid. Refer to conventional commits or readme.
+
+	Available types:
+
+	build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+	ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+	chore: updating grunt tasks etc; no production code change
+	docs: Documentation only changes
+	feat: A new feature (these can be small so UI changes is fine here)
+	fix: A bug fix
+	perf: A code change that improves performance
+	refactor: A code change that neither fixes a bug nor adds a feature
+	style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+	test: Adding missing tests or correcting existing tests
+	revert: Revert changes and reference the commit SHAs as Refs: in the footer.
+	
+	Example: feat: bold text for headers in pricing cards." >&2
+    exit 1
+fi
+if ! head -1 "$1" | grep -qE "^.{1,88}$"; then
+    echo "Aborting commit. Your commit message is too long." >&2
+    exit 1
+fi
