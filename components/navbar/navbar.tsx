@@ -117,7 +117,7 @@ const NavItemComponent = ({
         </a>
         <ul className={styles.dropdownContent}>
           {navItem.url.map((subItem, index) => (
-            <li>
+            <li key={index}>
               <Link href={subItem} key={index}>
                 <a>{subItem.substring(1, subItem.length)}</a>
               </Link>

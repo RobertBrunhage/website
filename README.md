@@ -1,11 +1,17 @@
 # [Robertbrunhage.com](https://robertbrunhage.com/)
-You will be able to find the design [here](https://www.figma.com/file/KFzrPopkhnV2IhZMSNRSXm/Robert-Web?node-id=0%3A1)
+
+You will be able to find the design
+[here](https://www.figma.com/file/KFzrPopkhnV2IhZMSNRSXm/Robert-Web?node-id=0%3A1)
 
 ## Contributing
-Feel free to open PRs for small issues such as typos. For large issues or features, please open an issue first.
+
+Feel free to open PRs for small issues such as typos. For large issues or
+features, please open an issue first.
 
 ### How to do it
+
 First fork the repo on GitHub.
+
 ```
 git clone <your-forked-repo>
 yarn
@@ -14,13 +20,15 @@ yarn dev
 git switch -c my-fix
 # fix some code...
 
-git commit -m "Fix typo in readme"
+git commit -m "fix: typo in readme"
 git push origin my-fix
 ```
 
-The commit naming follows [this structure](https://chris.beams.io/posts/git-commit/)
+The project follows the commit naming of
+[conventional commit](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ## Running the site
+
 ```
 yarn dev
 ```

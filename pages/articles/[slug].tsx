@@ -4,8 +4,7 @@ import "prismjs";
 import Prism from "prismjs";
 import "prismjs/components/prism-dart";
 import React, { useEffect, useRef } from "react";
-import emailSignup from "../../components/emailForm/forms/emailSignup";
-import blogShareFooter from "../../components/footer/blogShareFooter/blogShareFooter";
+import { TOC } from "../../components/headings/toc";
 import Layout from "../../components/layout/layout";
 import {
   formatSlug,
@@ -13,6 +12,7 @@ import {
   getFileBySlug,
   getFiles,
 } from "../../core/mdx";
+import { getHeadings } from "../../core/utils";
 import styles from "../../styles/blog_post.module.scss";
 
 interface FrontmatterProps {
@@ -37,16 +37,22 @@ interface FrontmatterProps {
 interface ArticleProps {
   frontMatter: FrontmatterProps;
   content: MDXRemoteSerializeResult<Record<string, unknown>>;
+  rawContent: string;
   slug: string;
 }
 
-const components = { emailSignup, blogShareFooter };
-
-export default function Article({ frontMatter, content, slug }: ArticleProps) {
+export default function Article({
+  frontMatter,
+  content,
+  rawContent,
+  slug,
+}: ArticleProps) {
   const articleRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     Prism.highlightAll();
   }, [content]);
+
+  const headings = getHeadings(rawContent);
 
   return (
     <Layout>
@@ -77,13 +83,22 @@ export default function Article({ frontMatter, content, slug }: ArticleProps) {
           href={`https://robertbrunhage.com/articles/${slug}`}
         />
       </Head>
-      <article ref={articleRef} className={`max_width ${styles.content}`}>
-        <h1 className={styles.title}>{frontMatter.title}</h1>
-        <h4 className={styles.quote}>{"🕑 " + frontMatter.readingTime.text}</h4>
-        <div className={styles.markdown}>
-          <MDXRemote {...content} components={components} />
+      <div ref={articleRef} className={`max_width ${styles.content}`}>
+        <header>
+          <h1 className={styles.title}>{frontMatter.title}</h1>
+          <h4 className={styles.quote}>
+            {"🕑 " + frontMatter.readingTime.text}
+          </h4>
+        </header>
+        <div className={styles.article_container}>
+          <article className={styles.markdown}>
+            <MDXRemote {...content} />
+          </article>
+          <aside>
+            <TOC headings={headings} />
+          </aside>
         </div>
-      </article>
+      </div>
     </Layout>
   );
 }
@@ -109,7 +124,8 @@ export async function getStaticProps({ params: { slug } }: any) {
   const post = await getFileBySlug("articles", slug);
 
   const content = post.mdxSource;
+  const rawContent = post.content;
   const { frontMatter } = post;
 
-  return { props: { frontMatter, content, slug } };
+  return { props: { frontMatter, content, rawContent, slug } };
 }
