@@ -1,16 +1,18 @@
 .title {
-	font-size: 4.5rem;
+  font-size: 4.5rem;
+  margin-bottom: 0;
 }
 
 .subtitle {
-    font-size: var(--subtitle);
-    font-weight: 300;
+  font-size: var(--subtitle);
+  font-weight: 300;
+  margin-top: 0.4em;
+  margin-bottom: 4em;
 }
 
 .card_container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 352px));
-    gap: 42px;
-    justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 352px));
+  gap: 42px;
+  justify-content: start;
 }
-      
