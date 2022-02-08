@@ -11,10 +11,12 @@ import styles from "../styles/home.module.scss";
 
 interface HomeProps {
   videos: Array<FrontmatterProps>;
+  articles: Array<FrontmatterProps>;
 }
 
-const Index = ({ videos }: HomeProps) => {
+const Index = ({ videos, articles }: HomeProps) => {
   const [featuredVideos, setFeaturedVideos] = useState(videos);
+  const [featuredArticles, setFeaturedArticles] = useState(articles);
 
   useEffect(() => {
     const featured = videos.filter((video) => {
@@ -22,6 +24,13 @@ const Index = ({ videos }: HomeProps) => {
     });
     setFeaturedVideos(featured);
   }, [videos]);
+
+  useEffect(() => {
+    const featured = articles.filter((article) => {
+      return article.featured === true;
+    });
+    setFeaturedArticles(featured);
+  }, [articles]);
 
   return (
     <Layout>
@@ -170,8 +179,8 @@ const Index = ({ videos }: HomeProps) => {
           <div className={"max_width"}>
             <h2 className={styles.ft}>Featured Tutorials</h2>
             <div className={styles.card_container}>
-              {featuredVideos
-                .slice(0, 3)
+              {featuredArticles
+                .slice(0, 2)
                 .map(({ title, description, image, slug }) => (
                   <BlogCard
                     key={slug}
@@ -179,6 +188,19 @@ const Index = ({ videos }: HomeProps) => {
                     title={title}
                     description={description}
                     image={image}
+                    route={"articles"}
+                  />
+                ))}
+              {featuredVideos
+                .slice(0, 1)
+                .map(({ title, description, image, slug }) => (
+                  <BlogCard
+                    key={slug}
+                    slug={slug}
+                    title={title}
+                    description={description}
+                    image={image}
+                    route={"videos"}
                   />
                 ))}
             </div>
@@ -228,6 +250,7 @@ export default Index;
 
 export async function getStaticProps() {
   const videos = await getAllFilesFrontMatter("lessons");
+  const articles = await getAllFilesFrontMatter("articles");
 
-  return { props: { videos } };
+  return { props: { videos, articles } };
 }
