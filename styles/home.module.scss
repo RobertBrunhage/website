@@ -38,6 +38,14 @@
       top: 50%;
       z-index: 2;
       cursor: pointer;
+
+      transition: transform 0.3s ease;
+
+      &:hover {
+        // transform scale
+        transform: translateX(-50%) scale(1.1);
+        filter: brightness(1.1);
+      }
     }
   }
 
