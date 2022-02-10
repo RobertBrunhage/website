@@ -6,6 +6,7 @@ import "prismjs/components/prism-dart";
 import React, { useEffect, useRef } from "react";
 import { TOC } from "../../components/headings/toc";
 import Layout from "../../components/layout/layout";
+import CommonSEO from "../../components/seo/seo";
 import {
   formatSlug,
   getAllFilesFrontMatter,
@@ -56,33 +57,18 @@ export default function Lesson({
 
   return (
     <Layout>
-      <Head>
-        <title>{frontMatter.title}</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta property="og:url" content="https://robertbrunhage.com" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={frontMatter.title} />
-        <meta property="og:description" content={frontMatter.description} />
-        <meta
-          property="og:image"
-          content={`https://robertbrunhage.com${frontMatter.image}`}
-        />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:site" content="@robertbrunhage" />
-        <meta property="twitter:title" content={frontMatter.title} />
-        <meta
-          property="twitter:description"
-          content={frontMatter.description}
-        />
-        <meta
-          property="twitter:image"
-          content={`https://robertbrunhage.com${frontMatter.image}`}
-        />
+      <CommonSEO
+        title={frontMatter.title}
+        description={frontMatter.description}
+        ogImage={frontMatter.image}
+        twImage={frontMatter.image}
+        ogType="article"
+      >
         <link
           rel="canonical"
           href={`https://robertbrunhage.com/videos/${slug}`}
         />
-      </Head>
+      </CommonSEO>
       <div ref={articleRef} className={`max_width ${styles.content}`}>
         <header>
           <h1>{frontMatter.title}</h1>

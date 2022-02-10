@@ -21,6 +21,7 @@ import Layout from "../components/layout/layout";
 import Quote from "../components/quote/quote";
 import styles from "../styles/courses.module.scss";
 import Timer from "../components/timer/timer";
+import CommonSEO from "../components/seo/seo";
 
 const course = () => {
   const [affcode, setAffcode] = useState(String);
@@ -63,41 +64,17 @@ const course = () => {
 
   return (
     <Layout>
-      <Head>
-        <title>
-          Ultimate Flutter Course: Testing, State Management and more
-        </title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="robots" content="index" />
-        <meta
-          name="description"
-          content="This Flutter Course covers all the important topics such as State Management, APIs, Testing, Architecture, and more. Join 200+ flutter developers today!"
-        />
-        <meta property="og:url" content="https://robertbrunhage.com/course" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="Ultimate Flutter Course" />
-        <meta
-          property="og:description"
-          content="Build a complete production-ready Flutter application!"
-        />
-        <meta
-          property="og:image"
-          content="https://robertbrunhage.com/assets/images/course_twitter.png"
-        />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:site" content="@robertbrunhage" />
-        <meta property="twitter:title" content="Ultimate Flutter Course" />
-        <meta
-          property="twitter:description"
-          content="Build a complete production-ready Flutter application!"
-        />
-        <meta
-          property="twitter:image"
-          content="https://robertbrunhage.com/assets/images/course_twitter.png"
-        />
+      <CommonSEO
+        title="Ultimate Flutter Course: Testing, State Management and more"
+        description="This Flutter Course covers all the important topics such as State Management, APIs, Testing, Architecture, and more. Join 200+ flutter developers today!"
+        ogImage="/assets/images/course_twitter.png"
+        twImage="/assets/images/course_twitter.png"
+        ogType="article"
+      >
         <link rel="prefetch" href="https://robertbrunhage.com/videos" />
         <link rel="canonical" href="https://robertbrunhage.com/course" />
-      </Head>
+      </CommonSEO>
+
       <div className={styles.container}>
         <section className={styles.header}>
           <div className="max_width">
