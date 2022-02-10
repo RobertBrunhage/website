@@ -6,15 +6,18 @@ import CTA from "../components/buttons/cta/cta";
 import BlogCard from "../components/cards/blogCard/blogCard";
 import EmailSignup from "../components/emailForm/forms/emailSignup";
 import Layout from "../components/layout/layout";
+import CommonSEO from "../components/seo/seo";
+import { getBaseUrl } from "../components/seo/settings";
 import { getAllFilesFrontMatter } from "../core/mdx";
 import styles from "../styles/home.module.scss";
 
 interface HomeProps {
   videos: Array<FrontmatterProps>;
   articles: Array<FrontmatterProps>;
+  baseUrl: string;
 }
 
-const Index = ({ videos, articles }: HomeProps) => {
+const Index = ({ videos, articles, baseUrl }: HomeProps) => {
   const [featuredVideos, setFeaturedVideos] = useState(videos);
   const [featuredArticles, setFeaturedArticles] = useState(articles);
 
@@ -34,40 +37,17 @@ const Index = ({ videos, articles }: HomeProps) => {
 
   return (
     <Layout>
-      <Head>
-        <title>Robert Brunhage - Flutter, Dart, Firebase | Homepage</title>
-        <meta
-          name="description"
-          content="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
-        />
-        <link rel="icon" href="/favicon.ico" />
-
-        <meta property="og:url" content="https://robertbrunhage.com" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="Robert Brunhage" />
-        <meta
-          property="og:description"
-          content="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
-        />
-        <meta
-          property="og:image"
-          content="https://robertbrunhage.com/assets/images/avatar.png"
-        />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:site" content="@robertbrunhage" />
-        <meta property="twitter:title" content="Robert Brunhage" />
-        <meta
-          property="twitter:description"
-          content="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
-        />
-        <meta
-          property="twitter:image"
-          content="https://robertbrunhage.com/assets/images/landing_twitter.png"
-        />
+      <CommonSEO
+        title="Robert Brunhage - Flutter, Dart, Firebase | Homepage"
+        description="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
+        ogImage="/assets/images/avatar.png"
+        twImage="/assets/images/landing_twitter.png"
+        ogType="website"
+      >
         <link rel="prefetch" href="https://robertbrunhage.com/videos" />
         <link rel="prefetch" href="https://robertbrunhage.com/course" />
         <link rel="canonical" href="https://robertbrunhage.com" />
-      </Head>
+      </CommonSEO>
       <div className={styles.container}>
         <section className={styles.introduction}>
           <div className={`max_width`}>
