@@ -19,7 +19,7 @@ const blogShareFooter = ({ message }: BlogShareFooterProps) => {
     <div className={styles.container}>
       <a href={generateTwitterUrl()} rel="noopener noreferrer" target="_blank">
         <img
-          src={"/assets/icons/twitter.png"}
+          src={"/assets/icons/twitter.svg"}
           width={38}
           height={38}
           alt={"twitter"}

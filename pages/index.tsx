@@ -108,7 +108,7 @@ const Index = ({ videos, articles }: HomeProps) => {
         <section className={styles.puffs}>
           <div className={`max_width ${styles.content}`}>
             <div className={styles.card}>
-              <img src="/assets/icons/discord.png" alt="discord icon" />
+              <img src="/assets/icons/discord.svg" alt="discord icon" />
               <h3>Discord Community</h3>
               <p>
                 We have a{" "}
@@ -123,7 +123,7 @@ const Index = ({ videos, articles }: HomeProps) => {
               </p>
             </div>
             <div className={styles.card}>
-              <img src="/assets/icons/open_source.png" alt="open source icon" />
+              <img src="/assets/icons/open_source.svg" alt="open source icon" />
               <h3>Open Source</h3>
               <p>
                 My videos are almost all supported by a GitHub repo, this{" "}
@@ -132,7 +132,7 @@ const Index = ({ videos, articles }: HomeProps) => {
             </div>
             <div className={styles.card}>
               <img
-                src="/assets/icons/education.png"
+                src="/assets/icons/education.svg"
                 alt="books education icon"
               />
               <h3>High Quality</h3>
