@@ -14,6 +14,7 @@ const videos = ({ videos }: any) => {
         ogImage={videos[0].image}
         twImage={videos[0].image}
         ogType="article"
+        subroute="/videos"
       >
         <link rel="canonical" href="https://robertbrunhage.com/videos" />
       </CommonSEO>

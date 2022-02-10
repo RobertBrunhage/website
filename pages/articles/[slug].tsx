@@ -63,6 +63,7 @@ export default function Article({
         ogImage={frontMatter.image}
         twImage={frontMatter.image}
         ogType="article"
+        subroute={`/articles/${slug}`}
       >
         <link
           rel="canonical"

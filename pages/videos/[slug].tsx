@@ -63,6 +63,7 @@ export default function Lesson({
         ogImage={frontMatter.image}
         twImage={frontMatter.image}
         ogType="article"
+        subroute={`/videos/${slug}`}
       >
         <link
           rel="canonical"

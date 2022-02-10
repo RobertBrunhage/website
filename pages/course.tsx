@@ -70,6 +70,7 @@ const course = () => {
         ogImage="/assets/images/course_twitter.png"
         twImage="/assets/images/course_twitter.png"
         ogType="article"
+        subroute="/course"
       >
         <link rel="prefetch" href="https://robertbrunhage.com/videos" />
         <link rel="canonical" href="https://robertbrunhage.com/course" />
