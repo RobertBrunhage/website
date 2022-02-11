@@ -14,6 +14,7 @@ const articles = ({ articles }: any) => {
         ogImage={articles[0].image}
         twImage={articles[0].image}
         ogType="website"
+        subroute="/articles"
       >
         <link rel="canonical" href="https://robertbrunhage.com/articles" />
       </CommonSEO>

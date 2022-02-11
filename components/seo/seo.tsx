@@ -8,6 +8,7 @@ interface CommonSeoProps {
   ogType: "website" | "article";
   twImage: string;
   ogImage: string;
+  subroute?: string;
   children?: React.ReactNode;
 }
 
@@ -21,7 +22,12 @@ const CommonSEO = (props: CommonSeoProps) => {
       <title>{props.title}</title>
       <meta name="description" content={props.description} />
       <link rel="icon" href="/favicon.ico" />
-      <meta property="og:url" content={baseUrl} />
+      <meta
+        property="og:url"
+        content={
+          "https://robertbrunhage.com" + (props.subroute ? props.subroute : "")
+        }
+      />
       <meta property="og:type" content={props.ogType} />
       <meta property="og:title" content={props.title} />
       <meta property="og:description" content={props.description} />
