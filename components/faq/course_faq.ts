@@ -7,7 +7,7 @@ const FAQ: FAQ[] = [
   {
     question: "If I am a beginner will I still be able to take the course?",
     answer:
-      "Yes, of course! But keep in mind that I won’t explain simpler concepts like “what is a row”.",
+      "Yes, of course! But keep in mind that I won’t explain simpler concepts like “what is a row”. And the course will have a very fast pace.",
   },
   {
     question: "Will you teach about Null safety?",

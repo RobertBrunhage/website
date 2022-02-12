@@ -1,6 +1,5 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Head from "next/head";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { default as Cookie, default as Cookies } from "universal-cookie";
@@ -19,9 +18,8 @@ import questions from "../components/faq/course_faq";
 import FAQ from "../components/faq/faq";
 import Layout from "../components/layout/layout";
 import Quote from "../components/quote/quote";
-import styles from "../styles/courses.module.scss";
-import Timer from "../components/timer/timer";
 import CommonSEO from "../components/seo/seo";
+import styles from "../styles/courses.module.scss";
 
 const course = () => {
   const [affcode, setAffcode] = useState(String);
@@ -129,11 +127,12 @@ const course = () => {
               <br />
               <br />
               This is an intermediate-level course. BUT if you have a basic
-              knowledge of Flutter, then it is for you as well!
+              knowledge of Flutter, then it might be for you as well!
               <br />
               <br />I don't aim for this to be a long length course. The speed
-              at which I teach will be fast. <strong>Don't</strong> expect tons
-              of hours of content which you might be used by from other courses.
+              at which I teach will be very fast. <strong>Don't</strong> expect
+              tons of hours of content which you might be used to from other
+              courses.
               <br />
               <br />
               Do you wish you were rich?

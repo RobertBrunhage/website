@@ -35,6 +35,7 @@ const CommonSEO = (props: CommonSeoProps) => {
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:site" content="@robertbrunhage" />
       <meta property="twitter:title" content="Robert Brunhage" />
+      <meta property="twitter:image" content={`${baseUrl}${props.twImage}`} />
       <meta property="twitter:description" content={props.description} />
       {props.children}
     </Head>
