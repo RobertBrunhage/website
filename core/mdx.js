@@ -6,7 +6,6 @@ import readingTime from "reading-time";
 import visit from "unist-util-visit";
 import imgToJsx from "./img-to-jsx";
 
-
 const root = process.cwd();
 
 const tokenClassNames = {
@@ -72,6 +71,7 @@ export async function getFileBySlug(type, slug) {
 
   return {
     mdxSource,
+    content,
     frontMatter: {
       wordCount: content.split(/\s+/gu).length,
       readingTime: readingTime(content),

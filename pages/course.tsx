@@ -1,6 +1,5 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Head from "next/head";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { default as Cookie, default as Cookies } from "universal-cookie";
@@ -19,8 +18,8 @@ import questions from "../components/faq/course_faq";
 import FAQ from "../components/faq/faq";
 import Layout from "../components/layout/layout";
 import Quote from "../components/quote/quote";
+import CommonSEO from "../components/seo/seo";
 import styles from "../styles/courses.module.scss";
-import Timer from "../components/timer/timer";
 
 const course = () => {
   const [affcode, setAffcode] = useState(String);
@@ -63,41 +62,18 @@ const course = () => {
 
   return (
     <Layout>
-      <Head>
-        <title>
-          Ultimate Flutter Course: Testing, State Management and more
-        </title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="robots" content="index" />
-        <meta
-          name="description"
-          content="This Flutter Course covers all the important topics such as State Management, APIs, Testing, Architecture, and more. Join 200+ flutter developers today!"
-        />
-        <meta property="og:url" content="https://robertbrunhage.com/course" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="Ultimate Flutter Course" />
-        <meta
-          property="og:description"
-          content="Build a complete production-ready Flutter application!"
-        />
-        <meta
-          property="og:image"
-          content="https://robertbrunhage.com/assets/images/course_twitter.png"
-        />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:site" content="@robertbrunhage" />
-        <meta property="twitter:title" content="Ultimate Flutter Course" />
-        <meta
-          property="twitter:description"
-          content="Build a complete production-ready Flutter application!"
-        />
-        <meta
-          property="twitter:image"
-          content="https://robertbrunhage.com/assets/images/course_twitter.png"
-        />
+      <CommonSEO
+        title="Ultimate Flutter Course: Testing, State Management and more"
+        description="This Flutter Course covers all the important topics such as State Management, APIs, Testing, Architecture, and more. Join 200+ flutter developers today!"
+        ogImage="/assets/images/course_twitter.png"
+        twImage="/assets/images/course_twitter.png"
+        ogType="article"
+        subroute="/course"
+      >
         <link rel="prefetch" href="https://robertbrunhage.com/videos" />
         <link rel="canonical" href="https://robertbrunhage.com/course" />
-      </Head>
+      </CommonSEO>
+
       <div className={styles.container}>
         <section className={styles.header}>
           <div className="max_width">
@@ -151,11 +127,12 @@ const course = () => {
               <br />
               <br />
               This is an intermediate-level course. BUT if you have a basic
-              knowledge of Flutter, then it is for you as well!
+              knowledge of Flutter, then it might be for you as well!
               <br />
               <br />I don't aim for this to be a long length course. The speed
-              at which I teach will be fast. <strong>Don't</strong> expect tons
-              of hours of content which you might be used by from other courses.
+              at which I teach will be very fast. <strong>Don't</strong> expect
+              tons of hours of content which you might be used to from other
+              courses.
               <br />
               <br />
               Do you wish you were rich?

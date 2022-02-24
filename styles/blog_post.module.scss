@@ -1,4 +1,21 @@
+.title {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 10px;
+}
+
+.quote {
+  font-size: 1.2em;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 40px;
+}
+
 .content {
+  & > div {
+    display: flex;
+    justify-content: space-between;
+  }
 
   .video {
     display: grid;
@@ -52,7 +69,12 @@
         font-weight: bold;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
-        background: linear-gradient(to left, transparent 50%, var(--primary-color) 50%) right;
+        background: linear-gradient(
+            to left,
+            transparent 50%,
+            var(--primary-color) 50%
+          )
+          right;
         background-size: 200%;
         transition: 0.4s ease-out;
 
@@ -67,16 +89,23 @@
     background-color: #4e4e54;
     color: #f8f8f2;
     border-radius: 0.3em;
+    font-size: 20px;
     padding: 5px 6px;
   }
 
   .markdown {
-    h1, h2, h3 {
+    max-width: 800px;
+    & > h1,
+    & > h2,
+    & > h3 {
       margin-top: 2em;
+      color: var(--yellow);
     }
     li {
-      font-size: var(--body-regular);
-      line-height: 1.8; 
+      font-size: var(--body-large);
+      line-height: 1.8;
+      margin-right: 20px;
+      margin-left: 20px;
     }
     a {
       text-decoration: underline;
@@ -84,33 +113,42 @@
     }
     p {
       line-height: 1.8;
-      font-size: 1.8em;
+      font-size: 2em;
     }
-    h1, h2, h3, h4, h5, h6, p {
-      margin-right:40px;
-      margin-left:40px;
+    & > h1,
+    & > h2,
+    & > h3,
+    & > h4,
+    & > h5,
+    & > h6,
+    & > p {
+      margin-right: 40px;
+      margin-left: 40px;
     }
     pre {
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin-top: 33px;
       margin-bottom: 30px;
-      box-shadow:
-      0 1px 1px hsl(0deg 0% 0% / 0.075),
-      0 2px 2px hsl(0deg 0% 0% / 0.075),
-      0 4px 4px hsl(0deg 0% 0% / 0.075),
-      0 8px 8px hsl(0deg 0% 0% / 0.075),
-      0 16px 16px hsl(0deg 0% 0% / 0.075)
-    ;
+      box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+        0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+        0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
       border-radius: 0.5em;
       background-color: #1e1e20;
-        code {
-          background-color: transparent;
-          padding: 0px;
-        }
+      code {
+        background-color: transparent;
+        padding: 0px;
+      }
     }
-    
   }
-  
+
+  @media screen and (max-width: 1156px) {
+    & > div {
+      display: block;
+    }
+    aside {
+      display: none;
+    }
+  }
 
   @media only screen and (max-width: 768px) {
     .video {

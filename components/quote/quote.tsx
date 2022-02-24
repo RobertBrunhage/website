@@ -6,16 +6,29 @@ interface QuoteProps {
   image: string;
   author: string;
   background?: string;
+  quoteColor?: string;
 }
 
-const quote = ({ quote, image, author, background }: QuoteProps) => {
+const quote = ({
+  quote,
+  image,
+  author,
+  background,
+  quoteColor,
+}: QuoteProps) => {
   return (
-    <div className={styles.quote_container} style={{ backgroundColor: background }}>
+    <div
+      className={styles.quote_container}
+      style={{ backgroundColor: background }}
+    >
       <blockquote>
         <p>{quote}</p>
       </blockquote>
       <figcaption>
-        <div className={styles.author_image} style={{ backgroundImage: `url(${image}` }} />
+        <div
+          className={styles.author_image}
+          style={{ backgroundImage: `url(${image}` }}
+        />
         <h1>{author}</h1>
       </figcaption>
     </div>

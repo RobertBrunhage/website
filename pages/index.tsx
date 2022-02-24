@@ -1,71 +1,53 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FrontmatterProps } from "../components/blog/blogLayout";
 import CTA from "../components/buttons/cta/cta";
-import VideoCard from "../components/cards/videoCard/videoCard";
+import BlogCard from "../components/cards/blogCard/blogCard";
 import EmailSignup from "../components/emailForm/forms/emailSignup";
 import Layout from "../components/layout/layout";
+import CommonSEO from "../components/seo/seo";
+import { getBaseUrl } from "../components/seo/settings";
 import { getAllFilesFrontMatter } from "../core/mdx";
 import styles from "../styles/home.module.scss";
 
-interface FrontmatterProps {
-  title: string;
-  description: string;
-  image: string;
-  featured: boolean;
-  slug: any;
-}
-
 interface HomeProps {
   videos: Array<FrontmatterProps>;
+  articles: Array<FrontmatterProps>;
+  baseUrl: string;
 }
 
-const home = ({ videos }: HomeProps) => {
+const Index = ({ videos, articles, baseUrl }: HomeProps) => {
   const [featuredVideos, setFeaturedVideos] = useState(videos);
+  const [featuredArticles, setFeaturedArticles] = useState(articles);
 
   useEffect(() => {
     const featured = videos.filter((video) => {
       return video.featured === true;
     });
     setFeaturedVideos(featured);
-  }, []);
+  }, [videos]);
+
+  useEffect(() => {
+    const featured = articles.filter((article) => {
+      return article.featured === true;
+    });
+    setFeaturedArticles(featured);
+  }, [articles]);
 
   return (
     <Layout>
-      <Head>
-        <title>Robert Brunhage - Flutter, Dart, Firebase | Homepage</title>
-        <meta
-          name="description"
-          content="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
-        />
-        <link rel="icon" href="/favicon.ico" />
-
-        <meta property="og:url" content="https://robertbrunhage.com" />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content="Robert Brunhage" />
-        <meta
-          property="og:description"
-          content="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
-        />
-        <meta
-          property="og:image"
-          content="https://robertbrunhage.com/assets/images/avatar.png"
-        />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:site" content="@robertbrunhage" />
-        <meta property="twitter:title" content="Robert Brunhage" />
-        <meta
-          property="twitter:description"
-          content="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
-        />
-        <meta
-          property="twitter:image"
-          content="https://robertbrunhage.com/assets/images/landing_twitter.png"
-        />
+      <CommonSEO
+        title="Robert Brunhage - Flutter, Dart, Firebase | Homepage"
+        description="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
+        ogImage="/assets/images/avatar.png"
+        twImage="/assets/images/landing_twitter.png"
+        ogType="website"
+      >
         <link rel="prefetch" href="https://robertbrunhage.com/videos" />
         <link rel="prefetch" href="https://robertbrunhage.com/course" />
         <link rel="canonical" href="https://robertbrunhage.com" />
-      </Head>
+      </CommonSEO>
       <div className={styles.container}>
         <section className={styles.introduction}>
           <div className={`max_width`}>
@@ -106,18 +88,22 @@ const home = ({ videos }: HomeProps) => {
         <section className={styles.puffs}>
           <div className={`max_width ${styles.content}`}>
             <div className={styles.card}>
-              <img src="/assets/icons/discord.png" alt="discord icon" />
+              <img src="/assets/icons/discord.svg" alt="discord icon" />
               <h3>Discord Community</h3>
               <p>
                 We have a{" "}
-                <a href="https://discord.gg/HktybpYREU" target="_blank">
+                <a
+                  href="https://discord.gg/HktybpYREU"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   discord
                 </a>{" "}
                 channel where you can chat and learn with other developers.
               </p>
             </div>
             <div className={styles.card}>
-              <img src="/assets/icons/open_source.png" alt="open source icon" />
+              <img src="/assets/icons/open_source.svg" alt="open source icon" />
               <h3>Open Source</h3>
               <p>
                 My videos are almost all supported by a GitHub repo, this{" "}
@@ -126,7 +112,7 @@ const home = ({ videos }: HomeProps) => {
             </div>
             <div className={styles.card}>
               <img
-                src="/assets/icons/education.png"
+                src="/assets/icons/education.svg"
                 alt="books education icon"
               />
               <h3>High Quality</h3>
@@ -173,15 +159,28 @@ const home = ({ videos }: HomeProps) => {
           <div className={"max_width"}>
             <h2 className={styles.ft}>Featured Tutorials</h2>
             <div className={styles.card_container}>
-              {featuredVideos
-                .slice(0, 3)
+              {featuredArticles
+                .slice(0, 2)
                 .map(({ title, description, image, slug }) => (
-                  <VideoCard
+                  <BlogCard
                     key={slug}
                     slug={slug}
                     title={title}
                     description={description}
                     image={image}
+                    route={"articles"}
+                  />
+                ))}
+              {featuredVideos
+                .slice(0, 1)
+                .map(({ title, description, image, slug }) => (
+                  <BlogCard
+                    key={slug}
+                    slug={slug}
+                    title={title}
+                    description={description}
+                    image={image}
+                    route={"videos"}
                   />
                 ))}
             </div>
@@ -202,6 +201,7 @@ const home = ({ videos }: HomeProps) => {
                   <a
                     href="https://www.youtube.com/c/RobertBrunhage"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     YouTube channel
                   </a>
@@ -226,10 +226,11 @@ const home = ({ videos }: HomeProps) => {
   );
 };
 
-export default home;
+export default Index;
 
 export async function getStaticProps() {
   const videos = await getAllFilesFrontMatter("lessons");
+  const articles = await getAllFilesFrontMatter("articles");
 
-  return { props: { videos } };
+  return { props: { videos, articles } };
 }
