@@ -75,8 +75,12 @@ Now two typical repositories would look something like this
 class DogRepository {
   Future<Dog> getDog() async {
     // Do the required code to fetch it with whatever package or solution you want.
-    final dog = fancyFetchLogicForDog();
-    return dog;
+    try {
+      final dog = fancyFetchLogicForDog();
+      return dog;
+    } catch (e){
+      throw CustomException();
+    }
   }
 }
 ```
@@ -85,8 +89,12 @@ class DogRepository {
 class CatRepository {
   Future<Dog> getCat() async {
     // Do the required code to fetch it with whatever package or solution you want.
+    try {
     final cat = fancyFetchLogicForCat();
     return cat;
+    } catch (e){
+      throw CustomException();
+    }
   }
 }
 ```
@@ -130,7 +138,8 @@ class AnimalService {
       final dog = await _dogRepository.getDog();
       final cat = await _catRepository.getCat();
       return [dog, cat];
-    } catch (e) {
+    } on CustomException catch (e) {
+      // Example will just rethrow the same exception. I personally love using https://pub.dev/packages/multiple_result and return a custom failure.
       throw e;
     }
   }
@@ -142,7 +151,8 @@ class AnimalService {
       final animals = [dog, cat];
       final averageAge = animals.map((animal) => animal.age).reduce((a, b) => a + b) / animals.length;
       return averageAge;
-    } catch (e) {
+    } on CustomException catch (e) {
+      // Example will just rethrow the same exception. I personally love using https://pub.dev/packages/multiple_result and return a custom failure.
       throw e;
     }
   }
@@ -167,6 +177,8 @@ data.
 ```dart
 // Imagine this has some fancy ui and this would be the method call.
 Future<void> getAverageAnimalAge() async {
+  // The service would do all the heavy lifting of converting the data to the required response.
+  // If you used https://pub.dev/packages/multiple_result you can here, handle that failure.
   final averageAnimalAge = await animalService.getAverageAnimalAge();
 
   setState(() {
