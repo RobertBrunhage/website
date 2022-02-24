@@ -85,8 +85,8 @@
         text-align: left;
         background-color: #4e4e54;
         z-index: 1;
-        visibility: hidden;
-        opacity: 0;
+        visibility: hidden; // TODO: Set this to hidden when done
+        opacity: 0; // TODO: Set this to 0 when done
         position: absolute;
         transition: all 0.5s ease;
         margin-top: 2rem;
@@ -165,10 +165,16 @@
         display: block;
       }
 
-      // Add resonsiveness on click for mobile (no hover)
+      // Add resonsiveness on click for mobile
       .dropdown {
         .dropdownContent {
-          margin: 0 auto;
+          position: relative;
+          display: block;
+          visibility: visible;
+          opacity: 1;
+          li {
+            padding: 12px 12px 12px 12px;
+          }
         }
       }
     }
