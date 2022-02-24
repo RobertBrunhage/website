@@ -16,3 +16,9 @@
   gap: 42px;
   justify-content: start;
 }
+
+@media only screen and (max-width: 1200px) {
+  .card_container {
+    justify-content: center;
+  }
+}
