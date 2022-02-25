@@ -8,6 +8,7 @@ interface BlogShareFooterProps {
 
 const blogShareFooter = ({ message }: BlogShareFooterProps) => {
   const router = useRouter();
+
   const generateTwitterUrl = () => {
     const currentUrl = router.asPath;
     const messageWithoutSpace = message.replace(/\s/g, "%20");
