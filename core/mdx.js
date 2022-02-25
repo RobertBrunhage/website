@@ -4,7 +4,6 @@ import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import readingTime from "reading-time";
 import visit from "unist-util-visit";
-import imgToJsx from "./img-to-jsx";
 
 const root = process.cwd();
 
@@ -49,7 +48,7 @@ export async function getFileBySlug(type, slug) {
         import("remark-autolink-headings"),
         import("remark-code-titles"),
         import("remark-math"),
-        imgToJsx,
+        import("remark-mdx-images"),
       ],
       inlineNotes: true,
       rehypePlugins: [

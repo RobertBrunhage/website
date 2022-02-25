@@ -4902,6 +4902,13 @@ remark-math@^5.1.1:
     micromark-extension-math "^2.0.0"
     unified "^10.0.0"
 
+remark-mdx-images@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/remark-mdx-images/-/remark-mdx-images-1.0.3.tgz#c20b42c74eaca413b3ca104b43d391ffaed1e9ab"
+  integrity sha512-+0/EV3SvO9PUaUGlPphM3n5cMsnQE57n2tMwZMiT6YlTKjVr/FuhOynt6WQGEes7enpL3WpbJuycfWGLrH6S5w==
+  dependencies:
+    unist-util-visit "^2.0.0"
+
 remark-mdx@1.6.22:
   version "1.6.22"
   resolved "https://registry.yarnpkg.com/remark-mdx/-/remark-mdx-1.6.22.tgz#06a8dab07dcfdd57f3373af7f86bd0e992108bbd"
