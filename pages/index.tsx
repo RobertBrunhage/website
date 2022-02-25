@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FrontmatterProps } from "../components/blog/blogLayout";
@@ -7,7 +6,6 @@ import BlogCard from "../components/cards/blogCard/blogCard";
 import EmailSignup from "../components/emailForm/forms/emailSignup";
 import Layout from "../components/layout/layout";
 import CommonSEO from "../components/seo/seo";
-import { getBaseUrl } from "../components/seo/settings";
 import { getAllFilesFrontMatter } from "../core/mdx";
 import styles from "../styles/home.module.scss";
 
@@ -44,8 +42,6 @@ const Index = ({ videos, articles, baseUrl }: HomeProps) => {
         twImage="/assets/images/landing_twitter.png"
         ogType="website"
       >
-        <link rel="prefetch" href="https://robertbrunhage.com/videos" />
-        <link rel="prefetch" href="https://robertbrunhage.com/course" />
         <link rel="canonical" href="https://robertbrunhage.com" />
       </CommonSEO>
       <div className={styles.container}>
