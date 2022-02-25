@@ -15,6 +15,7 @@ export interface FrontmatterProps {
   image: string;
   featured: boolean;
   slug: any;
+  status?: string;
 }
 
 const blogLayout = ({ posts, title, description, route }: BlogProps) => {
@@ -23,16 +24,18 @@ const blogLayout = ({ posts, title, description, route }: BlogProps) => {
       <h1 className={styles.title}>{title}</h1>
       <h4 className={styles.subtitle}>{description}</h4>
       <div className={styles.card_container}>
-        {posts.map(({ title, description, image, slug }: FrontmatterProps) => (
-          <BlogCard
-            key={slug}
-            slug={slug}
-            title={title}
-            description={description}
-            image={image}
-            route={route}
-          />
-        ))}
+        {posts
+          .filter((post: FrontmatterProps) => post.status != "draft")
+          .map(({ title, description, image, slug }: FrontmatterProps) => (
+            <BlogCard
+              key={slug}
+              slug={slug}
+              title={title}
+              description={description}
+              image={image}
+              route={route}
+            />
+          ))}
       </div>
     </div>
   );

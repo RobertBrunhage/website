@@ -99,34 +99,15 @@ const NavItemComponent = ({
   index,
   pathname,
 }: NavItemComponentProps) => {
-  if (typeof navItem.url === "string") {
-    return (
-      <li key={index}>
-        <Link href={navItem.url} key={index}>
-          <a className={pathname == navItem.url ? styles.active : ""}>
-            {navItem.title}
-          </a>
-        </Link>
-      </li>
-    );
-  } else {
-    return (
-      <li key={index} className={styles.dropdown}>
-        <a className={navItem.url.includes(pathname) ? styles.active : ""}>
+  return (
+    <li key={index}>
+      <Link href={navItem.url} key={index}>
+        <a className={pathname == navItem.url ? styles.active : ""}>
           {navItem.title}
         </a>
-        <ul className={styles.dropdownContent}>
-          {navItem.url.map((subItem, index) => (
-            <li key={index}>
-              <Link href={subItem} key={index}>
-                <a>{subItem.substring(1, subItem.length)}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </li>
-    );
-  }
+      </Link>
+    </li>
+  );
 };
 
 export default Navbar;

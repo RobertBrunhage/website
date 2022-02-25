@@ -80,34 +80,6 @@
         }
       }
     }
-    .dropdown {
-      .dropdownContent {
-        text-align: left;
-        background-color: #4e4e54;
-        z-index: 1;
-        visibility: hidden; // TODO: Set this to hidden when done
-        opacity: 0; // TODO: Set this to 0 when done
-        position: absolute;
-        transition: all 0.5s ease;
-        margin-top: 2rem;
-        display: none;
-        display: flex;
-        flex-direction: column;
-        padding: 0px;
-        border-radius: 4px;
-
-        li {
-          padding: 12px 12px 12px 0px;
-        }
-      }
-
-      &:hover {
-        .dropdownContent {
-          visibility: visible;
-          opacity: 1;
-        }
-      }
-    }
   }
 }
 
@@ -142,8 +114,12 @@
           text-align: center;
           padding: 20px;
           width: 100%;
-          margin: 8px auto;
+          margin: 0 auto;
           font-weight: 600;
+
+          a {
+            padding: 0 0 12px 0;
+          }
 
           &:last-child {
             padding-right: 20px;
@@ -163,19 +139,6 @@
 
       .active {
         display: block;
-      }
-
-      // Add resonsiveness on click for mobile
-      .dropdown {
-        .dropdownContent {
-          position: relative;
-          display: block;
-          visibility: visible;
-          opacity: 1;
-          li {
-            padding: 12px 12px 12px 12px;
-          }
-        }
       }
     }
   }
