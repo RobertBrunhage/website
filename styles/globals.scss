@@ -203,6 +203,12 @@ img {
     }
   }
 }
+@media only screen and (max-width: 768px) {
+  .blog_post_component {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
 @media only screen and (max-width: 440px) {
   .CookieConsentBtn {
     font-size: 12px;

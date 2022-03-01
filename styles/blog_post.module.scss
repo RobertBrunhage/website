@@ -125,6 +125,9 @@
       margin-right: 40px;
       margin-left: 40px;
     }
+    & > blockquote {
+      color: var(--shade_80);
+    }
     pre {
       font-size: 2rem;
       margin-top: 33px;
@@ -168,6 +171,31 @@
           width: 120px;
           height: 45px;
         }
+      }
+    }
+    .title {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    .quote {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    .markdown {
+      & > h1,
+      & > h2,
+      & > h3,
+      & > h4,
+      & > h5,
+      & > h6,
+      & > blockquote,
+      & > p {
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+      li {
+        margin-right: 0px;
+        margin-left: 0px;
       }
     }
   }
