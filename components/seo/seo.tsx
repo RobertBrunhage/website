@@ -1,5 +1,5 @@
-import React from "react";
 import Head from "next/head";
+import React from "react";
 import { getBaseUrl } from "./settings";
 
 interface CommonSeoProps {
@@ -14,9 +14,6 @@ interface CommonSeoProps {
 
 const CommonSEO = (props: CommonSeoProps) => {
   const baseUrl = getBaseUrl();
-  console.log(
-    `You are currently on ${baseUrl} and the image path is ${props.twImage}`
-  );
   return (
     <Head>
       <title>{props.title}</title>

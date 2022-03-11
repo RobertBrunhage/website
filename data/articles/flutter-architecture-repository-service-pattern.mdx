@@ -76,12 +76,13 @@ Now two typical repositories would look something like this
 ```dart
 class DogRepository {
   Future<Dog> getDog() async {
-    // Do the required code to fetch it with whatever package or solution you want.
+    // Do the required code to fetch it
+    // with whatever package or solution you want.
     try {
-      final dog = fancyFetchLogicForDog();
+      final dog = await fancyFetchLogicForDog();
       return dog;
     } catch (e){
-      throw CustomException();
+      throw CustomException(e);
     }
   }
 }
@@ -90,12 +91,13 @@ class DogRepository {
 ```dart
 class CatRepository {
   Future<Dog> getCat() async {
-    // Do the required code to fetch it with whatever package or solution you want.
+    // Do the required code to fetch it
+    // with whatever package or solution you want.
     try {
-    final cat = fancyFetchLogicForCat();
+    final cat = await fancyFetchLogicForCat();
     return cat;
     } catch (e){
-      throw CustomException();
+      throw CustomException(e);
     }
   }
 }
@@ -141,8 +143,10 @@ class AnimalService {
       final cat = await _catRepository.getCat();
       return [dog, cat];
     } on CustomException catch (e) {
-      // Example will just rethrow the same exception. I personally love using https://pub.dev/packages/multiple_result and return a custom failure.
-      throw e;
+      // Example will just rethrow the same exception.
+      // I personally love using https://pub.dev/packages/multiple_result
+      // and return a custom failure.
+      rethrow;
     }
   }
 
@@ -154,8 +158,10 @@ class AnimalService {
       final averageAge = animals.map((animal) => animal.age).reduce((a, b) => a + b) / animals.length;
       return averageAge;
     } on CustomException catch (e) {
-      // Example will just rethrow the same exception. I personally love using https://pub.dev/packages/multiple_result and return a custom failure.
-      throw e;
+      // Example will just rethrow the same exception.
+      // I personally love using https://pub.dev/packages/multiple_result
+      // and return a custom failure.
+      rethrow;
     }
   }
 }
@@ -179,8 +185,9 @@ data.
 ```dart
 // Imagine this has some fancy ui and this would be the method call.
 Future<void> getAverageAnimalAge() async {
-  // The service would do all the heavy lifting of converting the data to the required response.
-  // If you used https://pub.dev/packages/multiple_result you can here, handle that failure.
+  // The service would do all the heavy lifting of converting the data
+  // to the required response. If you used https://pub.dev/packages/multiple_result
+  // you can here, handle that failure.
   final averageAnimalAge = await animalService.getAverageAnimalAge();
 
   setState(() {
@@ -191,6 +198,35 @@ Future<void> getAverageAnimalAge() async {
 
 But what I love the most is the **freedom** to do our error handling just as we
 want and still keep the calling side clean.
+
+## Some notes from feedback
+
+There are some confusion for people with Android background. I want to
+personally quote something that I wrote about in
+[this github issue](https://github.com/brianegan/new_flutter_template/issues/14#issuecomment-768418650).
+
+> "I personally follow DDD: View - Controller - Application Service - Repository
+
+> To me, this has made the most sense and has made my code the most decoupled.
+> The reason I've gone with this is in my experience a lot of people coming from
+> other technologies has a base understanding that a Repository handles crud
+> operations while Service handles the business request. I.e I need x from x
+> repository but also y from y repository, put these together and we have that
+> value xy in the service.
+>
+> The controller would then take the combined value (xy) from the service.
+>
+> Now there are also times when a Repository is not needed or a Service is not
+> needed but would only clutter. But I think we should be careful when going for
+> the Android style as there are not only people coming from an Android
+> background and to them a Repository calling a Service does not make sense to
+> the definitions of the words. But to others this make a complete sense.
+>
+> I just want to add that I don't think any of the approaches are bad but just
+> wanted to give an additional opinion 😊"
+
+You can, of course, have another "DataStore" layer that the repository have
+access too!
 
 ## Ending gratitude
 
