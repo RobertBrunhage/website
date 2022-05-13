@@ -1,0 +1,112 @@
+---
+title: "The Hidden Git workflow: Git worktree"
+description:
+  How to optimize your workflow to easily work on multiple branches at the same
+  time
+image: /assets/images/articles/the-hidden-git-workflow/git-worktree.webp
+author: Robert Brunhage
+featured: true
+date: 05-20-2022
+---
+
+![Alt Text](/assets/images/articles/the-hidden-git-workflow/git-worktree.webp)
+
+Before we can dive into `git worktree` we first have to understand why we want
+to learn it!
+
+## 💭 The biggest struggles of git
+
+If you have used git for a while you have probably worked on a branch. Imagine
+you have some work in progress in that branch but your teammate wants you to
+`checkout`/`switch` to another branch to test/help with.
+
+Or you maybe want to always have the `main` branch available for easily
+verifying the current state.
+
+### What do you do with your changes?
+
+Well we have a couple of solutions..
+
+1. We commit our current WIP changes in the hope of rebasing or squashing that
+   spaguetti later.
+2. We use `git stash` to stash our changes and later on move back to pop the
+   stashed changes later.
+
+Both of these as you can imagine leads to some sub-optimal workflows. The first
+one introduces a "not so clean" git history which you can fix by using commands
+such as `rebase`. Let's be honest, most people forget this or don't bother with
+doing it.
+
+The other solution can work at times but often leads to bigger issues as soon as
+you need to check another branch (now working with 3 branches). This leads to
+keeping trask of your `git stash` list which just isn't that fun or optimal.
+
+## The third solution
+
+`git worktree` is the third solution and let me explain first what a "worktree"
+is.
+
+You have already been working with a worktree when using git and this is often
+refeered to the "main worktree". This is just what you typically work in after
+doing a `git init` or `git clone`.
+
+This is the place you would do things like
+`git checkout/switch my-other-branch`.
+
+### 🌳 Git worktree
+
+What if I tell you that you can use multiple worktrees? Imagine you have
+multiple versions of your project branches in their own folder.
+
+For example, let's say we have a git repository called "building-game". let's
+clone that to a folder we created called "game".
+
+Now you should have a structure like this `game/building-game`. This is what we
+typically have, let's navigate in that and use the all mighty `git worktree`
+command.
+
+```shell
+> git worktree add ../add-more-buildings
+```
+
+The "add-more-buildings" is our new branch but in this case we used `worktree`
+to create a new folder one step up with this branch already set.
+
+So we now have 2x "repos":
+
+1. `game/building-game`
+2. `game/add-more-buildings`
+
+Now this is pretty sweet, we can move between these folders as we were moving
+between branches and you could even run them at the same time.
+
+This also of course comes with optimizations rather than doing another manual
+clone of a repo and in general easier to manage.
+
+
+## Deleting a worktree
+
+Well that is probably the most sweet thing. Navigate to your "main worktree" and
+run the following command to list all your worktrees.
+
+```shell
+> git worktree list
+```
+
+This will now print all the worktrees you have and that will simply let you
+remove the one you don't want.
+
+```shell
+> git worktree remove ../add-more-buildings
+```
+
+## Conclusion
+
+With `git worktree` you have the ability to move between branches with ease. 
+
+Either you can use it in a way that I do it i.e for all branches. Or you can use 
+it in a more stale work such as having `main`, `dev` and other branches always checked out.
+
+<div className="blog_post_component">
+  <blogShareFooter message="Just learned how I can utilize git worktree to improve my workflow, highly recommend it!" />
+</div>
