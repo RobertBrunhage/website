@@ -11,6 +11,12 @@ const Navbar = () => {
     mobileMenuRef.current?.classList.toggle(styles.active);
 
   const router = useRouter();
+  const teachableLogin = "https://courses.robertbrunhage.com/";
+  let path;
+
+  if (typeof window !== "undefined") {
+    path = window.location;
+  }
 
   const setLightTheme = () => {
     document.body.classList.replace("dark", "light");
@@ -70,6 +76,17 @@ const Navbar = () => {
               pathname={router.pathname}
             />
           ))}
+          {path?.pathname === "/course" && (
+            <NavItemComponent
+              key={99}
+              index={99}
+              navItem={{
+                title: "Sign In",
+                url: teachableLogin,
+              }}
+              pathname={router.pathname}
+            />
+          )}
           <button onClick={setDarkTheme} style={{ display: "none" }}>
             dark
           </button>
