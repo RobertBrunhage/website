@@ -10,6 +10,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^1.9.2",
     "@mapbox/rehype-prism": "mapbox/rehype-prism",
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^12.0.9",

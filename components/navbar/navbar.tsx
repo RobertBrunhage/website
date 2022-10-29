@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import { useUser } from "@auth0/nextjs-auth0";
+import React, { useRef, useEffect } from "react";
 import Menu, { NavItem } from "./menuItems";
 import styles from "./navbar.module.scss";
 
@@ -11,12 +12,7 @@ const Navbar = () => {
     mobileMenuRef.current?.classList.toggle(styles.active);
 
   const router = useRouter();
-  const teachableLogin = "https://courses.robertbrunhage.com/";
-  let path;
-
-  if (typeof window !== "undefined") {
-    path = window.location;
-  }
+  const { user, error, isLoading } = useUser();
 
   const setLightTheme = () => {
     document.body.classList.replace("dark", "light");
@@ -26,6 +22,10 @@ const Navbar = () => {
     document.body.classList.replace("light", "dark");
     localStorage.setItem("theme", "dark");
   };
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <header className={styles.header}>
@@ -76,17 +76,28 @@ const Navbar = () => {
               pathname={router.pathname}
             />
           ))}
-          {path?.pathname === "/course" && (
+          {!user ? (
+            <NavItemComponent
+              key={98}
+              index={98}
+              navItem={{
+                title: "Sign In",
+                url: "/api/auth/login",
+              }}
+              pathname={router.pathname}
+            />
+          ) : (
             <NavItemComponent
               key={99}
               index={99}
               navItem={{
-                title: "Sign In",
-                url: teachableLogin,
+                title: "Sign Out",
+                url: "/api/auth/logout",
               }}
               pathname={router.pathname}
             />
           )}
+
           <button onClick={setDarkTheme} style={{ display: "none" }}>
             dark
           </button>
