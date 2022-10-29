@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useRef } from "react";
 import Menu, { NavItem } from "./menuItems";
@@ -11,12 +12,7 @@ const Navbar = () => {
     mobileMenuRef.current?.classList.toggle(styles.active);
 
   const router = useRouter();
-  const teachableLogin = "https://courses.robertbrunhage.com/";
-  let path;
-
-  if (typeof window !== "undefined") {
-    path = window.location;
-  }
+  const { data: session } = useSession();
 
   const setLightTheme = () => {
     document.body.classList.replace("dark", "light");
@@ -76,17 +72,13 @@ const Navbar = () => {
               pathname={router.pathname}
             />
           ))}
-          {path?.pathname === "/course" && (
-            <NavItemComponent
-              key={99}
-              index={99}
-              navItem={{
-                title: "Sign In",
-                url: teachableLogin,
-              }}
-              pathname={router.pathname}
-            />
+          
+          {!session ? (
+            <button onClick={() => signIn()}>Sign In</button>
+          ) : (
+            <button onClick={() => signOut()}>Sign Out</button>
           )}
+
           <button onClick={setDarkTheme} style={{ display: "none" }}>
             dark
           </button>
