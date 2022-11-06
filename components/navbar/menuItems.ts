@@ -6,6 +6,7 @@ export interface NavItem {
 const NavItems: NavItem[] = [
   { title: "Home", url: "/" },
   { title: "Course", url: "/course" },
+  { title: "Courses", url: "/courses" },
   { title: "Videos", url: "/videos" },
   { title: "Articles", url: "/articles" },
 ];
