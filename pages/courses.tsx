@@ -2,8 +2,9 @@ import React from "react";
 import Layout from "../components/layout/layout";
 import CommonSEO from "../components/seo/seo";
 import Courses from "../components/courses/courses";
+import { getCoursesFrontMatter } from "../core/mdx";
 
-const courses = () => {
+const courses = ({courses}: any) => {
   return (
     <Layout>
       <CommonSEO
@@ -15,9 +16,15 @@ const courses = () => {
       >
         <link rel="canonical" href="https://robertbrunhage.com" />
       </CommonSEO>
-      <Courses />
+      <Courses courses={courses} />
     </Layout>
   );
 };
 
 export default courses;
+
+export async function getStaticProps() {
+  const courses = await getCoursesFrontMatter("courses");
+
+  return { props: { courses } };
+}
