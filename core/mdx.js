@@ -102,7 +102,10 @@ export async function getCoursesFrontMatter(type) {
   const courseFrontMatter = [];
 
   courses.forEach((course) => {
-    const source = fs.readFileSync(path.join(root, "data", `${type}/${course}`, "__index.mdx"), 'utf-8');
+    const source = fs.readFileSync(
+      path.join(root, "data", `${type}/${course}`, "__index.mdx"),
+      "utf-8"
+    );
     const { data } = matter(source);
     if (data.draft !== true) {
       courseFrontMatter.push({ ...data, course, slug: formatSlug(course) });
@@ -110,4 +113,23 @@ export async function getCoursesFrontMatter(type) {
   });
 
   return courseFrontMatter.sort((a, b) => dateSortDesc(a.date, b.date));
+}
+
+export async function getCourseFrontMatter(course) {
+  const courseFiles = fs.readdirSync(path.join(root, "data/courses/", course));
+
+  const courseFrontMatter = [];
+
+  courseFiles.forEach((md) => {
+    const source = fs.readFileSync(
+      path.join(root, `data/courses/${course}/${md}`),
+      "utf8"
+    );
+    const { data } = matter(source);
+    if (data.draft !== true) {
+      courseFrontMatter.push({ ...data, slug: formatSlug(md) });
+    }
+  });
+
+  return courseFrontMatter;
 }
