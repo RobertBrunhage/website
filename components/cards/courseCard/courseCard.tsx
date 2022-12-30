@@ -12,7 +12,7 @@ interface CourseCardProps {
 
 const courseCard = ({ img, title, description, slug, route }: CourseCardProps) => {
   return (
-    <Link href={`/${route}/[slug]`} as={`/${route}/${slug}`}>
+    <Link href={`/${route}/[slug]/module-1-overview/`} as={`/${route}/${slug}/module-1-overview/`}>
       <div className={styles.course_card}>
         <img src={img} alt="thumbnail" />
         <h1>{title}</h1>
