@@ -48,6 +48,7 @@
     "@types/sass": "^1.43.1",
     "@types/universal-cookie": "^3.0.0",
     "autoprefixer": "^10.4.2",
+    "eslint": "^8.30.0",
     "gray-matter": "^4.0.3",
     "husky": "^7.0.0",
     "sass": "^1.49.0",
