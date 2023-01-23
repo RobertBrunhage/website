@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -10,6 +10,8 @@ import "prismjs";
 import Prism from "prismjs";
 import "prismjs/components/prism-dart";
 import styles from "../../../styles/blog_post.module.scss";
+import SideNavigation from "../../../components/sideNavigation/sideNavigation";
+import { getCourseFrontMatter } from "../../../core/mdx";
 
 const components = {};
 
@@ -17,21 +19,28 @@ export default function Course({
   source,
   module,
   slug,
+  course,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  useEffect(() => {
-    console.log("source: ", source);
-    console.log("module: ", module);
-    console.log("slug: ", slug);
+  const [slugMenu, setSlugMenu] = useState<Array<string>>([]);
 
+  let menu: Array<string> = [];
+
+  useEffect(() => {
+    course.forEach((i: any) => {
+      if (i.slug === "__index") return;
+      menu.push(i.slug);
+    });
+
+    setSlugMenu(menu);
     Prism.highlightAll();
-  }, [source]);
+  }, [course]);
 
   return (
     <Layout>
       <div className={`max_width ${styles.content}`}>
         <div className={styles.article_container}>
           <aside>
-            yo its me side menu
+            <SideNavigation menu={slugMenu} module={module} slug={slug} />
           </aside>
           <article className={styles.markdown}>
             <MDXRemote {...source} components={components} />
@@ -88,7 +97,8 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   );
 
   const { data: metaData, content } = matter(courses);
+  const course = await getCourseFrontMatter(module);
 
   const mdxSource = await serialize(content, { scope: metaData });
-  return { props: { source: mdxSource, module, slug } };
+  return { props: { source: mdxSource, module, slug, course } };
 };
