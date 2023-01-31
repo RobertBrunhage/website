@@ -9,11 +9,13 @@ import Layout from "../../../components/layout/layout";
 import "prismjs";
 import Prism from "prismjs";
 import "prismjs/components/prism-dart";
-import styles from "../../../styles/blog_post.module.scss";
+import styles from "../../../styles/course_layout.module.scss";
 import SideNavigation from "../../../components/sideNavigation/sideNavigation";
 import { getCourseFrontMatter } from "../../../core/mdx";
 
 const components = {};
+
+let authorized = true;
 
 export default function Course({
   source,
@@ -37,15 +39,28 @@ export default function Course({
 
   return (
     <Layout>
-      <div className={`max_width ${styles.content}`}>
-        <div className={styles.article_container}>
-          <aside>
-            <SideNavigation menu={slugMenu} module={module} slug={slug} />
-          </aside>
-          <article className={styles.markdown}>
-            <MDXRemote {...source} components={components} />
-          </article>
+      <div className={`max_width ${styles.course_layout}`}>
+        <aside className={styles.menu}>
+          <SideNavigation menu={slugMenu} module={module} slug={slug} />
+        </aside>
+        <div className={styles.video}>
+          {authorized ? (
+            <iframe
+              style={{ display: !authorized ? "none" : "" }}
+              src={`https://player.vimeo.com/video/${787938115}`}
+              allowFullScreen
+            />
+          ) : (
+            <div className={styles.sign_in}>
+              <h3>
+                You must <span> sign in </span> to watch.
+              </h3>
+            </div>
+          )}
         </div>
+        <article className={styles.content}>
+          <MDXRemote {...source} components={components} />
+        </article>
       </div>
     </Layout>
   );
