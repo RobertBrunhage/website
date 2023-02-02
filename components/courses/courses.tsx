@@ -7,10 +7,6 @@ interface CoursesProps {
 }
 
 const courses = ({ courses }: CoursesProps) => {
-  useEffect(() => {
-    console.log(courses);
-  }, []);
-
   return (
     <div className={`max_width ${styles.courses_container}`}>
       <h1>Courses</h1>

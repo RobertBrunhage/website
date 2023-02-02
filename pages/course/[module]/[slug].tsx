@@ -17,23 +17,29 @@ const components = {};
 
 let authorized = true;
 
+interface MenuProps {
+  title: string;
+  slug: string;
+}
+
 export default function Course({
   source,
   module,
   slug,
   course,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const [slugMenu, setSlugMenu] = useState<Array<string>>([]);
+  const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
 
-  let menu: Array<string> = [];
+  let menu: Array<MenuProps> = [];
 
   useEffect(() => {
     course.forEach((i: any) => {
       if (i.slug === "__index") return;
-      menu.push(i.slug);
+      let item = { title: i.title, slug: i.slug };
+      menu.push(item);
     });
 
-    setSlugMenu(menu);
+    setSideMenu(menu);
     Prism.highlightAll();
   }, [course]);
 
@@ -41,13 +47,15 @@ export default function Course({
     <Layout>
       <div className={`max_width ${styles.course_layout}`}>
         <aside className={styles.menu}>
-          <SideNavigation menu={slugMenu} module={module} slug={slug} />
+          <SideNavigation menu={sideMenu} module={module} slug={slug} />
         </aside>
-        <div className={styles.video}>
+        <div
+          className={styles.video}
+          style={{ display: source.scope.vimeo ? "" : "none" }}
+        >
           {authorized ? (
             <iframe
-              style={{ display: !authorized ? "none" : "" }}
-              src={`https://player.vimeo.com/video/${787938115}`}
+              src={`https://player.vimeo.com/video/${source.scope.vimeo}`}
               allowFullScreen
             />
           ) : (
