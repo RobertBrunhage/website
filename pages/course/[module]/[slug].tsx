@@ -15,9 +15,10 @@ import { getCourseFrontMatter } from "../../../core/mdx";
 
 const components = {};
 
-let authorized = true;
+let authorized = false;
 
 interface MenuProps {
+  chapter?: string;
   title: string;
   slug: string;
 }
@@ -35,7 +36,7 @@ export default function Course({
   useEffect(() => {
     course.forEach((i: any) => {
       if (i.slug === "__index") return;
-      let item = { title: i.title, slug: i.slug };
+      let item = { chapter: i.chapter, title: i.title, slug: i.slug };
       menu.push(item);
     });
 

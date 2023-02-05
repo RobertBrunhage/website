@@ -3,6 +3,7 @@ import styles from "./sideNavigation.module.scss";
 import Link from "next/link";
 
 interface MenuProps {
+  chapter?: string;
   title: string;
   slug: string;
 }
@@ -18,14 +19,27 @@ const SideNavigation = ({ menu, module, slug }: SideNavProps) => {
     <div className={styles.side_nav}>
       <ul>
         {menu.map((item, index) => (
-          <li className={item.slug === slug ? styles.selected : ""} key={index}>
-            <Link
-              href={`/course/${module}/${item.slug}/`}
-              as={`/course/${module}/${item.slug}/`}
+          <>
+            <li
+              className={styles.chapter}
+              style={{ display: item.chapter ? "" : "none" }}
             >
-              {item.title}
-            </Link>
-          </li>
+              {item.chapter}
+            </li>
+            <li
+              className={`${styles.indent} ${
+                item.slug === slug ? styles.selected : ""
+              } }`}
+              key={index}
+            >
+              <Link
+                href={`/course/${module}/${item.slug}/`}
+                as={`/course/${module}/${item.slug}/`}
+              >
+                {item.title}
+              </Link>
+            </li>
+          </>
         ))}
       </ul>
     </div>
