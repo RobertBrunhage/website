@@ -1,3 +1,4 @@
+import { useUser } from '@auth0/nextjs-auth0';
 import * as React from 'react';
 import { Response } from '../pages/api/course/has-access';
 
@@ -10,7 +11,7 @@ function initialState(args: { error?: any; isLoading?: boolean; response?: any }
   };
 }
 
-const useApi = <T>(
+const useAuthenticatedApi = <T>(
   url: RequestInfo,
   options = {}
 ): {
@@ -18,6 +19,7 @@ const useApi = <T>(
   response: Response<T>;
 } => {
   const [state, setState] = React.useState(() => initialState({}));
+  const { user } = useUser();
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -43,9 +45,12 @@ const useApi = <T>(
         );
       }
     };
+
+
+    if (!user) return;
     fetchData();
-  }, []);
+  }, [user]);
   return state;
 };
 
-export default useApi;
+export default useAuthenticatedApi;

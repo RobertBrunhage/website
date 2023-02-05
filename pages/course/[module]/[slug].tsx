@@ -12,7 +12,7 @@ import "prismjs/components/prism-dart";
 import styles from "../../../styles/course_layout.module.scss";
 import SideNavigation from "../../../components/sideNavigation/sideNavigation";
 import { getCourseFrontMatter } from "../../../core/mdx";
-import useApi from "../../../lib/use-api";
+import useAuthenticatedApi from "../../../lib/use-api";
 
 const components = {};
 
@@ -30,7 +30,7 @@ export default function Course({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
   // need to type this out
-  const { response } = useApi<boolean>('/api/course/has-access');
+  const { response } = useAuthenticatedApi<boolean>('/api/course/has-access');
 
   let menu: Array<MenuProps> = [];
 
