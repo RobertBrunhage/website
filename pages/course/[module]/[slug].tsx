@@ -12,10 +12,9 @@ import "prismjs/components/prism-dart";
 import styles from "../../../styles/course_layout.module.scss";
 import SideNavigation from "../../../components/sideNavigation/sideNavigation";
 import { getCourseFrontMatter } from "../../../core/mdx";
+import useApi from "../../../lib/use-api";
 
 const components = {};
-
-let authorized = false;
 
 interface MenuProps {
   chapter?: string;
@@ -30,6 +29,8 @@ export default function Course({
   course,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
+  // need to type this out
+  const { response } = useApi<boolean>('/api/course/has-access');
 
   let menu: Array<MenuProps> = [];
 
@@ -54,7 +55,7 @@ export default function Course({
           className={styles.video}
           style={{ display: source.scope.vimeo ? "" : "none" }}
         >
-          {authorized ? (
+          {response?.value ? (
             <iframe
               src={`https://player.vimeo.com/video/${source.scope.vimeo}`}
               allowFullScreen
@@ -124,5 +125,6 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   const course = await getCourseFrontMatter(module);
 
   const mdxSource = await serialize(content, { scope: metaData });
+
   return { props: { source: mdxSource, module, slug, course } };
 };
