@@ -13,7 +13,7 @@ function initialState(args: { error?: any; isLoading?: boolean; response?: any }
 
 const useAuthenticatedApi = <T>(
   url: RequestInfo,
-  options = {}
+  options: RequestInit = {}
 ): {
   isLoading: boolean;
   response: Response<T>;
@@ -24,9 +24,7 @@ const useAuthenticatedApi = <T>(
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(url, {
-          ...options
-        });
+        const res = await fetch(url, options);
 
         setState(
           initialState({

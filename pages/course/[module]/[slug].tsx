@@ -30,11 +30,19 @@ export default function Course({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
   // need to type this out
-  const { response } = useAuthenticatedApi<boolean>('/api/course/has-access');
+  const { response } = useAuthenticatedApi<boolean>('/api/course/has-access', {
+    method: "POST",
+    body: JSON.stringify({ courseName: module }),
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    }),
+  });
 
   let menu: Array<MenuProps> = [];
 
   useEffect(() => {
+    console.log(module);
     course.forEach((i: any) => {
       if (i.slug === "__index") return;
       let item = { chapter: i.chapter, title: i.title, slug: i.slug };
