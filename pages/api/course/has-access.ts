@@ -1,9 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { withApiAuthRequired, getSession, Session } from '@auth0/nextjs-auth0';
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from '../../../lib/database/user';
 
-const prisma = new PrismaClient();
+type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
 export type Response<T> = {
   message: string;
@@ -12,11 +12,11 @@ export type Response<T> = {
   errors?: string[];
 };
 
+
 export type _HasAccessRequest = {
   courseName: string;
 }
 
-type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
 export type HasAccessRequest = Override<NextApiRequest, { body: _HasAccessRequest }>
 
@@ -56,7 +56,7 @@ async function hasCourseAccess(
       }
     });
 
-    let hasCourse = user?.courses.map((c) => c.name).includes(req.body.courseName);
+    let hasCourse = user?.courses.map((c) => c.stripeProductId).includes(req.body.stripeProductId);
 
     return res.status(200).json({ success: true, message: "You are authenticated", value: hasCourse });
   } catch (error) {

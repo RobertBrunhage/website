@@ -29,10 +29,9 @@ export default function Course({
   course,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
-  // need to type this out
   const { response } = useAuthenticatedApi<boolean>('/api/course/has-access', {
     method: "POST",
-    body: JSON.stringify({ courseName: module }),
+    body: JSON.stringify({ stripeProductId: 'prod_NInXljEw7mMKMV' }),
     headers: new Headers({
       'Content-Type': 'application/json',
       Accept: 'application/json',

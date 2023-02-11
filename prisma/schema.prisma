@@ -13,13 +13,15 @@ datasource db {
 }
 
 model User {
-  id      Int      @id @default(autoincrement())
-  sub     String   @unique
-  courses Course[]
+  id               Int      @id @default(autoincrement())
+  sub              String   @unique
+  stripeCustomerId String   @unique
+  courses          Course[]
 }
 
 model Course {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  users User[]
+  id              Int    @id @default(autoincrement())
+  name            String @unique
+  stripeProductId String @unique
+  users           User[]
 }
