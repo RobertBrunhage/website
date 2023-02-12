@@ -2,7 +2,6 @@ import Cors from 'micro-cors';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { buffer } from 'micro';
 import Stripe from 'stripe';
-import { prisma } from '../course/has-access';
 import { createUserAndConnectWithCourse } from '../../../lib/database/user';
 
 const cors = Cors({
