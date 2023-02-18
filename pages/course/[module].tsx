@@ -10,6 +10,9 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { getCourseFrontMatter } from "../../core/mdx";
 import CourseCard from "../../components/cards/courseCard/courseCard";
+import buttonStyle from "../../components/buttons/cta/cta.module.scss";
+import { useUser } from "@auth0/nextjs-auth0";
+import Link from "next/link";
 
 const components = {};
 
@@ -25,6 +28,8 @@ const stripePromise = loadStripe(
 );
 
 export default function Course({ source, module, modules }: ModulesProps) {
+  const { user, error, isLoading } = useUser();
+
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
@@ -36,6 +41,8 @@ export default function Course({ source, module, modules }: ModulesProps) {
         "Order canceled -- continue to shop around and checkout when you’re ready."
       );
     }
+
+    console.log(user);
   }, []);
 
   return (
@@ -51,42 +58,29 @@ export default function Course({ source, module, modules }: ModulesProps) {
           />
         </div>
 
-        <form action="/api/checkout_sessions" method="POST">
-          <section>
-            <button type="submit" role="link">
-              Checkout
-            </button>
-          </section>
-          <style jsx>
-            {`
-              section {
-                background: #ffffff;
-                display: flex;
-                flex-direction: column;
-                width: 400px;
-                height: 112px;
-                border-radius: 6px;
-                justify-content: space-between;
-              }
-              button {
-                height: 36px;
-                background: #556cd6;
-                border-radius: 4px;
-                color: white;
-                border: 0;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
-              }
-              button:hover {
-                opacity: 0.8;
-              }
-            `}
-          </style>
-        </form>
+        <div className={styles.purchase_btn}>
+          {user ? (
+            <form action="/api/checkout_sessions" method="POST">
+              <section>
+                <button
+                  className={`${buttonStyle.button} ${styles.btn}`}
+                  type="submit"
+                  role="link"
+                >
+                  Purchase this course
+                </button>
+              </section>
+            </form>
+          ) : (
+            <Link href={"/api/auth/login"}>
+              <a className={`${buttonStyle.button} ${styles.btn}`}>
+                Purchase this course
+              </a>
+            </Link>
+          )}
+        </div>
 
-        <article>
+        <article className={styles.content}>
           <MDXRemote {...source} components={components} />
         </article>
 

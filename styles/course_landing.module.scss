@@ -3,6 +3,7 @@
   grid-template-areas:
     "video"
     "content"
+    "."
     "modules";
 
   .menu {
@@ -32,6 +33,19 @@
         &:hover {
           cursor: pointer;
         }
+      }
+    }
+  }
+
+  .purchase_btn {
+    margin: 0 auto;
+    padding: 128px 0;
+
+    .btn {
+      color: #fff;
+      padding: 24px 48px;
+      &:hover {
+        cursor: pointer;
       }
     }
   }
