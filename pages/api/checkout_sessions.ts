@@ -22,7 +22,8 @@ async function handler(
   if (req.method === "POST" && userSession) {
 
     try {
-      const productPrices = await stripe.prices.list({ product: req.body.productId, limit: 1 });
+      const { productId, successPath } = req.query;
+      const productPrices = await stripe.prices.list({ product: productId as string, limit: 1 });
       const priceId = productPrices.data[0].id;
 
       // Create Checkout Sessions from body params.
@@ -39,7 +40,7 @@ async function handler(
         ],
         customer_creation: "always",
         mode: "payment",
-        success_url: `${req.headers.origin}${req.body.successPath}/?success=true`,
+        success_url: `${req.headers.origin}${successPath}/?success=true`,
         cancel_url: `${req.headers.origin}/?canceled=true`,
         automatic_tax: { enabled: true },
       });

@@ -52,7 +52,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
     }
 
     console.log(response);
-  }, []);
+  }, [response]);
 
   return (
     <Layout>
@@ -69,7 +69,10 @@ export default function Course({ source, module, modules }: ModulesProps) {
 
         <div className={styles.purchase_btn}>
           {user ? (
-            <form action="/api/checkout_sessions" method="POST">
+            <form
+              action={`/api/checkout_sessions/?productId=prod_NInXljEw7mMKMV&successPath=/course/${module}`}
+              method="POST"
+            >
               <section>
                 <button
                   className={`${buttonStyle.button} ${styles.btn}`}
@@ -81,7 +84,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
               </section>
             </form>
           ) : (
-            <Link href={"/api/auth/login?returnTo=/"}>
+            <Link href={`/api/auth/login?returnTo=/course/${module}`}>
               <a className={`${buttonStyle.button} ${styles.btn}`}>
                 Purchase this course
               </a>
