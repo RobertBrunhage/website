@@ -3,7 +3,7 @@ import { withApiAuthRequired, getSession } from '@auth0/nextjs-auth0';
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from '../../../lib/database/user';
 
-type Override<T1, T2> = Omit<T1, keyof T2> & T2;
+export type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
 export type Response<T> = {
   message: string;
