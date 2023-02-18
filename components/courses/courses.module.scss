@@ -1,0 +1,21 @@
+.courses_container {
+  .subtitle {
+    font-size: var(--subtitle);
+    font-weight: 300;
+    margin-top: 0.4em;
+    margin-bottom: 4em;
+  }
+
+  .card_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 352px));
+    gap: 42px;
+    justify-content: start;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .card_container {
+      justify-content: center;
+    }
+  }
+}

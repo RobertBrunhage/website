@@ -1,0 +1,20 @@
+---
+title: Lecture 2 - Theming
+description: Introduction to the Ultimate Flutter Course
+vimeo: 787938115 
+github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commit/454914801e9b6758249a6e36e8a6bf8f52d93a16
+author: Robert Brunhage
+lastmod: 10-30-2022
+---
+
+## Theming
+
+Theming is one of those parts that are quite **hard to get right**. I **recommend** reading up a bit more about the [documentation](https://flutter.dev/docs/cookbook/design/themes). But generally, there are tons of **different approaches**. The most important part here is that it's possible for you to have the code related to themes in **one place**. As soon as you are setting specific colors etc throughout the app it will be a headache to implement light/dark mode features.
+
+## ColorScheme
+
+This is a great way of making sure the app uses the theme color in all those small spaces you might forget. Looking at the documentation:
+
+"A set of thirteen colors that can be used to configure the color properties of most components."
+
+This refers to a lot of widgets use for example "themeColor[400]", and the color scheme just makes it easy to cover those cases.

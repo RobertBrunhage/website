@@ -1,0 +1,39 @@
+.side_nav {
+  ul {
+    margin: 0;
+    padding: 0 20px 0 0;
+    list-style-type: none;
+
+    li {
+      padding: 10px 0;
+      font-size: var(--body-large);
+      color: var(--gray_300);
+
+      &:hover {
+        font-weight: 600;
+        color: var(--primary-text-color);
+      }
+    }
+
+    .chapter {
+      border-bottom: 2px solid var(--gray_600);
+      margin: 8px 0 4px 0;
+      width: 80%;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--primary-text-color);
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    .indent {
+      margin-left: 2px;
+    }
+
+    .selected {
+      font-weight: 600;
+      color: var(--primary-text-color);
+    }
+  }
+}
