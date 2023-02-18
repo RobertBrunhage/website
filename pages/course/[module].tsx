@@ -1,8 +1,8 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { loadStripe } from "@stripe/stripe-js";
 import fs from "fs";
 import path from "path";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/course_landing.module.scss";
 import Layout from "../../components/layout/layout";
 import matter from "gray-matter";
@@ -13,6 +13,7 @@ import CourseCard from "../../components/cards/courseCard/courseCard";
 import buttonStyle from "../../components/buttons/cta/cta.module.scss";
 import { useUser } from "@auth0/nextjs-auth0";
 import Link from "next/link";
+import useAuthenticatedApi from "../../lib/use-api";
 
 const components = {};
 
@@ -28,6 +29,14 @@ const stripePromise = loadStripe(
 );
 
 export default function Course({ source, module, modules }: ModulesProps) {
+  const { response } = useAuthenticatedApi<string>("/api/course/course", {
+    method: "POST",
+    body: JSON.stringify({ courseName: module }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    }),
+  });
   const { user, error, isLoading } = useUser();
 
   useEffect(() => {
@@ -42,7 +51,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
       );
     }
 
-    console.log(user);
+    console.log(response);
   }, []);
 
   return (
@@ -72,7 +81,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
               </section>
             </form>
           ) : (
-            <Link href={"/api/auth/login"}>
+            <Link href={"/api/auth/login?returnTo=/"}>
               <a className={`${buttonStyle.button} ${styles.btn}`}>
                 Purchase this course
               </a>
@@ -85,16 +94,20 @@ export default function Course({ source, module, modules }: ModulesProps) {
         </article>
 
         <div className={styles.card_container}>
-          {modules.map(({ image, title, description, slug }, index) => (
-            <CourseCard
-              key={index}
-              img={image}
-              title={title}
-              description={description}
-              slug={slug}
-              route={`course/${module}`}
-            />
-          ))}
+          {modules.map(({ image, title, description, slug }, index) =>
+            source.scope?.title === title ? (
+              ""
+            ) : (
+              <CourseCard
+                key={index}
+                img={image}
+                title={title}
+                description={description}
+                slug={slug}
+                route={`course/${module}`}
+              />
+            )
+          )}
         </div>
       </div>
     </Layout>
