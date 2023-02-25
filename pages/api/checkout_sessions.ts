@@ -38,6 +38,7 @@ async function handler(
             quantity: 1,
           },
         ],
+        customer_email: userSession.user.email,
         customer_creation: "always",
         mode: "payment",
         success_url: `${req.headers.origin}${successPath}/?success=true`,
