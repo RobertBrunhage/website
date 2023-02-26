@@ -1,5 +1,4 @@
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import Head from "next/head";
 import "prismjs";
 import Prism from "prismjs";
 import "prismjs/components/prism-dart";
@@ -9,7 +8,6 @@ import Layout from "../../components/layout/layout";
 import CommonSEO from "../../components/seo/seo";
 import {
   formatSlug,
-  getAllFilesFrontMatter,
   getFileBySlug,
   getFiles,
 } from "../../core/mdx";
@@ -104,10 +102,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }: any) {
-  const allPosts = await getAllFilesFrontMatter("articles");
-  const postIndex = allPosts.findIndex((post) => post.slug === slug);
-  const prev = allPosts[postIndex + 1] || null;
-  const next = allPosts[postIndex - 1] || null;
+  // const allPosts = await getAllFilesFrontMatter("articles");
+  // const postIndex = allPosts.findIndex((post) => post.slug === slug);
+  // const prev = allPosts[postIndex + 1] || null;
+  // const next = allPosts[postIndex - 1] || null;
   const post = await getFileBySlug("articles", slug);
 
   const content = post.mdxSource;

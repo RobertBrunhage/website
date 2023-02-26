@@ -6,7 +6,7 @@ interface BlogShareFooterProps {
   message: String;
 }
 
-const blogShareFooter = ({ message }: BlogShareFooterProps) => {
+const BlogShareFooter = ({ message }: BlogShareFooterProps) => {
   const router = useRouter();
 
   const generateTwitterUrl = () => {
@@ -31,4 +31,4 @@ const blogShareFooter = ({ message }: BlogShareFooterProps) => {
   );
 };
 
-export default blogShareFooter;
+export default BlogShareFooter;

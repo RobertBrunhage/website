@@ -6,7 +6,7 @@ interface EmailSignupProps {
   color: string;
 }
 
-const emailSignup = ({ color }: EmailSignupProps) => {
+const EmailSignup = ({ color }: EmailSignupProps) => {
   return (
     <div>
       <EmailForm
@@ -22,4 +22,4 @@ const emailSignup = ({ color }: EmailSignupProps) => {
   );
 };
 
-export default emailSignup;
+export default EmailSignup;

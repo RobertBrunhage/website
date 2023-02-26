@@ -3,15 +3,15 @@ import PlausibleProvider from "next-plausible";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
-import emailSignup from "../components/emailForm/forms/emailSignup";
-import blogShareFooter from "../components/footer/blogShareFooter/blogShareFooter";
+import EmailSignup from "../components/emailForm/forms/emailSignup";
+import BlogShareFooter from "../components/footer/blogShareFooter/blogShareFooter";
 import Heading2 from "../components/headings/h2";
 import Heading3 from "../components/headings/h3";
-import { UserProvider } from "@auth0/nextjs-auth0";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "../styles/code-highlighting.css";
 import "../styles/globals.scss";
 
-const components = { emailSignup, blogShareFooter, h2: Heading2, h3: Heading3 };
+const components = { EmailSignup, BlogShareFooter, h2: Heading2, h3: Heading3 };
 
 interface MyAppProps {
   Component: any;

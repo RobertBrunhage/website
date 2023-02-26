@@ -3,7 +3,7 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import readingTime from "reading-time";
-import visit from "unist-util-visit";
+import { visit } from "unist-util-visit";
 
 const root = process.cwd();
 
@@ -56,7 +56,7 @@ export async function getFileBySlug(type, slug) {
         import("@mapbox/rehype-prism"),
         () => {
           return (tree) => {
-            visit(tree, "element", (node, index, parent) => {
+            visit(tree, "element", (node, _, __) => {
               let [token, type] = node.properties.className || [];
               if (token === "token") {
                 node.properties.className = [tokenClassNames[type]];

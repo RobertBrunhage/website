@@ -17,7 +17,7 @@ async function handler(
   req: NextApiRequest,
   res: any
 ) {
-  let userSession = getSession(req, res);
+  let userSession = await getSession(req, res);
 
   if (req.method === "POST" && userSession) {
 

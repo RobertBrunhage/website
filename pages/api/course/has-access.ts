@@ -26,7 +26,7 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Response<boolean>>
 ) {
-  let session = getSession(req, res);
+  let session = await getSession(req, res);
   // This will allow OPTIONS request
   if (req.method === "OPTIONS") {
     return res.status(200).send({ success: true, message: "You are authenticated" });

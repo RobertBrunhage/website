@@ -15,7 +15,7 @@ interface HomeProps {
   baseUrl: string;
 }
 
-const Index = ({ videos, articles, baseUrl }: HomeProps) => {
+const Index = ({ videos, articles }: HomeProps) => {
   const [featuredVideos, setFeaturedVideos] = useState(videos);
   const [featuredArticles, setFeaturedArticles] = useState(articles);
 
