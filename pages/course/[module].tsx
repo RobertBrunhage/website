@@ -37,7 +37,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
       Accept: "application/json",
     }),
   });
-  const { user, error, isLoading } = useUser();
+  const { user } = useUser();
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -50,8 +50,6 @@ export default function Course({ source, module, modules }: ModulesProps) {
         "Order canceled -- continue to shop around and checkout when you’re ready."
       );
     }
-
-    console.log(response);
   }, [response]);
 
   return (
