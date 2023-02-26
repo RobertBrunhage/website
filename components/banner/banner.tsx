@@ -39,7 +39,7 @@ const banner = () => {
         <div className={styles.text}>
           <h4>The Ultimate Flutter Course is fully released!</h4>
         </div>
-        <Link href="/course">
+        <Link legacyBehavior={true} href="/course">
           <a>Learn More</a>
         </Link>
         <button onClick={() => onClose()}>×</button>

@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { loadStripe } from "@stripe/stripe-js";
 import fs from "fs";
 import path from "path";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "../../styles/course_landing.module.scss";
 import Layout from "../../components/layout/layout";
 import matter from "gray-matter";
@@ -11,7 +11,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { getCourseFrontMatter } from "../../core/mdx";
 import CourseCard from "../../components/cards/courseCard/courseCard";
 import buttonStyle from "../../components/buttons/cta/cta.module.scss";
-import { useUser } from "@auth0/nextjs-auth0";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import useAuthenticatedApi from "../../lib/use-api";
 
@@ -23,7 +23,7 @@ interface ModulesProps {
   modules: Array<any>;
 }
 
-const stripePromise = loadStripe(
+loadStripe(
   //@ts-ignore
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
@@ -84,7 +84,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
               </section>
             </form>
           ) : (
-            <Link href={`/api/auth/login?returnTo=/course/${module}`}>
+            <Link legacyBehavior={true} href={`/api/auth/login?returnTo=/course/${module}`}>
               <a className={`${buttonStyle.button} ${styles.btn}`}>
                 Purchase this course
               </a>

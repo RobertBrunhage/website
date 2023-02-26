@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useUser } from "@auth0/nextjs-auth0";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import React, { useRef, useEffect } from "react";
 import Menu, { NavItem } from "./menuItems";
 import styles from "./navbar.module.scss";
@@ -59,7 +59,7 @@ const Navbar = () => {
       </Head>
       <nav className={styles.stroke} id={"nav"}>
         <h1 className={styles.logo}>
-          <Link href="/">
+          <Link legacyBehavior={true} href="/">
             <a>
               <img alt="logo" src="/logo.png" />
               Robert Brunhage
@@ -129,7 +129,7 @@ const NavItemComponent = ({
 }: NavItemComponentProps) => {
   return (
     <li key={index}>
-      <Link href={navItem.url} key={index}>
+      <Link legacyBehavior={true} href={navItem.url} key={index}>
         <a className={pathname == navItem.url ? styles.active : ""}>
           {navItem.title}
         </a>
