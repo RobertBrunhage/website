@@ -1,24 +1,42 @@
 .course_layout {
   display: grid;
   grid-template-areas:
-    "video"
+    "main"
+    "second"
     "content"
     "."
     "modules";
 
-  .menu {
-    grid-area: menu;
+  .main {
+    grid-area: main;
+
+    .header {
+      grid-area: title;
+      text-align: center;
+      max-width: 80em;
+      margin: 0 auto;
+
+      h1 {
+        margin-bottom: 0;
+      }
+    }
+
+    .video {
+      grid-area: video;
+      aspect-ratio: 21/9;
+      display: flex;
+      margin-bottom: 8em;
+      iframe {
+        border: none;
+        max-width: 80em;
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
   }
 
-  .video {
-    grid-area: video;
-    aspect-ratio: 16/9;
-    display: flex;
-    margin-bottom: 2em;
-    iframe {
-      border: none;
-      width: 100%;
-    }
+  .second {
+    grid-area: second;
   }
 
   .sign_in {

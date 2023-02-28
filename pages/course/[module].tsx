@@ -52,18 +52,40 @@ export default function Course({ source, module, modules }: ModulesProps) {
     }
   }, [response]);
 
+  useEffect(() => {
+    console.log("source: ", source);
+    console.log("module: ", module);
+    console.log("modules: ", modules);
+  }, [source]);
+
   return (
     <Layout>
       <div className={`max_width ${styles.course_layout}`}>
-        <div
-          className={styles.video}
-          style={{ display: source.scope?.vimeo ? "" : "none" }}
-        >
-          <iframe
-            src={`https://player.vimeo.com/video/${source.scope?.vimeo}`}
-            allowFullScreen
-          />
-        </div>
+        <section className={styles.main}>
+          <div className={styles.header}>
+            <h1>{source.scope?.title}</h1>
+            <p>{source.scope?.description}</p>
+          </div>
+
+          <div
+            className={styles.video}
+            style={{ display: source.scope?.vimeo ? "" : "none" }}
+          >
+            <iframe
+              src={`https://player.vimeo.com/video/${source.scope?.vimeo}`}
+              allowFullScreen
+            />
+          </div>
+        </section>
+
+        <h1>{source.scope?.title}</h1>
+
+        <section className={styles.second}>
+          <div>
+            <h1>{source.scope?.title}</h1>
+            <p>{source.scope?.description}</p>
+          </div>
+        </section>
 
         <div className={styles.purchase_btn}>
           {user ? (
@@ -82,7 +104,10 @@ export default function Course({ source, module, modules }: ModulesProps) {
               </section>
             </form>
           ) : (
-            <Link legacyBehavior={true} href={`/api/auth/login?returnTo=/course/${module}`}>
+            <Link
+              legacyBehavior={true}
+              href={`/api/auth/login?returnTo=/course/${module}`}
+            >
               <a className={`${buttonStyle.button} ${styles.btn}`}>
                 Purchase this course
               </a>
