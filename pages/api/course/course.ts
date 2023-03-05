@@ -23,7 +23,7 @@ export type CourseRequest = Override<NextApiRequest, { body: _CourseRequest }>
 export default withApiAuthRequired(handler);
 
 async function handler(
-  req: NextApiRequest,
+  req: CourseRequest,
   res: NextApiResponse<Response<String | undefined>>
 ) {
   let session = await getSession(req, res);
@@ -42,7 +42,7 @@ async function handler(
 }
 
 async function getCourseProductId(
-  req: NextApiRequest,
+  req: CourseRequest,
   res: NextApiResponse<Response<String | undefined>>
 ) {
   try {

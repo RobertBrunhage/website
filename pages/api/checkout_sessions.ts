@@ -14,7 +14,7 @@ export type _CheckoutRequest = {
 export type CheckoutRequest = Override<NextApiRequest, { body: _CheckoutRequest }>
 
 async function handler(
-  req: NextApiRequest,
+  req: CheckoutRequest,
   res: any
 ) {
   let userSession = await getSession(req, res);
