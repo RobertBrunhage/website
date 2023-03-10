@@ -9,19 +9,39 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { getCourseFrontMatter } from "../../core/mdx";
-import CourseCard from "../../components/cards/courseCard/courseCard";
 import buttonStyle from "../../components/buttons/cta/cta.module.scss";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import useAuthenticatedApi from "../../lib/use-api";
+import ModuleCard from "../../components/cards/moduleCard/moduleCard";
+import PricingCard from "../../components/cards/pricingCard/pricingCard";
 
-const components = {};
+const components = { ModuleCard };
 
 interface ModulesProps {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
   module: string;
   modules: Array<any>;
 }
+
+interface course_package {
+  name: string;
+}
+
+const course_package: course_package[] = [
+  {
+    name: "7 modules",
+  },
+  {
+    name: "Lifetime access",
+  },
+  {
+    name: "Before and after source code for all videos",
+  },
+  {
+    name: "All future updates",
+  },
+];
 
 loadStripe(
   //@ts-ignore
@@ -78,16 +98,11 @@ export default function Course({ source, module, modules }: ModulesProps) {
           </div>
         </section>
 
-        <h1>{source.scope?.title}</h1>
-
-        <section className={styles.second}>
-          <div>
-            <h1>{source.scope?.title}</h1>
-            <p>{source.scope?.description}</p>
-          </div>
-        </section>
-
-        <div className={styles.purchase_btn}>
+        <PricingCard
+          title={source.scope?.title}
+          price="$99"
+          price_package={course_package}
+        >
           {user ? (
             <form
               action={`/api/checkout_sessions/?productId=${response?.value}&successPath=/course/${module}`}
@@ -99,7 +114,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
                   type="submit"
                   role="link"
                 >
-                  Purchase this course
+                  Buy
                 </button>
               </section>
             </form>
@@ -108,32 +123,35 @@ export default function Course({ source, module, modules }: ModulesProps) {
               legacyBehavior={true}
               href={`/api/auth/login?returnTo=/course/${module}`}
             >
-              <a className={`${buttonStyle.button} ${styles.btn}`}>
-                Purchase this course
-              </a>
+              <a className={`${buttonStyle.button} ${styles.btn}`}>Buy</a>
             </Link>
           )}
-        </div>
+        </PricingCard>
 
         <article className={styles.content}>
           <MDXRemote {...source} components={components} />
         </article>
 
         <div className={styles.card_container}>
-          {modules.map(({ image, title, description, slug }, index) =>
-            source.scope?.title === title ? (
-              ""
-            ) : (
-              <CourseCard
+          <ul>
+            {modules.map(({ title }, index) =>
+              source.scope?.title === title ? (
+                ""
+              ) : (
+                <li>
+                  <span>{index + 1}</span> {title}
+                </li>
+                /* <CourseCard
                 key={index}
                 img={image}
                 title={title}
                 description={description}
                 slug={slug}
                 route={`course/${module}`}
-              />
-            )
-          )}
+              /> */
+              )
+            )}
+          </ul>
         </div>
       </div>
     </Layout>

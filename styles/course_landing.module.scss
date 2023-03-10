@@ -135,10 +135,35 @@
 
   .card_container {
     grid-area: modules;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 352px));
-    gap: 42px;
-    justify-content: start;
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
+      gap: 42px;
+      justify-content: center;
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        display: grid;
+        grid-template-columns: 0.2fr 1fr;
+        font-size: 1.8rem;
+        background-color: rgb(24, 24, 24);
+        padding: 3em 2em;
+        border-radius: 8px;
+        place-items: center;
+
+        span {
+          background-color: red;
+          font-weight: bold;
+          font-size: 1.6rem;
+          height: 3em;
+          width: 3em;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+        }
+      }
+    }
   }
 
   @media only screen and (max-width: 1200px) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import CTA from "../../buttons/cta/cta";
 import styles from "./pricingCard.module.scss";
 import { eventPropCourse, eventSignup } from "../../../core/constants";
@@ -18,6 +18,7 @@ interface PricingProps {
   saturation?: string;
   supply?: string;
   disabled?: boolean;
+  children?: ReactNode;
 }
 
 const pricingCard = ({
@@ -31,7 +32,9 @@ const pricingCard = ({
   saturation,
   supply,
   disabled,
+  children,
 }: PricingProps) => {
+  console.log(children);
   return (
     <div className={`${styles.container} ${className}`}>
       <div className={styles.package}>
@@ -54,7 +57,8 @@ const pricingCard = ({
         </ul>
       </div>
       <p className={styles.supply}>{supply}</p>
-      <CTA
+      {children}
+      {/* <CTA
         text="enroll"
         href={href ?? "#"}
         target={"_blank"}
@@ -65,7 +69,7 @@ const pricingCard = ({
         plausibleEventProp={eventPropCourse}
         disabled={disabled}
         isPurchase={true}
-      />
+      /> */}
     </div>
   );
 };
