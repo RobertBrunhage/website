@@ -14,7 +14,7 @@ export type Response<T> = {
 
 
 export type _HasAccessRequest = {
-  courseName: string;
+  stripeProductId: string;
 }
 
 
@@ -23,7 +23,7 @@ export type HasAccessRequest = Override<NextApiRequest, { body: _HasAccessReques
 export default withApiAuthRequired(handler);
 
 async function handler(
-  req: NextApiRequest,
+  req: HasAccessRequest,
   res: NextApiResponse<Response<boolean>>
 ) {
   let session = await getSession(req, res);
@@ -43,7 +43,7 @@ async function handler(
 
 async function hasCourseAccess(
   session: Session,
-  req: NextApiRequest,
+  req: HasAccessRequest,
   res: NextApiResponse<Response<boolean>>
 ) {
   try {
