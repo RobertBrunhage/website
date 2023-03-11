@@ -4,8 +4,20 @@
     "main"
     "second"
     "content"
-    "."
-    "modules";
+    "modules"
+    ".";
+  row-gap: 9em;
+
+  section {
+    padding: 12em 2em;
+    &:nth-child(2n) {
+      background-color: var(--gray_900);
+    }
+  }
+
+  .pricing_light {
+    background-color: var(--gray_800);
+  }
 
   .main {
     grid-area: main;
@@ -103,6 +115,7 @@
     p {
       line-height: 1.8;
       font-size: 2em;
+      margin: 0.5em 0
     }
 
     /* & > h1,
@@ -145,12 +158,15 @@
 
       li {
         display: grid;
-        grid-template-columns: 0.2fr 1fr;
+        grid-template-columns: 20% auto;
+        column-gap: 1em;
         font-size: 1.8rem;
         background-color: rgb(24, 24, 24);
-        padding: 3em 2em;
+        padding: 2.75em 2em;
         border-radius: 8px;
-        place-items: center;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
 
         span {
           background-color: red;

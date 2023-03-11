@@ -9,39 +9,31 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { getCourseFrontMatter } from "../../core/mdx";
-import buttonStyle from "../../components/buttons/cta/cta.module.scss";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import useAuthenticatedApi from "../../lib/use-api";
 import ModuleCard from "../../components/cards/moduleCard/moduleCard";
-import PricingCard from "../../components/cards/pricingCard/pricingCard";
+import PricingCard, {
+  Packages,
+} from "../../components/cards/pricingCard/pricingCard";
 
-const components = { ModuleCard };
+const components = { ModuleCard, PricingCard, Link };
 
-interface ModulesProps {
-  source: MDXRemoteSerializeResult<Record<string, unknown>>;
+type ModulesProps = {
+  source: MDXRemoteSerializeResult<pepepig>;
   module: string;
   modules: Array<any>;
-}
+};
 
-interface course_package {
-  name: string;
-}
-
-const course_package: course_package[] = [
-  {
-    name: "7 modules",
-  },
-  {
-    name: "Lifetime access",
-  },
-  {
-    name: "Before and after source code for all videos",
-  },
-  {
-    name: "All future updates",
-  },
-];
+type pepepig = {
+  image: string;
+  title: string;
+  courseName: string;
+  description: string;
+  previousPrice: string;
+  vimeo: number;
+  date: string;
+  package: Array<Packages>;
+};
 
 loadStripe(
   //@ts-ignore
@@ -57,7 +49,6 @@ export default function Course({ source, module, modules }: ModulesProps) {
       Accept: "application/json",
     }),
   });
-  const { user } = useUser();
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -80,7 +71,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
 
   return (
     <Layout>
-      <div className={`max_width ${styles.course_layout}`}>
+      <div className={`${styles.course_layout}`}>
         <section className={styles.main}>
           <div className={styles.header}>
             <h1>{source.scope?.title}</h1>
@@ -98,61 +89,46 @@ export default function Course({ source, module, modules }: ModulesProps) {
           </div>
         </section>
 
-        <PricingCard
-          title={source.scope?.title}
-          price="$99"
-          price_package={course_package}
-        >
-          {user ? (
-            <form
-              action={`/api/checkout_sessions/?productId=${response?.value}&successPath=/course/${module}`}
-              method="POST"
-            >
-              <section>
-                <button
-                  className={`${buttonStyle.button} ${styles.btn}`}
-                  type="submit"
-                  role="link"
-                >
-                  Buy
-                </button>
-              </section>
-            </form>
-          ) : (
-            <Link
-              legacyBehavior={true}
-              href={`/api/auth/login?returnTo=/course/${module}`}
-            >
-              <a className={`${buttonStyle.button} ${styles.btn}`}>Buy</a>
-            </Link>
-          )}
-        </PricingCard>
+        <section>
+          <h1>{source.scope?.courseName}</h1>
+          <PricingCard
+            title={source.scope?.courseName ?? ""}
+            price="$99"
+            previousPrice={source.scope?.previousPrice}
+            price_package={source.scope?.package ?? [{ name: "" }]}
+            className={styles.pricing_light}
+            productId={response?.value ?? ""}
+            module={module}
+          />
+        </section>
 
-        <article className={styles.content}>
-          <MDXRemote {...source} components={components} />
-        </article>
+        <section>
+          <article className={styles.content}>
+            <MDXRemote {...source} components={components} />
+          </article>
+        </section>
 
-        <div className={styles.card_container}>
-          <ul>
-            {modules.map(({ title }, index) =>
-              source.scope?.title === title ? (
-                ""
-              ) : (
-                <li>
-                  <span>{index + 1}</span> {title}
-                </li>
-                /* <CourseCard
-                key={index}
-                img={image}
-                title={title}
-                description={description}
-                slug={slug}
-                route={`course/${module}`}
-              /> */
-              )
-            )}
-          </ul>
-        </div>
+        <section>
+          <div className={styles.card_container}>
+            <ul>
+              {modules.map(({ title, slug }, index) =>
+                source.scope?.title === title || title === "Overview" ? (
+                  ""
+                ) : (
+                  <Link
+                    href={`/${`course/${module}`}/[slug]`}
+                    as={`/${`course/${module}`}/${slug}`}
+                    key={index}
+                  >
+                    <li>
+                      <span>{index + 1}</span> {title}
+                    </li>
+                  </Link>
+                )
+              )}
+            </ul>
+          </div>
+        </section>
       </div>
     </Layout>
   );

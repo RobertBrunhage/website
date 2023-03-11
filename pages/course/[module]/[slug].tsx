@@ -41,7 +41,6 @@ export default function Course({
   let menu: Array<MenuProps> = [];
 
   useEffect(() => {
-    console.log(module);
     course.forEach((i: any) => {
       if (i.slug === "__index") return;
       let item = { chapter: i.chapter, title: i.title, slug: i.slug };

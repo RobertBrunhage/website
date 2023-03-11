@@ -14,11 +14,11 @@ const courses = ({ courses }: CoursesProps) => {
         A more detailed explanation and walkthrough than my videos
       </h4>
       <div className={styles.card_container}>
-        {courses.map(({ image, title, description, slug }, index) => (
+        {courses.map(({ image, courseName, description, slug }, index) => (
           <CourseCard
             key={index}
             img={image}
-            title={title}
+            title={courseName}
             description={description}
             slug={slug}
             route={"course"}

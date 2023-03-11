@@ -1,9 +1,11 @@
 import React, { ReactNode } from "react";
-import CTA from "../../buttons/cta/cta";
 import styles from "./pricingCard.module.scss";
+import Link from "next/link";
 import { eventPropCourse, eventSignup } from "../../../core/constants";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import buttonStyle from "../../buttons/cta/cta.module.scss";
 
-interface Packages {
+export interface Packages {
   name: string;
 }
 
@@ -12,13 +14,15 @@ interface PricingProps {
   label?: string;
   title: string;
   price: string;
+  previousPrice?: string;
   discounted_price?: string;
   price_package: Array<Packages>;
   href?: string;
   saturation?: string;
   supply?: string;
   disabled?: boolean;
-  children?: ReactNode;
+  productId: string;
+  module: string;
 }
 
 const pricingCard = ({
@@ -26,15 +30,16 @@ const pricingCard = ({
   label,
   title,
   price,
-  discounted_price,
+  previousPrice,
   price_package,
   href,
   saturation,
   supply,
   disabled,
-  children,
+  productId,
+  module,
 }: PricingProps) => {
-  console.log(children);
+  const { user } = useUser();
   return (
     <div className={`${styles.container} ${className}`}>
       <div className={styles.package}>
@@ -43,7 +48,7 @@ const pricingCard = ({
         </div>
         <p className={styles.title}>{title}</p>
         <h2 className={styles.price}>{price}</h2>
-        <h2 className={styles.discounted_price}>{discounted_price}</h2>
+        <h2 className={styles.prev_price}>{previousPrice}</h2>
         <p className={styles.vat}>VAT may apply</p>
         <ul>
           {price_package.map((item, index) => (
@@ -57,19 +62,27 @@ const pricingCard = ({
         </ul>
       </div>
       <p className={styles.supply}>{supply}</p>
-      {children}
-      {/* <CTA
-        text="enroll"
-        href={href ?? "#"}
-        target={"_blank"}
-        width={"auto"}
-        animation={false}
-        saturation={saturation}
-        plausibleEvent={eventSignup}
-        plausibleEventProp={eventPropCourse}
-        disabled={disabled}
-        isPurchase={true}
-      /> */}
+      {user ? (
+        <form
+          action={`/api/checkout_sessions/?productId=${productId}&successPath=/course/${module}`}
+          method="POST"
+        >
+          <button
+            className={`${buttonStyle.button} ${styles.btn}`}
+            type="submit"
+            role="link"
+          >
+            Buy
+          </button>
+        </form>
+      ) : (
+        <Link
+          legacyBehavior={true}
+          href={`/api/auth/login?returnTo=/course/${module}`}
+        >
+          <a className={`${buttonStyle.button} ${styles.btn}`}>Buy</a>
+        </Link>
+      )}
     </div>
   );
 };
