@@ -4,6 +4,7 @@ import Link from "next/link";
 import { eventPropCourse, eventSignup } from "../../../core/constants";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import buttonStyle from "../../buttons/cta/cta.module.scss";
+import Stripe from "stripe";
 
 export interface Packages {
   name: string;
@@ -13,7 +14,7 @@ interface PricingProps {
   className?: string;
   label?: string;
   title: string;
-  price: string;
+  price: Stripe.Price[] | undefined;
   previousPrice?: string;
   discounted_price?: string;
   price_package: Array<Packages>;
@@ -23,6 +24,16 @@ interface PricingProps {
   disabled?: boolean;
   productId: string;
   module: string;
+}
+
+const PriceHeader: React.FC<{
+  price: Stripe.Price[] | undefined
+}> = ({ price }) => {
+  if (price && price[0].unit_amount !== null && price[0].unit_amount !== 0) {
+    return <h2 className={styles.price}>${(price[0].unit_amount) / 100}</h2>
+  }
+
+  return <h2 className={styles.price}>$69</h2>
 }
 
 const pricingCard = ({
@@ -47,7 +58,7 @@ const pricingCard = ({
           {label}
         </div>
         <p className={styles.title}>{title}</p>
-        <h2 className={styles.price}>{price}</h2>
+        <PriceHeader price={price} />
         <h2 className={styles.prev_price}>{previousPrice}</h2>
         <p className={styles.vat}>VAT may apply</p>
         <ul>

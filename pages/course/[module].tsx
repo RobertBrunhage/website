@@ -12,6 +12,7 @@ import { getCourseFrontMatter } from "../../core/mdx";
 import Link from "next/link";
 import useAuthenticatedApi from "../../lib/use-api";
 import ModuleCard from "../../components/cards/moduleCard/moduleCard";
+import { CourseResponse } from "../api/course/course";
 import PricingCard, {
   Packages,
 } from "../../components/cards/pricingCard/pricingCard";
@@ -41,7 +42,7 @@ loadStripe(
 );
 
 export default function Course({ source, module, modules }: ModulesProps) {
-  const { response } = useAuthenticatedApi<string>("/api/course/course", {
+  const { response } = useAuthenticatedApi<CourseResponse>("/api/course/course", {
     method: "POST",
     body: JSON.stringify({ courseName: module }),
     headers: new Headers({
@@ -93,11 +94,11 @@ export default function Course({ source, module, modules }: ModulesProps) {
           <h1>{source.scope?.courseName}</h1>
           <PricingCard
             title={source.scope?.courseName ?? ""}
-            price="$99"
+            price={response?.value?.price}
             previousPrice={source.scope?.previousPrice}
             price_package={source.scope?.package ?? [{ name: "" }]}
             className={styles.pricing_light}
-            productId={response?.value ?? ""}
+            productId={response?.value?.stripeProductId ?? ""}
             module={module}
           />
         </section>
