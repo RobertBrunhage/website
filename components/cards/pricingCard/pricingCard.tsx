@@ -27,14 +27,14 @@ interface PricingProps {
 }
 
 const PriceHeader: React.FC<{
-  price: Stripe.Price[] | undefined
+  price: Stripe.Price[] | undefined;
 }> = ({ price }) => {
   if (price && price[0].unit_amount !== null && price[0].unit_amount !== 0) {
-    return <h2 className={styles.price}>${(price[0].unit_amount) / 100}</h2>
+    return <h2 className={styles.price}>${price[0].unit_amount / 100}</h2>;
   }
 
-  return <h2 className={styles.price}>$69</h2>
-}
+  return <h2 className={styles.price}>$69</h2>;
+};
 
 const pricingCard = ({
   className,
@@ -51,6 +51,7 @@ const pricingCard = ({
   module,
 }: PricingProps) => {
   const { user } = useUser();
+
   return (
     <div className={`${styles.container} ${className}`}>
       <div className={styles.package}>
@@ -59,7 +60,12 @@ const pricingCard = ({
         </div>
         <p className={styles.title}>{title}</p>
         <PriceHeader price={price} />
-        <h2 className={styles.prev_price}>{previousPrice}</h2>
+        <h2
+          className={styles.prev_price}
+          style={{ marginRight: previousPrice && ".5em" }}
+        >
+          {previousPrice}
+        </h2>
         <p className={styles.vat}>VAT may apply</p>
         <ul>
           {price_package.map((item, index) => (

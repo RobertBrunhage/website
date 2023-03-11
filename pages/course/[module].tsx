@@ -17,15 +17,15 @@ import PricingCard, {
   Packages,
 } from "../../components/cards/pricingCard/pricingCard";
 
-const components = { ModuleCard, PricingCard, Link };
+const components = { ModuleCard };
 
 type ModulesProps = {
-  source: MDXRemoteSerializeResult<pepepig>;
+  source: MDXRemoteSerializeResult<SourceProps>;
   module: string;
   modules: Array<any>;
 };
 
-type pepepig = {
+type SourceProps = {
   image: string;
   title: string;
   courseName: string;
@@ -42,16 +42,20 @@ loadStripe(
 );
 
 export default function Course({ source, module, modules }: ModulesProps) {
-  const { response } = useAuthenticatedApi<CourseResponse>("/api/course/course", {
-    method: "POST",
-    body: JSON.stringify({ courseName: module }),
-    headers: new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    }),
-  });
+  const { response } = useAuthenticatedApi<CourseResponse>(
+    "/api/course/course",
+    {
+      method: "POST",
+      body: JSON.stringify({ courseName: module }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      }),
+    }
+  );
 
   useEffect(() => {
+    console.log(response);
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
       console.log("Order placed! You will receive an email confirmation.");
@@ -76,7 +80,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
         <section className={styles.main}>
           <div className={styles.header}>
             <h1>{source.scope?.title}</h1>
-            <p>{source.scope?.description}</p>
+            <h3>{source.scope?.description}</h3>
           </div>
 
           <div
@@ -95,7 +99,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
           <PricingCard
             title={source.scope?.courseName ?? ""}
             price={response?.value?.price}
-            previousPrice={source.scope?.previousPrice}
+            previousPrice={`$${source.scope?.previousPrice}`}
             price_package={source.scope?.package ?? [{ name: "" }]}
             className={styles.pricing_light}
             productId={response?.value?.stripeProductId ?? ""}
@@ -129,6 +133,17 @@ export default function Course({ source, module, modules }: ModulesProps) {
               )}
             </ul>
           </div>
+        </section>
+
+        <section>
+          <PricingCard
+            title={source.scope?.courseName ?? ""}
+            price={response?.value?.price}
+            previousPrice={`$${source.scope?.previousPrice}`}
+            price_package={source.scope?.package ?? [{ name: "" }]}
+            productId={response?.value?.stripeProductId ?? ""}
+            module={module}
+          />
         </section>
       </div>
     </Layout>
