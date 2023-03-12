@@ -12,7 +12,7 @@ import { getCourseFrontMatter } from "../../core/mdx";
 import Link from "next/link";
 import useAuthenticatedApi from "../../lib/use-api";
 import ModuleCard from "../../components/cards/moduleCard/moduleCard";
-import { CourseResponse } from "../api/course/course";
+import { CourseResponse } from "../api/courses/course";
 import PricingCard, {
   Packages,
 } from "../../components/cards/pricingCard/pricingCard";
@@ -122,8 +122,8 @@ export default function Course({ source, module, modules }: ModulesProps) {
                   ""
                 ) : (
                   <Link
-                    href={`/${`course/${module}`}/[slug]`}
-                    as={`/${`course/${module}`}/${slug}`}
+                    href={`/${`courses/${module}`}/[slug]`}
+                    as={`/${`courses/${module}`}/${slug}`}
                     key={index}
                   >
                     <li>

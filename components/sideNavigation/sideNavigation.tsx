@@ -33,8 +33,8 @@ const SideNavigation = ({ menu, module, slug }: SideNavProps) => {
               key={index}
             >
               <Link
-                href={`/course/${module}/${item.slug}/`}
-                as={`/course/${module}/${item.slug}/`}
+                href={`/courses/${module}/${item.slug}/`}
+                as={`/courses/${module}/${item.slug}/`}
               >
                 {item.title}
               </Link>

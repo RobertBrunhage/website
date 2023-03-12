@@ -81,7 +81,7 @@ const pricingCard = ({
       <p className={styles.supply}>{supply}</p>
       {user ? (
         <form
-          action={`/api/checkout_sessions/?productId=${productId}&successPath=/course/${module}`}
+          action={`/api/checkout_sessions/?productId=${productId}&successPath=/courses/${module}`}
           method="POST"
         >
           <button
@@ -95,7 +95,7 @@ const pricingCard = ({
       ) : (
         <Link
           legacyBehavior={true}
-          href={`/api/auth/login?returnTo=/course/${module}`}
+          href={`/api/auth/login?returnTo=/courses/${module}`}
         >
           <a className={`${buttonStyle.button} ${styles.btn}`}>Buy</a>
         </Link>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 import { useEffect, useState } from "react";
 import { FrontmatterProps } from "../components/blog/blogLayout";
 import CTA from "../components/buttons/cta/cta";
@@ -54,8 +55,8 @@ const Index = ({ videos, articles }: HomeProps) => {
             </h3>
             <div className={styles.btns}>
               <CTA
-                text={"course"}
-                href={"/course"}
+                text={"courses"}
+                href={"/courses"}
                 width={"160px"}
                 animation={false}
               />
@@ -66,7 +67,7 @@ const Index = ({ videos, articles }: HomeProps) => {
                 animation={true}
               />
             </div>
-            <Link href="/course">
+            <Link href="/courses">
               <img
                 className={styles.sprite}
                 src="/assets/images/flutter_course_launch_hero.png"

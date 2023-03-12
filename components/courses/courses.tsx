@@ -21,7 +21,7 @@ const courses = ({ courses }: CoursesProps) => {
             title={courseName}
             description={description}
             slug={slug}
-            route={"course"}
+            route={"courses"}
           />
         ))}
       </div>

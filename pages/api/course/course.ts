@@ -31,7 +31,7 @@ export default withApiAuthRequired(handler);
 
 async function handler(
   req: CourseRequest,
-  res: NextApiResponse<Response<String | undefined>>
+  res: NextApiResponse<Response<CourseResponse>>
 ) {
   let session = await getSession(req, res);
   // This will allow OPTIONS request
