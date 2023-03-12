@@ -16,7 +16,7 @@
   }
 
   section {
-    padding: 12em 2em;
+    padding: 10em 2em;
     justify-content: center;
     h1,
     h2,
@@ -25,6 +25,11 @@
     }
     &:nth-child(2n) {
       background-color: var(--gray_900);
+    }
+
+    .section_title {
+      margin-bottom: 1.2em;
+      text-align: center;
     }
   }
 
@@ -47,7 +52,7 @@
       margin: 0 auto;
 
       h1 {
-        margin: 0;
+        margin-top: 0;
         font-size: var(--display);
       }
     }
@@ -59,7 +64,7 @@
       /* margin-bottom: 8em; */
       iframe {
         border: none;
-        max-width: 80em;
+        /* max-width: 90em; */
         width: 100%;
         margin: 0 auto;
       }
@@ -127,8 +132,7 @@
     }
     p {
       line-height: 1.8;
-      font-size: 2em;
-      margin: 0.5em 0;
+      font-size: var(--body-regular);
     }
 
     /* & > h1,
@@ -142,13 +146,14 @@
 
     h1,
     h2,
-    h3,
-    h4 {
+    h3 {
       text-align: center;
     }
 
     & > blockquote {
-      color: var(--shade_80);
+      color: var(--shade_100);
+      max-width: 60em;
+      margin: 0 auto;
     }
     pre {
       font-size: 2rem;
@@ -168,6 +173,7 @@
 
   .card_container {
     grid-area: modules;
+    margin-top: 10em;
     ul {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
@@ -181,7 +187,7 @@
         grid-template-columns: 20% auto;
         column-gap: 1em;
         font-size: 1.8rem;
-        background-color: rgb(24, 24, 24);
+        background-color: var(--gray_800);
         padding: 2.75em 2em;
         border-radius: 8px;
         align-items: center;
@@ -189,7 +195,7 @@
         font-weight: bold;
 
         span {
-          background-color: red;
+          background-color: var(--primary-color);
           font-weight: bold;
           font-size: 1.6rem;
           height: 3em;
@@ -205,6 +211,15 @@
   @media only screen and (max-width: 1200px) {
     .card_container {
       justify-content: center;
+    }
+  }
+  @media only screen and (max-width: 800px) {
+    section {
+      padding: 6em 2em;
+    }
+
+    .card_container {
+      margin-top: 5em;
     }
   }
 }

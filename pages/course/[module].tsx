@@ -79,7 +79,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
       <div className={`${styles.course_layout}`}>
         <section className={styles.main}>
           <div className={styles.header}>
-            <h1>{source.scope?.title}</h1>
+            <h1 className={styles.section_title}>{source.scope?.title}</h1>
             <h3>{source.scope?.description}</h3>
           </div>
 
@@ -95,7 +95,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
         </section>
 
         <section>
-          <h1>{source.scope?.courseName}</h1>
+          <h1 className={styles.section_title}>{source.scope?.courseName}</h1>
           <PricingCard
             title={source.scope?.courseName ?? ""}
             price={response?.value?.price}
@@ -114,6 +114,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
         </section>
 
         <section>
+          <h1 className={styles.section_title}>Lessons</h1>
           <div className={styles.card_container}>
             <ul>
               {modules.map(({ title, slug }, index) =>

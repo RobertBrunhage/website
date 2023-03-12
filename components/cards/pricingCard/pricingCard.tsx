@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import styles from "./pricingCard.module.scss";
 import Link from "next/link";
 import { eventPropCourse, eventSignup } from "../../../core/constants";

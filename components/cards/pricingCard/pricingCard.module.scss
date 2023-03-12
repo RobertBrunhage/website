@@ -31,7 +31,6 @@
     }
     .title {
       grid-area: title;
-      text-transform: uppercase;
       text-align: center;
       font-size: var(--subtitle);
       font-weight: bold;
@@ -90,6 +89,10 @@
         width: 10px;
       }
     }
+  }
+
+  .btn {
+    background-color: var(--primary-color);
   }
 
   .supply {
