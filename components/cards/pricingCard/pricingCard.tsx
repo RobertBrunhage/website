@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./pricingCard.module.scss";
 import Link from "next/link";
-import { eventPropCourse, eventSignup } from "../../../core/constants";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import buttonStyle from "../../buttons/cta/cta.module.scss";
 import Stripe from "stripe";

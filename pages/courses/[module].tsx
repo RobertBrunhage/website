@@ -11,13 +11,11 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { getCourseFrontMatter } from "../../core/mdx";
 import Link from "next/link";
 import useAuthenticatedApi from "../../lib/use-api";
-import ModuleCard from "../../components/cards/moduleCard/moduleCard";
 import { CourseResponse } from "../api/course/course";
 import PricingCard, {
   Packages,
 } from "../../components/cards/pricingCard/pricingCard";
 
-const components = { ModuleCard };
 
 type ModulesProps = {
   source: MDXRemoteSerializeResult<SourceProps>;
@@ -109,7 +107,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
 
         <section>
           <article className={styles.content}>
-            <MDXRemote {...source} components={components} />
+            <MDXRemote {...source} />
           </article>
         </section>
 

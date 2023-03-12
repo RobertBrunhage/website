@@ -11,7 +11,9 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "../styles/code-highlighting.css";
 import "../styles/globals.scss";
 
-const components = { EmailSignup, BlogShareFooter, h2: Heading2, h3: Heading3 };
+import ModuleCard from "../components/cards/moduleCard/moduleCard";
+
+const components = { EmailSignup, BlogShareFooter, h2: Heading2, h3: Heading3, ModuleCard };
 
 interface MyAppProps {
   Component: any;
