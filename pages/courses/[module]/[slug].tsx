@@ -1,10 +1,10 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { useEffect, useState } from "react";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Layout from "../../../components/layout/layout";
 import "prismjs";
 import Prism from "prismjs";
@@ -22,12 +22,28 @@ interface MenuProps {
   slug: string;
 }
 
+type LectureFrontMatter = {
+  title: string;
+  vimeo?: number;
+  github: string;
+  chapter?: string;
+}
+
+
+type LectureProps = {
+  source: MDXRemoteSerializeResult<LectureFrontMatter>;
+  module: string;
+  slug: string
+  course: Array<any>
+  modules: Array<any>;
+};
+
 export default function Course({
   source,
   module,
   slug,
   course,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: LectureProps) {
   const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
   const { response } = useAuthenticatedApi<boolean>('/api/course/has-access', {
     method: "POST",
@@ -59,9 +75,9 @@ export default function Course({
         </aside>
         <div
           className={styles.video}
-          style={{ display: source.scope.vimeo ? "" : "none" }}
+          style={{ display: source?.scope?.vimeo ? "" : "none" }}
         >
-          {response?.value ? (
+          {response?.value && source?.scope?.vimeo ? (
             <iframe
               src={`https://player.vimeo.com/video/${source.scope.vimeo}`}
               allowFullScreen
