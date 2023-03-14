@@ -6,13 +6,13 @@ author: Robert Brunhage
 lastmod: 10-30-2022
 ---
 
-## **AsyncValue**
+## AsyncValue
 
 As talked about before it has three different states **data**, **loading**, and **error**. So all of our code that previously used code that didn't have the **AsyncValue** type would now need to be changed and handle these cases. We use the **.when** method. **IMPORTANT:** If you were using version **dev.7** of flutter\_riverpod you also have to define the **previous** value. This can be used to display the previous value instead of for example a **CircularProgressIndicator** in some cases.
 
   
 
-## **.When()**
+## .When()
 
 This method is super important to know and think of this as a replacement for the code you would have in either a **StreamBuilder** or a **FutureBuilder**. We don't have to manually make sure that we do all the correct **if** checks but instead get a clear compile error of what we are missing. So think of this as an easy way to just convert our **AsyncValue** to the three different states which are **data**, **loading**, and **error.**
 
