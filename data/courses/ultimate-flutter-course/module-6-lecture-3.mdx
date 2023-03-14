@@ -1,8 +1,23 @@
 ---
-title: module-6-lecture-3
-description: Introduction to the Ultimate Flutter Course
+title: Lecture 3 - Staggered Animation part 2
 vimeo: 805141207
 github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
 author: Robert Brunhage
 lastmod: 10-30-2022
 ---
+
+## Animation
+
+The [Animation class](https://api.flutter.dev/flutter/animation/Animation-class.html) contains a value and a "state" and another important part is that they inherit the [Listenable class](https://api.flutter.dev/flutter/foundation/Listenable-class.html) which makes it possible to use in combination with widgets like [AnimatedBuilder](https://api.flutter.dev/flutter/widgets/AnimatedBuilder-class.html) or [ValueListenableBuilder](https://api.flutter.dev/flutter/widgets/ValueListenableBuilder-class.html).
+
+  
+
+## Curved Animation
+
+[This](https://api.flutter.dev/flutter/animation/CurvedAnimation-class.html) is super useful when we want to take an ordinary animation and apply a curve to it. With a staggered animation we want to apply the [Interval](https://api.flutter.dev/flutter/animation/Interval-class.html) which is actually a Curve but also [takes a Curve](https://api.flutter.dev/flutter/animation/Interval/curve.html), might be a bit confusing but very powerful.
+
+  
+
+**FadeTransition**
+
+[This widget](https://api.flutter.dev/flutter/widgets/FadeTransition-class.html) automatically animates a fade to the child widget. It just needs an [Animation](https://api.flutter.dev/flutter/animation/Animation-class.html) or to be more correct.. a [Listenable](https://api.flutter.dev/flutter/foundation/Listenable-class.html).

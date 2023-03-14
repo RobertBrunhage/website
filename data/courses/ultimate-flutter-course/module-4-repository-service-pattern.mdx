@@ -1,8 +1,22 @@
 ---
-title: module-4-repository-service-pattern
+title: Repository-service pattern power
 description: Introduction to the Ultimate Flutter Course
 vimeo: 805141207
 github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
 author: Robert Brunhage
 lastmod: 10-30-2022
 ---
+
+## Chaining requests
+
+This is something I just touched on briefly but let me explain it here as well. Imagine you have a couple of different requests you need to do. For this example let's say it's for getting some kind of actor information as well as then getting all the movies that that person has been a part of.
+
+  
+
+This would require **two** requests most. The first one is just getting the actor so we have the **ID** then make a request with that ID to get all the movies that person has been a part of. With **try-catch** this is rather easy. You can simple put those two requests after one another and it's done. With the functional approach (multiple types) you would have to nest the requests which can be quite tedious and hard to manage.
+
+  
+
+## Multiple results
+
+[This package](https://pub.dev/packages/multiple_result) is used mainly because the codebase is super small and only implements what we need. There are other packages as well such as [dartz](https://pub.dev/packages/dartz) of [fpdart](https://pub.dev/packages/fpdart). Any of these work great and they also provide some other goodies. So if you like this approach I recommend checking those out as they provide some cool features!

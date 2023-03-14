@@ -1,8 +1,19 @@
 ---
-title: module-4-multiple-return-types
-description: Introduction to the Ultimate Flutter Course
+title: Multiple return types
 vimeo: 805141207
 github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
 author: Robert Brunhage
 lastmod: 10-30-2022
 ---
+
+## Multiple return types
+
+This is something that is used a great lot in functional programming and can be seen in packages such as [fpdart](https://pub.dev/packages/fpdart). The main drawback is chaining multiple requests but that we can fix it by also utilizing **try-catch**.
+
+  
+
+## Our flow
+
+*   Repository (Will do try-catch)
+*   Service (Will also do try-catch but then wrap the results with a **Success** value and a **Failure** value)
+*   Controller (We will now, with compile safe code handle either the **Success** or **Failure** value)

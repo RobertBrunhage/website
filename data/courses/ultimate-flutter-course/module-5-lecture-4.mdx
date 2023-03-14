@@ -1,8 +1,15 @@
 ---
-title: module-5-lecture-4
-description: Introduction to the Ultimate Flutter Course
+title: Lecture 4 - Widget tests
 vimeo: 805141207
 github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
 author: Robert Brunhage
 lastmod: 10-30-2022
 ---
+
+## Widget vs Unit
+
+These are very **similar** in the way you think about them (you can even have them in the same file). You want to test **small individual parts** of widgets just as you do during unit tests.
+
+  
+
+All Unit and Widget tests will run **blazingly** fast so don't shy away from writing a lot of tests! The main difference with Unit and Widget tests is the [WidgetTester](https://api.flutter.dev/flutter/flutter_test/WidgetTester-class.html) object. This object will let you interact with the widgets and well as create them. Luckily in the integration tests, the syntax will be pretty much identical as during the widget tests so get familiar with this object!

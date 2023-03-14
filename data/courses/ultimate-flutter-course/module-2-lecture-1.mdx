@@ -1,9 +1,24 @@
 ---
-title: module-2-lecture-1
-description: Introduction to the Ultimate Flutter Course
+title: Lecture 1 - MovieFlow State
 vimeo: 787938115
 github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commit/454914801e9b6758249a6e36e8a6bf8f52d93a16
 author: Robert Brunhage
 lastmod: 10-30-2022
 chapter: State Management with Riverpod
 ---
+
+## Immutable state
+
+Now you might be wondering why we are always going with Immutable data. Well, the answer is quite complex but also simple. It forces us to have a **Uni-directional data flow**. But what does that even mean?
+
+  
+
+This means that the state can **ONLY** be changed from **within** the controller and can **not** be mutated from outside the controller (except using methods on the controller). This is great because what this means is that whenever a state changes in a way we did not expect we can always trace it back to the **controller** or a **method** used from it.
+
+  
+
+Comparing to using for example a **mutable** object, there could be cases it's mutated from **outside** the controller, meaning the state changes **doesn't** reflect in the UI/app which can result in some **nasty** hard to locate bugs.
+
+  
+
+This does **not** mean that a mutable state is bad by any means. But from my experience **defaulting** to using **immutable** data greatly simplifies the development long term!

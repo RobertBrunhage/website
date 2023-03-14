@@ -1,8 +1,17 @@
 ---
-title: module-6-lecture-2
-description: Introduction to the Ultimate Flutter Course
+title: Lecture 2 - Staggered Animation part 1
 vimeo: 805141207
 github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
 author: Robert Brunhage
 lastmod: 10-30-2022
 ---
+
+## Why a separate widget?
+
+This is actually up to you how you want to manage the **AnimationController**. You can also define it in the specific widget that you are using (granted you call forward in **initState** and **dispose)**. I usually prefer utilizing how small classes in Flutter are and writing multiple classes in the same file if I see the need. For example, in this case, we don't have to manage anything that has to do with the **AnimationController** in the actual screen but instead, just scroll up and handle it in a "locked" environment which is a lot more scalable when you start to handle multiple **AnimationControllers.**
+
+  
+
+**SingleTickerProviderStateMixin & TickerProviderStateMixin**
+
+If you haven't heard these before, you will probably never forget them. This makes it possible for the animation to ["tick"](https://api.flutter.dev/flutter/scheduler/Ticker-class.html). If you are only using a single AnimationController you would use the [SingleTickerProviderStateMixin](https://api.flutter.dev/flutter/widgets/SingleTickerProviderStateMixin-mixin.html) and if you use multiple AnimationControllers you would use the [TickerProviderStateMixin](https://api.flutter.dev/flutter/widgets/TickerProviderStateMixin-mixin.html).

@@ -1,8 +1,26 @@
 ---
-title: module-5-lecture-3
-description: Introduction to the Ultimate Flutter Course
+title: Lecture 3 - Unit test controller
 vimeo: 805141207
 github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
 author: Robert Brunhage
 lastmod: 10-30-2022
 ---
+
+
+## Using ProviderContainer
+
+This might be where you are getting a bit more confused. Well I agree, it is a bit more confusing here!
+
+  
+
+Our application is written with [Riverpod](https://riverpod.dev/) meaning that our controllers, services, and repositories are shared with the help of it. These classes during the application's usage are stored in the [ProviderScope](https://pub.dev/documentation/flutter_riverpod/latest/flutter_riverpod/ProviderScope-class.html) which is located in the [main.dart](https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/blob/384fca2b77351dcf869e3a78ae3071f24ff9fb73/lib/main.dart#L9) file. [ProviderContainer](https://pub.dev/documentation/riverpod/latest/riverpod/ProviderContainer-class.html) works the same way as [ProviderScope](https://pub.dev/documentation/flutter_riverpod/latest/flutter_riverpod/ProviderScope-class.html) or actually. [ProviderScope](https://pub.dev/documentation/flutter_riverpod/latest/flutter_riverpod/ProviderScope-class.html) implicitly creates a [ProviderContainer](https://pub.dev/documentation/riverpod/latest/riverpod/ProviderContainer-class.html) for you!
+
+  
+
+To simulate unit tests as close to our real code as possible, it's good to use **Riverpod** during our tests as that also tests the global providers we have in our app. Arguably you could do the same thing with the service class from the previous lecture but personally, I prefer just doing it for my [StateNotifiers](https://pub.dev/documentation/state_notifier/latest/state_notifier/StateNotifier-class.html) or other providers that don't simply just return a normal class.
+
+  
+
+## SetUp and TearDown
+
+These two methods help us with setting up the tests. For example, instead of instantiating the [ProviderContainer](https://pub.dev/documentation/riverpod/latest/riverpod/ProviderContainer-class.html) during every test, we can simply do this in the [SetUp](https://api.flutter.dev/flutter/flutter_test/setUp.html) method which will be called before every single test. The same is true for the [TearDown](https://api.flutter.dev/flutter/flutter_test/tearDown.html) which will let us **dispose** etc after every test!

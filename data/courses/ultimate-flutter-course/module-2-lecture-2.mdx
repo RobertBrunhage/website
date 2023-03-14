@@ -1,8 +1,39 @@
 ---
-title: module-2-lecture-2 
-description: Introduction to the Ultimate Flutter Course 
+title: Lecture 2 - Controller and Provider
 vimeo: 787938115 
 github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commit/454914801e9b6758249a6e36e8a6bf8f52d93a16
 author: Robert Brunhage 
 lastmod: 10-30-2022
 ---
+
+## Update
+
+We need to define both the **flutter\_riverpod** and **riverpod** versions to actually lock it. By only defining **flutter\_riverpod** we would still get new updates that were defined in the **riverpod** package. Hence some code would break jumping from **dev.7** to **dev.11**.
+
+  
+
+## Reading other providers
+
+I just briefly touched on reading other providers from within a provider so if you want to dive deeper into it, it is covered in the documentation on [combining providers](https://riverpod.dev/docs/concepts/combining_providers).
+
+  
+
+## StateNotifier
+
+When you provide this with a **StateNotifierProvider** you are tying it to the UI. This means that when the state changes within this **StateNotifier** it will rebuild the build method which results in the UI updating. As **StateNotifier** promotes immutable data we always have to make new copies of the state with the modified values that we want it to represent. The HUGE benefit to this is that we can always trace back state changes to the **StateNotifier** meaning we get a uni-directional data flow!
+
+  
+
+**Providers**
+
+Riverpod comes with a bunch of different providers and the two main ones we will use are called **Provider** and **StateNotifierProvider**. All of the different providers exist to make it easier for us to provide the data we want to provide. For example, if you have just normal classes such as a service or repository you will just use a normal **Provider** as we don't expect them to have "state" that changes. **StateNotifierProvider** is there to simply make it possible to provide a **StateNotifier** without writing the code necessary manually.
+
+  
+
+Now there are tons of other providers such as **StreamProvider**, **FutureProvider**, and so on. And these are mainly convenience providers to handle a lot of the cases for you.
+
+  
+
+**Modifiers**
+
+All the providers also have what we would call modifiers, a case for this was when we used [StateNotifierProvider.autoDispose.](https://riverpod.dev/docs/concepts/modifiers/auto_dispose/) This means that when we don't watch this provider anywhere it will call **dispose** on the **StateNotifier**.

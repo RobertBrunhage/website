@@ -1,8 +1,21 @@
 ---
-title: module-4-lecture-3
-description: Introduction to the Ultimate Flutter Course
+title: Lecture 3 - Failure Screen
 vimeo: 805141207
 github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
 author: Robert Brunhage
 lastmod: 10-30-2022
 ---
+
+## Showing the user
+
+We have done all the required steps in our architecture to handle and return the errors or throw in case of an exception we didn't handle. But we also have to notify the user. This is of course up to you how you want to do it. The shown example is just one way of doing it but the main thing here is that we most of the time want to notify the user.
+
+  
+
+In this case, we create a **FailureScreen** and **FailureBody** this is because sometimes we want to show a full screen of it and sometimes we just want to show the body. I made these very generic but you are also free to send the **Failure** object to it as well. The important part here is just showing something to the user so it just doesn't become a blank screen or show text that is not meant for the user to see.
+
+  
+
+## Checking if it is a Failure
+
+Dart has a good keyword called [is](https://dart.dev/guides/language/language-tour#type-test-operators) which is handy for checking types at runtime. Here we know that the object is of type **Failure** but is you want type-safety for the failure object after checking that it **is** a type you also have to do something like **(e as Failure)**. which is also defined in the [language tour of Dart](https://dart.dev/guides/language/language-tour#type-test-operators).

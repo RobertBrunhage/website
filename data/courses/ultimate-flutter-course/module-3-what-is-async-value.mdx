@@ -1,8 +1,33 @@
 ---
-title: module-3-what-is-async-value
-description: Introduction to the Ultimate Flutter Course
+title: What is AsyncValue
 vimeo: 805141207
 github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
 author: Robert Brunhage
 lastmod: 10-30-2022
 ---
+
+## AsyncValue
+
+This is a type provided by the [Riverpod](https://riverpod.dev/) package. Diving into the [documentation](https://pub.dev/documentation/riverpod/latest/riverpod/AsyncValue-class.html) of it we can see that it's a "utility for safely manipulating asynchronous data" which is great because this is exactly what we are going to do!
+
+  
+
+AsyncValue provides three different "states" which are **data**, **loading**, and **error**. It also provides a lot of cool methods that we can utilize for cleaner and more safe UI code such as the **.when** method.
+
+  
+
+## How would it be used?
+
+Imagine you have a type declared in your **state class** such as an image URL that you are going to fetch from an API. You probably expect the API requests to either be **successful**, be in a **loading** state, or **fail** with some kind of **error**/**exception**. So in the case of a normal variable declared for that URL it could look something like this.
+
+  
+
+**final string url;**
+
+  
+
+But using **AsyncValue** is would be like this.
+
+  
+
+**final AsyncValue<string>> url;**
