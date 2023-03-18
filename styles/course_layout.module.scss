@@ -4,12 +4,12 @@
     'menu .'
     'menu .';
   grid-template-rows: auto auto;
-  grid-template-columns: max-content auto;
+  grid-template-columns: 35em auto;
 
   .menu {
     grid-area: menu;
     margin-right: 40px;
-    height: 100vh;
+    height: 85vh;
     overflow-y: auto;
     position: sticky;
     top: 20px;
@@ -58,6 +58,8 @@
   }
 
   .content {
+    min-height: 100vh;
+
     code {
       background-color: #4e4e54;
       color: #f8f8f2;

@@ -8,11 +8,36 @@
     li {
       padding: 10px 0;
       font-size: var(--body-regular);
-      color: var(--gray_300);
+      color: var(--gray_400);
+      font-weight: 600;
 
       .link {
+        display: flex;
+        /* grid-template-columns: auto 1fr; */
+        column-gap: 8px;
+        place-items: center;
+
+        span {
+          border: 1px solid var(--gray_300);
+          border-radius: 50%;
+          min-height: 16px;
+          min-width: 16px;
+        }
+
+        .locked {
+          border: none;
+          background-image: url('../../public/assets/icons/satisfaction.png');
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+        .completed {
+          border: none;
+          background-image: url('../../public/assets/icons/check.svg');
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+
         &:hover {
-          font-weight: 600;
           color: var(--primary-text-color);
         }
       }

@@ -177,6 +177,7 @@
     ul {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
+      height: max-content;
       gap: 42px;
       justify-content: center;
       list-style-type: none;
@@ -191,8 +192,8 @@
         padding: 2.75em 2em;
         border-radius: 8px;
         align-items: center;
-        justify-content: center;
         font-weight: bold;
+        height: 100%;
 
         span {
           background-color: var(--primary-color);

@@ -20,6 +20,8 @@ interface MenuProps {
   chapter?: string;
   title: string;
   slug: string;
+  weight: number;
+  free?: boolean;
 }
 
 type LectureFrontMatter = {
@@ -53,9 +55,17 @@ export default function Course({ source, module, slug, course }: LectureProps) {
   useEffect(() => {
     course.forEach((i: any) => {
       if (i.slug === '__index') return;
-      let item = { chapter: i.chapter, title: i.title, slug: i.slug };
+      let item = {
+        chapter: i.chapter,
+        title: i.title,
+        slug: i.slug,
+        weight: i.weight,
+        free: i.free,
+      };
       menu.push(item);
     });
+
+    menu.sort((a, b) => a.weight - b.weight);
 
     setSideMenu(menu);
     Prism.highlightAll();
