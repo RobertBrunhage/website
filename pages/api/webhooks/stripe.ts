@@ -26,7 +26,7 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2022-11-15', typescript: true })
 
     try {
-      event = stripe.webhooks.constructEvent(buf.toString(), sig, webhookSecret)
+      event = stripe.webhooks.constructEvent(buf.toString(), sig, webhookSecret);
     } catch (err: any) {
       // On error, log and return the error message
       console.log(`❌ Error message: ${err.message}`)
@@ -51,10 +51,12 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
         const stripeCustomerId = session.customer as string;
         const stripeCustomerEmail = session.customer_details?.email;
         const sub = session.metadata!.sub;
+        const email = session.customer_email!;
         console.log(`${stripeCustomerEmail} with stripeId ${stripeCustomerId} has purchased a course with the stripeProductId of ${stripeProductId}`);
 
         try {
-          await createUserAndConnectWithCourse(sub, stripeCustomerId, stripeProductId);
+          await createUserAndConnectWithCourse(sub, email, stripeCustomerId, stripeProductId);
+          console.log(`✅ Made connection for user and course`);
         } catch (error) {
           console.log(`❌ Error message: ${error}`);
           res.status(400).send(`Webhook not success`);

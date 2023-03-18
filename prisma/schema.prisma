@@ -12,15 +12,28 @@ datasource db {
 }
 
 model User {
-  id               Int      @id @default(autoincrement())
-  sub              String   @unique
-  stripeCustomerId String   @unique
-  courses          Course[]
+  id               Int           @id @default(autoincrement())
+  sub              String        @unique
+  stripeCustomerId String        @unique
+  email            String        @unique
+  courses          UserCourses[]
 }
 
 model Course {
-  id              Int    @id @default(autoincrement())
-  name            String @unique
-  stripeProductId String @unique
-  users           User[]
+  id              Int           @id @default(autoincrement())
+  name            String        @unique
+  stripeProductId String        @unique
+  users           UserCourses[]
+}
+
+model UserCourses {
+  user             User   @relation(fields: [stripeCustomerId], references: [stripeCustomerId])
+  stripeCustomerId String // relation scalar field (used in the `@relation` attribute above)
+  course           Course @relation(fields: [stripeProductId], references: [stripeProductId])
+  stripeProductId  String // relation scalar field (used in the `@relation` attribute above)
+
+  @@id([stripeCustomerId, stripeProductId])
+  @@index([stripeProductId])
+  @@index([stripeCustomerId])
+  @@map("UserCourses")
 }
