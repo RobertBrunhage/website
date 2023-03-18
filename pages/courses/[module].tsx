@@ -66,12 +66,6 @@ export default function Course({ source, module, modules }: ModulesProps) {
     }
   }, [response]);
 
-  useEffect(() => {
-    console.log("source: ", source);
-    console.log("module: ", module);
-    console.log("modules: ", modules);
-  }, [source]);
-
   return (
     <Layout>
       <div className={`${styles.course_layout}`}>

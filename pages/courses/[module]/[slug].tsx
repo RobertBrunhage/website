@@ -1,18 +1,18 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import { useEffect, useState } from "react";
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import Layout from "../../../components/layout/layout";
-import "prismjs";
-import Prism from "prismjs";
-import "prismjs/components/prism-dart";
-import styles from "../../../styles/course_layout.module.scss";
-import SideNavigation from "../../../components/sideNavigation/sideNavigation";
-import { getCourseFrontMatter } from "../../../core/mdx";
-import useAuthenticatedApi from "../../../lib/use-api";
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { useEffect, useState } from 'react';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import Layout from '../../../components/layout/layout';
+import 'prismjs';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-dart';
+import styles from '../../../styles/course_layout.module.scss';
+import SideNavigation from '../../../components/sideNavigation/sideNavigation';
+import { getCourseFrontMatter } from '../../../core/mdx';
+import useAuthenticatedApi from '../../../lib/use-api';
 
 const components = {};
 
@@ -27,26 +27,20 @@ type LectureFrontMatter = {
   vimeo?: number;
   github: string;
   chapter?: string;
-}
-
+};
 
 type LectureProps = {
   source: MDXRemoteSerializeResult<LectureFrontMatter>;
   module: string;
-  slug: string
-  course: Array<any>
+  slug: string;
+  course: Array<any>;
   modules: Array<any>;
 };
 
-export default function Course({
-  source,
-  module,
-  slug,
-  course,
-}: LectureProps) {
+export default function Course({ source, module, slug, course }: LectureProps) {
   const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
   const { response } = useAuthenticatedApi<boolean>('/api/course/has-access', {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({ stripeProductId: 'prod_NInXljEw7mMKMV' }),
     headers: new Headers({
       'Content-Type': 'application/json',
@@ -58,7 +52,7 @@ export default function Course({
 
   useEffect(() => {
     course.forEach((i: any) => {
-      if (i.slug === "__index") return;
+      if (i.slug === '__index') return;
       let item = { chapter: i.chapter, title: i.title, slug: i.slug };
       menu.push(item);
     });
@@ -75,20 +69,22 @@ export default function Course({
         </aside>
         <div
           className={styles.video}
-          style={{ display: source?.scope?.vimeo ? "" : "none" }}
+          style={{ display: source?.scope?.vimeo ? '' : 'none' }}
         >
-          {response?.value && source?.scope?.vimeo ? (
-            <iframe
-              src={`https://player.vimeo.com/video/${source.scope.vimeo}`}
-              allowFullScreen
-            />
-          ) : (
-            <div className={styles.sign_in}>
-              <h3>
-                You must <span> sign in </span> to watch.
-              </h3>
-            </div>
-          )}
+          <div className={styles.video_wrapper}>
+            {response?.value && source?.scope?.vimeo ? (
+              <iframe
+                src={`https://player.vimeo.com/video/${source.scope.vimeo}`}
+                allowFullScreen
+              />
+            ) : (
+              <div className={styles.sign_in}>
+                <h3>
+                  You must <span> sign in </span> to watch.
+                </h3>
+              </div>
+            )}
+          </div>
         </div>
         <article className={styles.content}>
           <MDXRemote {...source} components={components} />
@@ -99,7 +95,7 @@ export default function Course({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const coursesDirectory = path.join("data/courses");
+  const coursesDirectory = path.join('data/courses');
 
   const moduleDirectories = fs.readdirSync(coursesDirectory);
 
@@ -118,7 +114,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       const path = {
         params: {
           module: module,
-          slug: fileName.replace(".mdx", ""),
+          slug: fileName.replace('.mdx', ''),
         },
       };
 
@@ -140,7 +136,7 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   params: { module, slug },
 }: Params) => {
   const courses = fs.readFileSync(
-    path.join("data/courses", module, slug + ".mdx")
+    path.join('data/courses', module, slug + '.mdx')
   );
 
   const { data: metaData, content } = matter(courses);

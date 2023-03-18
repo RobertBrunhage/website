@@ -1,6 +1,6 @@
-import React from "react";
-import styles from "./sideNavigation.module.scss";
-import Link from "next/link";
+import React, { useEffect } from 'react';
+import styles from './sideNavigation.module.scss';
+import Link from 'next/link';
 
 interface MenuProps {
   chapter?: string;
@@ -15,6 +15,10 @@ interface SideNavProps {
 }
 
 const SideNavigation = ({ menu, module, slug }: SideNavProps) => {
+  useEffect(() => {
+    console.log(slug);
+  }, []);
+
   return (
     <div className={styles.side_nav}>
       <ul>
@@ -22,17 +26,19 @@ const SideNavigation = ({ menu, module, slug }: SideNavProps) => {
           <>
             <li
               className={styles.chapter}
-              style={{ display: item.chapter ? "" : "none" }}
+              style={{ display: item.chapter ? '' : 'none' }}
             >
               {item.chapter}
             </li>
             <li
+              id={item.slug}
               className={`${styles.indent} ${
-                item.slug === slug ? styles.selected : ""
+                item.slug === slug ? styles.selected : ''
               } }`}
               key={index}
             >
               <Link
+                className={styles.link}
                 href={`/courses/${module}/${item.slug}/`}
                 as={`/courses/${module}/${item.slug}/`}
               >

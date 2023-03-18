@@ -1,44 +1,63 @@
 .course_layout {
   display: grid;
   grid-template-areas:
-    "menu video"
-    "menu content";
-  grid-template-columns: 0.5fr 1fr;
+    'menu .'
+    'menu .';
+  grid-template-rows: auto auto;
+  grid-template-columns: max-content auto;
 
   .menu {
     grid-area: menu;
+    margin-right: 40px;
+    height: 100vh;
+    overflow-y: auto;
+    position: sticky;
+    top: 20px;
   }
 
   .video {
-    grid-area: video;
-    aspect-ratio: 16/9;
     display: flex;
-    margin-bottom: 2em;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
 
-    iframe {
-      border: none;
+    .video_wrapper {
+      position: relative;
+      padding-top: 56.25%;
       width: 100%;
-    }
-  }
 
-  .sign_in {
-    background-color: rgb(10, 10, 10);
-    width: 100%;
-    display: grid;
-    place-items: center;
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
 
-    h3 {
-      span {
-        color: #41efff;
-        &:hover {
-          cursor: pointer;
+      .sign_in {
+        background-color: rgb(10, 10, 10);
+        display: grid;
+        place-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        h3 {
+          span {
+            color: #41efff;
+            &:hover {
+              cursor: pointer;
+            }
+          }
         }
       }
     }
   }
 
   .content {
-    grid-area: content;
     code {
       background-color: #4e4e54;
       color: #f8f8f2;
@@ -55,7 +74,7 @@
 
     h1 {
       &:first-child {
-        margin-top: 0;
+        margin-top: 0.5em;
       }
     }
 
@@ -104,9 +123,9 @@
 
   @media screen and (max-width: 1000px) {
     grid-template-areas:
-      "video"
-      "content"
-      "menu";
+      'video'
+      'content'
+      'menu';
     grid-template-columns: 1fr;
   }
 }
