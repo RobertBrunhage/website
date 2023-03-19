@@ -62,7 +62,10 @@ async function seen(
 
     let seenResponse = await prisma.lectureUserInfo.upsert({
       where: {
-        lectureId: lectureResponse.id,
+        lectureInfoIdentifier: {
+          sub: session.user.sub,
+          lectureId: lectureResponse.id,
+        }
       },
       create: {
         lecture: {

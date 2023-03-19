@@ -59,15 +59,15 @@ model Lecture {
 model LectureUserInfo {
   id Int @id @default(autoincrement())
 
-  user   User @relation(fields: [userId], references: [id])
-  userId Int
+  user User   @relation(fields: [sub], references: [sub])
+  sub  String
 
   lecture   Lecture @relation(fields: [lectureId], references: [id])
-  lectureId Int @unique
+  lectureId Int
 
   seen Boolean @default(false)
 
-  @@index([userId])
+  @@unique([sub, lectureId], name: "lectureInfoIdentifier")
+  @@index([sub])
   @@index([lectureId])
-  @@map("LectureInfo")
 }
