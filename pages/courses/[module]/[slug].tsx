@@ -67,13 +67,13 @@ export default function Course({ source, module, slug, course }: LectureProps) {
   const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
 
   const { user } = useUser();
-  const { data } = useSWR<Response<boolean>>(
+  const { data: hasAccessResponse } = useSWR<Response<boolean>, Error>(
     user ? "/api/course/has-access" : null,
     url => fetchHasAccess(url),
   );
 
-  const { data: peppa, isLoading, mutate } = useSWR<Response<AllSeenResponse>>(
-    user && data ? "/api/course/all-seen" : null,
+  const { data: allSeenLecturesResponse, isLoading, mutate } = useSWR<Response<AllSeenResponse>, Error>(
+    user && hasAccessResponse ? "/api/course/all-seen" : null,
     url => fetchAllSeen(url, module),
   );
 
@@ -105,11 +105,11 @@ export default function Course({ source, module, slug, course }: LectureProps) {
 
       let seen = false;
 
-      if (!isLoading && peppa) {
-        const allSeenNames = peppa!.value!.allSeen.map((l) => l.name);
+      if (!isLoading && allSeenLecturesResponse) {
+        const allSeenNames = allSeenLecturesResponse!.value!.allSeen.map((l) => l.name);
         const lectureIdIndex = allSeenNames.indexOf(i.lectureId);
         if (lectureIdIndex !== -1) {
-          seen = peppa?.value?.allSeen[lectureIdIndex].seen ?? false;
+          seen = allSeenLecturesResponse?.value?.allSeen[lectureIdIndex].seen ?? false;
         }
       }
 
@@ -129,7 +129,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
 
     setSideMenu(menu);
     Prism.highlightAll();
-  }, [course, peppa]);
+  }, [course, allSeenLecturesResponse]);
 
   return (
     <Layout>
@@ -142,7 +142,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
           style={{ display: source?.scope?.vimeo ? '' : 'none' }}
         >
           <div className={styles.video_wrapper}>
-            {data?.value && source?.scope?.vimeo ? (
+            {hasAccessResponse?.value && source?.scope?.vimeo ? (
               <iframe
                 src={`https://player.vimeo.com/video/${source.scope.vimeo}`}
                 allowFullScreen

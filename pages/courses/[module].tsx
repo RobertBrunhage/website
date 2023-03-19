@@ -56,13 +56,13 @@ const fetchCourseInfo = async (url: RequestInfo, courseName: String) => {
 
 export default function Course({ source, module, modules }: ModulesProps) {
   const { user } = useUser();
-  const { data } = useSWR<Response<CourseResponse>>(
+  const { data: courseResponse } = useSWR<Response<CourseResponse>, Error>(
     user !== undefined ? "/api/course/course" : null,
     url => fetchCourseInfo(url, source.scope!.courseId),
   );
 
   useEffect(() => {
-    console.log(data?.value);
+    console.log(courseResponse?.value);
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
       console.log("Order placed! You will receive an email confirmation.");
@@ -73,7 +73,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
         "Order canceled -- continue to shop around and checkout when you’re ready."
       );
     }
-  }, [data]);
+  }, [courseResponse]);
 
 
   return (
@@ -100,11 +100,11 @@ export default function Course({ source, module, modules }: ModulesProps) {
           <h1 className={styles.section_title}>{source.scope?.courseName}</h1>
           <PricingCard
             title={source.scope?.courseName ?? ""}
-            price={data?.value?.price}
+            price={courseResponse?.value?.price}
             previousPrice={`$${source.scope?.previousPrice}`}
             price_package={source.scope?.package ?? [{ name: "" }]}
             className={styles.pricing_light}
-            productId={data?.value?.stripeProductId ?? ""}
+            productId={courseResponse?.value?.stripeProductId ?? ""}
             module={module}
           />
         </section>
@@ -141,10 +141,10 @@ export default function Course({ source, module, modules }: ModulesProps) {
         <section>
           <PricingCard
             title={source.scope?.courseName ?? ""}
-            price={data?.value?.price}
+            price={courseResponse?.value?.price}
             previousPrice={`$${source.scope?.previousPrice}`}
             price_package={source.scope?.package ?? [{ name: "" }]}
-            productId={data?.value?.stripeProductId ?? ""}
+            productId={courseResponse?.value?.stripeProductId ?? ""}
             module={module}
           />
         </section>
