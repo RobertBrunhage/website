@@ -27,6 +27,7 @@ type SourceProps = {
   image: string;
   title: string;
   courseName: string;
+  courseId: string;
   description: string;
   previousPrice: string;
   vimeo: number;
@@ -44,7 +45,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
     "/api/course/course",
     {
       method: "POST",
-      body: JSON.stringify({ courseName: module }),
+      body: JSON.stringify({ courseName: source.scope?.courseId }),
       headers: new Headers({
         "Content-Type": "application/json",
         Accept: "application/json",

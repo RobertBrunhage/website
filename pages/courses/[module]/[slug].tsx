@@ -26,6 +26,7 @@ interface MenuProps {
 
 type LectureFrontMatter = {
   title: string;
+  lectureId: string;
   vimeo?: number;
   github: string;
   chapter?: string;

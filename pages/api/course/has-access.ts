@@ -17,7 +17,6 @@ export type _HasAccessRequest = {
   stripeProductId: string;
 }
 
-
 export type HasAccessRequest = Override<NextApiRequest, { body: _HasAccessRequest }>
 
 export default withApiAuthRequired(handler);
