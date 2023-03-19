@@ -14,7 +14,6 @@ import SideNavigation, {
   MenuProps,
 } from '../../../components/sideNavigation/sideNavigation';
 import { getCourseFrontMatter } from '../../../core/mdx';
-import useAuthenticatedApi from '../../../lib/use-api';
 import { AllSeenResponse } from '../../api/course/all-seen';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import useSWR from 'swr'
