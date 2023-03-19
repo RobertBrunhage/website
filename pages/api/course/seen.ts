@@ -60,7 +60,7 @@ async function seen(
       update: {}
     });
 
-    let seenResponse = await prisma.userLectures.upsert({
+    let seenResponse = await prisma.lectureUserInfo.upsert({
       where: {
         lectureId: lectureResponse.id,
       },
