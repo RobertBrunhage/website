@@ -17,8 +17,6 @@ export type AllSeenResponse = {
 
 export type _SeenRequest = {
   courseName: string;
-  lectureName: string;
-  seen?: boolean;
 }
 
 export type MarkSeenRequest = Override<NextApiRequest, { body: _SeenRequest }>
