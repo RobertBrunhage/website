@@ -10,19 +10,14 @@ import 'prismjs';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-dart';
 import styles from '../../../styles/course_layout.module.scss';
-import SideNavigation from '../../../components/sideNavigation/sideNavigation';
+import SideNavigation, {
+  MenuProps,
+} from '../../../components/sideNavigation/sideNavigation';
 import { getCourseFrontMatter } from '../../../core/mdx';
 import useAuthenticatedApi from '../../../lib/use-api';
+import { AllSeenResponse } from '../../api/course/all-seen';
 
 const components = {};
-
-interface MenuProps {
-  chapter?: string;
-  title: string;
-  slug: string;
-  weight: number;
-  free?: boolean;
-}
 
 type LectureFrontMatter = {
   title: string;
@@ -51,18 +46,55 @@ export default function Course({ source, module, slug, course }: LectureProps) {
     }),
   });
 
+  const { isLoading, response: peppa } = useAuthenticatedApi<AllSeenResponse>(
+    '/api/course/all-seen',
+    {
+      method: 'POST',
+      body: JSON.stringify({ courseName: module }),
+    }
+  );
+
+  const handleSeen = () => {
+    fetch('/api/course/seen', {
+      method: 'POST',
+      body: JSON.stringify({
+        courseName: module,
+        lectureName: source.scope?.lectureId,
+        seen: true,
+      }),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+    });
+  };
+
   let menu: Array<MenuProps> = [];
 
   useEffect(() => {
+    console.log(source);
     course.forEach((i: any) => {
       if (i.slug === '__index') return;
+
+      let seen = false;
+
+      if (!isLoading) {
+        const allSeenNames = peppa.value!.allSeen.map((l) => l.name);
+        const lectureIdIndex = allSeenNames.indexOf(i.lectureId);
+        if (lectureIdIndex !== -1) {
+          seen = peppa.value?.allSeen[lectureIdIndex].seen ?? false;
+        }
+      }
+
       let item = {
         chapter: i.chapter,
         title: i.title,
         slug: i.slug,
         weight: i.weight,
         free: i.free,
+        seen: seen,
       };
+
       menu.push(item);
     });
 
@@ -70,7 +102,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
 
     setSideMenu(menu);
     Prism.highlightAll();
-  }, [course]);
+  }, [course, peppa]);
 
   return (
     <Layout>
@@ -96,6 +128,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
               </div>
             )}
           </div>
+          <button onClick={() => handleSeen()}>mark as seen</button>
         </div>
         <article className={styles.content}>
           <MDXRemote {...source} components={components} />

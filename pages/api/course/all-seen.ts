@@ -68,7 +68,7 @@ async function seen(
     for (let i = 0; i < response.length; i++) {
       allSeen.push({ name: response[i].lecture.name, seen: response[i].seen });
     }
-
+console.log(allSeen)
     return res.status(200).json({ success: true, message: "Successfully set the seen property", value: { allSeen } });
   } catch (error) {
     console.error("Request error", error);

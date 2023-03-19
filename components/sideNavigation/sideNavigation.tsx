@@ -2,12 +2,13 @@ import React from 'react';
 import styles from './sideNavigation.module.scss';
 import Link from 'next/link';
 
-interface MenuProps {
+export interface MenuProps {
   chapter?: string;
   title: string;
   slug: string;
   weight: number;
   free?: boolean;
+  seen?: boolean;
 }
 
 interface SideNavProps {
@@ -39,7 +40,7 @@ const SideNavigation = ({ menu, module, slug }: SideNavProps) => {
                 href={`/courses/${module}/${item.slug}/`}
                 as={`/courses/${module}/${item.slug}/`}
               >
-                <span className={item.free ? styles.free : styles.locked} />
+                <span className={item.seen ? styles.free : styles.locked} />
                 {item.title}
               </Link>
             </li>
