@@ -2,16 +2,9 @@
 import { withApiAuthRequired, getSession, Session } from '@auth0/nextjs-auth0';
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from '../../../lib/database/user';
+import { Response } from '../../../lib/response';
 
 type Override<T1, T2> = Omit<T1, keyof T2> & T2;
-
-export type Response<T> = {
-  message: string;
-  success: boolean;
-  value?: T;
-  errors?: string[];
-};
-
 
 export type _HasAccessRequest = {
   stripeProductId: string;

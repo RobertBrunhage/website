@@ -4,6 +4,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import Stripe from 'stripe';
 import { prisma } from '../../../lib/database/user';
 import { stripe } from '../checkout_sessions';
+import { Response } from '../../../lib/response';
 
 export type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
