@@ -72,7 +72,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
     url => fetchHasAccess(url),
   );
 
-  const { data: allSeenLecturesResponse, isLoading, mutate } = useSWR<Response<AllSeenResponse>, Error>(
+  const { data: allSeenLecturesResponse, isLoading, mutate: mutateAllSeen } = useSWR<Response<AllSeenResponse>, Error>(
     user && hasAccessResponse ? "/api/course/all-seen" : null,
     url => fetchAllSeen(url, module),
   );
@@ -92,7 +92,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
     });
 
     if (response.ok) {
-      mutate();
+      mutateAllSeen();
     }
 
   };
