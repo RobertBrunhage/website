@@ -16,6 +16,9 @@ import SideNavigation, {
 import { getCourseFrontMatter } from '../../../core/mdx';
 import useAuthenticatedApi from '../../../lib/use-api';
 import { AllSeenResponse } from '../../api/course/all-seen';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import useSWR from 'swr'
+import { Response } from '../../../lib/response';
 
 const components = {};
 
@@ -35,9 +38,9 @@ type LectureProps = {
   modules: Array<any>;
 };
 
-export default function Course({ source, module, slug, course }: LectureProps) {
-  const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
-  const { response } = useAuthenticatedApi<boolean>('/api/course/has-access', {
+
+const fetchHasAccess = async (url: RequestInfo) => {
+  const r = await fetch(url, {
     method: 'POST',
     body: JSON.stringify({ stripeProductId: 'prod_NInXljEw7mMKMV' }),
     headers: new Headers({
@@ -45,13 +48,34 @@ export default function Course({ source, module, slug, course }: LectureProps) {
       Accept: 'application/json',
     }),
   });
+  return await r.json();
+}
 
-  const { isLoading, response: peppa } = useAuthenticatedApi<AllSeenResponse>(
-    '/api/course/all-seen',
-    {
-      method: 'POST',
-      body: JSON.stringify({ courseName: module }),
-    }
+
+const fetchAllSeen = async (url: RequestInfo, module: String) => {
+  const r = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify({ courseName: module }),
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    }),
+  });
+  return await r.json();
+}
+
+export default function Course({ source, module, slug, course }: LectureProps) {
+  const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
+
+  const { user } = useUser();
+  const { data } = useSWR<Response<boolean>>(
+    user ? "/api/course/has-access" : null,
+    url => fetchHasAccess(url),
+  );
+
+  const { data: peppa, isLoading, mutate } = useSWR<Response<AllSeenResponse>>(
+    user && data ? "/api/course/all-seen" : null,
+    url => fetchAllSeen(url, module),
   );
 
   const handleSeen = async () => {
@@ -68,23 +92,25 @@ export default function Course({ source, module, slug, course }: LectureProps) {
       }),
     });
 
-    console.log(response);
+    if (response.ok) {
+      mutate();
+    }
+
   };
 
   let menu: Array<MenuProps> = [];
 
   useEffect(() => {
-    console.log(source);
     course.forEach((i: any) => {
       if (i.slug === '__index') return;
 
       let seen = false;
 
-      if (!isLoading) {
-        const allSeenNames = peppa.value!.allSeen.map((l) => l.name);
+      if (!isLoading && peppa) {
+        const allSeenNames = peppa!.value!.allSeen.map((l) => l.name);
         const lectureIdIndex = allSeenNames.indexOf(i.lectureId);
         if (lectureIdIndex !== -1) {
-          seen = peppa.value?.allSeen[lectureIdIndex].seen ?? false;
+          seen = peppa?.value?.allSeen[lectureIdIndex].seen ?? false;
         }
       }
 
@@ -117,7 +143,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
           style={{ display: source?.scope?.vimeo ? '' : 'none' }}
         >
           <div className={styles.video_wrapper}>
-            {response?.value && source?.scope?.vimeo ? (
+            {data?.value && source?.scope?.vimeo ? (
               <iframe
                 src={`https://player.vimeo.com/video/${source.scope.vimeo}`}
                 allowFullScreen

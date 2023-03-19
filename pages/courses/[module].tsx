@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import useSWR from 'swr'
 import { loadStripe } from "@stripe/stripe-js";
 import fs from "fs";
 import path from "path";
@@ -10,11 +11,12 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { getCourseFrontMatter } from "../../core/mdx";
 import Link from "next/link";
-import useAuthenticatedApi from "../../lib/use-api";
 import { CourseResponse } from "../api/course/course";
 import PricingCard, {
   Packages,
 } from "../../components/cards/pricingCard/pricingCard";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { Response } from '../../lib/response';
 
 
 type ModulesProps = {
@@ -40,21 +42,27 @@ loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
+const fetchCourseInfo = async (url: RequestInfo, courseName: String) => {
+  const r = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify({ courseName: courseName }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    })
+  });
+  return await r.json();
+}
+
 export default function Course({ source, module, modules }: ModulesProps) {
-  const { response } = useAuthenticatedApi<CourseResponse>(
-    "/api/course/course",
-    {
-      method: "POST",
-      body: JSON.stringify({ courseName: source.scope?.courseId }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      }),
-    }
+  const { user } = useUser();
+  const { data } = useSWR<Response<CourseResponse>>(
+    user !== undefined ? "/api/course/course" : null,
+    url => fetchCourseInfo(url, source.scope!.courseId),
   );
 
   useEffect(() => {
-    console.log(response);
+    console.log(data?.value);
     const query = new URLSearchParams(window.location.search);
     if (query.get("success")) {
       console.log("Order placed! You will receive an email confirmation.");
@@ -65,7 +73,8 @@ export default function Course({ source, module, modules }: ModulesProps) {
         "Order canceled -- continue to shop around and checkout when you’re ready."
       );
     }
-  }, [response]);
+  }, [data]);
+
 
   return (
     <Layout>
@@ -91,11 +100,11 @@ export default function Course({ source, module, modules }: ModulesProps) {
           <h1 className={styles.section_title}>{source.scope?.courseName}</h1>
           <PricingCard
             title={source.scope?.courseName ?? ""}
-            price={response?.value?.price}
+            price={data?.value?.price}
             previousPrice={`$${source.scope?.previousPrice}`}
             price_package={source.scope?.package ?? [{ name: "" }]}
             className={styles.pricing_light}
-            productId={response?.value?.stripeProductId ?? ""}
+            productId={data?.value?.stripeProductId ?? ""}
             module={module}
           />
         </section>
@@ -132,10 +141,10 @@ export default function Course({ source, module, modules }: ModulesProps) {
         <section>
           <PricingCard
             title={source.scope?.courseName ?? ""}
-            price={response?.value?.price}
+            price={data?.value?.price}
             previousPrice={`$${source.scope?.previousPrice}`}
             price_package={source.scope?.package ?? [{ name: "" }]}
-            productId={response?.value?.stripeProductId ?? ""}
+            productId={data?.value?.stripeProductId ?? ""}
             module={module}
           />
         </section>

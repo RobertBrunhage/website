@@ -7,13 +7,6 @@ import { stripe } from '../checkout_sessions';
 
 export type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
-export type Response<T> = {
-  message: string;
-  success: boolean;
-  value?: T;
-  errors?: string[];
-};
-
 export type CourseResponse = {
   stripeProductId: string; // Used for the checkout session
   price: Stripe.Price[]; // Used to display the price card in sales page
