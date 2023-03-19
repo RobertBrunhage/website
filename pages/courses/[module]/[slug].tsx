@@ -54,8 +54,8 @@ export default function Course({ source, module, slug, course }: LectureProps) {
     }
   );
 
-  const handleSeen = () => {
-    fetch('/api/course/seen', {
+  const handleSeen = async () => {
+    let response = await fetch('/api/course/seen', {
       method: 'POST',
       body: JSON.stringify({
         courseName: module,
@@ -67,6 +67,8 @@ export default function Course({ source, module, slug, course }: LectureProps) {
         Accept: 'application/json',
       }),
     });
+
+    console.log(response);
   };
 
   let menu: Array<MenuProps> = [];

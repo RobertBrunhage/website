@@ -45,8 +45,6 @@ async function seen(
   session: Session,
 ) {
   try {
-    console.log('try pog')
-
     let lectureResponse = await prisma.lecture.upsert({
       where: {
         name: req.body.lectureName,
@@ -61,8 +59,7 @@ async function seen(
       },
       update: {}
     });
-    console.log(lectureResponse)
-    
+
     let seenResponse = await prisma.lectureUserInfo.upsert({
       where: {
         lectureId: lectureResponse.id,
@@ -82,10 +79,19 @@ async function seen(
       },
       update: {
         seen: req.body.seen,
-      },
+        lecture: {
+          connect: {
+            id: lectureResponse.id,
+          }
+        },
+        user: {
+          connect: {
+            sub: session.user.sub,
+          }
+        },
+      }
     });
 
-    console.log(seenResponse)
     return res.status(200).json({ success: true, message: "Successfully set the seen property", value: { seen: seenResponse.seen } });
   } catch (error) {
     console.error("Request error", error);

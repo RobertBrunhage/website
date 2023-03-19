@@ -60,10 +60,10 @@ model LectureUserInfo {
   id Int @id @default(autoincrement())
 
   user   User @relation(fields: [userId], references: [id])
-  userId Int  @unique
+  userId Int
 
   lecture   Lecture @relation(fields: [lectureId], references: [id])
-  lectureId Int     @unique
+  lectureId Int @unique
 
   seen Boolean @default(false)
 
