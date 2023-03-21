@@ -195,6 +195,13 @@
         font-weight: bold;
         height: 100%;
 
+        // add hover animation
+        // add shimmer animation on hover
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          transform: translateY(-8px);
+        }
+
         span {
           background-color: var(--primary-color);
           font-weight: bold;
