@@ -3,7 +3,6 @@
   grid-template-areas:
     'menu .'
     'menu .';
-  grid-template-rows: auto auto;
   grid-template-columns: 35em auto;
 
   .menu {
@@ -25,6 +24,7 @@
       position: relative;
       padding-top: 56.25%;
       width: 100%;
+      height: 100%;
 
       iframe {
         position: absolute;
@@ -33,6 +33,24 @@
         width: 100%;
         height: 100%;
         border: none;
+      }
+
+      .seen {
+        background-color: transparent;
+        border: none;
+        padding: 4px 0;
+
+        font-weight: bold;
+        text-transform: uppercase;
+        color: var(--gray_300);
+
+        position: absolute;
+        right: 0;
+
+        &:hover {
+          cursor: pointer;
+          color: var(--gray_100);
+        }
       }
 
       .sign_in {

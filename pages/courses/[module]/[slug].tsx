@@ -16,7 +16,7 @@ import SideNavigation, {
 import { getCourseFrontMatter } from '../../../core/mdx';
 import { AllSeenResponse } from '../../api/course/all-seen';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import useSWR from 'swr'
+import useSWR from 'swr';
 import { Response } from '../../../lib/response';
 
 const components = {};
@@ -37,7 +37,6 @@ type LectureProps = {
   modules: Array<any>;
 };
 
-
 const fetchHasAccess = async (url: RequestInfo) => {
   const r = await fetch(url, {
     method: 'POST',
@@ -48,8 +47,7 @@ const fetchHasAccess = async (url: RequestInfo) => {
     }),
   });
   return await r.json();
-}
-
+};
 
 const fetchAllSeen = async (url: RequestInfo, module: String) => {
   const r = await fetch(url, {
@@ -61,20 +59,24 @@ const fetchAllSeen = async (url: RequestInfo, module: String) => {
     }),
   });
   return await r.json();
-}
+};
 
 export default function Course({ source, module, slug, course }: LectureProps) {
   const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
 
   const { user } = useUser();
   const { data: hasAccessResponse } = useSWR<Response<boolean>, Error>(
-    user ? "/api/course/has-access" : null,
-    url => fetchHasAccess(url),
+    user ? '/api/course/has-access' : null,
+    (url) => fetchHasAccess(url)
   );
 
-  const { data: allSeenLecturesResponse, isLoading, mutate: mutateAllSeen } = useSWR<Response<AllSeenResponse>, Error>(
-    user && hasAccessResponse ? "/api/course/all-seen" : null,
-    url => fetchAllSeen(url, module),
+  const {
+    data: allSeenLecturesResponse,
+    isLoading,
+    mutate: mutateAllSeen,
+  } = useSWR<Response<AllSeenResponse>, Error>(
+    user && hasAccessResponse ? '/api/course/all-seen' : null,
+    (url) => fetchAllSeen(url, module)
   );
 
   const handleSeen = async () => {
@@ -94,7 +96,6 @@ export default function Course({ source, module, slug, course }: LectureProps) {
     if (response.ok) {
       mutateAllSeen();
     }
-
   };
 
   let menu: Array<MenuProps> = [];
@@ -106,10 +107,14 @@ export default function Course({ source, module, slug, course }: LectureProps) {
       let seen = false;
 
       if (!isLoading && allSeenLecturesResponse) {
-        const allSeenNames = allSeenLecturesResponse!.value!.allSeen.map((l) => l.name);
+        const allSeenNames = allSeenLecturesResponse!.value!.allSeen.map(
+          (l) => l.name
+        );
         const lectureIdIndex = allSeenNames.indexOf(i.lectureId);
         if (lectureIdIndex !== -1) {
-          seen = allSeenLecturesResponse?.value?.allSeen[lectureIdIndex].seen ?? false;
+          seen =
+            allSeenLecturesResponse?.value?.allSeen[lectureIdIndex].seen ??
+            false;
         }
       }
 
@@ -143,10 +148,15 @@ export default function Course({ source, module, slug, course }: LectureProps) {
         >
           <div className={styles.video_wrapper}>
             {hasAccessResponse?.value && source?.scope?.vimeo ? (
-              <iframe
-                src={`https://player.vimeo.com/video/${source.scope.vimeo}`}
-                allowFullScreen
-              />
+              <>
+                <iframe
+                  src={`https://player.vimeo.com/video/${source.scope.vimeo}`}
+                  allowFullScreen
+                />
+                <button className={styles.seen} onClick={() => handleSeen()}>
+                  mark as seen
+                </button>
+              </>
             ) : (
               <div className={styles.sign_in}>
                 <h3>
@@ -155,7 +165,6 @@ export default function Course({ source, module, slug, course }: LectureProps) {
               </div>
             )}
           </div>
-          <button onClick={() => handleSeen()}>mark as seen</button>
         </div>
         <article className={styles.content}>
           <MDXRemote {...source} components={components} />
