@@ -24,13 +24,16 @@
           min-width: 16px;
         }
 
+        .free {
+          background-color: none;
+        }
         .locked {
           border: none;
           background-image: url('../../public/assets/icons/satisfaction.png');
           background-size: contain;
           background-repeat: no-repeat;
         }
-        .completed {
+        .seen {
           border: none;
           background-image: url('../../public/assets/icons/check.svg');
           background-size: contain;

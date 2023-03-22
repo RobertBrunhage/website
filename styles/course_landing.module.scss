@@ -1,10 +1,10 @@
 .course_layout {
   display: grid;
   grid-template-areas:
-    "main"
-    "content"
-    "modules"
-    ".";
+    'main'
+    'content'
+    'modules'
+    '.';
 
   h1 {
     color: var(--yellow);
@@ -83,6 +83,20 @@
         &:hover {
           cursor: pointer;
         }
+      }
+    }
+  }
+
+  .owner {
+    display: grid;
+    text-align: center;
+    margin-top: 12px;
+    max-width: max-content;
+    .login {
+      color: #41efff;
+
+      &:hover {
+        color: #41a3ff;
       }
     }
   }

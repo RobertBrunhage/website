@@ -1,23 +1,22 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import useSWR from 'swr'
-import { loadStripe } from "@stripe/stripe-js";
-import fs from "fs";
-import path from "path";
-import React, { useEffect } from "react";
-import styles from "../../styles/course_landing.module.scss";
-import Layout from "../../components/layout/layout";
-import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { getCourseFrontMatter } from "../../core/mdx";
-import Link from "next/link";
-import { CourseResponse } from "../api/course/course";
+import { GetStaticPaths, GetStaticProps } from 'next';
+import useSWR from 'swr';
+import { loadStripe } from '@stripe/stripe-js';
+import fs from 'fs';
+import path from 'path';
+import React, { useEffect } from 'react';
+import styles from '../../styles/course_landing.module.scss';
+import Layout from '../../components/layout/layout';
+import matter from 'gray-matter';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { getCourseFrontMatter } from '../../core/mdx';
+import Link from 'next/link';
+import { CourseResponse } from '../api/course/course';
 import PricingCard, {
   Packages,
-} from "../../components/cards/pricingCard/pricingCard";
-import { useUser } from "@auth0/nextjs-auth0/client";
+} from '../../components/cards/pricingCard/pricingCard';
+import { useUser } from '@auth0/nextjs-auth0/client';
 import { Response } from '../../lib/response';
-
 
 type ModulesProps = {
   source: MDXRemoteSerializeResult<SourceProps>;
@@ -44,37 +43,56 @@ loadStripe(
 
 const fetchCourseInfo = async (url: RequestInfo, courseName: String) => {
   const r = await fetch(url, {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({ courseName: courseName }),
     headers: new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    })
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    }),
   });
   return await r.json();
-}
+};
+
+const fetchHasAccess = async (url: RequestInfo) => {
+  const r = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify({ stripeProductId: 'prod_NInXljEw7mMKMV' }),
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    }),
+  });
+  return await r.json();
+};
 
 export default function Course({ source, module, modules }: ModulesProps) {
   const { user } = useUser();
   const { data: courseResponse } = useSWR<Response<CourseResponse>, Error>(
-    user !== undefined ? "/api/course/course" : null,
-    url => fetchCourseInfo(url, source.scope!.courseId),
+    user !== undefined ? '/api/course/course' : null,
+    (url) => fetchCourseInfo(url, source.scope!.courseId)
+  );
+  const { data: hasAccessResponse } = useSWR<Response<boolean>, Error>(
+    user ? '/api/course/has-access' : null,
+    (url) => fetchHasAccess(url)
   );
 
   useEffect(() => {
     console.log(courseResponse?.value);
     const query = new URLSearchParams(window.location.search);
-    if (query.get("success")) {
-      console.log("Order placed! You will receive an email confirmation.");
+    if (query.get('success')) {
+      console.log('Order placed! You will receive an email confirmation.');
     }
 
-    if (query.get("canceled")) {
+    if (query.get('canceled')) {
       console.log(
-        "Order canceled -- continue to shop around and checkout when you’re ready."
+        'Order canceled -- continue to shop around and checkout when you’re ready.'
       );
     }
   }, [courseResponse]);
 
+  useEffect(() => {
+    modules.sort((a, b) => a.weight - b.weight);
+  }, [modules]);
 
   return (
     <Layout>
@@ -87,7 +105,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
 
           <div
             className={styles.video}
-            style={{ display: source.scope?.vimeo ? "" : "none" }}
+            style={{ display: source.scope?.vimeo ? '' : 'none' }}
           >
             <iframe
               src={`https://player.vimeo.com/video/${source.scope?.vimeo}`}
@@ -99,14 +117,29 @@ export default function Course({ source, module, modules }: ModulesProps) {
         <section>
           <h1 className={styles.section_title}>{source.scope?.courseName}</h1>
           <PricingCard
-            title={source.scope?.courseName ?? ""}
+            title={source.scope?.courseName ?? ''}
             price={courseResponse?.value?.price}
             previousPrice={`$${source.scope?.previousPrice}`}
-            price_package={source.scope?.package ?? [{ name: "" }]}
+            price_package={source.scope?.package ?? [{ name: '' }]}
             className={styles.pricing_light}
-            productId={courseResponse?.value?.stripeProductId ?? ""}
+            productId={courseResponse?.value?.stripeProductId ?? ''}
             module={module}
+            modules={modules}
+            ownsCourse={hasAccessResponse?.value}
           />
+          {user ? (
+            ''
+          ) : (
+            <div className={styles.owner}>
+              Already own this course?
+              <Link
+                legacyBehavior={true}
+                href={`/api/auth/login?returnTo=/courses/${module}`}
+              >
+                <a className={`${styles.login}`}> Login to watch</a>
+              </Link>
+            </div>
+          )}
         </section>
 
         <section>
@@ -120,8 +153,8 @@ export default function Course({ source, module, modules }: ModulesProps) {
           <div className={styles.card_container}>
             <ul>
               {modules.map(({ title, slug }, index) =>
-                source.scope?.title === title || title === "Overview" ? (
-                  ""
+                source.scope?.title === title ? (
+                  ''
                 ) : (
                   <Link
                     href={`/${`courses/${module}`}/[slug]`}
@@ -140,13 +173,28 @@ export default function Course({ source, module, modules }: ModulesProps) {
 
         <section>
           <PricingCard
-            title={source.scope?.courseName ?? ""}
+            title={source.scope?.courseName ?? ''}
             price={courseResponse?.value?.price}
             previousPrice={`$${source.scope?.previousPrice}`}
-            price_package={source.scope?.package ?? [{ name: "" }]}
-            productId={courseResponse?.value?.stripeProductId ?? ""}
+            price_package={source.scope?.package ?? [{ name: '' }]}
+            productId={courseResponse?.value?.stripeProductId ?? ''}
             module={module}
+            modules={modules}
+            ownsCourse={hasAccessResponse?.value}
           />
+          {user ? (
+            ''
+          ) : (
+            <div className={styles.owner}>
+              Already own this course?
+              <Link
+                legacyBehavior={true}
+                href={`/api/auth/login?returnTo=/courses/${module}`}
+              >
+                <a className={`${styles.login}`}> Login to watch</a>
+              </Link>
+            </div>
+          )}
         </section>
       </div>
     </Layout>
@@ -154,7 +202,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const coursesDirectory = path.join("data/courses");
+  const coursesDirectory = path.join('data/courses');
 
   const moduleDirectories = fs.readdirSync(coursesDirectory);
 
@@ -193,7 +241,7 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   params: { module },
 }: Params) => {
   const course = fs.readFileSync(
-    path.join("data/courses", module, "__index.mdx")
+    path.join('data/courses', module, '__index.mdx')
   );
 
   const { data: metaData, content } = matter(course);

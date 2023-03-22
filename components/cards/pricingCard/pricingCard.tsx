@@ -1,9 +1,9 @@
-import React from "react";
-import styles from "./pricingCard.module.scss";
-import Link from "next/link";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import buttonStyle from "../../buttons/cta/cta.module.scss";
-import Stripe from "stripe";
+import React from 'react';
+import styles from './pricingCard.module.scss';
+import Link from 'next/link';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import buttonStyle from '../../buttons/cta/cta.module.scss';
+import Stripe from 'stripe';
 
 export interface Packages {
   name: string;
@@ -23,6 +23,8 @@ interface PricingProps {
   disabled?: boolean;
   productId: string;
   module: string;
+  modules: Array<any>;
+  ownsCourse?: boolean;
 }
 
 const PriceHeader: React.FC<{
@@ -48,20 +50,22 @@ const pricingCard = ({
   disabled,
   productId,
   module,
+  modules,
+  ownsCourse,
 }: PricingProps) => {
   const { user } = useUser();
 
   return (
     <div className={`${styles.container} ${className}`}>
       <div className={styles.package}>
-        <div className={styles.label} style={{ display: label ? "" : "none" }}>
+        <div className={styles.label} style={{ display: label ? '' : 'none' }}>
           {label}
         </div>
         <p className={styles.title}>{title}</p>
         <PriceHeader price={price} />
         <h2
           className={styles.prev_price}
-          style={{ marginRight: previousPrice && ".5em" }}
+          style={{ marginRight: previousPrice && '.5em' }}
         >
           {previousPrice}
         </h2>
@@ -78,26 +82,44 @@ const pricingCard = ({
         </ul>
       </div>
       <p className={styles.supply}>{supply}</p>
-      {user ? (
-        <form
-          action={`/api/checkout_sessions/?productId=${productId}&successPath=/courses/${module}`}
-          method="POST"
-        >
-          <button
-            className={`${buttonStyle.button} ${styles.btn}`}
-            type="submit"
-            role="link"
+      {ownsCourse ? (
+        <div className={styles.owns_course}>
+          <span>
+            You already own this course!
+          </span>
+          <Link
+            legacyBehavior={true}
+            href={`/courses/${module}/${modules[0].slug}`}
           >
-            Buy
-          </button>
-        </form>
+            <a className={`${buttonStyle.button} ${styles.btn}`}>
+              start watching
+            </a>
+          </Link>
+        </div>
       ) : (
-        <Link
-          legacyBehavior={true}
-          href={`/api/auth/login?returnTo=/courses/${module}`}
-        >
-          <a className={`${buttonStyle.button} ${styles.btn}`}>Buy</a>
-        </Link>
+        <div>
+          {user ? (
+            <form
+              action={`/api/checkout_sessions/?productId=${productId}&successPath=/courses/${module}`}
+              method="POST"
+            >
+              <button
+                className={`${buttonStyle.button} ${styles.btn}`}
+                type="submit"
+                role="link"
+              >
+                Buy
+              </button>
+            </form>
+          ) : (
+            <Link
+              legacyBehavior={true}
+              href={`/api/auth/login?returnTo=/courses/${module}`}
+            >
+              <a className={`${buttonStyle.button} ${styles.btn}`}>Buy</a>
+            </Link>
+          )}
+        </div>
       )}
     </div>
   );

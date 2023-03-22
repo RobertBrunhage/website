@@ -40,7 +40,7 @@ const SideNavigation = ({ menu, module, slug }: SideNavProps) => {
                 href={`/courses/${module}/${item.slug}/`}
                 as={`/courses/${module}/${item.slug}/`}
               >
-                <span className={item.seen ? styles.free : styles.locked} />
+                <span className={item.free ? (item.seen ? styles.seen : styles.free) : styles.locked} />
                 {item.title}
               </Link>
             </li>

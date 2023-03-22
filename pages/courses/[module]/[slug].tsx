@@ -18,6 +18,7 @@ import { AllSeenResponse } from '../../api/course/all-seen';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import useSWR from 'swr';
 import { Response } from '../../../lib/response';
+import Link from 'next/link';
 
 const components = {};
 
@@ -63,6 +64,7 @@ const fetchAllSeen = async (url: RequestInfo, module: String) => {
 
 export default function Course({ source, module, slug, course }: LectureProps) {
   const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
+  const [seen, setSeen] = useState(false);
 
   const { user } = useUser();
   const { data: hasAccessResponse } = useSWR<Response<boolean>, Error>(
@@ -79,13 +81,13 @@ export default function Course({ source, module, slug, course }: LectureProps) {
     (url) => fetchAllSeen(url, module)
   );
 
-  const handleSeen = async () => {
+  const handleSeen = async (state: boolean) => {
     let response = await fetch('/api/course/seen', {
       method: 'POST',
       body: JSON.stringify({
         courseName: module,
         lectureName: source.scope?.lectureId,
-        seen: true,
+        seen: state,
       }),
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -136,6 +138,13 @@ export default function Course({ source, module, slug, course }: LectureProps) {
     Prism.highlightAll();
   }, [course, allSeenLecturesResponse]);
 
+  useEffect(() => {
+    const item = menu.find((item) => item.slug === slug);
+    if (item?.seen !== undefined) {
+      setSeen(item.seen);
+    }
+  }, [menu]);
+
   return (
     <Layout>
       <div className={`max_width ${styles.course_layout}`}>
@@ -153,14 +162,33 @@ export default function Course({ source, module, slug, course }: LectureProps) {
                   src={`https://player.vimeo.com/video/${source.scope.vimeo}`}
                   allowFullScreen
                 />
-                <button className={styles.seen} onClick={() => handleSeen()}>
-                  mark as seen
-                </button>
+                {seen ? (
+                  <button
+                    className={styles.seen}
+                    onClick={() => handleSeen(false)}
+                  >
+                    mark as unseen
+                  </button>
+                ) : (
+                  <button
+                    className={styles.seen}
+                    onClick={() => handleSeen(true)}
+                  >
+                    mark as seen
+                  </button>
+                )}
               </>
             ) : (
               <div className={styles.sign_in}>
                 <h3>
-                  You must <span> sign in </span> to watch.
+                  You must{' '}
+                  <Link
+                    legacyBehavior={true}
+                    href={`/api/auth/login?returnTo=/courses/${module}/${slug}`}
+                  >
+                    <a className={styles.btn}> sign in </a>
+                  </Link>{' '}
+                  to watch.
                 </h3>
               </div>
             )}

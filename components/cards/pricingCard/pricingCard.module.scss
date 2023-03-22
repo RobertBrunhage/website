@@ -9,12 +9,12 @@
   .package {
     display: grid;
     grid-template-areas:
-      "label label"
-      "title title"
-      "prevPrice price"
-      "vat vat"
-      "li li"
-      ". .";
+      'label label'
+      'title title'
+      'prevPrice price'
+      'vat vat'
+      'li li'
+      '. .';
     place-items: center;
 
     .label {
@@ -98,5 +98,18 @@
   .supply {
     margin: 24px 0 0 0;
     text-align: center;
+  }
+
+  .owns_course {
+    text-align: center;
+
+    span {
+      background: linear-gradient(to right, #f6d365, #fda085);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 16px;
+      font-weight: bold;
+    }
   }
 }
