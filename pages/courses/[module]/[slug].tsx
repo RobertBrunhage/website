@@ -14,11 +14,9 @@ import SideNavigation, {
   MenuProps,
 } from '../../../components/sideNavigation/sideNavigation';
 import { getCourseFrontMatter } from '../../../core/mdx';
-import { AllSeenResponse } from '../../api/course/all-seen';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import useSWR from 'swr';
-import { Response } from '../../../lib/response';
 import Link from 'next/link';
+import { trpc } from '../../../lib/trpc';
 
 const components = {};
 
@@ -38,65 +36,29 @@ type LectureProps = {
   modules: Array<any>;
 };
 
-const fetchHasAccess = async (url: RequestInfo) => {
-  const r = await fetch(url, {
-    method: 'POST',
-    body: JSON.stringify({ stripeProductId: 'prod_NInXljEw7mMKMV' }),
-    headers: new Headers({
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    }),
-  });
-  return await r.json();
-};
-
-const fetchAllSeen = async (url: RequestInfo, module: String) => {
-  const r = await fetch(url, {
-    method: 'POST',
-    body: JSON.stringify({ courseName: module }),
-    headers: new Headers({
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    }),
-  });
-  return await r.json();
-};
-
 export default function Course({ source, module, slug, course }: LectureProps) {
   const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
   const [seen, setSeen] = useState(false);
 
   const { user } = useUser();
-  const { data: hasAccessResponse } = useSWR<Response<boolean>, Error>(
-    user ? '/api/course/has-access' : null,
-    (url) => fetchHasAccess(url)
+  const hasAccessResponse = trpc.hasAccess.useQuery(
+    { stripeProductId: 'prod_NInXljEw7mMKMV' },
+    { enabled: user !== undefined }
   );
 
-  const {
-    data: allSeenLecturesResponse,
-    isLoading,
-    mutate: mutateAllSeen,
-  } = useSWR<Response<AllSeenResponse>, Error>(
-    user && hasAccessResponse ? '/api/course/all-seen' : null,
-    (url) => fetchAllSeen(url, module)
+  const mutateSeen = trpc.seen.useMutation();
+
+  const allSeenLecturesResponse = trpc.allSeen.useQuery(
+    { courseName: module },
+    { enabled: user !== undefined }
   );
 
   const handleSeen = async (state: boolean) => {
-    let response = await fetch('/api/course/seen', {
-      method: 'POST',
-      body: JSON.stringify({
-        courseName: module,
-        lectureName: source.scope?.lectureId,
-        seen: state,
-      }),
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      }),
-    });
-
-    if (response.ok) {
-      mutateAllSeen();
+    try {
+      await mutateSeen.mutateAsync({ courseName: module, lectureName: source.scope!.lectureId, seen: state });
+      allSeenLecturesResponse.refetch();
+    } catch {
+      console.log('could not mark as seen');
     }
   };
 
@@ -108,14 +70,14 @@ export default function Course({ source, module, slug, course }: LectureProps) {
 
       let seen = false;
 
-      if (!isLoading && allSeenLecturesResponse) {
-        const allSeenNames = allSeenLecturesResponse!.value!.allSeen.map(
+      if (!allSeenLecturesResponse.isLoading && allSeenLecturesResponse) {
+        const allSeenNames = allSeenLecturesResponse!.data!.map(
           (l) => l.name
         );
         const lectureIdIndex = allSeenNames.indexOf(i.lectureId);
         if (lectureIdIndex !== -1) {
           seen =
-            allSeenLecturesResponse?.value?.allSeen[lectureIdIndex].seen ??
+            allSeenLecturesResponse!.data![lectureIdIndex].seen ??
             false;
         }
       }
@@ -136,7 +98,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
 
     setSideMenu(menu);
     Prism.highlightAll();
-  }, [course, allSeenLecturesResponse]);
+  }, [course, allSeenLecturesResponse.data]);
 
   useEffect(() => {
     const item = menu.find((item) => item.slug === slug);
@@ -156,7 +118,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
           style={{ display: source?.scope?.vimeo ? '' : 'none' }}
         >
           <div className={styles.video_wrapper}>
-            {hasAccessResponse?.value && source?.scope?.vimeo ? (
+            {hasAccessResponse?.data && source?.scope?.vimeo ? (
               <>
                 <iframe
                   src={`https://player.vimeo.com/video/${source.scope.vimeo}`}

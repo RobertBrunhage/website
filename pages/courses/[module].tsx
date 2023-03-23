@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import useSWR from 'swr';
 import { loadStripe } from '@stripe/stripe-js';
 import fs from 'fs';
 import path from 'path';
@@ -11,12 +10,11 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { getCourseFrontMatter } from '../../core/mdx';
 import Link from 'next/link';
-import { CourseResponse } from '../api/course/course';
 import PricingCard, {
   Packages,
 } from '../../components/cards/pricingCard/pricingCard';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import { Response } from '../../lib/response';
+import { trpc } from '../../lib/trpc';
 
 type ModulesProps = {
   source: MDXRemoteSerializeResult<SourceProps>;
@@ -41,43 +39,21 @@ loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-const fetchCourseInfo = async (url: RequestInfo, courseName: String) => {
-  const r = await fetch(url, {
-    method: 'POST',
-    body: JSON.stringify({ courseName: courseName }),
-    headers: new Headers({
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    }),
-  });
-  return await r.json();
-};
-
-const fetchHasAccess = async (url: RequestInfo) => {
-  const r = await fetch(url, {
-    method: 'POST',
-    body: JSON.stringify({ stripeProductId: 'prod_NInXljEw7mMKMV' }),
-    headers: new Headers({
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    }),
-  });
-  return await r.json();
-};
-
 export default function Course({ source, module, modules }: ModulesProps) {
   const { user } = useUser();
-  const { data: courseResponse } = useSWR<Response<CourseResponse>, Error>(
-    user !== undefined ? '/api/course/course' : null,
-    (url) => fetchCourseInfo(url, source.scope!.courseId)
+
+  const courseResponse = trpc.course.useQuery(
+    { courseName: source.scope!.courseId },
+    { enabled: user !== undefined },
   );
-  const { data: hasAccessResponse } = useSWR<Response<boolean>, Error>(
-    user ? '/api/course/has-access' : null,
-    (url) => fetchHasAccess(url)
+
+  const hasAccessResponse = trpc.hasAccess.useQuery(
+    { stripeProductId: 'prod_NInXljEw7mMKMV' },
+    { enabled: user !== undefined }
   );
 
   useEffect(() => {
-    console.log(courseResponse?.value);
+    console.log(courseResponse?.data);
     const query = new URLSearchParams(window.location.search);
     if (query.get('success')) {
       console.log('Order placed! You will receive an email confirmation.');
@@ -118,14 +94,14 @@ export default function Course({ source, module, modules }: ModulesProps) {
           <h1 className={styles.section_title}>{source.scope?.courseName}</h1>
           <PricingCard
             title={source.scope?.courseName ?? ''}
-            price={courseResponse?.value?.price}
+            price={courseResponse?.data?.price}
             previousPrice={`$${source.scope?.previousPrice}`}
             price_package={source.scope?.package ?? [{ name: '' }]}
             className={styles.pricing_light}
-            productId={courseResponse?.value?.stripeProductId ?? ''}
+            productId={courseResponse?.data?.stripeProductId ?? ''}
             module={module}
             modules={modules}
-            ownsCourse={hasAccessResponse?.value}
+            ownsCourse={hasAccessResponse?.data}
           />
           {user ? (
             ''
@@ -174,13 +150,13 @@ export default function Course({ source, module, modules }: ModulesProps) {
         <section>
           <PricingCard
             title={source.scope?.courseName ?? ''}
-            price={courseResponse?.value?.price}
+            price={courseResponse?.data?.price}
             previousPrice={`$${source.scope?.previousPrice}`}
             price_package={source.scope?.package ?? [{ name: '' }]}
-            productId={courseResponse?.value?.stripeProductId ?? ''}
+            productId={courseResponse?.data?.stripeProductId ?? ''}
             module={module}
             modules={modules}
-            ownsCourse={hasAccessResponse?.value}
+            ownsCourse={hasAccessResponse?.data}
           />
           {user ? (
             ''

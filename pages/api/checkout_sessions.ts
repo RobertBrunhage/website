@@ -1,10 +1,11 @@
 import { getSession, withApiAuthRequired } from '@auth0/nextjs-auth0';
 import { NextApiRequest } from 'next';
 import Stripe from 'stripe';
-import { Override } from './course/course';
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2022-11-15' });
 
 export default withApiAuthRequired(handler);
+
+export type Override<T1, T2> = Omit<T1, keyof T2> & T2;
 
 export type _CheckoutRequest = {
   productId: string;

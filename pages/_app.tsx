@@ -12,6 +12,7 @@ import "../styles/code-highlighting.css";
 import "../styles/globals.scss";
 
 import ModuleCard from "../components/cards/moduleCard/moduleCard";
+import { trpc } from "../lib/trpc";
 
 const components = { EmailSignup, BlogShareFooter, h2: Heading2, h3: Heading3, ModuleCard };
 
@@ -87,4 +88,4 @@ function MyApp({ Component, pageProps }: MyAppProps) {
   );
 }
 
-export default MyApp;
+export default trpc.withTRPC(MyApp);
