@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import buttonStyle from '../../buttons/cta/cta.module.scss';
 import Stripe from 'stripe';
+import { trpc } from '../../../lib/trpc';
+import { useRouter } from 'next/router';
 
 export interface Packages {
   name: string;
@@ -54,6 +56,17 @@ const pricingCard = ({
   ownsCourse,
 }: PricingProps) => {
   const { user } = useUser();
+  const { mutateAsync: createCheckoutSession } =
+    trpc.stripe.createCheckoutSession.useMutation();
+  const { push } = useRouter();
+
+  const handleCheckout = async () => {
+    const { checkoutUrl } = await createCheckoutSession({ productId: productId, successPath: `/courses/${module}` });
+    console.log(checkoutUrl);
+    if (checkoutUrl) {
+      void push(checkoutUrl);
+    }
+  }
 
   return (
     <div className={`${styles.container} ${className}`}>
@@ -99,18 +112,14 @@ const pricingCard = ({
       ) : (
         <div>
           {user ? (
-            <form
-              action={`/api/checkout_sessions/?productId=${productId}&successPath=/courses/${module}`}
-              method="POST"
+            <button
+              onClick={handleCheckout}
+              className={`${buttonStyle.button} ${styles.btn}`}
+              type="submit"
+              role="link"
             >
-              <button
-                className={`${buttonStyle.button} ${styles.btn}`}
-                type="submit"
-                role="link"
-              >
-                Buy
-              </button>
-            </form>
+              Buy
+            </button>
           ) : (
             <Link
               legacyBehavior={true}

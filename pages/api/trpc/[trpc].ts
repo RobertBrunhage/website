@@ -7,4 +7,7 @@ import { appRouter } from '../../../server/routers/_app';
 export default trpcNext.createNextApiHandler({
   router: appRouter,
   createContext: createContext,
+  onError({ error, type, path, input, ctx, req }) {
+    console.error(`Error: ${error}, type: ${type}, path: ${path}, input: ${input}, ctx: ${ctx}, req: ${req}`);
+  },
 });

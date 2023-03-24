@@ -42,12 +42,12 @@ loadStripe(
 export default function Course({ source, module, modules }: ModulesProps) {
   const { user } = useUser();
 
-  const courseResponse = trpc.course.useQuery(
+  const courseResponse = trpc.course.course.useQuery(
     { courseName: source.scope!.courseId },
     { enabled: user !== undefined },
   );
 
-  const hasAccessResponse = trpc.hasAccess.useQuery(
+  const hasAccessResponse = trpc.course.hasAccess.useQuery(
     { stripeProductId: 'prod_NInXljEw7mMKMV' },
     { enabled: user !== undefined }
   );

@@ -41,14 +41,14 @@ export default function Course({ source, module, slug, course }: LectureProps) {
   const [seen, setSeen] = useState(false);
 
   const { user } = useUser();
-  const hasAccessResponse = trpc.hasAccess.useQuery(
+  const hasAccessResponse = trpc.course.hasAccess.useQuery(
     { stripeProductId: 'prod_NInXljEw7mMKMV' },
     { enabled: user !== undefined }
   );
 
-  const mutateSeen = trpc.seen.useMutation();
+  const mutateSeen = trpc.course.seen.useMutation();
 
-  const allSeenLecturesResponse = trpc.allSeen.useQuery(
+  const allSeenLecturesResponse = trpc.course.allSeen.useQuery(
     { courseName: module },
     { enabled: user !== undefined }
   );

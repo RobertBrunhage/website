@@ -10,6 +10,7 @@ export async function createContext({
 
   return {
     session,
+    req,
   };
 }
 export type Context = inferAsyncReturnType<typeof createContext>;
