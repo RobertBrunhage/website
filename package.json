@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "stripe": "stripe listen --forward-to localhost:3000/api/webhooks/stripe",
+    "studio": "prisma studio",
+    "db": "pscale connect robertbrunhage development --port 33093"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.2.1",

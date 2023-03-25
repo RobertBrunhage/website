@@ -3,18 +3,6 @@ import { PrismaClient } from "@prisma/client";
 export const prisma = new PrismaClient();
 
 export async function createUserAndConnectWithCourse(sub: string, email: string, stripeCustomerId: string, stripeProductId: string) {
-  await prisma.user.upsert({
-    where: {
-      sub: sub,
-    },
-    create: {
-      sub: sub,
-      email: email,
-      stripeCustomerId: stripeCustomerId,
-    },
-    update: {},
-  });
-
   await prisma.userCourses.upsert({
     where: {
       stripeCustomerId_stripeProductId: {
@@ -23,8 +11,23 @@ export async function createUserAndConnectWithCourse(sub: string, email: string,
       }
     },
     create: {
-      stripeProductId: stripeProductId,
-      stripeCustomerId: stripeCustomerId,
+      course: {
+        connect: {
+          stripeProductId: stripeProductId,
+        }
+      },
+      user: {
+        connectOrCreate: {
+          where: {
+            sub: sub,
+          },
+          create: {
+            sub: sub,
+            email: email,
+            stripeCustomerId: stripeCustomerId,
+          },
+        }
+      }
     },
     update: {},
   });
