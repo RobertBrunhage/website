@@ -161,7 +161,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
             ''
           ) : (
             <div className={styles.owner}>
-              Already own this course?
+              <p>Already own this course?</p>
               <Link
                 legacyBehavior={true}
                 href={`/api/auth/login?returnTo=/courses/${module}`}
