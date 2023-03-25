@@ -44,7 +44,6 @@ export default function Course({ source, module, modules }: ModulesProps) {
 
   const courseResponse = trpc.course.course.useQuery(
     { courseName: source.scope!.courseId },
-    { enabled: user !== undefined },
   );
 
   const hasAccessResponse = trpc.course.hasAccess.useQuery(

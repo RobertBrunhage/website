@@ -1,7 +1,7 @@
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import { prisma } from '../../lib/database/user';
-import { protectedProcedure, router, stripe } from '../trpc';
+import { procedure, protectedProcedure, router, stripe } from '../trpc';
 
 export const courseRouter = router({
   hasAccess: protectedProcedure
@@ -88,7 +88,7 @@ export const courseRouter = router({
 
       return seenResponse.seen;
     }),
-  course: protectedProcedure
+  course: procedure
     .input(
       z.object({
         courseName: z.string(),
