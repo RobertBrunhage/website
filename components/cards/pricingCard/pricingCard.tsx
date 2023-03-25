@@ -62,7 +62,6 @@ const pricingCard = ({
 
   const handleCheckout = async () => {
     const { checkoutUrl } = await createCheckoutSession({ productId: productId, successPath: `/courses/${module}` });
-    console.log(checkoutUrl);
     if (checkoutUrl) {
       void push(checkoutUrl);
     }

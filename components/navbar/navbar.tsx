@@ -23,10 +23,6 @@ const Navbar = () => {
     localStorage.setItem("theme", "dark");
   };
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   return (
     <header className={styles.header}>
       <Head>
@@ -54,7 +50,7 @@ const Navbar = () => {
           type="image/png"
           sizes="32x32"
         />
-        <link rel="apple-touch-icon" href="/apple-icon-180x180.png" />
+        <link rel="apple-touch-icon" href="/icons/apple-icon-180x180.png" />
         <meta name="theme-color" content="#E12339" />
       </Head>
       <nav className={styles.stroke} id={"nav"}>

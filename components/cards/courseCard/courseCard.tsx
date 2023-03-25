@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./courseCard.module.scss";
 import Link from "next/link";
 
@@ -17,10 +17,6 @@ const courseCard = ({
   slug,
   route,
 }: CourseCardProps) => {
-  useEffect(() => {
-    console.log(slug);
-  }, []);
-
   return (
     <Link href={`/${route}/[slug]`} as={`/${route}/${slug}`}>
       <div className={styles.course_card}>

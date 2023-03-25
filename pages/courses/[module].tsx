@@ -53,15 +53,14 @@ export default function Course({ source, module, modules }: ModulesProps) {
   );
 
   useEffect(() => {
-    console.log(courseResponse?.data);
     const query = new URLSearchParams(window.location.search);
     if (query.get('success')) {
-      console.log('Order placed! You will receive an email confirmation.');
+      console.log('tyty for the purchase!');
     }
 
     if (query.get('canceled')) {
       console.log(
-        'Order canceled -- continue to shop around and checkout when you’re ready.'
+        'you canceled the purchase, but you can still purchase it later!'
       );
     }
   }, [courseResponse]);
@@ -81,7 +80,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
 
           <div
             className={styles.video}
-            style={{ display: source.scope?.vimeo ? '' : 'none' }}
+            style={{ display: source.scope?.vimeo ? undefined : 'none' }}
           >
             <iframe
               src={`https://player.vimeo.com/video/${source.scope?.vimeo}`}
