@@ -13,6 +13,7 @@ import "../styles/globals.scss";
 
 import ModuleCard from "../components/cards/moduleCard/moduleCard";
 import { trpc } from "../lib/trpc";
+import { Toaster } from 'react-hot-toast'
 
 const components = { EmailSignup, BlogShareFooter, h2: Heading2, h3: Heading3, ModuleCard };
 
@@ -54,6 +55,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
   return (
     <PlausibleProvider trackOutboundLinks={true} domain="robertbrunhage.com">
       <UserProvider>
+        <Toaster position="bottom-center" />
         <MDXProvider components={components}>
           <Component {...pageProps} />
         </MDXProvider>

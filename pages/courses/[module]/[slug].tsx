@@ -17,6 +17,7 @@ import { getCourseFrontMatter } from '../../../core/mdx';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Link from 'next/link';
 import { trpc } from '../../../lib/trpc';
+import { toast } from 'react-hot-toast';
 
 const components = {};
 
@@ -46,20 +47,22 @@ export default function Course({ source, module, slug, course }: LectureProps) {
     { enabled: user !== undefined }
   );
 
-  const mutateSeen = trpc.course.seen.useMutation();
+  const mutateSeen = trpc.course.seen.useMutation({
+    onSuccess: () => {
+      allSeenLecturesResponse.refetch();
+    },
+    onError: () => {
+      toast.error('Could not mark as seen');
+    }
+  });
 
   const allSeenLecturesResponse = trpc.course.allSeen.useQuery(
     { courseName: module },
-    { enabled: user !== undefined }
+    { enabled: user !== undefined },
   );
 
   const handleSeen = async (state: boolean) => {
-    try {
-      await mutateSeen.mutateAsync({ courseName: module, lectureName: source.scope!.lectureId, seen: state });
-      allSeenLecturesResponse.refetch();
-    } catch {
-      console.log('could not mark as seen');
-    }
+    mutateSeen.mutate({ courseName: module, lectureName: source.scope!.lectureId, seen: state });
   };
 
   let menu: Array<MenuProps> = [];
