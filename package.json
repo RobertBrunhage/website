@@ -68,6 +68,7 @@
     "@types/universal-cookie": "^3.0.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.34.0",
+    "eslint-config-next": "^13.2.4",
     "gray-matter": "^4.0.3",
     "prisma": "4.10.1",
     "sass": "^1.58.3",
