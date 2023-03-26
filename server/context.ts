@@ -7,7 +7,6 @@ export async function createContext({
   res,
 }: trpcNext.CreateNextContextOptions) {
   const session = await getSession(req, res);
-
   return {
     session,
     req,
