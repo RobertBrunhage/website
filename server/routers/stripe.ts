@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { getBaseUrl } from '../../components/seo/settings';
 import { protectedProcedure, router, stripe } from '../trpc';
 
 export const stripeRouter = router({
@@ -10,10 +11,11 @@ export const stripeRouter = router({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const { session, req } = ctx;
+      const { session } = ctx;
 
       const productPrices = await stripe.prices.list({ product: input.productId as string, limit: 1 });
       const priceId = productPrices.data[0].id;
+      const baseUrl = getBaseUrl();
 
       const checkoutSession = await stripe.checkout.sessions.create({
         metadata: {
@@ -29,8 +31,8 @@ export const stripeRouter = router({
         customer_email: session.user.email,
         customer_creation: "always",
         mode: "payment",
-        success_url: `${req.headers.origin}${input.successPath}/?success=true`,
-        cancel_url: `${req.headers.origin}/?canceled=true`,
+        success_url: `${baseUrl}${input.successPath}/?success=true`,
+        cancel_url: `${baseUrl}/?canceled=true`,
         automatic_tax: { enabled: true },
       });
 

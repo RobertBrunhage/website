@@ -15,6 +15,8 @@ import PricingCard, {
 } from '../../components/cards/pricingCard/pricingCard';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { trpc } from '../../lib/trpc';
+import { createProxySSGHelpers } from '@trpc/react-query/ssg';
+import { appRouter } from '../../server/routers/_app';
 
 type ModulesProps = {
   source: MDXRemoteSerializeResult<SourceProps>;
@@ -48,21 +50,8 @@ export default function Course({ source, module, modules }: ModulesProps) {
 
   const hasAccessResponse = trpc.course.hasAccess.useQuery(
     { stripeProductId: 'prod_NInXljEw7mMKMV' },
-    { enabled: user !== undefined }
+    { enabled: user !== undefined },
   );
-
-  useEffect(() => {
-    const query = new URLSearchParams(window.location.search);
-    if (query.get('success')) {
-      console.log('tyty for the purchase!');
-    }
-
-    if (query.get('canceled')) {
-      console.log(
-        'you canceled the purchase, but you can still purchase it later!'
-      );
-    }
-  }, [courseResponse]);
 
   useEffect(() => {
     modules.sort((a, b) => a.weight - b.weight);
@@ -218,10 +207,23 @@ export const getStaticProps: GetStaticProps<Params> = async ({
     path.join('data/courses', module, '__index.mdx')
   );
 
+  const ssg = createProxySSGHelpers({
+    router: appRouter,
+    ctx: { session: undefined, ip: '' },
+  });
+
   const { data: metaData, content } = matter(course);
   const modules = await getCourseFrontMatter(module);
 
   const mdxSource = await serialize(content, { scope: metaData });
 
-  return { props: { source: mdxSource, module, modules } };
+  const source = mdxSource as MDXRemoteSerializeResult<SourceProps>;
+
+  await ssg.course.course.prefetch(
+    { courseName: source.scope!.courseId },
+  );
+
+  return { props: { source: source, module, modules, trpcState: ssg.dehydrate(), } };
 };
+
+

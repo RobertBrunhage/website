@@ -29,7 +29,7 @@ const isAuthed = t.middleware(({ next, ctx }) => {
 });
 
 const isRateLimited = t.middleware(async ({ next, ctx }) => {
-  const ip = ctx.req.socket.remoteAddress ?? "127.0.0.1";
+  const ip = ctx.ip;
 
   const { success } = await ratelimit.limit(ip);
 

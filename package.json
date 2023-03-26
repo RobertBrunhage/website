@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
     "stripe": "stripe listen --forward-to localhost:3000/api/webhooks/stripe",
     "studio": "prisma studio",
     "db": "pscale connect robertbrunhage development --port 33093"

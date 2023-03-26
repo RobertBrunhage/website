@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Menu, { NavItem } from "./menuItems";
 import styles from "./navbar.module.scss";
 
