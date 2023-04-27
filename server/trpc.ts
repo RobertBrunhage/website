@@ -1,8 +1,8 @@
-import { initTRPC, TRPCError } from '@trpc/server';
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
-import { Stripe } from 'stripe';
-import { Context } from './context';
+import { initTRPC, TRPCError } from "@trpc/server";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+import { Stripe } from "stripe";
+import { Context } from "./context";
 
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
@@ -15,11 +15,13 @@ const ratelimit = new Ratelimit({
 // is common in i18n libraries.
 export const t = initTRPC.context<Context>().create();
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2022-11-15' });
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2022-11-15",
+});
 
 const isAuthed = t.middleware(({ next, ctx }) => {
   if (!ctx.session?.user) {
-    throw new TRPCError({ code: 'UNAUTHORIZED' });
+    throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({
     ctx: {
@@ -34,7 +36,7 @@ const isRateLimited = t.middleware(async ({ next, ctx }) => {
   const { success } = await ratelimit.limit(ip);
 
   if (!success) {
-    throw new TRPCError({ code: 'TOO_MANY_REQUESTS' });
+    throw new TRPCError({ code: "TOO_MANY_REQUESTS" });
   }
 
   return next();
@@ -44,5 +46,3 @@ const isRateLimited = t.middleware(async ({ next, ctx }) => {
 export const router = t.router;
 export const procedure = t.procedure.use(isRateLimited);
 export const protectedProcedure = t.procedure.use(isRateLimited).use(isAuthed);
-
-

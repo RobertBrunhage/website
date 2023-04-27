@@ -6,11 +6,7 @@ import React, { useEffect, useRef } from "react";
 import { TOC } from "../../components/headings/toc";
 import Layout from "../../components/layout/layout";
 import CommonSEO from "../../components/seo/seo";
-import {
-  formatSlug,
-  getFileBySlug,
-  getFiles,
-} from "../../core/mdx";
+import { formatSlug, getFileBySlug, getFiles } from "../../core/mdx";
 import { getHeadings } from "../../core/utils";
 import styles from "../../styles/blog_post.module.scss";
 

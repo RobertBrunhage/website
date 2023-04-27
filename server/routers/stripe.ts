@@ -1,6 +1,6 @@
-import { z } from 'zod';
-import { getBaseUrl } from '../../components/seo/settings';
-import { protectedProcedure, router, stripe } from '../trpc';
+import { z } from "zod";
+import { getBaseUrl } from "../../components/seo/settings";
+import { protectedProcedure, router, stripe } from "../trpc";
 
 export const stripeRouter = router({
   createCheckoutSession: protectedProcedure
@@ -8,12 +8,15 @@ export const stripeRouter = router({
       z.object({
         productId: z.string(),
         successPath: z.string(),
-      }),
+      })
     )
     .mutation(async ({ ctx, input }) => {
       const { session } = ctx;
 
-      const productPrices = await stripe.prices.list({ product: input.productId as string, limit: 1 });
+      const productPrices = await stripe.prices.list({
+        product: input.productId as string,
+        limit: 1,
+      });
       const priceId = productPrices.data[0].id;
       const baseUrl = getBaseUrl();
 
@@ -42,5 +45,4 @@ export const stripeRouter = router({
 
       return { checkoutUrl: checkoutSession.url };
     }),
-
 });

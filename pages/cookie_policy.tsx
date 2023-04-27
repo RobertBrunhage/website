@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import Layout from "../components/layout/layout";
 import { resetCookieConsentValue } from "react-cookie-consent";
@@ -20,7 +21,7 @@ const cookie_policy = () => {
           computer, to improve your experience. This page describes what
           information they gather, how we use it and why we sometimes need to
           store these cookies. We will also share how you can prevent these
-          cookies from being stored however this may downgrade or 'break'
+          cookies from being stored however this may downgrade or "break"
           certain elements of the sites functionality.
         </p>
         <p>

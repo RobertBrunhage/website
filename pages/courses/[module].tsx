@@ -1,22 +1,22 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { loadStripe } from '@stripe/stripe-js';
-import fs from 'fs';
-import path from 'path';
-import React, { useEffect } from 'react';
-import styles from '../../styles/course_landing.module.scss';
-import Layout from '../../components/layout/layout';
-import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import { getCourseFrontMatter } from '../../core/mdx';
-import Link from 'next/link';
+import { GetStaticPaths, GetStaticProps } from "next";
+import { loadStripe } from "@stripe/stripe-js";
+import fs from "fs";
+import path from "path";
+import React, { useEffect } from "react";
+import styles from "../../styles/course_landing.module.scss";
+import Layout from "../../components/layout/layout";
+import matter from "gray-matter";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { getCourseFrontMatter } from "../../core/mdx";
+import Link from "next/link";
 import PricingCard, {
   Packages,
-} from '../../components/cards/pricingCard/pricingCard';
-import { useUser } from '@auth0/nextjs-auth0/client';
-import { trpc } from '../../lib/trpc';
-import { createProxySSGHelpers } from '@trpc/react-query/ssg';
-import { appRouter } from '../../server/routers/_app';
+} from "../../components/cards/pricingCard/pricingCard";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { trpc } from "../../lib/trpc";
+import { createProxySSGHelpers } from "@trpc/react-query/ssg";
+import { appRouter } from "../../server/routers/_app";
 
 type ModulesProps = {
   source: MDXRemoteSerializeResult<SourceProps>;
@@ -44,13 +44,13 @@ loadStripe(
 export default function Course({ source, module, modules }: ModulesProps) {
   const { user } = useUser();
 
-  const courseResponse = trpc.course.course.useQuery(
-    { courseName: source.scope!.courseId },
-  );
+  const courseResponse = trpc.course.course.useQuery({
+    courseName: source.scope!.courseId,
+  });
 
   const hasAccessResponse = trpc.course.hasAccess.useQuery(
-    { stripeProductId: 'prod_NInXljEw7mMKMV' },
-    { enabled: user !== undefined },
+    { stripeProductId: "prod_NInXljEw7mMKMV" },
+    { enabled: user !== undefined }
   );
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
 
           <div
             className={styles.video}
-            style={{ display: source.scope?.vimeo ? undefined : 'none' }}
+            style={{ display: source.scope?.vimeo ? undefined : "none" }}
           >
             <iframe
               src={`https://player.vimeo.com/video/${source.scope?.vimeo}`}
@@ -80,18 +80,18 @@ export default function Course({ source, module, modules }: ModulesProps) {
         <section>
           <h1 className={styles.section_title}>{source.scope?.courseName}</h1>
           <PricingCard
-            title={source.scope?.courseName ?? ''}
+            title={source.scope?.courseName ?? ""}
             price={courseResponse?.data?.price}
             previousPrice={`$${source.scope?.previousPrice}`}
-            price_package={source.scope?.package ?? [{ name: '' }]}
+            price_package={source.scope?.package ?? [{ name: "" }]}
             className={styles.pricing_light}
-            productId={courseResponse?.data?.stripeProductId ?? ''}
+            productId={courseResponse?.data?.stripeProductId ?? ""}
             module={module}
             modules={modules}
             ownsCourse={hasAccessResponse?.data}
           />
           {user ? (
-            ''
+            ""
           ) : (
             <div className={styles.owner}>
               <p>Already own this course?</p>
@@ -117,7 +117,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
             <ul>
               {modules.map(({ title, slug }, index) =>
                 source.scope?.title === title ? (
-                  ''
+                  ""
                 ) : (
                   <Link
                     href={`/${`courses/${module}`}/[slug]`}
@@ -136,17 +136,17 @@ export default function Course({ source, module, modules }: ModulesProps) {
 
         <section>
           <PricingCard
-            title={source.scope?.courseName ?? ''}
+            title={source.scope?.courseName ?? ""}
             price={courseResponse?.data?.price}
             previousPrice={`$${source.scope?.previousPrice}`}
-            price_package={source.scope?.package ?? [{ name: '' }]}
-            productId={courseResponse?.data?.stripeProductId ?? ''}
+            price_package={source.scope?.package ?? [{ name: "" }]}
+            productId={courseResponse?.data?.stripeProductId ?? ""}
             module={module}
             modules={modules}
             ownsCourse={hasAccessResponse?.data}
           />
           {user ? (
-            ''
+            ""
           ) : (
             <div className={styles.owner}>
               <p>Already own this course?</p>
@@ -165,7 +165,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const coursesDirectory = path.join('data/courses');
+  const coursesDirectory = path.join("data/courses");
 
   const moduleDirectories = fs.readdirSync(coursesDirectory);
 
@@ -204,12 +204,12 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   params: { module },
 }: Params) => {
   const course = fs.readFileSync(
-    path.join('data/courses', module, '__index.mdx')
+    path.join("data/courses", module, "__index.mdx")
   );
 
   const ssg = createProxySSGHelpers({
     router: appRouter,
-    ctx: { session: undefined, ip: '' },
+    ctx: { session: undefined, ip: "" },
   });
 
   const { data: metaData, content } = matter(course);
@@ -219,11 +219,9 @@ export const getStaticProps: GetStaticProps<Params> = async ({
 
   const source = mdxSource as MDXRemoteSerializeResult<SourceProps>;
 
-  await ssg.course.course.prefetch(
-    { courseName: source.scope!.courseId },
-  );
+  await ssg.course.course.prefetch({ courseName: source.scope!.courseId });
 
-  return { props: { source: source, module, modules, trpcState: ssg.dehydrate(), } };
+  return {
+    props: { source: source, module, modules, trpcState: ssg.dehydrate() },
+  };
 };
-
-

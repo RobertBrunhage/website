@@ -1,23 +1,23 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { useEffect, useState } from 'react';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import Layout from '../../../components/layout/layout';
-import 'prismjs';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-dart';
-import styles from '../../../styles/course_layout.module.scss';
+import { GetStaticPaths, GetStaticProps } from "next";
+import { useEffect, useState } from "react";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import Layout from "../../../components/layout/layout";
+import "prismjs";
+import Prism from "prismjs";
+import "prismjs/components/prism-dart";
+import styles from "../../../styles/course_layout.module.scss";
 import SideNavigation, {
   MenuProps,
-} from '../../../components/sideNavigation/sideNavigation';
-import { getCourseFrontMatter } from '../../../core/mdx';
-import { useUser } from '@auth0/nextjs-auth0/client';
-import Link from 'next/link';
-import { trpc } from '../../../lib/trpc';
-import { toast } from 'react-hot-toast';
+} from "../../../components/sideNavigation/sideNavigation";
+import { getCourseFrontMatter } from "../../../core/mdx";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import Link from "next/link";
+import { trpc } from "../../../lib/trpc";
+import { toast } from "react-hot-toast";
 
 const components = {};
 
@@ -43,7 +43,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
 
   const { user } = useUser();
   const hasAccessResponse = trpc.course.hasAccess.useQuery(
-    { stripeProductId: 'prod_NInXljEw7mMKMV' },
+    { stripeProductId: "prod_NInXljEw7mMKMV" },
     { enabled: user !== undefined }
   );
 
@@ -52,36 +52,36 @@ export default function Course({ source, module, slug, course }: LectureProps) {
       allSeenLecturesResponse.refetch();
     },
     onError: () => {
-      toast.error('Could not mark as seen');
-    }
+      toast.error("Could not mark as seen");
+    },
   });
 
   const allSeenLecturesResponse = trpc.course.allSeen.useQuery(
     { courseName: module },
-    { enabled: user !== undefined },
+    { enabled: user !== undefined }
   );
 
   const handleSeen = async (state: boolean) => {
-    mutateSeen.mutate({ courseName: module, lectureName: source.scope!.lectureId, seen: state });
+    mutateSeen.mutate({
+      courseName: module,
+      lectureName: source.scope!.lectureId,
+      seen: state,
+    });
   };
 
   let menu: Array<MenuProps> = [];
 
   useEffect(() => {
     course.forEach((i: any) => {
-      if (i.slug === '__index') return;
+      if (i.slug === "__index") return;
 
       let seen = false;
 
       if (!allSeenLecturesResponse.isLoading && allSeenLecturesResponse) {
-        const allSeenNames = allSeenLecturesResponse!.data!.map(
-          (l) => l.name
-        );
+        const allSeenNames = allSeenLecturesResponse!.data!.map((l) => l.name);
         const lectureIdIndex = allSeenNames.indexOf(i.lectureId);
         if (lectureIdIndex !== -1) {
-          seen =
-            allSeenLecturesResponse!.data![lectureIdIndex].seen ??
-            false;
+          seen = allSeenLecturesResponse!.data![lectureIdIndex].seen ?? false;
         }
       }
 
@@ -118,7 +118,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
         </aside>
         <div
           className={styles.video}
-          style={{ display: source?.scope?.vimeo ? '' : 'none' }}
+          style={{ display: source?.scope?.vimeo ? "" : "none" }}
         >
           <div className={styles.video_wrapper}>
             {hasAccessResponse?.data && source?.scope?.vimeo ? (
@@ -146,13 +146,13 @@ export default function Course({ source, module, slug, course }: LectureProps) {
             ) : (
               <div className={styles.sign_in}>
                 <h3>
-                  You must{' '}
+                  You must{" "}
                   <Link
                     legacyBehavior={true}
                     href={`/api/auth/login?returnTo=/courses/${module}/${slug}`}
                   >
                     <a className={styles.btn}> sign in </a>
-                  </Link>{' '}
+                  </Link>{" "}
                   to watch.
                 </h3>
               </div>
@@ -168,7 +168,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const coursesDirectory = path.join('data/courses');
+  const coursesDirectory = path.join("data/courses");
 
   const moduleDirectories = fs.readdirSync(coursesDirectory);
 
@@ -187,7 +187,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       const path = {
         params: {
           module: module,
-          slug: fileName.replace('.mdx', ''),
+          slug: fileName.replace(".mdx", ""),
         },
       };
 
@@ -209,7 +209,7 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   params: { module, slug },
 }: Params) => {
   const courses = fs.readFileSync(
-    path.join('data/courses', module, slug + '.mdx')
+    path.join("data/courses", module, slug + ".mdx")
   );
 
   const { data: metaData, content } = matter(courses);

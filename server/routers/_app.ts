@@ -1,6 +1,6 @@
-import { router } from '../trpc';
-import { courseRouter } from './course';
-import { stripeRouter } from './stripe';
+import { router } from "../trpc";
+import { courseRouter } from "./course";
+import { stripeRouter } from "./stripe";
 
 export const appRouter = router({
   course: courseRouter, // put procedures under "post" namespace
@@ -9,5 +9,3 @@ export const appRouter = router({
 
 // export type definition of API
 export type AppRouter = typeof appRouter;
-
-

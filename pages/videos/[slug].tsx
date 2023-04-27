@@ -1,15 +1,12 @@
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-// import Head from "next/head";
 import "prismjs";
 import Prism from "prismjs";
-// import "prismjs/components/prism-dart";
 import React, { useEffect, useRef } from "react";
 import { TOC } from "../../components/headings/toc";
 import Layout from "../../components/layout/layout";
 import CommonSEO from "../../components/seo/seo";
 import {
   formatSlug,
-  getAllFilesFrontMatter,
   getFileBySlug,
   getFiles,
 } from "../../core/mdx";
