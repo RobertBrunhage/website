@@ -11,7 +11,7 @@ export const courseRouter = router({
       })
     )
     .query(async ({ input, ctx }) => {
-      const user = await prisma.user.findFirst({
+      const user = await prisma.user.findUnique({
         where: {
           sub: ctx.session.user.sub,
         },
@@ -21,7 +21,7 @@ export const courseRouter = router({
       });
 
       if (!user) {
-        throw new TRPCError({ code: "NOT_FOUND", message: "User not found" });
+        return false;
       }
 
       let hasCourse = user.courses
