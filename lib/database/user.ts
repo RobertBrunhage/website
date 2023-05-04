@@ -1,18 +1,26 @@
 import { PrismaClient } from "@prisma/client";
+import { auth0 } from "../../server/routers/account";
 
 export const prisma = new PrismaClient();
 
-export async function createUserAndConnectWithCourse(
+export async function connectCourseWithUser(
   sub: string,
-  email: string,
   stripeCustomerId: string,
   stripeProductId: string
 ) {
+  await auth0.updateAppMetadata(
+    {
+      id: sub,
+    },
+    {
+      stripeCustomerId: stripeCustomerId,
+    }
+  );
   await prisma.userCourses.upsert({
     where: {
-      stripeCustomerId_stripeProductId: {
-        stripeCustomerId: stripeCustomerId,
+      sub_stripeProductId: {
         stripeProductId: stripeProductId,
+        sub: sub,
       },
     },
     create: {
@@ -21,18 +29,7 @@ export async function createUserAndConnectWithCourse(
           stripeProductId: stripeProductId,
         },
       },
-      user: {
-        connectOrCreate: {
-          where: {
-            sub: sub,
-          },
-          create: {
-            sub: sub,
-            email: email,
-            stripeCustomerId: stripeCustomerId,
-          },
-        },
-      },
+      sub: sub,
     },
     update: {},
   });

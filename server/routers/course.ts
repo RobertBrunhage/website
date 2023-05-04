@@ -11,23 +11,20 @@ export const courseRouter = router({
       })
     )
     .query(async ({ input, ctx }) => {
-      const user = await prisma.user.findUnique({
+      const userCourse = await prisma.userCourses.findUnique({
         where: {
-          sub: ctx.session.user.sub,
-        },
-        include: {
-          courses: true,
+          sub_stripeProductId: {
+            stripeProductId: input.stripeProductId,
+            sub: ctx.session.user.sub,
+          },
         },
       });
 
-      if (!user) {
+      if (!userCourse) {
         return false;
       }
 
-      let hasCourse = user.courses
-        .map((c) => c.stripeProductId)
-        .includes(input.stripeProductId);
-      return hasCourse;
+      return true;
     }),
   seen: protectedProcedure
     .input(
@@ -66,11 +63,7 @@ export const courseRouter = router({
               id: lectureResponse.id,
             },
           },
-          user: {
-            connect: {
-              sub: ctx.session.user.sub,
-            },
-          },
+          sub: ctx.session.user.sub,
           seen: true,
         },
         update: {
@@ -80,11 +73,7 @@ export const courseRouter = router({
               id: lectureResponse.id,
             },
           },
-          user: {
-            connect: {
-              sub: ctx.session.user.sub,
-            },
-          },
+          sub: ctx.session.user.sub,
         },
       });
 
@@ -138,9 +127,7 @@ export const courseRouter = router({
     .query(async ({ input, ctx }) => {
       let response = await prisma.lectureUserInfo.findMany({
         where: {
-          user: {
-            sub: ctx.session.user.sub,
-          },
+          sub: ctx.session.user.sub,
           lecture: {
             Course: {
               name: input.courseName,

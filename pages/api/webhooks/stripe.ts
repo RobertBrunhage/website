@@ -2,7 +2,7 @@ import Cors from "micro-cors";
 import { NextApiRequest, NextApiResponse } from "next";
 import { buffer } from "micro";
 import Stripe from "stripe";
-import { createUserAndConnectWithCourse } from "../../../lib/database/user";
+import { connectCourseWithUser } from "../../../lib/database/user";
 
 const cors = Cors({
   allowMethods: ["POST", "HEAD"],
@@ -58,15 +58,13 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
         const stripeCustomerId = session.customer as string;
         const stripeCustomerEmail = session.customer_details?.email;
         const sub = session.metadata!.sub;
-        const email = session.customer_email!;
         console.log(
           `${stripeCustomerEmail} with stripeId ${stripeCustomerId} has purchased a course with the stripeProductId of ${stripeProductId}`
         );
 
         try {
-          await createUserAndConnectWithCourse(
+          await connectCourseWithUser(
             sub,
-            email,
             stripeCustomerId,
             stripeProductId
           );

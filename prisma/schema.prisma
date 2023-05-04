@@ -11,17 +11,6 @@ datasource db {
   relationMode = "prisma"
 }
 
-model User {
-  id               Int    @id @default(autoincrement())
-  sub              String @unique
-  stripeCustomerId String @unique
-  email            String @unique
-
-  courses UserCourses[]
-
-  lectureUserInfo LectureUserInfo[]
-}
-
 model Course {
   id              Int    @id @default(autoincrement())
   name            String @unique
@@ -33,15 +22,14 @@ model Course {
 }
 
 model UserCourses {
-  user             User   @relation(fields: [stripeCustomerId], references: [stripeCustomerId])
-  stripeCustomerId String // relation scalar field (used in the `@relation` attribute above)
+  sub String
 
   course          Course @relation(fields: [stripeProductId], references: [stripeProductId])
   stripeProductId String // relation scalar field (used in the `@relation` attribute above)
 
-  @@id([stripeCustomerId, stripeProductId])
+  @@id([sub, stripeProductId])
   @@index([stripeProductId])
-  @@index([stripeCustomerId])
+  @@index([sub])
 }
 
 model Lecture {
@@ -57,10 +45,8 @@ model Lecture {
 }
 
 model LectureUserInfo {
-  id Int @id @default(autoincrement())
-
-  user User   @relation(fields: [sub], references: [sub])
-  sub  String
+  id  Int    @id @default(autoincrement())
+  sub String
 
   lecture   Lecture @relation(fields: [lectureId], references: [id])
   lectureId Int
