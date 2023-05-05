@@ -16,20 +16,7 @@ model Course {
   name            String @unique
   stripeProductId String @unique
 
-  users UserCourses[]
-
   lectures Lecture[]
-}
-
-model UserCourses {
-  sub String
-
-  course          Course @relation(fields: [stripeProductId], references: [stripeProductId])
-  stripeProductId String // relation scalar field (used in the `@relation` attribute above)
-
-  @@id([sub, stripeProductId])
-  @@index([stripeProductId])
-  @@index([sub])
 }
 
 model Lecture {

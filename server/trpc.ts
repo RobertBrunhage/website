@@ -23,6 +23,7 @@ const isAuthed = t.middleware(({ next, ctx }) => {
   if (!ctx.session?.user) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
+
   return next({
     ctx: {
       session: ctx.session,

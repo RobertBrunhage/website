@@ -22,11 +22,6 @@ export const accountRouter = router({
             sub: ctx.session.user.sub,
           },
         }),
-        prisma.userCourses.deleteMany({
-          where: {
-            sub: ctx.session.user.sub,
-          },
-        }),
       ]);
       console.log("deleted all user data", response);
 

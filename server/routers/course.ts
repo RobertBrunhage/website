@@ -1,7 +1,8 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { prisma } from "../../lib/database/user";
+import { prisma, UserAppMetadata } from "../../lib/database/user";
 import { procedure, protectedProcedure, router, stripe } from "../trpc";
+import { auth0 } from "./account";
 
 export const courseRouter = router({
   hasAccess: protectedProcedure
@@ -11,19 +12,11 @@ export const courseRouter = router({
       })
     )
     .query(async ({ input, ctx }) => {
-      const userCourse = await prisma.userCourses.findUnique({
-        where: {
-          sub_stripeProductId: {
-            stripeProductId: input.stripeProductId,
-            sub: ctx.session.user.sub,
-          },
-        },
-      });
-
-      if (!userCourse) {
+      let user = await auth0.getUser({ id: ctx.session.user.sub });
+      let metadata: UserAppMetadata | undefined = user.app_metadata;
+      if (!metadata?.courses?.includes(input.stripeProductId)) {
         return false;
       }
-
       return true;
     }),
   seen: protectedProcedure

@@ -7,6 +7,7 @@ export async function createContext({
   res,
 }: trpcNext.CreateNextContextOptions) {
   const session = await getSession(req, res);
+  console.log(session);
   const ip = req.socket.remoteAddress ?? "127.0.0.1";
   return {
     session,
