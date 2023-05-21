@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './sideNavigation.module.scss';
-import Link from 'next/link';
+import React from "react";
+import styles from "./sideNavigation.module.scss";
+import Link from "next/link";
 
 export interface MenuProps {
   chapter?: string;
@@ -15,9 +15,10 @@ interface SideNavProps {
   menu: Array<MenuProps>;
   module: string;
   slug: string;
+  hasAccess: boolean;
 }
 
-const SideNavigation = ({ menu, module, slug }: SideNavProps) => {
+const SideNavigation = ({ menu, module, slug, hasAccess }: SideNavProps) => {
   return (
     <div className={styles.side_nav}>
       <ul>
@@ -25,22 +26,29 @@ const SideNavigation = ({ menu, module, slug }: SideNavProps) => {
           <React.Fragment key={index}>
             <li
               className={styles.chapter}
-              style={{ display: item.chapter ? '' : 'none' }}
+              style={{ display: item.chapter ? "" : "none" }}
             >
               {item.chapter}
             </li>
             <li
               id={item.slug}
-              className={`${styles.indent} ${
-                item.slug === slug ? styles.selected : ''
-              } }`}
+              className={`${styles.indent} ${item.slug === slug ? styles.selected : ""
+                } }`}
             >
               <Link
                 className={styles.link}
                 href={`/courses/${module}/${item.slug}/`}
                 as={`/courses/${module}/${item.slug}/`}
               >
-                <span className={item.free ? (item.seen ? styles.seen : styles.free) : styles.locked} />
+                <span
+                  className={
+                    item.free || hasAccess
+                      ? item.seen
+                        ? styles.seen
+                        : styles.free
+                      : styles.locked
+                  }
+                />
                 {item.title}
               </Link>
             </li>

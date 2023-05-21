@@ -114,7 +114,12 @@ export default function Course({ source, module, slug, course }: LectureProps) {
     <Layout>
       <div className={`max_width ${styles.course_layout}`}>
         <aside className={styles.menu}>
-          <SideNavigation menu={sideMenu} module={module} slug={slug} />
+          <SideNavigation
+            menu={sideMenu}
+            module={module}
+            slug={slug}
+            hasAccess={hasAccessResponse.data ?? false}
+          />
         </aside>
         <div
           className={styles.video}
