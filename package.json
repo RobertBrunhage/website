@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "postinstall": "prisma generate",
     "stripe": "stripe listen --forward-to localhost:3000/api/webhooks/stripe",
     "studio": "prisma studio",
     "db": "pscale connect robertbrunhage development --port 33093"
