@@ -107,8 +107,9 @@ export async function getCoursesFrontMatter(type) {
       "utf-8"
     );
     const { data } = matter(source);
+
     if (data.draft !== true) {
-      courseFrontMatter.push({ ...data, course, slug: formatSlug(course) });
+      courseFrontMatter.push({ course, slug: formatSlug(course), ...data });
     }
   });
 

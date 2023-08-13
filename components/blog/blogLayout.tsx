@@ -1,21 +1,13 @@
 import React from "react";
+import { VideoFrontMatterInfo } from "../../pages/videos";
 import BlogCard from "../cards/blogCard/blogCard";
 import styles from "./blogLayout.module.scss";
 
 interface BlogProps {
-  posts: Array<any>;
+  posts: VideoFrontMatterInfo[];
   title: string;
   description: string;
   route: "articles" | "videos";
-}
-
-export interface FrontmatterProps {
-  title: string;
-  description: string;
-  image: string;
-  featured: boolean;
-  slug: any;
-  status?: string;
 }
 
 const blogLayout = ({ posts, title, description, route }: BlogProps) => {
@@ -25,8 +17,8 @@ const blogLayout = ({ posts, title, description, route }: BlogProps) => {
       <h4 className={styles.subtitle}>{description}</h4>
       <div className={styles.card_container}>
         {posts
-          .filter((post: FrontmatterProps) => post.status != "draft")
-          .map(({ title, description, image, slug }: FrontmatterProps) => (
+          .filter((post) => post.status != "draft")
+          .map(({ title, description, image, slug }) => (
             <BlogCard
               key={slug}
               slug={slug}

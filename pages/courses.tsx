@@ -4,7 +4,21 @@ import CommonSEO from "../components/seo/seo";
 import Courses from "../components/courses/courses";
 import { getCoursesFrontMatter } from "../core/mdx";
 
-const courses = ({ courses }: any) => {
+export type CourseFrontMatterInfo = {
+  image: string;
+  courseName: string;
+  courseId: string;
+  title: string;
+  description: string;
+  previousPrice: number;
+  vimeo: number;
+  date: string;
+  package: { name: string }[];
+  course: string;
+  slug: string;
+};
+
+const courses = ({ courses }: { courses: CourseFrontMatterInfo[] }) => {
   return (
     <Layout>
       <CommonSEO
@@ -24,7 +38,9 @@ const courses = ({ courses }: any) => {
 export default courses;
 
 export async function getStaticProps() {
-  const courses = await getCoursesFrontMatter("courses");
+  const courses: CourseFrontMatterInfo[] = await getCoursesFrontMatter(
+    "courses",
+  );
 
   return { props: { courses } };
 }

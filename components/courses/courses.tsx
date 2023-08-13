@@ -1,12 +1,9 @@
 import React from "react";
 import styles from "./courses.module.scss";
 import CourseCard from "../cards/courseCard/courseCard";
+import { CourseFrontMatterInfo } from "../../pages/courses";
 
-interface CoursesProps {
-  courses: Array<any>;
-}
-
-const courses = ({ courses }: CoursesProps) => {
+const courses = ({ courses }: { courses: CourseFrontMatterInfo[] }) => {
   return (
     <div className={`max_width ${styles.courses_container}`}>
       <h1>Courses</h1>

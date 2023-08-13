@@ -10,7 +10,7 @@ import { formatSlug, getFileBySlug, getFiles } from "../../core/mdx";
 import { getHeadings } from "../../core/utils";
 import styles from "../../styles/blog_post.module.scss";
 
-interface FrontmatterProps {
+export interface FrontmatterProps {
   title: string;
   description: string;
   image: string;
@@ -27,6 +27,7 @@ interface FrontmatterProps {
     words: number;
   };
   fileName: string;
+  featured: boolean;
 }
 
 interface ArticleProps {
