@@ -1,0 +1,32 @@
+---
+title: Creating the service
+lectureId: module-3-lecture-4
+vimeo: 805141207
+github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
+author: Robert Brunhage
+lastmod: 10-30-2022
+weight: 16
+---
+
+## Why a Service?
+
+These are pretty typical questions I get.
+
+*   **Why do we need a service?** (you don't)
+*   **Can we skip the service layer?** (yes)
+
+  
+
+I answered them vaguely above but let me explain.
+
+  
+
+**Why do we need a service?**
+
+You don't **NEED** one but it helps A LOT. Imagine you have three different repositories and you want to combine the values of these. Using a service that takes all these values and makes the necessary calls makes the **controller** a lot easier to handle as you can expect that you get the data **EXACTLY** as you want it without doing additional mapping or changes to the values. Just in the case where we have only **one** repository I still see the benefit as we can make all the mapping required from our entity to model as well as converting the data for the request as we want it right in the service.
+
+  
+
+**Can we skip the service layer?**
+
+Yes you can. Be aware though that the code you have in the service will either trickle up to the **repository** or the **controller**. In my personal opinion, this gets quite messy, fast. So I typically always create a service **EVEN** if I only have a single repository.

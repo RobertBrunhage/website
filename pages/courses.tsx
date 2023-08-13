@@ -4,7 +4,7 @@ import CommonSEO from "../components/seo/seo";
 import Courses from "../components/courses/courses";
 import { getCoursesFrontMatter } from "../core/mdx";
 
-const courses = ({courses}: any) => {
+const courses = ({ courses }: any) => {
   return (
     <Layout>
       <CommonSEO

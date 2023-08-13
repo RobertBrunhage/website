@@ -34,3 +34,10 @@ yarn dev
 ```
 
 Simple as that!
+
+
+## Internal
+
+### Running the server and other things :)
+
+see [package](./package.json)

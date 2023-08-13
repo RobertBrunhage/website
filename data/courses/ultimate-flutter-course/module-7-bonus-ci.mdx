@@ -1,0 +1,30 @@
+---
+title: Bonus Lecture - CI
+lectureId: module-7-lecture-1
+vimeo: 805141207
+github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
+author: Robert Brunhage
+lastmod: 10-30-2022
+chapter: Bonus
+weight: 41
+---
+
+# CI - Continues Integration
+
+  
+
+CI is the base of any good workflow. There are multiple ways of doing it and this is just one way. I mostly opt to use [Codemagic](https://codemagic.io/start/) as a lot of things are handled for you but I do from time to time utilize other services such as [GitHub actions](https://www.youtube.com/watch?v=rpQKpXjH5vs) etc.
+
+  
+
+Both Codemagic and GitHub Actions (private repository) have build minute limitations for the free plan, in these cases, I often opt of using a combination. For example, I may use [GitHub Actions for running](https://github.com/RobertBrunhage/budget_together/blob/main/.github/workflows/main.yml) tests but Codemagic for building and publishing.
+
+  
+
+Some other services are:
+
+[Bitrise](https://www.bitrise.io/)
+
+[CircleCI](https://circleci.com/)
+
+[Octopus](https://octopus.com/) (Paid but works great together with Codemagic)

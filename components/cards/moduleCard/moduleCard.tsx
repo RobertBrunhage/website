@@ -11,7 +11,7 @@ const moduleCard = ({ number, title, description }: ModuleCardProps) => {
   return (
     <div className={styles.moduleCard_container}>
       <div className={styles.icon}>{number}</div>
-      <p className={styles.title}>{title}</p>
+      <h4 className={styles.title}>{title}</h4>
       <p className={styles.summary}>{description}</p>
     </div>
   );

@@ -1,0 +1,27 @@
+---
+title: Transitioning to Riverpod 
+lectureId: module-2-lecture-3
+vimeo: 787938115
+github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commit/454914801e9b6758249a6e36e8a6bf8f52d93a16
+author: Robert Brunhage
+lastmod: 10-30-2022
+weight: 11
+---
+
+## ConsumerWidget
+
+The [ConsumerWidget](https://riverpod.dev/docs/concepts/reading/#extending-consumerwidget-instead-of-statelesswidget) is another type of widget similar to a **StatelessWidget** and **StatefulWidget**. It comes directly from Riverpod and is responsible for rebuilding the **build** method whenever a provider changes state that we call watch on.
+
+  
+
+## Reading/Watching a Provider
+
+To read a provider we use the **ref** object.
+
+  
+
+**ref.read(someProvider)** will read the state in our case of the **StateNotifier** and when we add **.notifier (**ref.read(someProvider.notifier)**)** we will read the StateNotifier and get access to the methods. Reading a provider is mostly used when you are sure you will only need to get the value or call a method once. A case for this is when you tap a button and want to call a method.
+
+  
+
+To **watch** a provider we do the same thing but replacing the **read** method with the **watch** method. This will mainly be used in the UI to represent state changes but also if you want to get access from one Provider from the other (refer to the notes of the previous lecture).

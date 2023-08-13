@@ -1,4 +1,4 @@
-import Head from "next/head";
+import "next/head";
 import React from "react";
 import BlogLayout from "../components/blog/blogLayout";
 import Layout from "../components/layout/layout";

@@ -1,0 +1,25 @@
+---
+title: Throwing custom failure
+lectureId: module-4-lecture-1
+vimeo: 805141207
+github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
+author: Robert Brunhage
+lastmod: 10-30-2022
+weight: 22
+---
+
+## DioError
+
+We are doing all our requests in the repository with **try-catch** and when we use Dio we specifically catch the [DioError](https://pub.dev/documentation/dio/latest/dio/DioError-class.html) which simply wraps the error. You can also check if it's a typical HTTP error code with a simple if case described in the [documentation of Dio](https://pub.dev/packages/dio)
+
+  
+
+## SocketException
+
+This [is an exception](https://api.flutter.dev/flutter/dart-io/SocketException-class.html) that happens when you try to make a request or the request is happening and you lose the socket connection which is also known as socket operation failure. This is explained in rather simple terms but think of it like for some reason the connection is unexpectedly and forcefully closed.
+
+  
+
+## My two words regarding catching
+
+**Only** catch what you need. It's easier to find problems during development if something crashes rather than that you have been done a **try-catch** that will catch everything and then just print it to the console. Have seen this in **very large projects** where it could take **days** to find the root cause, where simply **not** catching it would make it obvious right away!

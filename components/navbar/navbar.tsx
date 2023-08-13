@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Menu, { NavItem } from "./menuItems";
 import styles from "./navbar.module.scss";
 
@@ -22,10 +22,6 @@ const Navbar = () => {
     document.body.classList.replace("light", "dark");
     localStorage.setItem("theme", "dark");
   };
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   return (
     <header className={styles.header}>
@@ -54,7 +50,7 @@ const Navbar = () => {
           type="image/png"
           sizes="32x32"
         />
-        <link rel="apple-touch-icon" href="/apple-icon-180x180.png" />
+        <link rel="apple-touch-icon" href="/icons/apple-icon-180x180.png" />
         <meta name="theme-color" content="#E12339" />
       </Head>
       <nav className={styles.stroke} id={"nav"}>

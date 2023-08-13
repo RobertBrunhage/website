@@ -1,0 +1,27 @@
+---
+title: Unit test service
+lectureId: module-5-lecture-2
+vimeo: 805141207
+github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
+author: Robert Brunhage
+lastmod: 10-30-2022
+weight: 29
+---
+
+## Why do we mock the repository?
+
+Our tests written in this video wants to **specifically** test the **service**. During our tests, we don't want to be reliant on an API we do **not** have control over. For example, **_what would happen to our tests if the server was down_**?
+
+  
+
+So to fix this we mock out the repository. That way during our tests when the service calls the repository to make the API calls, we can specifically tell our mock to return **specified values** instead. This way we are in control of whether we want to test with a **value**, **exception**, and so on.
+
+  
+
+## Given-When-Then
+
+There are a bunch of different naming conventions of tests. I have a habit of using **Given-When-Then** but this is just a matter of what you like the most and think is the most readable.
+
+  
+
+Here is a [blog post with 7 different naming conventions](https://dzone.com/articles/7-popular-unit-test-naming) that you can pick from. Go with whatever you enjoy the most but the important part is sticking with the same naming convention throughout the project!

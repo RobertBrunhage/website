@@ -1,0 +1,37 @@
+---
+title: Multiple return types
+lectureId: module-4-lecture-2
+vimeo: 805141207
+github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
+author: Robert Brunhage
+lastmod: 10-30-2022
+weight: 23
+---
+
+## Package Multiple Result
+
+The reason I use this package is that its [implementation](https://github.com/higorlapa/result) is very small with a good amount of tests. With this package, we get a couple of new types/objects that we can use.
+
+  
+
+## Result - Failure | OurOtherType
+
+With `Result<Failure, OurOtherType`, we specify that our type can be either a Failure or the specific type we use in the code. This lets us return a value if we are successful with the **try** clause or return a failure in the **catch** clause. When we later call this we have to handle it which makes the implementation needed in the **controller** minimal.
+
+  
+
+## Success
+
+This is the object we wrap the value we wanted to return to our **controller** and of course should represent the value of the successful data we got back.
+
+  
+
+## Error
+
+This is the object we wrap our custom **failure** object with. This will be handled in the controller the same way as the **success** object.
+
+  
+
+## .when()
+
+This is the method we use on our returned results from the **Service**. This will force us to handle both the success and the failure cases. In our **controller,** it becomes very easy to understand and read.

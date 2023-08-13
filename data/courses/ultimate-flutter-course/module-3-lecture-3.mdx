@@ -1,0 +1,29 @@
+---
+title: Creating the repository
+lectureId: module-3-lecture-3
+vimeo: 805141207
+github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
+author: Robert Brunhage
+lastmod: 10-30-2022
+weight: 15
+---
+
+## API Requests
+
+I personally use the [Dio package](https://pub.dev/packages/dio) a lot but that is completely up to you how you want to make the API requests.
+
+  
+
+## Abstract Class
+
+Now some of you may be completely new to the concept of an **abstract class** but if you come from languages like **C#** you can think of it as an **interface**. We use this so that later one during tests or other scenarios be able to provide another class. let's imagine we are writing a test. We don't want to create a test that relies on an internet connection while it's calling our repository. In this case, we can actually just make another class that implements the **MovieRepository** abstract class and make sure it instead of making requests to an API, it will just return some fake that that doesn't rely on an internet connection.
+
+  
+
+## Riverpod - Provider
+
+So Riverpod has a bunch of different providers and when we just want to pass a simple class (don't want to have the UI listen to changes from it) we can use the provider that is just called **Provider**.
+
+  
+
+My personal rule is to **NEVER** read from either the **repository** or the **service** from the UI. But only pass it to the **controller**.

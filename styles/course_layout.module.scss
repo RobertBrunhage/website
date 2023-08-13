@@ -1,44 +1,82 @@
 .course_layout {
   display: grid;
   grid-template-areas:
-    "menu video"
-    "menu content";
-  grid-template-columns: 0.5fr 1fr;
+    'menu .'
+    'menu .';
+  grid-template-columns: 35em auto;
 
   .menu {
     grid-area: menu;
+    margin-right: 40px;
+    height: 85vh;
+    overflow-y: auto;
+    position: sticky;
+    top: 20px;
   }
 
   .video {
-    grid-area: video;
-    aspect-ratio: 16/9;
     display: flex;
-    margin-bottom: 2em;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
 
-    iframe {
-      border: none;
+    .video_wrapper {
+      position: relative;
+      padding-top: 56.25%;
       width: 100%;
+      height: 100%;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .seen {
+        background-color: transparent;
+        border: none;
+        padding: 4px 0;
+
+        font-weight: bold;
+        text-transform: uppercase;
+        color: var(--gray_300);
+
+        position: absolute;
+        right: 0;
+
+        &:hover {
+          cursor: pointer;
+          color: var(--gray_100);
+        }
+      }
     }
-  }
 
-  .sign_in {
-    background-color: rgb(10, 10, 10);
-    width: 100%;
-    display: grid;
-    place-items: center;
+    .sign_in {
+      background-color: rgb(10, 10, 10);
+      display: grid;
+      place-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
 
-    h3 {
-      span {
+      a {
         color: #41efff;
         &:hover {
           cursor: pointer;
+          color: #41a3ff;
         }
       }
     }
   }
 
   .content {
-    grid-area: content;
+    min-height: 100vh;
+
     code {
       background-color: #4e4e54;
       color: #f8f8f2;
@@ -55,7 +93,7 @@
 
     h1 {
       &:first-child {
-        margin-top: 0;
+        margin-top: 0.5em;
       }
     }
 
@@ -104,9 +142,9 @@
 
   @media screen and (max-width: 1000px) {
     grid-template-areas:
-      "video"
-      "content"
-      "menu";
+      'video'
+      'content'
+      'menu';
     grid-template-columns: 1fr;
   }
 }

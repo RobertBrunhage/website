@@ -11,7 +11,17 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "../styles/code-highlighting.css";
 import "../styles/globals.scss";
 
-const components = { EmailSignup, BlogShareFooter, h2: Heading2, h3: Heading3 };
+import ModuleCard from "../components/cards/moduleCard/moduleCard";
+import { trpc } from "../lib/trpc";
+import { Toaster } from "react-hot-toast";
+
+const components = {
+  EmailSignup,
+  BlogShareFooter,
+  h2: Heading2,
+  h3: Heading3,
+  ModuleCard,
+};
 
 interface MyAppProps {
   Component: any;
@@ -46,11 +56,12 @@ function MyApp({ Component, pageProps }: MyAppProps) {
           });
         });
     }
-  }, [cookieStatus, cookieAccept]);
+  }, [cookieStatus, cookieAccept, router.events]);
 
   return (
     <PlausibleProvider trackOutboundLinks={true} domain="robertbrunhage.com">
       <UserProvider>
+        <Toaster position="bottom-center" />
         <MDXProvider components={components}>
           <Component {...pageProps} />
         </MDXProvider>
@@ -85,4 +96,4 @@ function MyApp({ Component, pageProps }: MyAppProps) {
   );
 }
 
-export default MyApp;
+export default trpc.withTRPC(MyApp);

@@ -2,24 +2,28 @@ import React from "react";
 import styles from "./sideNavigation.module.scss";
 import Link from "next/link";
 
-interface MenuProps {
+export interface MenuProps {
   chapter?: string;
   title: string;
   slug: string;
+  weight: number;
+  free?: boolean;
+  seen?: boolean;
 }
 
 interface SideNavProps {
   menu: Array<MenuProps>;
   module: string;
   slug: string;
+  hasAccess: boolean;
 }
 
-const SideNavigation = ({ menu, module, slug }: SideNavProps) => {
+const SideNavigation = ({ menu, module, slug, hasAccess }: SideNavProps) => {
   return (
     <div className={styles.side_nav}>
       <ul>
         {menu.map((item, index) => (
-          <>
+          <React.Fragment key={index}>
             <li
               className={styles.chapter}
               style={{ display: item.chapter ? "" : "none" }}
@@ -27,19 +31,28 @@ const SideNavigation = ({ menu, module, slug }: SideNavProps) => {
               {item.chapter}
             </li>
             <li
-              className={`${styles.indent} ${
-                item.slug === slug ? styles.selected : ""
-              } }`}
-              key={index}
+              id={item.slug}
+              className={`${styles.indent} ${item.slug === slug ? styles.selected : ""
+                } }`}
             >
               <Link
-                href={`/course/${module}/${item.slug}/`}
-                as={`/course/${module}/${item.slug}/`}
+                className={styles.link}
+                href={`/courses/${module}/${item.slug}/`}
+                as={`/courses/${module}/${item.slug}/`}
               >
+                <span
+                  className={
+                    item.free || hasAccess
+                      ? item.seen
+                        ? styles.seen
+                        : styles.free
+                      : styles.locked
+                  }
+                />
                 {item.title}
               </Link>
             </li>
-          </>
+          </React.Fragment>
         ))}
       </ul>
     </div>

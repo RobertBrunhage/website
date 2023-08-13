@@ -1,0 +1,28 @@
+---
+title: Overview
+lectureId: module-2-overview
+vimeo: 805141207
+github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
+author: Robert Brunhage
+lastmod: 10-30-2022
+chapter: State Management with Riverpod
+free: true
+weight: 8
+---
+
+
+To get a **better** understanding how the **basics** of how riverpod works I recommend taking a quick read of the documentation: [https://riverpod.dev/](https://riverpod.dev/) or take a look at one of my older [video of riverpod](https://www.youtube.com/watch?v=GVspNESSess). That video is a bit outdated codewise but the core concepts still apply and should help you get started!
+
+  
+
+## Why did I pick Riverpod and MVU architecture?
+
+First let's just touch on Riverpod and previously I was quite heavily using **Provider** though this had a huge drawback that I personally didn't like at all, which was not having proper compile safety. The more a project grows the bigger the issue this becomes. Getting a **ProviderNotFoundException** was not something I liked to deal with and with Riverpod that issue doesn't happen as one of the main features of Riverpod is being compile safe. Now the reason I also picked **StateNotifier** compared to let's say **ChangeNotifier** or **ValueNotifier** is that **StateNotifier** is that it promotes data being immutable.
+
+  
+
+Immutability is an important concept that directly ties in the architecture I use which is **MVU**. The architecture in itself is rather simple. You have the UI and you tie it to something like a **StateNotifier**. With this, you won't have additional layers that don't provide anything. **MVVM** is another architecture a lot of people like to use but personally I don't think it fits the paradigm of how Flutter works as we don't need a "binder" to update the UI as we do with another tech that for example uses XAML as UI.
+
+  
+
+That said, architecture is just a **guide** to help you write better and more structured code. There is **nothing** wrong with taking parts of an architecture

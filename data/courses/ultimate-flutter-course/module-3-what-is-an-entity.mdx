@@ -1,0 +1,23 @@
+---
+title: What is an Entity
+lectureId: module-3-lecture-7
+vimeo: 805141207
+github: https://github.com/Robert-Brunhage-Organization/movie_recommendation_app_course/commits/main
+author: Robert Brunhage
+lastmod: 10-30-2022
+weight: 19
+---
+
+## Entity
+
+Think of this as the one-to-one mapping for the request you are making. Most of the time you would have a normal model class but in a lot of cases that model class also contains data that you only want in the frontend code. In this case, I highly recommend using some kind of entity class. That way you can keep this class mapped to the API/database while also having a model that you structure the way you want.
+
+  
+
+In most cases, the flow would look like this
+
+  
+
+1.  Make a request and we get the data that can be mapped to an entity.
+2.  When passing that entity along for the UI we map it to a model object.
+3.  We now only have the data we need as well as additional data or code that we want in the model class.

@@ -1,9 +1,13 @@
-import React from "react";
-import CTA from "../../buttons/cta/cta";
-import styles from "./pricingCard.module.scss";
-import { eventPropCourse, eventSignup } from "../../../core/constants";
+import React from 'react';
+import styles from './pricingCard.module.scss';
+import Link from 'next/link';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import buttonStyle from '../../buttons/cta/cta.module.scss';
+import Stripe from 'stripe';
+import { trpc } from '../../../lib/trpc';
+import { useRouter } from 'next/router';
 
-interface Packages {
+export interface Packages {
   name: string;
 }
 
@@ -11,36 +15,72 @@ interface PricingProps {
   className?: string;
   label?: string;
   title: string;
-  price: string;
+  price: Stripe.Price[] | undefined;
+  previousPrice?: string;
   discounted_price?: string;
   price_package: Array<Packages>;
   href?: string;
   saturation?: string;
   supply?: string;
   disabled?: boolean;
+  productId: string;
+  module: string;
+  modules: Array<any>;
+  ownsCourse?: boolean;
 }
+
+const PriceHeader: React.FC<{
+  price: Stripe.Price[] | undefined;
+}> = ({ price }) => {
+  if (price && price[0].unit_amount !== null && price[0].unit_amount !== 0) {
+    return <h2 className={styles.price}>${price[0].unit_amount / 100}</h2>;
+  }
+
+  return <h2 className={styles.price}>$69</h2>;
+};
 
 const pricingCard = ({
   className,
   label,
   title,
   price,
-  discounted_price,
+  previousPrice,
   price_package,
   href,
   saturation,
   supply,
   disabled,
+  productId,
+  module,
+  modules,
+  ownsCourse,
 }: PricingProps) => {
+  const { user } = useUser();
+  const { mutateAsync: createCheckoutSession } =
+    trpc.stripe.createCheckoutSession.useMutation();
+  const { push } = useRouter();
+
+  const handleCheckout = async () => {
+    const { checkoutUrl } = await createCheckoutSession({ productId: productId, successPath: `/courses/${module}` });
+    if (checkoutUrl) {
+      void push(checkoutUrl);
+    }
+  }
+
   return (
     <div className={`${styles.container} ${className}`}>
       <div className={styles.package}>
-        <div className={styles.label} style={{ display: label ? "" : "none" }}>
+        <div className={styles.label} style={{ display: label ? '' : 'none' }}>
           {label}
         </div>
         <p className={styles.title}>{title}</p>
-        <h2 className={styles.price}>{price}</h2>
-        <h2 className={styles.discounted_price}>{discounted_price}</h2>
+        <PriceHeader price={price} />
+        <h2
+          className={styles.prev_price}
+          style={{ marginRight: previousPrice && '.5em' }}
+        >
+          {previousPrice}
+        </h2>
         <p className={styles.vat}>VAT may apply</p>
         <ul>
           {price_package.map((item, index) => (
@@ -54,18 +94,41 @@ const pricingCard = ({
         </ul>
       </div>
       <p className={styles.supply}>{supply}</p>
-      <CTA
-        text="enroll"
-        href={href ?? "#"}
-        target={"_blank"}
-        width={"auto"}
-        animation={false}
-        saturation={saturation}
-        plausibleEvent={eventSignup}
-        plausibleEventProp={eventPropCourse}
-        disabled={disabled}
-        isPurchase={true}
-      />
+      {ownsCourse ? (
+        <div className={styles.owns_course}>
+          <span>
+            You already own this course!
+          </span>
+          <Link
+            legacyBehavior={true}
+            href={`/courses/${module}/${modules[0].slug}`}
+          >
+            <a className={`${buttonStyle.button} ${styles.btn}`}>
+              start watching
+            </a>
+          </Link>
+        </div>
+      ) : (
+        <div>
+          {user ? (
+            <button
+              onClick={handleCheckout}
+              className={`${buttonStyle.button} ${styles.btn}`}
+              type="submit"
+              role="link"
+            >
+              Buy
+            </button>
+          ) : (
+            <Link
+              legacyBehavior={true}
+              href={`/api/auth/login?returnTo=/courses/${module}`}
+            >
+              <a className={`${buttonStyle.button} ${styles.btn}`}>Buy</a>
+            </Link>
+          )}
+        </div>
+      )}
     </div>
   );
 };
