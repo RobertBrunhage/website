@@ -18,15 +18,15 @@ export const courseRouter = router({
         stripeProductId: z.string(),
       }),
     )
-    .query(async ({ input, ctx }) => {
-      console.log("no");
+    .query(async ({ ctx }) => {
+      // todo: this should check for a specific course otherwise it
+      // will return true for any course as long as you own one :)
       let users = await db
         .select()
         .from(user)
+        .where(eq(user.sub, ctx.session.user.sub))
         .leftJoin(userCourses, eq(user.id, userCourses.userId))
         .leftJoin(course, eq(course.id, userCourses.courseId))
-        .where(eq(user.sub, ctx.session.user.sub))
-        .where(eq(course.stripeProductId, input.stripeProductId))
         .limit(1);
 
       if (users.length === 0) return false;
