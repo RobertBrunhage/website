@@ -1,22 +1,37 @@
 import { TRPCError } from "@trpc/server";
+import { eq } from "drizzle-orm";
 import { z } from "zod";
-import { prisma, UserAppMetadata } from "../../lib/database/user";
+import { db } from "../../server/db";
+import {
+  course,
+  lecture,
+  lectureUserInfo,
+  user,
+  userCourses,
+} from "../../server/schema";
 import { procedure, protectedProcedure, router, stripe } from "../trpc";
-import { auth0 } from "./account";
 
 export const courseRouter = router({
   hasAccess: protectedProcedure
     .input(
       z.object({
         stripeProductId: z.string(),
-      })
+      }),
     )
     .query(async ({ input, ctx }) => {
-      let user = await auth0.getUser({ id: ctx.session.user.sub });
-      let metadata: UserAppMetadata | undefined = user.app_metadata;
-      if (!metadata?.courses?.includes(input.stripeProductId)) {
-        return false;
-      }
+      console.log("no");
+      let users = await db
+        .select()
+        .from(user)
+        .leftJoin(userCourses, eq(user.id, userCourses.userId))
+        .leftJoin(course, eq(course.id, userCourses.courseId))
+        .where(eq(user.sub, ctx.session.user.sub))
+        .where(eq(course.stripeProductId, input.stripeProductId))
+        .limit(1);
+
+      if (users.length === 0) return false;
+      if (!users[0].course) return false;
+
       return true;
     }),
   seen: protectedProcedure
@@ -25,75 +40,88 @@ export const courseRouter = router({
         courseName: z.string(),
         lectureName: z.string(),
         seen: z.boolean().nullable(),
-      })
+      }),
     )
     .mutation(async ({ input, ctx }) => {
-      let lectureResponse = await prisma.lecture.upsert({
-        where: {
-          name: input.lectureName,
-        },
-        create: {
-          name: input.lectureName,
-          Course: {
-            connect: {
-              name: input.courseName,
+      let seen = await db.transaction(async (tx) => {
+        let courses = await tx
+          .select()
+          .from(course)
+          .where(eq(course.name, input.courseName))
+          .limit(1);
+
+        if (courses.length === 0)
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: `Course not found: ${input.courseName}`,
+          });
+
+        let existingCourse = courses[0];
+
+        await tx
+          .insert(lecture)
+          .values({
+            name: input.lectureName,
+            courseId: existingCourse.id,
+          })
+          .onDuplicateKeyUpdate({
+            set: { name: input.lectureName },
+          });
+
+        let lectures = await tx
+          .select()
+          .from(lecture)
+          .where(eq(lecture.name, input.lectureName))
+          .limit(1);
+
+        await tx
+          .insert(lectureUserInfo)
+          .values({
+            sub: ctx.session.user.sub as string,
+            lectureId: lectures[0].id,
+            seen: true,
+          })
+          .onDuplicateKeyUpdate({
+            set: {
+              seen: input.seen ?? false,
             },
-          },
-        },
-        update: {},
+          });
+
+        let infos = await tx
+          .select()
+          .from(lectureUserInfo)
+          .where(eq(lectureUserInfo.sub, ctx.session.user.sub))
+          .where(eq(lectureUserInfo.lectureId, lectures[0].id))
+          .limit(1);
+
+        return infos[0].seen;
       });
 
-      let seenResponse = await prisma.lectureUserInfo.upsert({
-        where: {
-          lectureInfoIdentifier: {
-            sub: ctx.session.user.sub,
-            lectureId: lectureResponse.id,
-          },
-        },
-        create: {
-          lecture: {
-            connect: {
-              id: lectureResponse.id,
-            },
-          },
-          sub: ctx.session.user.sub,
-          seen: true,
-        },
-        update: {
-          seen: input.seen ?? false,
-          lecture: {
-            connect: {
-              id: lectureResponse.id,
-            },
-          },
-          sub: ctx.session.user.sub,
-        },
-      });
-
-      return seenResponse.seen;
+      return seen;
     }),
   course: procedure
     .input(
       z.object({
         courseName: z.string(),
-      })
+      }),
     )
     .query(async ({ input }) => {
-      const course = await prisma.course.findFirst({
-        where: {
-          name: input.courseName,
-        },
-      });
+      const courses = await db
+        .select()
+        .from(course)
+        .where(eq(course.name, input.courseName))
+        .limit(1);
 
-      if (!course) {
+      if (courses.length === 0)
         throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "Course not found",
+          code: "NOT_FOUND",
+          message: `Course not found: ${input.courseName}`,
         });
-      }
+
+      let existingCourse = courses[0];
 
       const price = await stripe.prices.list({
-        product: course.stripeProductId,
+        product: existingCourse.stripeProductId,
         limit: 1,
       });
 
@@ -105,7 +133,7 @@ export const courseRouter = router({
       }
 
       let value = {
-        stripeProductId: course.stripeProductId,
+        stripeProductId: existingCourse.stripeProductId,
         price: price.data,
       };
 
@@ -115,22 +143,16 @@ export const courseRouter = router({
     .input(
       z.object({
         courseName: z.string(),
-      })
+      }),
     )
     .query(async ({ input, ctx }) => {
-      let response = await prisma.lectureUserInfo.findMany({
-        where: {
-          sub: ctx.session.user.sub,
-          lecture: {
-            Course: {
-              name: input.courseName,
-            },
-          },
-        },
-        include: {
-          lecture: true,
-        },
-      });
+      let response = await db
+        .select()
+        .from(lectureUserInfo)
+        .innerJoin(lecture, eq(lecture.id, lectureUserInfo.lectureId))
+        .innerJoin(course, eq(course.id, lecture.courseId))
+        .where(eq(lectureUserInfo.sub, ctx.session.user.sub))
+        .where(eq(course.name, input.courseName));
 
       type SeenLecture = {
         name: string;
@@ -141,7 +163,7 @@ export const courseRouter = router({
       for (let i = 0; i < response.length; i++) {
         allSeen.push({
           name: response[i].lecture.name,
-          seen: response[i].seen,
+          seen: response[i].lecture_user_info.seen,
         });
       }
       return allSeen;

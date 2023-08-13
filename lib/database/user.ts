@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-import { auth0 } from "../../server/routers/account";
-
-export const prisma = new PrismaClient();
+import { eq } from "drizzle-orm";
+import { db } from "../../server/db";
+import { course, user, userCourses } from "../../server/schema";
 
 export type UserAppMetadata = {
   stripeCustomerId?: string;
@@ -11,21 +10,34 @@ export type UserAppMetadata = {
 export async function connectCourseWithUser(
   sub: string,
   stripeCustomerId: string,
-  stripeProductId: string
+  stripeProductId: string,
 ) {
-  let user = await auth0.getUser({ id: sub });
+  await db.transaction(async (tx) => {
+    await db
+      .insert(user)
+      .values({
+        sub: sub,
+        stripeCustomerId: stripeCustomerId,
+      })
+      .onDuplicateKeyUpdate({
+        set: { stripeCustomerId: stripeCustomerId, sub: sub },
+      });
 
-  let metadata: UserAppMetadata | undefined = user.app_metadata;
-  let courses = metadata?.courses ?? [];
-  courses.push(stripeProductId);
+    let users = await tx
+      .select()
+      .from(user)
+      .where(eq(user.stripeCustomerId, stripeCustomerId))
+      .limit(1);
 
-  await auth0.updateAppMetadata(
-    {
-      id: sub,
-    },
-    {
-      stripeCustomerId: stripeCustomerId,
-      courses: courses,
-    }
-  );
+    let courses = await tx
+      .select()
+      .from(course)
+      .where(eq(course.stripeProductId, stripeProductId))
+      .limit(1);
+
+    await db.insert(userCourses).values({
+      userId: users[0].id,
+      courseId: courses[0].id,
+    });
+  });
 }
