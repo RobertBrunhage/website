@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "../../server/db";
 import {
@@ -18,15 +18,18 @@ export const courseRouter = router({
         stripeProductId: z.string(),
       }),
     )
-    .query(async ({ ctx }) => {
-      // todo: this should check for a specific course otherwise it
-      // will return true for any course as long as you own one :)
+    .query(async ({ input, ctx }) => {
       let users = await db
         .select()
         .from(user)
-        .where(eq(user.sub, ctx.session.user.sub))
         .leftJoin(userCourses, eq(user.id, userCourses.userId))
         .leftJoin(course, eq(course.id, userCourses.courseId))
+        .where(
+          and(
+            eq(user.sub, ctx.session.user.sub),
+            eq(course.stripeProductId, input.stripeProductId),
+          ),
+        )
         .limit(1);
 
       if (users.length === 0) return false;
@@ -145,15 +148,18 @@ export const courseRouter = router({
         courseName: z.string(),
       }),
     )
-    .query(async ({ ctx }) => {
-      // TODO(Robert): this should check for a specific course otherwise it will be
-      // incorrect when we have more courses :)
+    .query(async ({ input, ctx }) => {
       let response = await db
         .select()
         .from(lectureUserInfo)
         .innerJoin(lecture, eq(lecture.id, lectureUserInfo.lectureId))
         .innerJoin(course, eq(course.id, lecture.courseId))
-        .where(eq(lectureUserInfo.sub, ctx.session.user.sub));
+        .where(
+          and(
+            eq(lectureUserInfo.sub, ctx.session.user.sub),
+            eq(course.name, input.courseName),
+          ),
+        );
 
       type SeenLecture = {
         name: string;
