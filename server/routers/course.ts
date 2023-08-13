@@ -145,14 +145,15 @@ export const courseRouter = router({
         courseName: z.string(),
       }),
     )
-    .query(async ({ input, ctx }) => {
+    .query(async ({ ctx }) => {
+      // TODO(Robert): this should check for a specific course otherwise it will be
+      // incorrect when we have more courses :)
       let response = await db
         .select()
         .from(lectureUserInfo)
         .innerJoin(lecture, eq(lecture.id, lectureUserInfo.lectureId))
         .innerJoin(course, eq(course.id, lecture.courseId))
-        .where(eq(lectureUserInfo.sub, ctx.session.user.sub))
-        .where(eq(course.name, input.courseName));
+        .where(eq(lectureUserInfo.sub, ctx.session.user.sub));
 
       type SeenLecture = {
         name: string;
