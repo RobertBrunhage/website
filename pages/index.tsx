@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import { useEffect, useState } from "react";
-import { FrontmatterProps } from "../components/blog/blogLayout";
 import CTA from "../components/buttons/cta/cta";
 import BlogCard from "../components/cards/blogCard/blogCard";
 import EmailSignup from "../components/emailForm/forms/emailSignup";
@@ -9,9 +8,11 @@ import Layout from "../components/layout/layout";
 import CommonSEO from "../components/seo/seo";
 import { getAllFilesFrontMatter } from "../core/mdx";
 import styles from "../styles/home.module.scss";
+import { FrontmatterProps } from "./articles/[slug]";
+import { VideoFrontMatterInfo } from "./videos";
 
 interface HomeProps {
-  videos: Array<FrontmatterProps>;
+  videos: VideoFrontMatterInfo[];
   articles: Array<FrontmatterProps>;
   baseUrl: string;
 }
