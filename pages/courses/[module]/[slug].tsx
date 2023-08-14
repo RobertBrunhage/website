@@ -8,7 +8,6 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Layout from "../../../components/layout/layout";
 import "prismjs";
 import Prism from "prismjs";
-import "prismjs/components/prism-dart";
 import styles from "../../../styles/course_layout.module.scss";
 import SideNavigation, {
   MenuProps,
@@ -18,6 +17,8 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import { trpc } from "../../../lib/trpc";
 import { toast } from "react-hot-toast";
+
+require("prismjs/components/prism-dart");
 
 const components = {};
 
@@ -44,7 +45,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
   const { user } = useUser();
   const hasAccessResponse = trpc.course.hasAccess.useQuery(
     { stripeProductId: "prod_NInXljEw7mMKMV" },
-    { enabled: user !== undefined }
+    { enabled: user !== undefined },
   );
 
   const mutateSeen = trpc.course.seen.useMutation({
@@ -58,7 +59,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
 
   const allSeenLecturesResponse = trpc.course.allSeen.useQuery(
     { courseName: module },
-    { enabled: user !== undefined }
+    { enabled: user !== undefined },
   );
 
   const handleSeen = async (state: boolean) => {
@@ -214,7 +215,7 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   params: { module, slug },
 }: Params) => {
   const courses = fs.readFileSync(
-    path.join("data/courses", module, slug + ".mdx")
+    path.join("data/courses", module, slug + ".mdx"),
   );
 
   const { data: metaData, content } = matter(courses);

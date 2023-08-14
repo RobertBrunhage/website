@@ -15,7 +15,7 @@ import PricingCard, {
 } from "../../components/cards/pricingCard/pricingCard";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { trpc } from "../../lib/trpc";
-import { createProxySSGHelpers } from "@trpc/react-query/ssg";
+import { createServerSideHelpers } from '@trpc/react-query/server';
 import { appRouter } from "../../server/routers/_app";
 
 type ModulesProps = {
@@ -207,7 +207,7 @@ export const getStaticProps: GetStaticProps<Params> = async ({
     path.join("data/courses", module, "__index.mdx")
   );
 
-  const ssg = createProxySSGHelpers({
+  const ssg = createServerSideHelpers({
     router: appRouter,
     ctx: { session: undefined, ip: "" },
   });
