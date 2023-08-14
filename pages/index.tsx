@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import { useEffect, useState } from "react";
 import CTA from "../components/buttons/cta/cta";
@@ -10,6 +11,20 @@ import { getAllFilesFrontMatter } from "../core/mdx";
 import styles from "../styles/home.module.scss";
 import { FrontmatterProps } from "./articles/[slug]";
 import { VideoFrontMatterInfo } from "./videos";
+
+import heroImage from "../public/assets/images/flutter_course_launch_hero.png";
+
+import discord from "../public/assets/icons/discord.svg";
+import openSource from "../public/assets/icons/open_source.svg";
+import education from "../public/assets/icons/education.svg";
+
+import mikeTestimonial from "../public/assets/images/testimonials/mikerydstrom.png";
+import aymanTestimonial from "../public/assets/images/testimonials/aymanbarghout.png";
+import tadasTestimonial from "../public/assets/images/testimonials/tadaspetra.png";
+import mukalTestimonial from "../public/assets/images/testimonials/mukaldadwhal.png";
+import luisTestimonial from "../public/assets/images/testimonials/luischodiman.png";
+
+import aboutMeImage from "../public/assets/icons/sprite_fire.png";
 
 interface HomeProps {
   videos: VideoFrontMatterInfo[];
@@ -69,9 +84,9 @@ const Index = ({ videos, articles }: HomeProps) => {
               />
             </div>
             <Link href="/courses">
-              <img
+              <Image
                 className={styles.sprite}
-                src="/assets/images/flutter_course_launch_hero.png"
+                src={heroImage}
                 alt="intro_man"
               />
             </Link>
@@ -86,7 +101,7 @@ const Index = ({ videos, articles }: HomeProps) => {
         <section className={styles.puffs}>
           <div className={`max_width ${styles.content}`}>
             <div className={styles.card}>
-              <img src="/assets/icons/discord.svg" alt="discord icon" />
+              <Image src={discord} alt="discord icon" />
               <h3>Discord Community</h3>
               <p>
                 We have a{" "}
@@ -101,7 +116,7 @@ const Index = ({ videos, articles }: HomeProps) => {
               </p>
             </div>
             <div className={styles.card}>
-              <img src="/assets/icons/open_source.svg" alt="open source icon" />
+              <Image src={openSource} alt="open source icon" />
               <h3>Open Source</h3>
               <p>
                 My videos are almost all supported by a GitHub repo, this{" "}
@@ -109,8 +124,8 @@ const Index = ({ videos, articles }: HomeProps) => {
               </p>
             </div>
             <div className={styles.card}>
-              <img
-                src="/assets/icons/education.svg"
+              <Image
+                src={education}
                 alt="books education icon"
               />
               <h3>High Quality</h3>
@@ -129,24 +144,24 @@ const Index = ({ videos, articles }: HomeProps) => {
           <div className={`max_width ${styles.content}`}>
             <h2 className={styles.title}>The Developers</h2>
             <div className={styles.testimonials}>
-              <img
-                src="/assets/images/testimonials/mikerydstrom.png"
+              <Image
+                src={mikeTestimonial}
                 alt="mike rydstrom"
               />
-              <img
-                src="/assets/images/testimonials/aymanbarghout.png"
+              <Image
+                src={aymanTestimonial}
                 alt="ayman barghout"
               />
-              <img
-                src="/assets/images/testimonials/tadaspetra.png"
+              <Image
+                src={tadasTestimonial}
                 alt="tadas petra"
               />
-              <img
-                src="/assets/images/testimonials/mukaldadwhal.png"
+              <Image
+                src={mukalTestimonial}
                 alt="mukal dadwhal"
               />
-              <img
-                src="/assets/images/testimonials/luischodiman.png"
+              <Image
+                src={luisTestimonial}
                 alt="luis chodiman"
               />
             </div>
@@ -212,9 +227,9 @@ const Index = ({ videos, articles }: HomeProps) => {
                 that!
               </p>
             </div>
-            <img
+            <Image
               className={styles.sprite}
-              src="/assets/icons/sprite_fire.png"
+              src={aboutMeImage}
               alt="amazed"
             />
           </div>

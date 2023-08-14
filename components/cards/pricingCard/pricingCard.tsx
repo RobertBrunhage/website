@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import styles from './pricingCard.module.scss';
 import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0/client';
@@ -6,6 +7,8 @@ import buttonStyle from '../../buttons/cta/cta.module.scss';
 import Stripe from 'stripe';
 import { trpc } from '../../../lib/trpc';
 import { useRouter } from 'next/router';
+
+import checkmark from "../../../public/assets/icons/checkmark.svg";
 
 export interface Packages {
   name: string;
@@ -39,17 +42,14 @@ const PriceHeader: React.FC<{
   return <h2 className={styles.price}>$69</h2>;
 };
 
-const pricingCard = ({
+const PricingCard = ({
   className,
   label,
   title,
   price,
   previousPrice,
   price_package,
-  href,
-  saturation,
   supply,
-  disabled,
   productId,
   module,
   modules,
@@ -86,7 +86,7 @@ const pricingCard = ({
           {price_package.map((item, index) => (
             <li key={index}>
               <div id={styles.check}>
-                <img src="/assets/icons/checkmark.svg" alt="checkmark" />
+                <Image src={checkmark} alt="checkmark" />
               </div>
               {item.name}
             </li>
@@ -133,4 +133,4 @@ const pricingCard = ({
   );
 };
 
-export default pricingCard;
+export default PricingCard;

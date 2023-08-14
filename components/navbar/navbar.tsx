@@ -12,7 +12,7 @@ const Navbar = () => {
     mobileMenuRef.current?.classList.toggle(styles.active);
 
   const router = useRouter();
-  const { user, error, isLoading } = useUser();
+  const { user } = useUser();
 
   const setLightTheme = () => {
     document.body.classList.replace("dark", "light");

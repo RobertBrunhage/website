@@ -11,7 +11,7 @@ interface FAQProps {
   questions: Array<Questions>;
 }
 
-const faq = ({ title, questions }: FAQProps) => {
+const Faq = ({ title, questions }: FAQProps) => {
   return (
     <div className={styles.faq}>
       <h2>{title}</h2>
@@ -25,4 +25,4 @@ const faq = ({ title, questions }: FAQProps) => {
   );
 };
 
-export default faq;
+export default Faq;

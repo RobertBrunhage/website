@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import styles from "./footer.module.scss";
 import Socials from "./socials";
@@ -18,7 +19,7 @@ const Footer = () => {
         </a>
       </p>
 
-      <a href="/cookie_policy"> Cookie Policy</a>
+      <Link href="/cookie_policy"> Cookie Policy</Link>
 
       <p className={styles.copyright}>
         Copyright &copy; {year} Robert Brunhage

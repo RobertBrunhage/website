@@ -14,6 +14,7 @@ import "../styles/globals.scss";
 import ModuleCard from "../components/cards/moduleCard/moduleCard";
 import { trpc } from "../lib/trpc";
 import { Toaster } from "react-hot-toast";
+import Link from "next/link";
 
 const components = {
   EmailSignup,
@@ -86,9 +87,9 @@ function MyApp({ Component, pageProps }: MyAppProps) {
           </p>
           <p>
             Read more about our{" "}
-            <a style={{ color: "#22e2e2" }} href="/cookie_policy">
+            <Link style={{ color: "#22e2e2" }} href="/cookie_policy">
               Cookie policy
-            </a>
+            </Link>
           </p>
         </CookieConsent>
       </UserProvider>

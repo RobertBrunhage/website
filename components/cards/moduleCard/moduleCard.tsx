@@ -7,7 +7,7 @@ interface ModuleCardProps {
   description: string;
 }
 
-const moduleCard = ({ number, title, description }: ModuleCardProps) => {
+const ModuleCard = ({ number, title, description }: ModuleCardProps) => {
   return (
     <div className={styles.moduleCard_container}>
       <div className={styles.icon}>{number}</div>
@@ -17,4 +17,4 @@ const moduleCard = ({ number, title, description }: ModuleCardProps) => {
   );
 };
 
-export default moduleCard;
+export default ModuleCard;

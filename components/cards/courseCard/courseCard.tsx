@@ -10,7 +10,7 @@ interface CourseCardProps {
   route: string;
 }
 
-const courseCard = ({
+const CourseCard = ({
   img,
   title,
   description,
@@ -28,4 +28,4 @@ const courseCard = ({
   );
 };
 
-export default courseCard;
+export default CourseCard;

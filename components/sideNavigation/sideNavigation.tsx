@@ -32,8 +32,9 @@ const SideNavigation = ({ menu, module, slug, hasAccess }: SideNavProps) => {
             </li>
             <li
               id={item.slug}
-              className={`${styles.indent} ${item.slug === slug ? styles.selected : ""
-                } }`}
+              className={`${styles.indent} ${
+                item.slug === slug ? styles.selected : ""
+              } }`}
             >
               <Link
                 className={styles.link}

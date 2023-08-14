@@ -3,7 +3,7 @@ import styles from "./courses.module.scss";
 import CourseCard from "../cards/courseCard/courseCard";
 import { CourseFrontMatterInfo } from "../../pages/courses";
 
-const courses = ({ courses }: { courses: CourseFrontMatterInfo[] }) => {
+const Courses = ({ courses }: { courses: CourseFrontMatterInfo[] }) => {
   return (
     <div className={`max_width ${styles.courses_container}`}>
       <h1>Courses</h1>
@@ -26,4 +26,4 @@ const courses = ({ courses }: { courses: CourseFrontMatterInfo[] }) => {
   );
 };
 
-export default courses;
+export default Courses;

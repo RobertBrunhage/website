@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./banner.module.scss";
 import { default as Cookie } from "universal-cookie";
 
-const banner = () => {
+const Banner = () => {
   const [open, setOpen] = useState(true);
   const cookie = new Cookie();
 
@@ -50,4 +50,4 @@ const banner = () => {
   );
 };
 
-export default banner;
+export default Banner;

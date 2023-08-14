@@ -1,6 +1,8 @@
+import Image from "next/image";
+
 import { useRouter } from "next/router";
-import React from "react";
 import styles from "./blogShareFooter.module.scss";
+import twitterImage from "../../../public/assets/icons/twitter.svg";
 
 interface BlogShareFooterProps {
   message: String;
@@ -19,12 +21,7 @@ const BlogShareFooter = ({ message }: BlogShareFooterProps) => {
   return (
     <div className={styles.container}>
       <a href={generateTwitterUrl()} rel="noopener noreferrer" target="_blank">
-        <img
-          src={"/assets/icons/twitter.svg"}
-          width={38}
-          height={38}
-          alt={"twitter"}
-        />
+        <Image src={twitterImage} width={38} height={38} alt={"twitter"} />
         Share it on Twitter!
       </a>
     </div>

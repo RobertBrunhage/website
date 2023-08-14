@@ -2,6 +2,7 @@
 import React from "react";
 import Layout from "../components/layout/layout";
 import { resetCookieConsentValue } from "react-cookie-consent";
+import Link from "next/link";
 
 const cookie_policy = () => {
   return (
@@ -109,7 +110,7 @@ const cookie_policy = () => {
           }}
           onClick={() => resetCookieConsentValue()}
         >
-          <a href="/"> Click here to revoke your cookies</a>
+          <Link href="/"> Click here to revoke your cookies</Link>
         </button>
 
         <p>

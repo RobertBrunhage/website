@@ -6,7 +6,7 @@ interface EmailListProps {
   color: string;
 }
 
-const emailList = ({ color }:EmailListProps) => {
+const EmailList = ({ color }:EmailListProps) => {
   return (
     <div>
       <Newsletter
@@ -24,4 +24,4 @@ const emailList = ({ color }:EmailListProps) => {
   );
 };
 
-export default emailList;
+export default EmailList;

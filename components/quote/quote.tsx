@@ -14,7 +14,6 @@ const quote = ({
   image,
   author,
   background,
-  quoteColor,
 }: QuoteProps) => {
   return (
     <div
