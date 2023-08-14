@@ -11,7 +11,7 @@ interface FormInputProps {
   plausibleEventProp: string;
 }
 
-const formInput = ({
+const FormInput = ({
   action,
   color,
   cta,
@@ -57,4 +57,4 @@ const formInput = ({
   );
 };
 
-export default formInput;
+export default FormInput;

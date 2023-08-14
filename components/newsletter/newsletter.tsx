@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import EmailForm from "../emailForm/emailForm";
 import styles from "./newsletter.module.scss";
 
@@ -27,7 +28,7 @@ const newsletter = ({
 }: NewsletterProps) => {
   return (
     <div className={`max_width ${styles.newsletter_container}`}>
-      <img className={styles.sprite} src={img} alt="sprite nervous" />
+      <Image className={styles.sprite} src={img} alt="sprite nervous" />
       <div className={styles.form}>
         <EmailForm
           color={color}

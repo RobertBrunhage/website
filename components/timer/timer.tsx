@@ -8,10 +8,10 @@ interface TimerProps {
   center?: boolean;
 }
 
-const timer = ({ title, date, center }: TimerProps) => {
+const Timer = ({ title, date, center }: TimerProps) => {
   const [timeLeft] = useCountdownTimer(date);
   return (
-    <div className={styles.timer} style={{margin: center ? '0 auto' : ''}}>
+    <div className={styles.timer} style={{ margin: center ? "0 auto" : "" }}>
       <h1>{title}</h1>
       <ul>
         <li>
@@ -38,4 +38,4 @@ const timer = ({ title, date, center }: TimerProps) => {
   );
 };
 
-export default timer;
+export default Timer;

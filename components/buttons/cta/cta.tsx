@@ -17,7 +17,7 @@ interface CTAProps {
   isPurchase?: boolean;
 }
 
-const cta = ({
+const Cta = ({
   text,
   href,
   width,
@@ -72,4 +72,4 @@ const cta = ({
   );
 };
 
-export default cta;
+export default Cta;

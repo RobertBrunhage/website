@@ -12,7 +12,7 @@ const Navbar = () => {
     mobileMenuRef.current?.classList.toggle(styles.active);
 
   const router = useRouter();
-  const { user, error, isLoading } = useUser();
+  const { user } = useUser();
 
   const setLightTheme = () => {
     document.body.classList.replace("dark", "light");
@@ -57,7 +57,10 @@ const Navbar = () => {
         <h1 className={styles.logo}>
           <Link legacyBehavior={true} href="/">
             <a>
-              <img alt="logo" src="/logo.png" />
+              {
+                // eslint-disable-next-line @next/next/no-img-element
+                <img alt="logo" src="/logo.png" />
+              }
               Robert Brunhage
             </a>
           </Link>

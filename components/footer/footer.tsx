@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import styles from "./footer.module.scss";
 import Socials from "./socials";
@@ -18,7 +20,7 @@ const Footer = () => {
         </a>
       </p>
 
-      <a href="/cookie_policy"> Cookie Policy</a>
+      <Link href="/cookie_policy"> Cookie Policy</Link>
 
       <p className={styles.copyright}>
         Copyright &copy; {year} Robert Brunhage
@@ -28,7 +30,7 @@ const Footer = () => {
         {Socials.map((item, index) => (
           <li key={index}>
             <a href={item.href} rel="noopener noreferrer" target="_blank">
-              <img src={item.img} alt={item.alt} />
+              <Image src={item.img} width={38} height={38} alt={item.alt} />
             </a>
           </li>
         ))}

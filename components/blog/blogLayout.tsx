@@ -10,7 +10,7 @@ interface BlogProps {
   route: "articles" | "videos";
 }
 
-const blogLayout = ({ posts, title, description, route }: BlogProps) => {
+const BlogLayout = ({ posts, title, description, route }: BlogProps) => {
   return (
     <div className="max_width">
       <h1 className={styles.title}>{title}</h1>
@@ -33,4 +33,4 @@ const blogLayout = ({ posts, title, description, route }: BlogProps) => {
   );
 };
 
-export default blogLayout;
+export default BlogLayout;

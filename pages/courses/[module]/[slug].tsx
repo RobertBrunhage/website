@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -39,9 +39,6 @@ type LectureProps = {
 };
 
 export default function Course({ source, module, slug, course }: LectureProps) {
-  const [sideMenu, setSideMenu] = useState<Array<MenuProps>>([]);
-  const [seen, setSeen] = useState(false);
-
   const { user } = useUser();
   const hasAccessResponse = trpc.course.hasAccess.useQuery(
     { stripeProductId: "prod_NInXljEw7mMKMV" },
@@ -70,9 +67,8 @@ export default function Course({ source, module, slug, course }: LectureProps) {
     });
   };
 
-  let menu: Array<MenuProps> = [];
-
-  useEffect(() => {
+  const menuItems = useMemo(() => {
+    let menu: Array<MenuProps> = [];
     course.forEach((i: any) => {
       if (i.slug === "__index") return;
 
@@ -100,23 +96,21 @@ export default function Course({ source, module, slug, course }: LectureProps) {
 
     menu.sort((a, b) => a.weight - b.weight);
 
-    setSideMenu(menu);
-    Prism.highlightAll();
-  }, [course, allSeenLecturesResponse.data]);
+    return menu;
+  }, [allSeenLecturesResponse, course]);
+
+  const seen = menuItems.find((item) => item.slug === slug)?.seen ?? false;
 
   useEffect(() => {
-    const item = menu.find((item) => item.slug === slug);
-    if (item?.seen !== undefined) {
-      setSeen(item.seen);
-    }
-  }, [menu]);
+    Prism.highlightAll();
+  }, []);
 
   return (
     <Layout>
       <div className={`max_width ${styles.course_layout}`}>
         <aside className={styles.menu}>
           <SideNavigation
-            menu={sideMenu}
+            menu={menuItems}
             module={module}
             slug={slug}
             hasAccess={hasAccessResponse.data ?? false}
