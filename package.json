@@ -8,9 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "db:dev": "pscale connect robertbrunhage development --port 33093",
     "stripe": "stripe listen --forward-to localhost:3000/api/webhooks/stripe",
     "studio": "drizzle-kit studio",
-    "db": "pscale connect robertbrunhage development --port 33093",
     "db:push": "drizzle-kit push:mysql --config=./drizzle.config.ts"
   },
   "dependencies": {

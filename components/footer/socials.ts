@@ -1,3 +1,8 @@
+import twitter from "../../public/assets/icons/twitter.svg";
+import discord from "../../public/assets/icons/discord.svg";
+import youtube from "../../public/assets/icons/youtube.svg";
+import patreon from "../../public/assets/icons/patreon.svg";
+
 interface Social {
   img: string;
   href: string;
@@ -6,22 +11,22 @@ interface Social {
 
 const Socials: Social[] = [
   {
-    img: "/assets/icons/twitter.svg",
+    img: twitter,
     href: "https://twitter.com/RobertBrunhage",
     alt: "twitter",
   },
   {
-    img: "/assets/icons/discord.svg",
+    img: discord,
     href: "https://discord.gg/CPwSezC",
     alt: "discord",
   },
   {
-    img: "/assets/icons/youtube.svg",
+    img: youtube,
     href: "https://youtube.com/robertbrunhage",
     alt: "youtube",
   },
   {
-    img: "/assets/icons/patreon.svg",
+    img: patreon,
     href: "https://www.patreon.com/RobertBrunhage",
     alt: "patreon",
   },

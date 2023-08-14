@@ -110,49 +110,6 @@
     justify-content: center;
   }
 
-  .testimonial {
-    padding: 142px 0;
-    .content {
-      text-align: center;
-      .title {
-        margin: 0;
-        text-transform: uppercase;
-      }
-      .testimonials {
-        margin-top: 64px;
-        display: grid;
-        grid-template-areas:
-          "one one one"
-          "two three three"
-          "four four five";
-        row-gap: 42px;
-
-        img {
-          margin: 0 auto;
-          &:hover {
-            animation: jump 0.5s ease-in-out infinite;
-          }
-
-          &:nth-child(1) {
-            grid-area: one;
-          }
-          &:nth-child(2) {
-            grid-area: two;
-          }
-          &:nth-child(3) {
-            grid-area: three;
-          }
-          &:nth-child(4) {
-            grid-area: four;
-          }
-          &:nth-child(5) {
-            grid-area: five;
-          }
-        }
-      }
-    }
-  }
-
   .newsletter {
     padding: 100px 20px;
     margin: 32px auto 0 auto;
@@ -277,7 +234,6 @@
         }
         .sprite {
           grid-area: img;
-          width: 125px;
         }
         span {
           font-weight: bold;

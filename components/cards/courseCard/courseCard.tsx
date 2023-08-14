@@ -20,7 +20,10 @@ const CourseCard = ({
   return (
     <Link href={`/${route}/[slug]`} as={`/${route}/${slug}`}>
       <div className={styles.course_card}>
-        <img src={img} alt="thumbnail" />
+        {
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={img} alt="thumbnail" />
+        }
         <h1>{title}</h1>
         <p className={styles.line_clamp}>{description}</p>
       </div>

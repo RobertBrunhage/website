@@ -18,12 +18,6 @@ import discord from "../public/assets/icons/discord.svg";
 import openSource from "../public/assets/icons/open_source.svg";
 import education from "../public/assets/icons/education.svg";
 
-import mikeTestimonial from "../public/assets/images/testimonials/mikerydstrom.png";
-import aymanTestimonial from "../public/assets/images/testimonials/aymanbarghout.png";
-import tadasTestimonial from "../public/assets/images/testimonials/tadaspetra.png";
-import mukalTestimonial from "../public/assets/images/testimonials/mukaldadwhal.png";
-import luisTestimonial from "../public/assets/images/testimonials/luischodiman.png";
-
 import aboutMeImage from "../public/assets/icons/sprite_fire.png";
 
 interface HomeProps {
@@ -140,35 +134,7 @@ const Index = ({ videos, articles }: HomeProps) => {
           </div>
         </section>
 
-        <section className={styles.testimonial}>
-          <div className={`max_width ${styles.content}`}>
-            <h2 className={styles.title}>The Developers</h2>
-            <div className={styles.testimonials}>
-              <Image
-                src={mikeTestimonial}
-                alt="mike rydstrom"
-              />
-              <Image
-                src={aymanTestimonial}
-                alt="ayman barghout"
-              />
-              <Image
-                src={tadasTestimonial}
-                alt="tadas petra"
-              />
-              <Image
-                src={mukalTestimonial}
-                alt="mukal dadwhal"
-              />
-              <Image
-                src={luisTestimonial}
-                alt="luis chodiman"
-              />
-            </div>
-          </div>
-        </section>
-
-        <section>
+        <section >
           <div className={"max_width"}>
             <h2 className={styles.ft}>Featured Tutorials</h2>
             <div className={styles.card_container}>
@@ -199,7 +165,7 @@ const Index = ({ videos, articles }: HomeProps) => {
             </div>
           </div>
           <div className={styles.newsletter}>
-            <EmailSignup color={"var(--secondary-bg-color)"} />
+            <EmailSignup color={"var(--primary-bg-color)"} />
           </div>
         </section>
 

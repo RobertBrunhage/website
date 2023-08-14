@@ -57,7 +57,10 @@ const Navbar = () => {
         <h1 className={styles.logo}>
           <Link legacyBehavior={true} href="/">
             <a>
-              <img alt="logo" src="/logo.png" />
+              {
+                // eslint-disable-next-line @next/next/no-img-element
+                <img alt="logo" src="/logo.png" />
+              }
               Robert Brunhage
             </a>
           </Link>
