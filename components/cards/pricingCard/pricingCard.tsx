@@ -101,7 +101,8 @@ const PricingCard = ({
           </span>
           <Link
             legacyBehavior={true}
-            href={`/courses/${module}/${modules[0].slug}`}
+            // index 0 represents the index page which is not a lecture
+            href={`/courses/${module}/${modules[1].slug}`}
           >
             <a className={`${buttonStyle.button} ${styles.btn}`}>
               start watching
