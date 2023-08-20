@@ -18,7 +18,7 @@ const CourseCard = ({
   route,
 }: CourseCardProps) => {
   return (
-    <Link href={`/${route}/[slug]`} as={`/${route}/${slug}`}>
+    <Link href={`/${route}/${slug}`}>
       <div className={styles.course_card}>
         {
           // eslint-disable-next-line @next/next/no-img-element

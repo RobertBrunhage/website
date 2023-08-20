@@ -4,8 +4,9 @@ import BlogLayout from "../components/blog/blogLayout";
 import Layout from "../components/layout/layout";
 import CommonSEO from "../components/seo/seo";
 import { getAllFilesFrontMatter } from "../core/mdx";
+import { ArticlesFrontMatter } from "./articles/[slug]";
 
-const articles = ({ articles }: any) => {
+const articles = ({ articles }: { articles: ArticlesFrontMatter[] }) => {
   return (
     <Layout>
       <CommonSEO

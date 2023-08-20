@@ -2,7 +2,6 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { loadStripe } from "@stripe/stripe-js";
 import fs from "fs";
 import path from "path";
-import React, { useEffect } from "react";
 import styles from "../../styles/course_landing.module.scss";
 import Layout from "../../components/layout/layout";
 import matter from "gray-matter";
@@ -15,13 +14,14 @@ import PricingCard, {
 } from "../../components/cards/pricingCard/pricingCard";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { trpc } from "../../lib/trpc";
-import { createServerSideHelpers } from '@trpc/react-query/server';
+import { createServerSideHelpers } from "@trpc/react-query/server";
 import { appRouter } from "../../server/routers/_app";
+import { CourseFrontMatter } from "../courses";
 
-type ModulesProps = {
+type CourseProps = {
   source: MDXRemoteSerializeResult<SourceProps>;
   module: string;
-  modules: Array<any>;
+  modules: CourseFrontMatter[];
 };
 
 type SourceProps = {
@@ -37,11 +37,10 @@ type SourceProps = {
 };
 
 loadStripe(
-  //@ts-ignore
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
 );
 
-export default function Course({ source, module, modules }: ModulesProps) {
+export default function Course({ source, module, modules }: CourseProps) {
   const { user } = useUser();
 
   const courseResponse = trpc.course.course.useQuery({
@@ -50,12 +49,8 @@ export default function Course({ source, module, modules }: ModulesProps) {
 
   const hasAccessResponse = trpc.course.hasAccess.useQuery(
     { stripeProductId: "prod_NInXljEw7mMKMV" },
-    { enabled: user !== undefined }
+    { enabled: user !== undefined },
   );
-
-  useEffect(() => {
-    modules.sort((a, b) => a.weight - b.weight);
-  }, [modules]);
 
   return (
     <Layout>
@@ -128,7 +123,7 @@ export default function Course({ source, module, modules }: ModulesProps) {
                       <span>{index}</span> {title}
                     </li>
                   </Link>
-                )
+                ),
               )}
             </ul>
           </div>
@@ -204,7 +199,7 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   params: { module },
 }: Params) => {
   const course = fs.readFileSync(
-    path.join("data/courses", module, "__index.mdx")
+    path.join("data/courses", module, "__index.mdx"),
   );
 
   const ssg = createServerSideHelpers({
@@ -213,13 +208,15 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   });
 
   const { data: metaData, content } = matter(course);
-  const modules = await getCourseFrontMatter(module);
+  const modules: CourseFrontMatter[] = await getCourseFrontMatter(module);
 
   const mdxSource = await serialize(content, { scope: metaData });
 
   const source = mdxSource as MDXRemoteSerializeResult<SourceProps>;
 
   await ssg.course.course.prefetch({ courseName: source.scope!.courseId });
+
+  modules.sort((a, b) => a.weight - b.weight);
 
   return {
     props: { source: source, module, modules, trpcState: ssg.dehydrate() },

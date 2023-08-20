@@ -11,7 +11,7 @@ import styles from "../../styles/blog_post.module.scss";
 
 require("prismjs/components/prism-dart");
 
-export interface FrontmatterProps {
+export type ArticlesFrontMatter = {
   title: string;
   description: string;
   image: string;
@@ -29,14 +29,14 @@ export interface FrontmatterProps {
   };
   fileName: string;
   featured: boolean;
-}
+};
 
-interface ArticleProps {
-  frontMatter: FrontmatterProps;
+type ArticleProps = {
+  frontMatter: ArticlesFrontMatter;
   content: MDXRemoteSerializeResult<Record<string, unknown>>;
   rawContent: string;
   slug: string;
-}
+};
 
 export default function Article({
   frontMatter,
@@ -100,10 +100,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }: any) {
-  // const allPosts = await getAllFilesFrontMatter("articles");
-  // const postIndex = allPosts.findIndex((post) => post.slug === slug);
-  // const prev = allPosts[postIndex + 1] || null;
-  // const next = allPosts[postIndex - 1] || null;
   const post = await getFileBySlug("articles", slug);
 
   const content = post.mdxSource;
