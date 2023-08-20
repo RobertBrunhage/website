@@ -1,4 +1,5 @@
 import { usePlausible } from "next-plausible";
+import Link from "next/link";
 import React from "react";
 import { getCookieConsentValue } from "react-cookie-consent";
 import styles from "./cta.module.scss";
@@ -23,9 +24,6 @@ const Cta = ({
   width,
   animation,
   target,
-  center,
-  saturation,
-  disabled,
   plausibleEvent,
   plausibleEventProp,
   isPurchase,
@@ -34,13 +32,13 @@ const Cta = ({
   const cookieStatus = getCookieConsentValue();
 
   const onPlausibleEvent = () => {
-    if(isPurchase) {
+    if (isPurchase) {
       if (cookieStatus === "true") {
         import("react-facebook-pixel")
           .then((x) => x.default)
           .then((ReactPixel) => {
             ReactPixel.init(`${process.env.FACEBOOK_PIXEL_ID}`);
-            ReactPixel.track('Purchase');
+            ReactPixel.track("Purchase");
           });
       }
     }
@@ -53,21 +51,33 @@ const Cta = ({
     }
   };
 
+  if (animation)
+    return (
+      <div style={{ width: width }}>
+        <Link
+          className={styles.button}
+          href={href}
+          target={target}
+          onClick={() => onPlausibleEvent()}
+        >
+          {text}
+        </Link>
+      </div>
+    );
+
   return (
-    <div style={{ width: width, margin: center ? "0 auto" : "" }}>
-      <a
+    <div style={{ width: width }}>
+      <Link
         className={styles.button}
         href={href}
         target={target}
         onClick={() => onPlausibleEvent()}
         style={{
-          backgroundColor: animation ? "" : "var(--primary-color)",
-          filter: saturation ? `saturate(${saturation})` : "",
-          pointerEvents: disabled ? "none" : "auto",
+          backgroundColor: "var(--primary-color)",
         }}
       >
         {text}
-      </a>
+      </Link>
     </div>
   );
 };

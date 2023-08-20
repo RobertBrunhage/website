@@ -17,28 +17,25 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import { trpc } from "../../../lib/trpc";
 import { toast } from "react-hot-toast";
+import { CourseFrontMatter } from "../../courses";
 
 require("prismjs/components/prism-dart");
 
 const components = {};
 
-type LectureFrontMatter = {
-  title: string;
-  lectureId: string;
-  vimeo?: number;
-  github: string;
-  chapter?: string;
-};
-
 type LectureProps = {
-  source: MDXRemoteSerializeResult<LectureFrontMatter>;
+  source: MDXRemoteSerializeResult<CourseFrontMatter>;
   module: string;
   slug: string;
-  course: Array<any>;
-  modules: Array<any>;
+  course: CourseFrontMatter[];
 };
 
-export default function Course({ source, module, slug, course }: LectureProps) {
+export default function Lecture({
+  source,
+  module,
+  slug,
+  course,
+}: LectureProps) {
   const { user } = useUser();
   const hasAccessResponse = trpc.course.hasAccess.useQuery(
     { stripeProductId: "prod_NInXljEw7mMKMV" },
@@ -69,7 +66,7 @@ export default function Course({ source, module, slug, course }: LectureProps) {
 
   const menuItems = useMemo(() => {
     let menu: Array<MenuProps> = [];
-    course.forEach((i: any) => {
+    course.forEach((i) => {
       if (i.slug === "__index") return;
 
       let seen = false;
@@ -213,9 +210,12 @@ export const getStaticProps: GetStaticProps<Params> = async ({
   );
 
   const { data: metaData, content } = matter(courses);
-  const course = await getCourseFrontMatter(module);
+  const courseFrontMatter: CourseFrontMatter[] =
+    await getCourseFrontMatter(module);
 
   const mdxSource = await serialize(content, { scope: metaData });
 
-  return { props: { source: mdxSource, module, slug, course } };
+  return {
+    props: { source: mdxSource, module, slug, course: courseFrontMatter },
+  };
 };

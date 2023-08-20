@@ -1,10 +1,10 @@
 import React from "react";
-import { VideoFrontMatterInfo } from "../../pages/videos";
+import { VideoFrontMatter } from "../../pages/videos";
 import BlogCard from "../cards/blogCard/blogCard";
 import styles from "./blogLayout.module.scss";
 
 interface BlogProps {
-  posts: VideoFrontMatterInfo[];
+  posts: VideoFrontMatter[];
   title: string;
   description: string;
   route: "articles" | "videos";

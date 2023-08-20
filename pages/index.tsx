@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { useEffect, useState } from "react";
 import CTA from "../components/buttons/cta/cta";
 import BlogCard from "../components/cards/blogCard/blogCard";
 import EmailSignup from "../components/emailForm/forms/emailSignup";
@@ -9,8 +8,8 @@ import Layout from "../components/layout/layout";
 import CommonSEO from "../components/seo/seo";
 import { getAllFilesFrontMatter } from "../core/mdx";
 import styles from "../styles/home.module.scss";
-import { FrontmatterProps } from "./articles/[slug]";
-import { VideoFrontMatterInfo } from "./videos";
+import { ArticlesFrontMatter as ArticlesFrontMatter } from "./articles/[slug]";
+import { VideoFrontMatter as VideoFrontMatter } from "./videos";
 
 import heroImage from "../public/assets/images/flutter_course_launch_hero.png";
 
@@ -20,29 +19,16 @@ import education from "../public/assets/icons/education.svg";
 
 import aboutMeImage from "../public/assets/icons/sprite_fire.png";
 
-interface HomeProps {
-  videos: VideoFrontMatterInfo[];
-  articles: Array<FrontmatterProps>;
-  baseUrl: string;
-}
+type IndexProps = {
+  videos: VideoFrontMatter[];
+  articles: ArticlesFrontMatter[];
+};
 
-const Index = ({ videos, articles }: HomeProps) => {
-  const [featuredVideos, setFeaturedVideos] = useState(videos);
-  const [featuredArticles, setFeaturedArticles] = useState(articles);
-
-  useEffect(() => {
-    const featured = videos.filter((video) => {
-      return video.featured === true;
-    });
-    setFeaturedVideos(featured);
-  }, [videos]);
-
-  useEffect(() => {
-    const featured = articles.filter((article) => {
-      return article.featured === true;
-    });
-    setFeaturedArticles(featured);
-  }, [articles]);
+const Index = ({ videos, articles }: IndexProps) => {
+  const featuredVideos = videos.filter((video) => video.featured === true);
+  const featuredArticles = articles.filter(
+    (article) => article.featured === true,
+  );
 
   return (
     <Layout>
@@ -110,7 +96,11 @@ const Index = ({ videos, articles }: HomeProps) => {
               </p>
             </div>
             <div className={styles.card}>
-              <Image src={openSource} alt="open source icon" />
+              <Image
+                src={openSource}
+                style={{ height: "auto" }}
+                alt="open source icon"
+              />
               <h3>Open Source</h3>
               <p>
                 My videos are almost all supported by a GitHub repo, this{" "}
@@ -120,6 +110,7 @@ const Index = ({ videos, articles }: HomeProps) => {
             <div className={styles.card}>
               <Image
                 src={education}
+                style={{ height: "auto" }}
                 alt="books education icon"
               />
               <h3>High Quality</h3>
@@ -134,7 +125,7 @@ const Index = ({ videos, articles }: HomeProps) => {
           </div>
         </section>
 
-        <section >
+        <section>
           <div className={"max_width"}>
             <h2 className={styles.ft}>Featured Tutorials</h2>
             <div className={styles.card_container}>
@@ -189,15 +180,10 @@ const Index = ({ videos, articles }: HomeProps) => {
               </p>
               <p>
                 I started because I believed there were topics that could be
-                explained <strong>better</strong>, so I did my best to do just
-                that!
+                explained <strong>better</strong>, so I did my best to do that.
               </p>
             </div>
-            <Image
-              className={styles.sprite}
-              src={aboutMeImage}
-              alt="amazed"
-            />
+            <Image className={styles.sprite} src={aboutMeImage} alt="amazed" />
           </div>
         </section>
       </div>
@@ -208,8 +194,9 @@ const Index = ({ videos, articles }: HomeProps) => {
 export default Index;
 
 export async function getStaticProps() {
-  const videos = await getAllFilesFrontMatter("lessons");
-  const articles = await getAllFilesFrontMatter("articles");
+  const videos: VideoFrontMatter[] = await getAllFilesFrontMatter("lessons");
+  const articles: ArticlesFrontMatter[] =
+    await getAllFilesFrontMatter("articles");
 
   return { props: { videos, articles } };
 }

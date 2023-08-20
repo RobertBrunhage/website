@@ -4,7 +4,7 @@ import Layout from "../components/layout/layout";
 import CommonSEO from "../components/seo/seo";
 import { getAllFilesFrontMatter } from "../core/mdx";
 
-export type VideoFrontMatterInfo = {
+export type VideoFrontMatter = {
   title: string;
   description: string;
   image: string;
@@ -17,7 +17,7 @@ export type VideoFrontMatterInfo = {
   slug: string;
 };
 
-const videos = ({ videos }: { videos: VideoFrontMatterInfo[] }) => {
+const videos = ({ videos }: { videos: VideoFrontMatter[] }) => {
   return (
     <Layout>
       <CommonSEO
@@ -43,7 +43,7 @@ const videos = ({ videos }: { videos: VideoFrontMatterInfo[] }) => {
 export default videos;
 
 export async function getStaticProps() {
-  const videos: VideoFrontMatterInfo[] = await getAllFilesFrontMatter(
+  const videos: VideoFrontMatter[] = await getAllFilesFrontMatter(
     "lessons",
   );
 
