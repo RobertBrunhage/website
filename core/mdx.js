@@ -3,23 +3,8 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import readingTime from "reading-time";
-import { visit } from "unist-util-visit";
 
 const root = process.cwd();
-
-const tokenClassNames = {
-  tag: "text-code-red",
-  "attr-name": "text-code-yellow",
-  "attr-value": "text-code-green",
-  deleted: "text-code-red",
-  inserted: "text-code-green",
-  punctuation: "text-code-white",
-  keyword: "text-code-purple",
-  string: "text-code-green",
-  function: "text-code-blue",
-  boolean: "text-code-red",
-  comment: "text-gray-400 italic",
-};
 
 export async function getFiles(type) {
   return fs.readdirSync(path.join(root, "data", type));
@@ -54,16 +39,6 @@ export async function getFileBySlug(type, slug) {
       rehypePlugins: [
         import("rehype-katex"),
         import("@mapbox/rehype-prism"),
-        () => {
-          return (tree) => {
-            visit(tree, "element", (node, _, __) => {
-              let [token, type] = node.properties.className || [];
-              if (token === "token") {
-                node.properties.className = [tokenClassNames[type]];
-              }
-            });
-          };
-        },
       ],
     },
   });
