@@ -1,8 +1,6 @@
 import { MDXProvider } from "@mdx-js/react";
 import PlausibleProvider from "next-plausible";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
+import React, { useEffect } from "react";
 import EmailSignup from "../components/emailForm/forms/emailSignup";
 import BlogShareFooter from "../components/footer/blogShareFooter/blogShareFooter";
 import Heading2 from "../components/headings/h2";
@@ -14,7 +12,6 @@ import "../styles/globals.scss";
 import ModuleCard from "../components/cards/moduleCard/moduleCard";
 import { trpc } from "../lib/trpc";
 import { Toaster } from "react-hot-toast";
-import Link from "next/link";
 
 const components = {
   EmailSignup,
@@ -30,10 +27,6 @@ interface MyAppProps {
 }
 
 function MyApp({ Component, pageProps }: MyAppProps) {
-  const [cookieAccept, setCookieAccept] = useState(false);
-  const router = useRouter();
-  const cookieStatus = getCookieConsentValue();
-
   useEffect(() => {
     const theme = localStorage.getItem("theme");
 
@@ -44,21 +37,6 @@ function MyApp({ Component, pageProps }: MyAppProps) {
     }
   }, []);
 
-  useEffect(() => {
-    if (cookieStatus === "true") {
-      import("react-facebook-pixel")
-        .then((x) => x.default)
-        .then((ReactPixel) => {
-          ReactPixel.init(`${process.env.FACEBOOK_PIXEL_ID}`);
-          ReactPixel.pageView();
-
-          router.events.on("routeChangeComplete", () => {
-            ReactPixel.pageView();
-          });
-        });
-    }
-  }, [cookieStatus, cookieAccept, router.events]);
-
   return (
     <PlausibleProvider trackOutboundLinks={true} domain="robertbrunhage.com">
       <UserProvider>
@@ -66,32 +44,6 @@ function MyApp({ Component, pageProps }: MyAppProps) {
         <MDXProvider components={components}>
           <Component {...pageProps} />
         </MDXProvider>
-        <CookieConsent
-          disableStyles
-          location="bottom"
-          buttonText="I UNDERSTAND"
-          declineButtonText="DECLINE"
-          overlay
-          expires={365}
-          enableDeclineButton
-          overlayClasses="CookieConsentOverlay"
-          buttonClasses="CookieConsentBtn"
-          declineButtonClasses="CookieConsentBtn DeclineBtn"
-          flipButtons
-          buttonWrapperClasses="Btns"
-          onAccept={() => setCookieAccept(true)}
-        >
-          <h3>This site uses cookies</h3>
-          <p>
-            This site uses cookies to help tailor ads on third-party websites.
-          </p>
-          <p>
-            Read more about our{" "}
-            <Link style={{ color: "#22e2e2" }} href="/cookie_policy">
-              Cookie policy
-            </Link>
-          </p>
-        </CookieConsent>
       </UserProvider>
     </PlausibleProvider>
   );
