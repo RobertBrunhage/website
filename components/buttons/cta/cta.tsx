@@ -1,7 +1,6 @@
 import { usePlausible } from "next-plausible";
 import Link from "next/link";
 import React from "react";
-import { getCookieConsentValue } from "react-cookie-consent";
 import styles from "./cta.module.scss";
 
 interface CTAProps {
@@ -26,22 +25,10 @@ const Cta = ({
   target,
   plausibleEvent,
   plausibleEventProp,
-  isPurchase,
 }: CTAProps) => {
   const plausible = usePlausible();
-  const cookieStatus = getCookieConsentValue();
 
   const onPlausibleEvent = () => {
-    if (isPurchase) {
-      if (cookieStatus === "true") {
-        import("react-facebook-pixel")
-          .then((x) => x.default)
-          .then((ReactPixel) => {
-            ReactPixel.init(`${process.env.FACEBOOK_PIXEL_ID}`);
-            ReactPixel.track("Purchase");
-          });
-      }
-    }
     if (plausibleEvent) {
       plausible(plausibleEvent, {
         props: {

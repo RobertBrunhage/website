@@ -20,8 +20,6 @@ const Footer = () => {
         </a>
       </p>
 
-      <Link href="/cookie_policy"> Cookie Policy</Link>
-
       <p className={styles.copyright}>
         Copyright &copy; {year} Robert Brunhage
       </p>

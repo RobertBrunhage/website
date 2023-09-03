@@ -3,7 +3,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import fs from "fs";
 import path from "path";
 import styles from "../../styles/course_landing.module.scss";
-import Layout from "../../components/layout/layout";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
@@ -53,7 +52,7 @@ export default function Course({ source, module, modules }: CourseProps) {
   );
 
   return (
-    <Layout>
+    <>
       <div className={`${styles.course_layout}`}>
         <section className={styles.main}>
           <div className={styles.header}>
@@ -155,7 +154,7 @@ export default function Course({ source, module, modules }: CourseProps) {
           )}
         </section>
       </div>
-    </Layout>
+    </>
   );
 }
 

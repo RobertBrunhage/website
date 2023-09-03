@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "../components/layout/layout";
 import CommonSEO from "../components/seo/seo";
 import Courses from "../components/courses/courses";
 import { getCoursesFrontMatter } from "../core/mdx";
@@ -24,7 +23,7 @@ export type CourseFrontMatter = {
 
 const courses = ({ courses }: { courses: CourseFrontMatter[] }) => {
   return (
-    <Layout>
+    <>
       <CommonSEO
         title="Robert Brunhage - Flutter, Dart, Firebase | Courses"
         description="Take part of a plethora of courses"
@@ -35,7 +34,7 @@ const courses = ({ courses }: { courses: CourseFrontMatter[] }) => {
         <link rel="canonical" href="https://robertbrunhage.com" />
       </CommonSEO>
       <Courses courses={courses} />
-    </Layout>
+    </>
   );
 };
 

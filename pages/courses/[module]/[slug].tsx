@@ -5,7 +5,6 @@ import path from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import Layout from "../../../components/layout/layout";
 import "prismjs";
 import Prism from "prismjs";
 import styles from "../../../styles/course_layout.module.scss";
@@ -103,7 +102,7 @@ export default function Lecture({
   }, []);
 
   return (
-    <Layout>
+    <>
       <div className={`max_width ${styles.course_layout}`}>
         <aside className={styles.menu}>
           <SideNavigation
@@ -160,7 +159,7 @@ export default function Lecture({
           <MDXRemote {...source} components={components} />
         </article>
       </div>
-    </Layout>
+    </>
   );
 }
 

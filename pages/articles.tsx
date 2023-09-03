@@ -1,14 +1,13 @@
 import "next/head";
 import React from "react";
 import BlogLayout from "../components/blog/blogLayout";
-import Layout from "../components/layout/layout";
 import CommonSEO from "../components/seo/seo";
 import { getAllFilesFrontMatter } from "../core/mdx";
 import { ArticlesFrontMatter } from "./articles/[slug]";
 
 const articles = ({ articles }: { articles: ArticlesFrontMatter[] }) => {
   return (
-    <Layout>
+    <>
       <CommonSEO
         title="Robert Brunhage - Flutter, Dart, Firebase | articles"
         description="Video lesson on topics such as Flutter, Dart, Firebase and more | Robert Brunhage"
@@ -25,7 +24,7 @@ const articles = ({ articles }: { articles: ArticlesFrontMatter[] }) => {
         description="Articles regarding topics such as Flutter, Dart, Git and more!"
         route="articles"
       ></BlogLayout>
-    </Layout>
+    </>
   );
 };
 
