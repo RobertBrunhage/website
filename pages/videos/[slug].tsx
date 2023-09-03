@@ -3,7 +3,6 @@ import "prismjs";
 import Prism from "prismjs";
 import React, { useEffect, useRef } from "react";
 import { TOC } from "../../components/headings/toc";
-import Layout from "../../components/layout/layout";
 import CommonSEO from "../../components/seo/seo";
 import { formatSlug, getFileBySlug, getFiles } from "../../core/mdx";
 import { getHeadings } from "../../core/utils";
@@ -51,7 +50,7 @@ export default function Lesson({
   const headings = getHeadings(rawContent);
 
   return (
-    <Layout>
+    <>
       <CommonSEO
         title={frontMatter.title}
         description={frontMatter.description}
@@ -103,7 +102,7 @@ export default function Lesson({
           </aside>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
 

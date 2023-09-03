@@ -1,6 +1,5 @@
 import React from "react";
 import BlogLayout from "../components/blog/blogLayout";
-import Layout from "../components/layout/layout";
 import CommonSEO from "../components/seo/seo";
 import { getAllFilesFrontMatter } from "../core/mdx";
 
@@ -19,7 +18,7 @@ export type VideoFrontMatter = {
 
 const videos = ({ videos }: { videos: VideoFrontMatter[] }) => {
   return (
-    <Layout>
+    <>
       <CommonSEO
         title="Robert Brunhage - Flutter, Dart, Firebase | Videos"
         description="Video lesson on topics such as Flutter, Dart, Firebase and more | Robert Brunhage"
@@ -36,7 +35,7 @@ const videos = ({ videos }: { videos: VideoFrontMatter[] }) => {
         description="A collection of my videos with a written guide to accompany it!"
         route="videos"
       ></BlogLayout>
-    </Layout>
+    </>
   );
 };
 

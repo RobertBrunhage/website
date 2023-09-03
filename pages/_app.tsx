@@ -12,6 +12,8 @@ import "../styles/globals.scss";
 import ModuleCard from "../components/cards/moduleCard/moduleCard";
 import { trpc } from "../lib/trpc";
 import { Toaster } from "react-hot-toast";
+import Navbar from "../components/navbar/navbar";
+import Footer from "../components/footer/footer";
 
 const components = {
   EmailSignup,
@@ -42,7 +44,9 @@ function MyApp({ Component, pageProps }: MyAppProps) {
       <UserProvider>
         <Toaster position="bottom-center" />
         <MDXProvider components={components}>
+          <Navbar />
           <Component {...pageProps} />
+          <Footer />
         </MDXProvider>
       </UserProvider>
     </PlausibleProvider>

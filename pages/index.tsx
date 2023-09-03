@@ -4,7 +4,6 @@ import React from "react";
 import CTA from "../components/buttons/cta/cta";
 import BlogCard from "../components/cards/blogCard/blogCard";
 import EmailSignup from "../components/emailForm/forms/emailSignup";
-import Layout from "../components/layout/layout";
 import CommonSEO from "../components/seo/seo";
 import { getAllFilesFrontMatter } from "../core/mdx";
 import styles from "../styles/home.module.scss";
@@ -31,7 +30,7 @@ const Index = ({ videos, articles }: IndexProps) => {
   );
 
   return (
-    <Layout>
+    <>
       <CommonSEO
         title="Robert Brunhage - Flutter, Dart, Firebase | Homepage"
         description="Learn how to build production-ready apps with Flutter on mobile, desktop and web."
@@ -187,7 +186,7 @@ const Index = ({ videos, articles }: IndexProps) => {
           </div>
         </section>
       </div>
-    </Layout>
+    </>
   );
 };
 
